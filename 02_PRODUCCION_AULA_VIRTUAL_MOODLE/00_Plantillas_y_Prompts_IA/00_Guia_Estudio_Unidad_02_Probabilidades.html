@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Estudio Oficial - Unidad 2: Probabilidades | UAGRM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --uagrm-blue: #002b49;
+            --dodger-blue: #0284c7;
+            --uagrm-red: #b22222;
+            --emerald-green: #047857;
+            --amber-gold: #d97706;
+            --purple-accent: #7c3aed;
+            --bg-body: #f8fafc;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--uagrm-blue) 0%, #004080 100%);
+            color: #ffffff;
+            padding: 35px 30px;
+            border-bottom: 4px solid var(--uagrm-red);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .header-title h1 {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+
+        .header-title p {
+            font-size: 15px;
+            color: #cbd5e1;
+            font-weight: 400;
+        }
+
+        .header-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(5px);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .badge-red { background: var(--uagrm-red); color: white; border: none; }
+        .badge-blue { background: var(--dodger-blue); color: white; border: none; }
+
+        .content {
+            padding: 35px 30px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            color: var(--uagrm-blue);
+            margin: 28px 0 16px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .section-title:first-child { margin-top: 0; }
+
+        .section-title span {
+            background: #e0f2fe;
+            color: var(--dodger-blue);
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: #f8fafc;
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            padding: 18px;
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-color: #cbd5e1;
+        }
+
+        .card h4 {
+            color: var(--uagrm-blue);
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+
+        .card p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+        }
+
+        .table-custom {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 25px 0;
+            font-size: 14px;
+        }
+
+        .table-custom th {
+            background: var(--uagrm-blue);
+            color: white;
+            padding: 12px 14px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .table-custom td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .table-custom tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .table-custom tr:hover {
+            background: #f1f5f9;
+        }
+
+        .box-info {
+            background: #eff6ff;
+            border-left: 4px solid var(--dodger-blue);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 14.5px;
+        }
+
+        .box-formula {
+            background: #fdf2f2;
+            border-left: 4px solid var(--uagrm-red);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+
+        .footer {
+            background: #f1f5f9;
+            padding: 20px 30px;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13.5px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="header-title">
+            <h1>Guía Didáctica Oficial: Unidad N° 2</h1>
+            <p>Estadística II (MAT-260) | Carrera de Contaduría Pública — UAGRM</p>
+        </div>
+        <div class="header-badges">
+            <span class="badge badge-red">MSc. Anselmo Salguero Arano</span>
+            <span class="badge badge-blue">Modalidad Híbrida 70/30</span>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2 class="section-title"><span>1</span> Fundamentación e Identificación de la Unidad</h2>
+        <p>La <strong>Unidad N° 2: Probabilidades</strong> proporciona las bases formales para cuantificar la incertidumbre en los procesos de auditoría, análisis de riesgo crediticio, seguros, proyecciones financieras y toma de decisiones gerenciales bajo condiciones estocásticas.</p>
+        
+        <div class="box-info">
+            <strong>🎯 Competencia Específica de la Unidad:</strong><br>
+            Aplica con rigor matemático los axiomas de probabilidad, las reglas de la adición, multiplicación, probabilidad condicional y el Teorema de Bayes en la modelación de escenarios contables y financieros, sustentando conclusiones auditables basadas en evidencia cuantitativa.
+        </div>
+
+        <!-- SVG INFOGRAFÍA TEÓRICA UNIDAD 2 -->
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px; margin: 25px 0;">
+            <h3 style="color: var(--uagrm-blue); font-size: 16px; margin-bottom: 15px; text-align: center;">🗺️ Mapa Estructural de Aprendizaje: Unidad N° 2 Probabilidades</h3>
+            <svg viewBox="0 0 900 240" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; display: block; margin: 0 auto;">
+                <defs>
+                    <linearGradient id="gBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#0284c7"/>
+                        <stop offset="100%" stop-color="#0369a1"/>
+                    </linearGradient>
+                    <linearGradient id="gGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#059669"/>
+                        <stop offset="100%" stop-color="#047857"/>
+                    </linearGradient>
+                    <linearGradient id="gAmber" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#f59e0b"/>
+                        <stop offset="100%" stop-color="#d97706"/>
+                    </linearGradient>
+                    <linearGradient id="gPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#8b5cf6"/>
+                        <stop offset="100%" stop-color="#6d28d9"/>
+                    </linearGradient>
+                </defs>
+
+                <!-- Panel 1: Lección 2.1 -->
+                <g transform="translate(15, 20)">
+                    <rect width="200" height="200" fill="#f0f9ff" stroke="#bae6fd" stroke-width="2" rx="10"/>
+                    <rect width="200" height="38" fill="url(#gBlue)" rx="10 10 0 0"/>
+                    <text x="100" y="24" fill="#ffffff" font-size="13" font-weight="bold" text-anchor="middle">Lección 2.1: Adición</text>
+                    <circle cx="70" cy="80" r="28" fill="#bae6fd" fill-opacity="0.6" stroke="#0284c7" stroke-width="1.5"/>
+                    <circle cx="130" cy="80" r="28" fill="#bae6fd" fill-opacity="0.6" stroke="#0284c7" stroke-width="1.5"/>
+                    <text x="100" y="84" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">A ∩ B</text>
+                    <rect x="15" y="125" width="170" height="60" fill="#ffffff" stroke="#e0f2fe" rx="6"/>
+                    <text x="100" y="145" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">Enfoques Clásico y Frec.</text>
+                    <text x="100" y="165" font-size="11.5" font-weight="bold" fill="#b22222" text-anchor="middle">P(A ∪ B) = P(A)+P(B)-P(AB)</text>
+                </g>
+
+                <!-- Panel 2: Lección 2.2 -->
+                <g transform="translate(235, 20)">
+                    <rect width="200" height="200" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="2" rx="10"/>
+                    <rect width="200" height="38" fill="url(#gGreen)" rx="10 10 0 0"/>
+                    <text x="100" y="24" fill="#ffffff" font-size="13" font-weight="bold" text-anchor="middle">Lección 2.2: Multiplicación</text>
+                    <!-- Icono Multiplicación -->
+                    <rect x="35" y="55" width="55" height="35" fill="#dcfce7" stroke="#059669" rx="4"/>
+                    <text x="62" y="77" font-size="12" font-weight="bold" fill="#065f46" text-anchor="middle">P(A)</text>
+                    <text x="100" y="78" font-size="16" font-weight="bold" fill="#059669" text-anchor="middle">×</text>
+                    <rect x="110" y="55" width="55" height="35" fill="#dcfce7" stroke="#059669" rx="4"/>
+                    <text x="137" y="77" font-size="12" font-weight="bold" fill="#065f46" text-anchor="middle">P(B|A)</text>
+                    <rect x="15" y="125" width="170" height="60" fill="#ffffff" stroke="#dcfce7" rx="6"/>
+                    <text x="100" y="145" font-size="11" font-weight="bold" fill="#065f46" text-anchor="middle">Independencia vs Dependencia</text>
+                    <text x="100" y="165" font-size="11.5" font-weight="bold" fill="#b22222" text-anchor="middle">P(A ∩ B) = P(A) · P(B|A)</text>
+                </g>
+
+                <!-- Panel 3: Lección 2.3 -->
+                <g transform="translate(455, 20)">
+                    <rect width="200" height="200" fill="#fffbeb" stroke="#fde68a" stroke-width="2" rx="10"/>
+                    <rect width="200" height="38" fill="url(#gAmber)" rx="10 10 0 0"/>
+                    <text x="100" y="24" fill="#ffffff" font-size="13" font-weight="bold" text-anchor="middle">Lección 2.3: Condicional</text>
+                    <!-- Mini Tabla Contingencia -->
+                    <rect x="30" y="52" width="140" height="60" fill="#ffffff" stroke="#d97706" rx="4"/>
+                    <line x1="30" y1="72" x2="170" y2="72" stroke="#d97706" stroke-dasharray="2"/>
+                    <line x1="100" y1="52" x2="100" y2="112" stroke="#d97706" stroke-dasharray="2"/>
+                    <text x="65" y="66" font-size="9" font-weight="bold" fill="#92400e" text-anchor="middle">Conjunta</text>
+                    <text x="135" y="66" font-size="9" font-weight="bold" fill="#92400e" text-anchor="middle">Marginal</text>
+                    <text x="100" y="96" font-size="11" font-weight="bold" fill="#b22222" text-anchor="middle">Tablas 2×2 y Árbol</text>
+                    <rect x="15" y="125" width="170" height="60" fill="#ffffff" stroke="#fef3c7" rx="6"/>
+                    <text x="100" y="145" font-size="11" font-weight="bold" fill="#92400e" text-anchor="middle">Probabilidad Condicional</text>
+                    <text x="100" y="165" font-size="11.5" font-weight="bold" fill="#b22222" text-anchor="middle">P(A|B) = P(A ∩ B) / P(B)</text>
+                </g>
+
+                <!-- Panel 4: Lección 2.4 -->
+                <g transform="translate(675, 20)">
+                    <rect width="210" height="200" fill="#faf5ff" stroke="#e9d5ff" stroke-width="2" rx="10"/>
+                    <rect width="210" height="38" fill="url(#gPurple)" rx="10 10 0 0"/>
+                    <text x="105" y="24" fill="#ffffff" font-size="13" font-weight="bold" text-anchor="middle">Lección 2.4: Bayes</text>
+                    <!-- Árbol de Bayes -->
+                    <circle cx="45" cy="80" r="14" fill="#f3e8ff" stroke="#7c3aed"/>
+                    <text x="45" y="84" font-size="9" font-weight="bold" fill="#6d28d9" text-anchor="middle">A priori</text>
+                    <path d="M 60 80 L 100 65 M 60 80 L 100 95" stroke="#7c3aed" stroke-width="1.5"/>
+                    <circle cx="115" cy="65" r="12" fill="#ede9fe" stroke="#6d28d9"/>
+                    <circle cx="115" cy="95" r="12" fill="#ede9fe" stroke="#6d28d9"/>
+                    <text x="155" y="84" font-size="10" font-weight="bold" fill="#6d28d9">A posteriori</text>
+                    <rect x="15" y="125" width="180" height="60" fill="#ffffff" stroke="#f3e8ff" rx="6"/>
+                    <text x="105" y="145" font-size="11" font-weight="bold" fill="#6d28d9" text-anchor="middle">Teorema de Bayes & Total</text>
+                    <text x="105" y="165" font-size="11.5" font-weight="bold" fill="#b22222" text-anchor="middle">P(A_i|B) = P(A_i)P(B|A_i)/Σ</text>
+                </g>
+            </svg>
+        </div>
+
+        <h2 class="section-title"><span>2</span> Desglose de Contenidos por Lección</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h4>📘 Lección 2.1: Conceptos y Adición</h4>
+                <p>Enfoque clásico de Laplace, empírico y subjetivo. Axiomas de Kolmogorov. Regla especial y general de la adición. Eventos complementarios y disjuntos.</p>
+            </div>
+            <div class="card">
+                <h4>📗 Lección 2.2: Multiplicación e Independencia</h4>
+                <p>Regla general de la multiplicación. Independencia estadística vs eventos dependientes. Muestreo con y sin reemplazo en auditoría de transacciones.</p>
+            </div>
+            <div class="card">
+                <h4>📙 Lección 2.3: Probabilidad Condicional y Contingencia</h4>
+                <p>Construcción y análisis de tablas de contingencia bidimensionales. Probabilidades marginales, conjuntas y condicionales. Diagramas de árbol.</p>
+            </div>
+            <div class="card">
+                <h4>📕 Lección 2.4: Probabilidad Total y Bayes</h4>
+                <p>Partición del espacio muestral. Ley de probabilidad total. Teorema de Bayes aplicado a la detección de fraude contable y riesgo de impago crediticio.</p>
+            </div>
+        </div>
+
+        <h2 class="section-title"><span>3</span> Sistema de Evaluación de la Unidad (Modelo 70/30)</h2>
+        <table class="table-custom">
+            <thead>
+                <tr>
+                    <th>Componente Evaluativo</th>
+                    <th>Tipo de Actividad</th>
+                    <th>Ponderación</th>
+                    <th>Herramienta Moodle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Lecciones Interactivas (4)</strong></td>
+                    <td>Autoaprendizaje y Práctica Guiada Formativa</td>
+                    <td>20% (Formativo)</td>
+                    <td>Lección Interactiva HTML / Moodle</td>
+                </tr>
+                <tr>
+                    <td><strong>Memoria de Cálculo (Práctico 2)</strong></td>
+                    <td>Resolución de Casos Contables con Rúbrica</td>
+                    <td>30% (Sumativo)</td>
+                    <td>Tarea con Rúbrica Analítica Oficial</td>
+                </tr>
+                <tr>
+                    <td><strong>Cuestionario de Unidad 2</strong></td>
+                    <td>Evaluación de Reactivos de Selección y Emparejamiento</td>
+                    <td>50% (Sumativo)</td>
+                    <td>Banco de Preguntas XML Moodle</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="box-formula">
+            <h4 style="color: var(--uagrm-red); margin-bottom: 8px;">📚 Bibliografía Oficial de Referencia</h4>
+            <ul style="margin-left: 20px; font-size: 13.5px; color: var(--text-dark);">
+                <li><strong>Anderson, D. R., Sweeney, D. J., & Williams, T. A.</strong> <em>Estadística para Negocios y Economía</em> (13ª ed.). Cengage Learning. Capítulo 4: Introducción a la Probabilidad.</li>
+                <li><strong>Lind, D. A., Marchal, W. G., & Wathen, S. A.</strong> <em>Estadística aplicada a los negocios y la economía</em> (17ª ed.). McGraw-Hill. Capítulo 5: Estudio de los conceptos de la probabilidad.</li>
+                <li><strong>Salguero Arano, A.</strong> <em>Texto Guía de Estadística II para Contaduría Pública</em>. UAGRM, 2026.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div><strong>Docente Titular:</strong> MSc. Anselmo Salguero Arano</div>
+        <div>Facultad de Ciencias Contables, Auditoría y Finanzas — UAGRM</div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea Sumativa: Memoria de Cálculo Unidad 2 - Probabilidades | UAGRM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --uagrm-blue: #002b49;
+            --dodger-blue: #0284c7;
+            --uagrm-red: #b22222;
+            --emerald-green: #047857;
+            --amber-gold: #d97706;
+            --purple-accent: #7c3aed;
+            --bg-body: #f8fafc;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--uagrm-blue) 0%, #004b7a 100%);
+            color: #ffffff;
+            padding: 35px 30px;
+            border-bottom: 4px solid var(--uagrm-red);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .header-title h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .header-title p {
+            font-size: 14.5px;
+            color: #bae6fd;
+        }
+
+        .badge {
+            background: var(--uagrm-red);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 35px 30px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 19px;
+            color: var(--uagrm-blue);
+            margin: 28px 0 16px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .section-title:first-child { margin-top: 0; }
+
+        .section-title span {
+            background: #e0f2fe;
+            color: var(--dodger-blue);
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .case-box {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            padding: 22px;
+            margin-bottom: 22px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .case-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .case-header h3 {
+            font-size: 16px;
+            color: var(--uagrm-blue);
+        }
+
+        .case-badge {
+            background: #e0f2fe;
+            color: var(--dodger-blue);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .table-rubric {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 13.5px;
+        }
+
+        .table-rubric th {
+            background: var(--uagrm-blue);
+            color: white;
+            padding: 12px 14px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .table-rubric td {
+            padding: 12px 14px;
+            border: 1px solid var(--border-light);
+            vertical-align: top;
+        }
+
+        .table-rubric tr:nth-child(even) { background: #f8fafc; }
+
+        .score-col {
+            font-weight: bold;
+            color: var(--uagrm-blue);
+            text-align: center;
+            background: #f1f5f9;
+        }
+
+        .alert-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--dodger-blue);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        .footer {
+            background: #f1f5f9;
+            padding: 20px 30px;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="header-title">
+            <h1>Tarea Sumativa: Memoria de Cálculo Unidad 2</h1>
+            <p>Modelación Cuantitativa de Probabilidades en Auditoría y Negocios • MAT-260</p>
+        </div>
+        <div>
+            <span class="badge">Ponderación: 30 Puntos (30%)</span>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="alert-box">
+            <strong>📋 Instrucciones Generales de Entrega:</strong><br>
+            El estudiante debe resolver los 3 casos prácticos desarrollando paso a paso la memoria de cálculo analítica (planteamiento formal de eventos, aplicación de axiomas/teoremas, operaciones algebraicas detalladas y conclusión técnica orientada al dictamen contable). El documento final debe presentarse en formato PDF en la plataforma Moodle UAGRM.
+        </div>
+
+        <h2 class="section-title"><span>1</span> Casos Prácticos de Aplicación Contable</h2>
+
+        <!-- CASO 1 -->
+        <div class="case-box">
+            <div class="case-header">
+                <h3>Caso 1: Auditoría de Cumplimiento Tributario y Regla General de la Adición</h3>
+                <span class="case-badge">Ponderación: 10 Pts</span>
+            </div>
+            <p>Una firma auditora en Santa Cruz revisa los registros de 400 empresas comerciales. Se determina que:</p>
+            <ul style="margin: 8px 0 10px 25px; font-size: 14px;">
+                <li>El 45% presenta inconsistencias en el Impuesto al Valor Agregado (\(P(IVA) = 0.45\)).</li>
+                <li>El 30% presenta inconsistencias en el Impuesto a las Utilidades (\(P(IUE) = 0.30\)).</li>
+                <li>El 18% presenta inconsistencias en ambos impuestos simultáneamente (\(P(IVA \cap IUE) = 0.18\)).</li>
+            </ul>
+            <p><strong>Requerimientos Analíticos:</strong></p>
+            <ol style="margin: 6px 0 0 25px; font-size: 14px;">
+                <li>Construya el Diagrama de Venn formal con las probabilidades de cada región.</li>
+                <li>Calcule la probabilidad de que una empresa presente observaciones en IVA o en IUE (o en ambos).</li>
+                <li>Calcule la probabilidad de que una empresa NO presente ninguna observación tributaria.</li>
+                <li>Emita un párrafo de dictamen profesional interpretando los resultados para la Gerencia de Fiscalización.</li>
+            </ol>
+        </div>
+
+        <!-- CASO 2 -->
+        <div class="case-box">
+            <div class="case-header">
+                <h3>Caso 2: Análisis Bivariado y Contingencia en Cartera de Créditos</h3>
+                <span class="case-badge">Ponderación: 10 Pts</span>
+            </div>
+            <p>El departamento de riesgos de un banco comercial resume 600 créditos clasificados según el tipo de cliente y el estado del préstamo:</p>
+            <div style="margin: 12px 0; overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 13.5px; text-align: center;">
+                    <thead>
+                        <tr style="background: var(--uagrm-blue); color: white;">
+                            <th style="padding: 8px; text-align: left;">Tipo de Empresa</th>
+                            <th style="padding: 8px;">Crédito al Día (C)</th>
+                            <th style="padding: 8px;">Crédito en Mora (M)</th>
+                            <th style="padding: 8px;">Total Marginal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 8px; text-align: left; font-weight: bold;">Microempresa (\(E_1\))</td>
+                            <td style="padding: 8px;">315</td>
+                            <td style="padding: 8px;">45</td>
+                            <td style="padding: 8px; font-weight: bold;">360</td>
+                        </tr>
+                        <tr style="background: #f8fafc;">
+                            <td style="padding: 8px; text-align: left; font-weight: bold;">Gran Empresa (\(E_2\))</td>
+                            <td style="padding: 8px;">228</td>
+                            <td style="padding: 8px;">12</td>
+                            <td style="padding: 8px; font-weight: bold;">240</td>
+                        </tr>
+                        <tr style="background: #e0f2fe; font-weight: bold;">
+                            <td style="padding: 8px; text-align: left;">Total Marginal</td>
+                            <td style="padding: 8px;">543</td>
+                            <td style="padding: 8px;">57</td>
+                            <td style="padding: 8px; color: var(--dodger-blue);">600</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><strong>Requerimientos Analíticos:</strong></p>
+            <ol style="margin: 6px 0 0 25px; font-size: 14px;">
+                <li>Elabore la matriz de probabilidades relativas conjuntas y marginales.</li>
+                <li>Calcule la probabilidad condicional de mora en Microempresas: \(P(M|E_1)\).</li>
+                <li>Calcule la probabilidad condicional de mora en Grandes Empresas: \(P(M|E_2)\).</li>
+                <li>Demuestre analíticamente si el tamaño de empresa y la condición de mora son eventos dependientes o independientes.</li>
+            </ol>
+        </div>
+
+        <!-- CASO 3 -->
+        <div class="case-box">
+            <div class="case-header">
+                <h3>Caso 3: Auditoría Forense y Aplicación del Teorema de Bayes</h3>
+                <span class="case-badge">Ponderación: 10 Pts</span>
+            </div>
+            <p>Una corporación procesa facturas de compras a través de tres sucursales regionales:</p>
+            <ul style="margin: 8px 0 10px 25px; font-size: 14px;">
+                <li>Sucursal Santa Cruz (\(S_1\)): Procesa el 50% de las facturas con tasa de error del 1% (\(P(E|S_1) = 0.01\)).</li>
+                <li>Sucursal La Paz (\(S_2\)): Procesa el 30% de las facturas con tasa de error del 3% (\(P(E|S_2) = 0.03\)).</li>
+                <li>Sucursal Cochabamba (\(S_3\)): Procesa el 20% de las facturas con tasa de error del 6% (\(P(E|S_3) = 0.06\)).</li>
+            </ul>
+            <p><strong>Requerimientos Analíticos:</strong></p>
+            <ol style="margin: 6px 0 0 25px; font-size: 14px;">
+                <li>Construya el Diagrama de Árbol cuantitativo completo.</li>
+                <li>Calcule la Probabilidad Total de seleccionar una factura con error en la corporación (\(P(E)\)).</li>
+                <li>Si un auditor externo detecta una factura con error grave, aplique el Teorema de Bayes para calcular la probabilidad a posteriori de que dicha factura provenga de la Sucursal Cochabamba (\(P(S_3|E)\)).</li>
+                <li>Recomiende fundadamente a qué sucursal debe dirigirse la comisión de control interno prioritario.</li>
+            </ol>
+        </div>
+
+        <h2 class="section-title"><span>2</span> Rúbrica Analítica de Evaluación Oficial</h2>
+        <table class="table-rubric">
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Criterio Evaluado</th>
+                    <th style="width: 25%;">Excelente (100%)</th>
+                    <th style="width: 25%;">Bueno (75%)</th>
+                    <th style="width: 20%;">En Desarrollo (50%)</th>
+                    <th style="width: 10%;" class="score-col">Puntaje</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1. Planteamiento y Notación Formal</strong> (35%)</td>
+                    <td>Define rigurosamente todos los eventos, espacios muestrales, diagramas de Venn y árboles de probabilidad con notación formal de Kolmogorov y Bayes.</td>
+                    <td>Plantea los eventos y diagramas con claridad, con pequeñas omisiones de notación que no alteran el resultado.</td>
+                    <td>Planteamiento incompleto, omite diagramas o utiliza notación ambigua.</td>
+                    <td class="score-col">10.5 Pts</td>
+                </tr>
+                <tr>
+                    <td><strong>2. Desarrollo Analítico y Precisión Matemática</strong> (45%)</td>
+                    <td>Aplica con exactitud los axiomas, fórmulas de adición, multiplicación, tablas de contingencia y Teorema de Bayes, con cálculos 100% correctos.</td>
+                    <td>Aplica las fórmulas correctas con errores aritméticos menores de redondeo.</td>
+                    <td>Errores conceptuales en fórmulas (confunde unión con intersección o invierte el denominador en Bayes).</td>
+                    <td class="score-col">13.5 Pts</td>
+                </tr>
+                <tr>
+                    <td><strong>3. Conclusión Profesional e Interpretación</strong> (20%)</td>
+                    <td>Redacta conclusiones precisas, fundamenta la independencia/dependencia y emite recomendaciones de auditoría de alto valor directivo.</td>
+                    <td>Interpreta los valores numéricos correctamente pero con recomendaciones genéricas.</td>
+                    <td>Omite la interpretación o emite conclusiones que contradicen los cálculos matemáticos.</td>
+                    <td class="score-col">6.0 Pts</td>
+                </tr>
+                <tr style="background: #e0f2fe; font-weight: bold;">
+                    <td colspan="4" style="text-align: right; color: var(--uagrm-blue);">CALIFICACIÓN TOTAL OFICIAL DE LA MEMORIA DE CÁLCULO:</td>
+                    <td class="score-col" style="color: var(--uagrm-red); font-size: 15px;">30.0 Pts</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        <div><strong>Docente Titular:</strong> MSc. Anselmo Salguero Arano</div>
+        <div>Carrera de Contaduría Pública • Facultad de Ciencias Contables — UAGRM</div>
+    </div>
+</div>
+
+</body>
+</html>

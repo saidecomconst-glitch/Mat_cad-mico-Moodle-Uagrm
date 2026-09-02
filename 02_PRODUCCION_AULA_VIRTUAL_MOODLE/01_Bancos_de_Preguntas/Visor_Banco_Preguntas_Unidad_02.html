@@ -1,0 +1,2091 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visor y Auditor de Banco de Preguntas XML - Unidad 2 | UAGRM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --uagrm-blue: #002b49;
+            --dodger-blue: #0284c7;
+            --uagrm-red: #b22222;
+            --emerald-green: #047857;
+            --amber-gold: #d97706;
+            --purple-accent: #7c3aed;
+            --bg-body: #f8fafc;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: var(--bg-body);
+            color: var(--text-dark);
+            padding: 25px 15px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--uagrm-blue) 0%, #004b7a 100%);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 12px 12px 0 0;
+            border-bottom: 4px solid var(--uagrm-red);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header h1 { font-size: 22px; font-weight: 700; }
+        .header p { font-size: 14px; color: #bae6fd; }
+
+        .toolbar {
+            background: white;
+            padding: 15px 25px;
+            border-left: 1px solid var(--border-light);
+            border-right: 1px solid var(--border-light);
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .select-filter, .search-box {
+            padding: 8px 12px;
+            border: 1.5px solid var(--border-light);
+            border-radius: 6px;
+            font-size: 13.5px;
+            outline: none;
+        }
+
+        .btn-toggle {
+            background: var(--dodger-blue);
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .questions-list {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .q-card {
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 20px;
+            background: #ffffff;
+            transition: all 0.2s ease;
+        }
+
+        .q-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-color: #cbd5e1;
+        }
+
+        .q-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 12.5px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .q-badge {
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 11.5px;
+        }
+
+        .badge-cat { background: #e0f2fe; color: var(--dodger-blue); }
+        .badge-type { background: #ecfdf5; color: var(--emerald-green); }
+
+        .q-text {
+            font-size: 15px;
+            color: var(--uagrm-blue);
+            font-weight: 600;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .options-box {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .opt-row {
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 13.5px;
+            border: 1px solid var(--border-light);
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .opt-row.correct {
+            background: #ecfdf5;
+            border-color: var(--emerald-green);
+            color: #065f46;
+            font-weight: 600;
+        }
+
+        .match-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13.5px;
+            margin-top: 8px;
+        }
+
+        .match-table td {
+            padding: 8px 12px;
+            border: 1px solid var(--border-light);
+        }
+
+        .match-table tr:nth-child(even) { background: #f8fafc; }
+
+        .solution-box {
+            margin-top: 12px;
+            padding: 12px 16px;
+            background: #eff6ff;
+            border-left: 4px solid var(--dodger-blue);
+            font-size: 13px;
+            color: #1e3a8a;
+            display: none;
+        }
+
+        .solution-box.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div>
+            <h1>Auditor y Visor de Preguntas XML: Unidad 2</h1>
+            <p>Estadística II (MAT-260) • MSc. Anselmo Salguero Arano • UAGRM</p>
+        </div>
+        <div style="font-size: 14px; font-weight: bold; background: rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 20px;">
+            Total: 52 Reactivos Auditados
+        </div>
+    </div>
+
+    <div class="toolbar">
+        <div class="filter-group">
+            <select class="select-filter" id="catFilter" onchange="filterQuestions()">
+                <option value="all">-- Todas las Categorías (52) --</option>
+                <option value="01_CONCEPTOS_AXIOMAS_Y_ADICION">01: Conceptos y Adición</option>
+                <option value="02_MULTIPLICACION_E_INDEPENDENCIA">02: Multiplicación e Independencia</option>
+                <option value="03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA">03: Condicional y Contingencia</option>
+                <option value="04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES">04: Bayes y Probabilidad Total</option>
+            </select>
+            <input type="text" class="search-box" id="searchBox" placeholder="Buscar por palabra clave..." onkeyup="filterQuestions()">
+        </div>
+        <div>
+            <button class="btn-toggle" onclick="toggleAllSolutions()">Mostrar / Ocultar Soluciones</button>
+        </div>
+    </div>
+
+    <div class="questions-list" id="questionsContainer">
+
+        <div class="q-card" data-cat="01_CONCEPTOS_AXIOMAS_Y_ADICION" data-text="En el contexto del control interno y auditoría financiera, ¿cómo se define formalmente el &lt;strong&gt;Espacio Muestral (S)&lt;/strong&gt; de un experimento aleatorio?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">1. U02_P01_Concepto_Espacio_Muestral</span>
+                <div>
+                    <span class="q-badge badge-cat">01_CONCEPTOS_AXIOMAS_Y_ADICION</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">En el contexto del control interno y auditoría financiera, ¿cómo se define formalmente el <strong>Espacio Muestral (S)</strong> de un experimento aleatorio?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>El conjunto de todos los resultados elementales posibles e indivisibles del experimento.</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Únicamente los resultados que cumplen con los criterios de auditoría satisfactoria.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>El promedio aritmético de las observaciones históricas.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>La probabilidad acumulada de que ocurra una contingencia tributaria.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="01_CONCEPTOS_AXIOMAS_Y_ADICION" data-text="Un lote de 150 comprobantes contables contiene 30 facturas con retención del IUE, 60 con retención del IT y 60 sin retenciones. Si todos los comprobantes tienen la misma probabilidad de ser seleccionados, ¿cuál es la probabilidad clásica de extraer un comprobante con retención del IUE?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">2. U02_P02_Enfoque_Clasico_Laplace</span>
+                <div>
+                    <span class="q-badge badge-cat">01_CONCEPTOS_AXIOMAS_Y_ADICION</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Un lote de 150 comprobantes contables contiene 30 facturas con retención del IUE, 60 con retención del IT y 60 sin retenciones. Si todos los comprobantes tienen la misma probabilidad de ser seleccionados, ¿cuál es la probabilidad clásica de extraer un comprobante con retención del IUE?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(\text{IUE}) = \frac{30}{150} = 0.20 \quad (20\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(\text{IUE}) = \frac{30}{120} = 0.25 \quad (25\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(\text{IUE}) = \frac{60}{150} = 0.40 \quad (40\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(\text{IUE}) = 0.80 \quad (80\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="01_CONCEPTOS_AXIOMAS_Y_ADICION" data-text="De acuerdo con los axiomas fundamentales de Kolmogorov, para cualquier evento contable o financiero \(A\), ¿cuál de las siguientes afirmaciones sobre su probabilidad \(P(A)\) es estrictamente verdadera?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">3. U02_P03_Axioma_No_Negatividad</span>
+                <div>
+                    <span class="q-badge badge-cat">01_CONCEPTOS_AXIOMAS_Y_ADICION</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">De acuerdo con los axiomas fundamentales de Kolmogorov, para cualquier evento contable o financiero \(A\), ¿cuál de las siguientes afirmaciones sobre su probabilidad \(P(A)\) es estrictamente verdadera?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(0 \le P(A) \le 1\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(-1 \le P(A) \le 1\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A) \ge 1\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A) = 0.50\) para cualquier evento</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="01_CONCEPTOS_AXIOMAS_Y_ADICION" data-text="La probabilidad de que una empresa comercial sea seleccionada por el SIN para una fiscalización externa durante la presente gestión es de \(P(F) = 0.07\). ¿Cuál es la probabilidad de que la empresa NO sea fiscalizada (\(F&#x27;\))?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">4. U02_P04_Regla_Complemento_Auditoria</span>
+                <div>
+                    <span class="q-badge badge-cat">01_CONCEPTOS_AXIOMAS_Y_ADICION</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">La probabilidad de que una empresa comercial sea seleccionada por el SIN para una fiscalización externa durante la presente gestión es de \(P(F) = 0.07\). ¿Cuál es la probabilidad de que la empresa NO sea fiscalizada (\(F'\))?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(F') = 1 - 0.07 = 0.93 \quad (93\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(F') = 0.07\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(F') = 1.07\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(F') = 0.85\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="01_CONCEPTOS_AXIOMAS_Y_ADICION" data-text="Un departamento de adquisiciones evalúa cotizaciones de tres proveedores independientes (A, B y C) para un contrato exclusivo. Si las probabilidades de adjudicación son \(P(A) = 0.35\), \(P(B) = 0.40\) y \(P(C) = 0.15\), y los eventos son mutuamente excluyentes, ¿cuál es la probabilidad de que gane el contrato alguno de estos tres proveedores?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">5. U02_P05_Regla_Especial_Adicion_Disjuntos</span>
+                <div>
+                    <span class="q-badge badge-cat">01_CONCEPTOS_AXIOMAS_Y_ADICION</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Un departamento de adquisiciones evalúa cotizaciones de tres proveedores independientes (A, B y C) para un contrato exclusivo. Si las probabilidades de adjudicación son \(P(A) = 0.35\), \(P(B) = 0.40\) y \(P(C) = 0.15\), y los eventos son mutuamente excluyentes, ¿cuál es la probabilidad de que gane el contrato alguno de estos tres proveedores?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(A \cup B \cup C) = 0.35 + 0.40 + 0.15 = 0.90 \quad (90\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A \cup B \cup C) = 0.35 \times 0.40 \times 0.15 = 0.0210\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A \cup B \cup C) = 1 - 0.90 = 0.10\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A \cup B \cup C) = 0.75\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="01_CONCEPTOS_AXIOMAS_Y_ADICION" data-text="En una entidad bancaria, el 50% de los clientes posee tarjeta de débito (\(P(D)=0.50\)), el 30% posee tarjeta de crédito (\(P(C)=0.30\)) y el 15% posee ambas tarjetas (\(P(D \cap C)=0.15\)). ¿Cuál es la probabilidad de que un cliente elegido al azar posea al menos una de las dos tarjetas?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">6. U02_P06_Regla_General_Adicion_Solapados</span>
+                <div>
+                    <span class="q-badge badge-cat">01_CONCEPTOS_AXIOMAS_Y_ADICION</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">En una entidad bancaria, el 50% de los clientes posee tarjeta de débito (\(P(D)=0.50\)), el 30% posee tarjeta de crédito (\(P(C)=0.30\)) y el 15% posee ambas tarjetas (\(P(D \cap C)=0.15\)). ¿Cuál es la probabilidad de que un cliente elegido al azar posea al menos una de las dos tarjetas?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(D \cup C) = 0.50 + 0.30 - 0.15 = 0.65 \quad (65\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(D \cup C) = 0.50 + 0.30 = 0.80 \quad (80\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(D \cup C) = 0.15\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(D \cup C) = 0.35\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="01_CONCEPTOS_AXIOMAS_Y_ADICION" data-text="¿Qué condición matemática caracteriza rigurosamente a dos eventos \(A\) y \(B\) como &lt;strong&gt;mutuamente excluyentes&lt;/strong&gt;?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">7. U02_P07_Eventos_Mutuamente_Excluyentes_Definicion</span>
+                <div>
+                    <span class="q-badge badge-cat">01_CONCEPTOS_AXIOMAS_Y_ADICION</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">¿Qué condición matemática caracteriza rigurosamente a dos eventos \(A\) y \(B\) como <strong>mutuamente excluyentes</strong>?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(A \cap B = \emptyset \implies P(A \cap B) = 0\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A \cap B) = P(A) \cdot P(B)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A) + P(B) = 1\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A|B) = P(A)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="01_CONCEPTOS_AXIOMAS_Y_ADICION" data-text="El directorio de una corporación debe evaluar la probabilidad de éxito en el lanzamiento de una criptomoneda institucional propia, para lo cual no existen registros históricos previos ni simetría clásica. ¿Qué enfoque probabilístico se aplica en esta decisión gerencial?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">8. U02_P08_Probabilidad_Subjetiva_Definicion</span>
+                <div>
+                    <span class="q-badge badge-cat">01_CONCEPTOS_AXIOMAS_Y_ADICION</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">El directorio de una corporación debe evaluar la probabilidad de éxito en el lanzamiento de una criptomoneda institucional propia, para lo cual no existen registros históricos previos ni simetría clásica. ¿Qué enfoque probabilístico se aplica en esta decisión gerencial?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>Enfoque Subjetivo o Juicio de Expertos.</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Enfoque Clásico a Priori.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Enfoque Empírico Frecuentista.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Distribución Normal Estandarizada.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="01_CONCEPTOS_AXIOMAS_Y_ADICION" data-text="Un arqueo de valores clasifica la cartera de inversiones en 3 opciones mutuamente excluyentes: Bonos del Estado (40%), Depósitos a Plazo Fijo (35%) y Acciones Preferentes (25%). ¿Cuál es la probabilidad de que una inversión seleccionada al azar sea un Bono o un DPF?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">9. U02_P09_Calculo_Union_Tres_Eventos_Disjuntos</span>
+                <div>
+                    <span class="q-badge badge-cat">01_CONCEPTOS_AXIOMAS_Y_ADICION</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Un arqueo de valores clasifica la cartera de inversiones en 3 opciones mutuamente excluyentes: Bonos del Estado (40%), Depósitos a Plazo Fijo (35%) y Acciones Preferentes (25%). ¿Cuál es la probabilidad de que una inversión seleccionada al azar sea un Bono o un DPF?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(\text{Bono} \cup \text{DPF}) = 0.40 + 0.35 = 0.75 \quad (75\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(\text{Bono} \cup \text{DPF}) = 0.40 \times 0.35 = 0.14\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(\text{Bono} \cup \text{DPF}) = 0.25\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(\text{Bono} \cup \text{DPF}) = 1.00\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="01_CONCEPTOS_AXIOMAS_Y_ADICION" data-text="Relacione cada situación empresarial con el enfoque de probabilidad respectivo según Anderson y Lind:">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">10. U02_P10_Match_Enfoques_Probabilidad</span>
+                <div>
+                    <span class="q-badge badge-cat">01_CONCEPTOS_AXIOMAS_Y_ADICION</span>
+                    <span class="q-badge badge-type">Emparejamiento</span>
+                </div>
+            </div>
+            <div class="q-text">Relacione cada situación empresarial con el enfoque de probabilidad respectivo según Anderson y Lind:</div>
+<table class="match-table">
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Cálculo de probabilidad al extraer una carta de baraja o lanzar un dado equilibrado.</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Enfoque Clásico a Priori (Laplace)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Porcentaje de facturas con mora según el registro contable de los últimos 5 años.</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Enfoque Empírico o Frecuencia Relativa</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Grado de confianza del auditor sobre la viabilidad de una reestructuración de pasivos.</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Enfoque Subjetivo o Juicio Profesional</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> A medida que n tiende a infinito, la frecuencia relativa converge a la probabilidad.</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Ley de los Grandes Números</td>
+                </tr>
+</table>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="01_CONCEPTOS_AXIOMAS_Y_ADICION" data-text="Asocie cada axioma de probabilidad de Kolmogorov con su expresión analítica formal:">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">11. U02_P11_Match_Axiomas_Kolmogorov</span>
+                <div>
+                    <span class="q-badge badge-cat">01_CONCEPTOS_AXIOMAS_Y_ADICION</span>
+                    <span class="q-badge badge-type">Emparejamiento</span>
+                </div>
+            </div>
+            <div class="q-text">Asocie cada axioma de probabilidad de Kolmogorov con su expresión analítica formal:</div>
+<table class="match-table">
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Axioma de No Negatividad</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ 0 ≤ P(A) ≤ 1 para todo evento A</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Axioma del Evento Seguro</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ P(S) = 1.00</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Axioma del Evento Imposible</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ P(∅) = 0.00</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Axioma del Evento Complementario</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ P(A') = 1 - P(A)</td>
+                </tr>
+</table>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="01_CONCEPTOS_AXIOMAS_Y_ADICION" data-text="Vincule la tipología de eventos con su fórmula de adición correspondiente:">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">12. U02_P12_Match_Reglas_Adicion</span>
+                <div>
+                    <span class="q-badge badge-cat">01_CONCEPTOS_AXIOMAS_Y_ADICION</span>
+                    <span class="q-badge badge-type">Emparejamiento</span>
+                </div>
+            </div>
+            <div class="q-text">Vincule la tipología de eventos con su fórmula de adición correspondiente:</div>
+<table class="match-table">
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Eventos Mutuamente Excluyentes (A ∩ B = ∅)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ P(A ∪ B) = P(A) + P(B)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Eventos No Excluyentes (A ∩ B ≠ ∅)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ P(A ∪ B) = P(A) + P(B) - P(A ∩ B)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Probabilidad Conjunta en Eventos Disjuntos</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ P(A ∩ B) = 0</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Eventos Colectivamente Exhaustivos</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ P(A₁ ∪ A₂ ∪ ... ∪ A_k) = 1.00</td>
+                </tr>
+</table>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="01_CONCEPTOS_AXIOMAS_Y_ADICION" data-text="Dados P(A) = 0.60, P(B) = 0.30 y P(A ∩ B) = 0.18, determine el valor numérico exacto:">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">13. U02_P13_Match_Calculos_Numericos_Adicion</span>
+                <div>
+                    <span class="q-badge badge-cat">01_CONCEPTOS_AXIOMAS_Y_ADICION</span>
+                    <span class="q-badge badge-type">Emparejamiento</span>
+                </div>
+            </div>
+            <div class="q-text">Dados P(A) = 0.60, P(B) = 0.30 y P(A ∩ B) = 0.18, determine el valor numérico exacto:</div>
+<table class="match-table">
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Probabilidad de la Unión: P(A ∪ B)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ 0.72 (72%)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Probabilidad del Complemento: P(A')</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ 0.40 (40%)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Probabilidad de que ocurra SOLO A: P(A - B)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ 0.42 (42%)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Probabilidad de que no ocurra ni A ni B: P((A ∪ B)')</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ 0.28 (28%)</td>
+                </tr>
+</table>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="02_MULTIPLICACION_E_INDEPENDENCIA" data-text="Si dos eventos contables A y B son estadísticamente independientes con \(P(A) = 0.40\) y \(P(B) = 0.25\), ¿cuál es la probabilidad de que ambos ocurran simultáneamente (\(P(A \cap B)\))?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">14. U02_P14_Regla_Especial_Multiplicacion_Independientes</span>
+                <div>
+                    <span class="q-badge badge-cat">02_MULTIPLICACION_E_INDEPENDENCIA</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Si dos eventos contables A y B son estadísticamente independientes con \(P(A) = 0.40\) y \(P(B) = 0.25\), ¿cuál es la probabilidad de que ambos ocurran simultáneamente (\(P(A \cap B)\))?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(A \cap B) = 0.40 \times 0.25 = 0.10 \quad (10\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A \cap B) = 0.40 + 0.25 = 0.65\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A \cap B) = 0.40 / 0.25 = 1.60\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A \cap B) = 0\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="02_MULTIPLICACION_E_INDEPENDENCIA" data-text="Un auditor revisa una carpeta con 20 comprobantes de diario, de los cuales 4 presentan observaciones formales. Si extrae 2 comprobantes al azar SIN reemplazo, ¿cuál es la probabilidad de que ambos comprobantes tengan observaciones?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">15. U02_P15_Muestreo_Sin_Reemplazo_Facturas</span>
+                <div>
+                    <span class="q-badge badge-cat">02_MULTIPLICACION_E_INDEPENDENCIA</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Un auditor revisa una carpeta con 20 comprobantes de diario, de los cuales 4 presentan observaciones formales. Si extrae 2 comprobantes al azar SIN reemplazo, ¿cuál es la probabilidad de que ambos comprobantes tengan observaciones?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(E_1 \cap E_2) = \frac{4}{20} \times \frac{3}{19} = \frac{12}{380} = \frac{3}{95} \approx 0.0316 \quad (3.16\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(E_1 \cap E_2) = \frac{4}{20} \times \frac{4}{20} = 0.0400 \quad (4.00\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(E_1 \cap E_2) = \frac{4}{20} + \frac{3}{19} = 0.3579\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(E_1 \cap E_2) = 0.20\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="02_MULTIPLICACION_E_INDEPENDENCIA" data-text="¿Cuál de las siguientes igualdades constituye la definición matemática rigurosa de &lt;strong&gt;independencia estadística&lt;/strong&gt; entre dos eventos A y B?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">16. U02_P16_Criterio_Formal_Independencia</span>
+                <div>
+                    <span class="q-badge badge-cat">02_MULTIPLICACION_E_INDEPENDENCIA</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">¿Cuál de las siguientes igualdades constituye la definición matemática rigurosa de <strong>independencia estadística</strong> entre dos eventos A y B?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(A|B) = P(A) \quad \text{o equivalentemente} \quad P(A \cap B) = P(A) \cdot P(B)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A \cap B) = 0\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A \cup B) = P(A) + P(B)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A) = P(B)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="02_MULTIPLICACION_E_INDEPENDENCIA" data-text="Un sistema bancario cuenta con dos servidores independientes que respaldan la base de datos contable. La probabilidad de falla diaria de cada servidor es de 0.01. ¿Cuál es la probabilidad de que el sistema ERP funcione con normalidad durante el día (es decir, que al menos un servidor opere)?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">17. U02_P17_Redundancia_Servidores_ERP</span>
+                <div>
+                    <span class="q-badge badge-cat">02_MULTIPLICACION_E_INDEPENDENCIA</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Un sistema bancario cuenta con dos servidores independientes que respaldan la base de datos contable. La probabilidad de falla diaria de cada servidor es de 0.01. ¿Cuál es la probabilidad de que el sistema ERP funcione con normalidad durante el día (es decir, que al menos un servidor opere)?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(\text{Operar}) = 1 - (0.01 \times 0.01) = 1 - 0.0001 = 0.9999 \quad (99.99\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(\text{Operar}) = 1 - (0.01 + 0.01) = 0.9800 \quad (98.00\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(\text{Operar}) = 0.9900 \quad (99.00\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(\text{Operar}) = 0.0001\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="02_MULTIPLICACION_E_INDEPENDENCIA" data-text="En un estudio de auditoría tributaria se halló que \(P(A) = 0.50\), \(P(B) = 0.40\) y \(P(A \cap B) = 0.20\). ¿Son los eventos A y B independientes?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">18. U02_P18_Prueba_Independencia_Datos_Reales</span>
+                <div>
+                    <span class="q-badge badge-cat">02_MULTIPLICACION_E_INDEPENDENCIA</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">En un estudio de auditoría tributaria se halló que \(P(A) = 0.50\), \(P(B) = 0.40\) y \(P(A \cap B) = 0.20\). ¿Son los eventos A y B independientes?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>Sí, porque \(P(A) \times P(B) = 0.50 \times 0.40 = 0.20 = P(A \cap B)\).</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>No, porque la suma de sus probabilidades es 0.90 y no 1.00.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>No, porque tienen intersección no vacía.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Son mutuamente excluyentes.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="02_MULTIPLICACION_E_INDEPENDENCIA" data-text="Una caja chica contiene 10 billetes de 100 Bs, de los cuales 2 son falsificados. Si el cajero extrae sucesivamente 2 billetes sin reemplazo, ¿cuál es la probabilidad de que NINGUNO sea falsificado?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">19. U02_P19_Muestreo_Tres_Etapas_Sin_Reemplazo</span>
+                <div>
+                    <span class="q-badge badge-cat">02_MULTIPLICACION_E_INDEPENDENCIA</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Una caja chica contiene 10 billetes de 100 Bs, de los cuales 2 son falsificados. Si el cajero extrae sucesivamente 2 billetes sin reemplazo, ¿cuál es la probabilidad de que NINGUNO sea falsificado?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(N_1 \cap N_2) = \frac{8}{10} \times \frac{7}{9} = \frac{56}{90} = \frac{28}{45} \approx 0.6222 \quad (62.22\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(N_1 \cap N_2) = \frac{8}{10} \times \frac{8}{10} = 0.6400 \quad (64.00\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(N_1 \cap N_2) = \frac{2}{10} \times \frac{1}{9} \approx 0.0222\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(N_1 \cap N_2) = 0.80\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="02_MULTIPLICACION_E_INDEPENDENCIA" data-text="Si dos eventos A y B tienen probabilidades no nulas (\(P(A)&gt;0\) y \(P(B)&gt;0\)) y son mutuamente excluyentes, ¿pueden ser estadísticamente independientes?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">20. U02_P20_Relacion_Disjuncion_Independencia</span>
+                <div>
+                    <span class="q-badge badge-cat">02_MULTIPLICACION_E_INDEPENDENCIA</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Si dos eventos A y B tienen probabilidades no nulas (\(P(A)>0\) y \(P(B)>0\)) y son mutuamente excluyentes, ¿pueden ser estadísticamente independientes?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>No, son necesariamente dependientes, ya que si ocurre uno, la probabilidad del otro se vuelve cero.</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Sí, porque al no tocarse no se influyen.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Depende del tamaño de la muestra.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Solo si sus probabilidades suman 1.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="02_MULTIPLICACION_E_INDEPENDENCIA" data-text="Un procedimiento de pago exige la aprobación sucesiva de dos directores. La probabilidad de que el Director 1 apruebe la orden es de 0.80 (\(P(D_1)=0.80\)). Dado que el Director 1 aprobó, la probabilidad de que el Director 2 también apruebe es de 0.90 (\(P(D_2|D_1)=0.90\)). ¿Cuál es la probabilidad de que la orden sea aprobada por ambos directores?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">21. U02_P21_Control_Dual_Firmas_Auditoria</span>
+                <div>
+                    <span class="q-badge badge-cat">02_MULTIPLICACION_E_INDEPENDENCIA</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Un procedimiento de pago exige la aprobación sucesiva de dos directores. La probabilidad de que el Director 1 apruebe la orden es de 0.80 (\(P(D_1)=0.80\)). Dado que el Director 1 aprobó, la probabilidad de que el Director 2 también apruebe es de 0.90 (\(P(D_2|D_1)=0.90\)). ¿Cuál es la probabilidad de que la orden sea aprobada por ambos directores?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(D_1 \cap D_2) = 0.80 \times 0.90 = 0.72 \quad (72\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(D_1 \cap D_2) = 0.80 + 0.90 = 1.70\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(D_1 \cap D_2) = 0.90 / 0.80 = 1.125\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(D_1 \cap D_2) = 0.85\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="02_MULTIPLICACION_E_INDEPENDENCIA" data-text="Un proceso de auditoría electrónica requiere que 3 filtros de seguridad independientes se ejecuten con éxito. Sus probabilidades de funcionamiento correcto son 0.95, 0.90 y 0.98 respectivamente. ¿Cuál es la confiabilidad global del proceso (probabilidad de que los 3 filtros operen sin error)?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">22. U02_P22_Componentes_En_Serie_Confiabilidad</span>
+                <div>
+                    <span class="q-badge badge-cat">02_MULTIPLICACION_E_INDEPENDENCIA</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Un proceso de auditoría electrónica requiere que 3 filtros de seguridad independientes se ejecuten con éxito. Sus probabilidades de funcionamiento correcto son 0.95, 0.90 y 0.98 respectivamente. ¿Cuál es la confiabilidad global del proceso (probabilidad de que los 3 filtros operen sin error)?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(F_1 \cap F_2 \cap F_3) = 0.95 \times 0.90 \times 0.98 \approx 0.8379 \quad (83.79\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(\text{Éxito}) = \frac{0.95 + 0.90 + 0.98}{3} = 0.9433\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(\text{Éxito}) = 0.9000\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(\text{Éxito}) = 0.9900\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="02_MULTIPLICACION_E_INDEPENDENCIA" data-text="Relacione cada contexto probabilístico con su fórmula de multiplicación correspondiente:">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">23. U02_P23_Match_Formulas_Multiplicacion</span>
+                <div>
+                    <span class="q-badge badge-cat">02_MULTIPLICACION_E_INDEPENDENCIA</span>
+                    <span class="q-badge badge-type">Emparejamiento</span>
+                </div>
+            </div>
+            <div class="q-text">Relacione cada contexto probabilístico con su fórmula de multiplicación correspondiente:</div>
+<table class="match-table">
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Regla de Multiplicación para Eventos Independientes</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ P(A ∩ B) = P(A) · P(B)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Regla General de Multiplicación (Eventos Dependientes)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ P(A ∩ B) = P(A) · P(B|A)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Condición de Independencia Estadística</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ P(A|B) = P(A)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Confiabilidad de Sistema con 2 Componentes en Paralelo</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ 1 - [P(F₁) · P(F₂)]</td>
+                </tr>
+</table>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="02_MULTIPLICACION_E_INDEPENDENCIA" data-text="Vincule las propiedades del muestreo con su modalidad metodológica:">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">24. U02_P24_Match_Muestreo_Con_Sin_Reemplazo</span>
+                <div>
+                    <span class="q-badge badge-cat">02_MULTIPLICACION_E_INDEPENDENCIA</span>
+                    <span class="q-badge badge-type">Emparejamiento</span>
+                </div>
+            </div>
+            <div class="q-text">Vincule las propiedades del muestreo con su modalidad metodológica:</div>
+<table class="match-table">
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> La probabilidad de selección de cada elemento se mantiene constante en cada intento.</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Muestreo Con Reemplazo (Independiente)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> El espacio muestral N disminuye en 1 tras cada extracción.</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Muestreo Sin Reemplazo (Dependiente)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Metodología estándar en auditoría de facturas y arqueos de inventario físico.</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Muestreo Sin Reemplazo</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Generación de números pseudoaleatorios en simulaciones de Monte Carlo.</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Muestreo Con Reemplazo</td>
+                </tr>
+</table>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="02_MULTIPLICACION_E_INDEPENDENCIA" data-text="Con P(A) = 0.50 y P(B) = 0.30 siendo A y B estadísticamente independientes, determine:">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">25. U02_P25_Match_Calculos_Independencia</span>
+                <div>
+                    <span class="q-badge badge-cat">02_MULTIPLICACION_E_INDEPENDENCIA</span>
+                    <span class="q-badge badge-type">Emparejamiento</span>
+                </div>
+            </div>
+            <div class="q-text">Con P(A) = 0.50 y P(B) = 0.30 siendo A y B estadísticamente independientes, determine:</div>
+<table class="match-table">
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Probabilidad conjunta P(A ∩ B)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ 0.15 (15%)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Probabilidad de la unión P(A ∪ B)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ 0.65 (65%)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Probabilidad condicional P(A|B)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ 0.50 (50%)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Probabilidad de que no ocurra ninguno: P((A ∪ B)')</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ 0.35 (35%)</td>
+                </tr>
+</table>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="02_MULTIPLICACION_E_INDEPENDENCIA" data-text="Asocie cada caso con su modelo de probabilidad multiplicativo:">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">26. U02_P26_Match_Casos_Empresariales_Multiplicacion</span>
+                <div>
+                    <span class="q-badge badge-cat">02_MULTIPLICACION_E_INDEPENDENCIA</span>
+                    <span class="q-badge badge-type">Emparejamiento</span>
+                </div>
+            </div>
+            <div class="q-text">Asocie cada caso con su modelo de probabilidad multiplicativo:</div>
+<table class="match-table">
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Dos clientes crediticios seleccionados al azar incurren en mora de forma aislada</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ P(M₁) · P(M₂)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Extracción sucesiva de 3 facturas con sobreprecio sin reponerlas</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ (k/N) · ((k-1)/(N-1)) · ((k-2)/(N-2))</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Servidor web principal y servidor de respaldo simultáneos</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ 1 - [P(Falla₁) · P(Falla₂)]</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Aprobación secuencial de solicitud por Analista y Jefe de Crédito</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ P(Analista) · P(Jefe | Analista)</td>
+                </tr>
+</table>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA" data-text="¿Cómo se define formalmente la &lt;strong&gt;Probabilidad Condicional&lt;/strong&gt; de que ocurra el evento A, dado que ya ocurrió el evento B (con \(P(B) &gt; 0\))?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">27. U02_P27_Definicion_Probabilidad_Condicional</span>
+                <div>
+                    <span class="q-badge badge-cat">03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">¿Cómo se define formalmente la <strong>Probabilidad Condicional</strong> de que ocurra el evento A, dado que ya ocurrió el evento B (con \(P(B) > 0\))?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(A|B) = \frac{P(A \cap B)}{P(B)}\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A|B) = \frac{P(A \cap B)}{P(A)}\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A|B) = P(A) \cdot P(B)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A|B) = P(A) + P(B)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA" data-text="Una entidad financiera clasifica 500 créditos: 300 corresponden a Microempresas (M) y 200 a Grandes Empresas (G). De ellos, 40 microempresas y 10 grandes empresas están en mora (D). Si se extrae un crédito al azar y resulta ser de una Gran Empresa (G), ¿cuál es la probabilidad de que esté en mora \(P(D|G)\)?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">28. U02_P28_Tabla_Contingencia_Micro_Gran_Empresa</span>
+                <div>
+                    <span class="q-badge badge-cat">03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Una entidad financiera clasifica 500 créditos: 300 corresponden a Microempresas (M) y 200 a Grandes Empresas (G). De ellos, 40 microempresas y 10 grandes empresas están en mora (D). Si se extrae un crédito al azar y resulta ser de una Gran Empresa (G), ¿cuál es la probabilidad de que esté en mora \(P(D|G)\)?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(D|G) = \frac{10}{200} = 0.05 \quad (5.0\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(D|G) = \frac{10}{500} = 0.02 \quad (2.0\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(D|G) = \frac{10}{50} = 0.20 \quad (20.0\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(D|G) = \frac{200}{500} = 0.40\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA" data-text="Con los mismos datos de la cartera de 500 créditos (donde hay 50 morosos en total: 40 micro y 10 grandes), ¿cuál es la probabilidad marginal global de mora \(P(D)\)?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">29. U02_P29_Probabilidad_Marginal_Mora</span>
+                <div>
+                    <span class="q-badge badge-cat">03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Con los mismos datos de la cartera de 500 créditos (donde hay 50 morosos en total: 40 micro y 10 grandes), ¿cuál es la probabilidad marginal global de mora \(P(D)\)?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(D) = \frac{50}{500} = 0.10 \quad (10.0\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(D) = \frac{40}{300} \approx 0.1333\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(D) = \frac{10}{200} = 0.05\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(D) = 0.50\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA" data-text="Dado que la mora global es \(P(D) = 10\%\), mientras que la mora en microempresas es \(P(D|M) = 13.33\%\) y en grandes empresas es \(P(D|G) = 5\%\), ¿qué concluye el informe de auditoría sobre la relación entre tamaño de empresa y mora?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">30. U02_P30_Evaluacion_Independencia_Contingencia</span>
+                <div>
+                    <span class="q-badge badge-cat">03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Dado que la mora global es \(P(D) = 10\%\), mientras que la mora en microempresas es \(P(D|M) = 13.33\%\) y en grandes empresas es \(P(D|G) = 5\%\), ¿qué concluye el informe de auditoría sobre la relación entre tamaño de empresa y mora?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>Son variables dependientes, ya que la condición de mora cambia significativamente según el tamaño de la empresa.</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Son variables independientes porque todas las probabilidades son positivas.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Son eventos mutuamente excluyentes.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>No se puede concluir sin una prueba Z.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA" data-text="En un diagrama de árbol de crédito, el 70% de las solicitudes proviene de clientes antiguos (\(P(A)=0.70\)) y el 30% de clientes nuevos (\(P(N)=0.30\)). La tasa de aprobación es del 80% para antiguos (\(P(Ap|A)=0.80\)) y del 40% para nuevos (\(P(Ap|N)=0.40\)). ¿Cuál es la probabilidad conjunta de que una solicitud sea de un cliente nuevo y resulte aprobada?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">31. U02_P31_Calculo_Arbol_Probabilidades</span>
+                <div>
+                    <span class="q-badge badge-cat">03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">En un diagrama de árbol de crédito, el 70% de las solicitudes proviene de clientes antiguos (\(P(A)=0.70\)) y el 30% de clientes nuevos (\(P(N)=0.30\)). La tasa de aprobación es del 80% para antiguos (\(P(Ap|A)=0.80\)) y del 40% para nuevos (\(P(Ap|N)=0.40\)). ¿Cuál es la probabilidad conjunta de que una solicitud sea de un cliente nuevo y resulte aprobada?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(N \cap Ap) = 0.30 \times 0.40 = 0.12 \quad (12.0\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(N \cap Ap) = 0.70 \times 0.80 = 0.56\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(N \cap Ap) = 0.30 + 0.40 = 0.70\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(N \cap Ap) = 0.40 / 0.30 = 1.33\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA" data-text="Con los datos del árbol anterior, ¿cuál es la probabilidad total de que una solicitud cualquiera resulte aprobada \(P(Ap)\)?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">32. U02_P32_Probabilidad_Total_Aprobacion_Arbol</span>
+                <div>
+                    <span class="q-badge badge-cat">03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Con los datos del árbol anterior, ¿cuál es la probabilidad total de que una solicitud cualquiera resulte aprobada \(P(Ap)\)?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(Ap) = (0.70 \times 0.80) + (0.30 \times 0.40) = 0.56 + 0.12 = 0.68 \quad (68.0\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(Ap) = 0.80 + 0.40 = 1.20\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(Ap) = \frac{0.80 + 0.40}{2} = 0.60\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(Ap) = 0.56\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA" data-text="Si se conoce que la probabilidad condicional es \(P(A|B) = 0.75\) y la probabilidad marginal es \(P(B) = 0.40\), ¿cuál es el valor de la probabilidad conjunta \(P(A \cap B)\)?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">33. U02_P33_Despeje_Probabilidad_Conjunta</span>
+                <div>
+                    <span class="q-badge badge-cat">03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Si se conoce que la probabilidad condicional es \(P(A|B) = 0.75\) y la probabilidad marginal es \(P(B) = 0.40\), ¿cuál es el valor de la probabilidad conjunta \(P(A \cap B)\)?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(A \cap B) = P(B) \times P(A|B) = 0.40 \times 0.75 = 0.30 \quad (30\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A \cap B) = 0.75 / 0.40 = 1.875\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A \cap B) = 0.75 - 0.40 = 0.35\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A \cap B) = 0.40 / 0.75 = 0.5333\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA" data-text="Si se sabe con certeza que ocurrió el evento B, ¿cuánto es el valor de \(P(A|B) + P(A&#x27;|B)\)?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">34. U02_P34_Suma_Probabilidades_Condicionales_Complemento</span>
+                <div>
+                    <span class="q-badge badge-cat">03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Si se sabe con certeza que ocurrió el evento B, ¿cuánto es el valor de \(P(A|B) + P(A'|B)\)?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>Exactamente 1.00</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Igual a P(B)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Menor a 1 si son eventos dependientes</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>No se puede determinar sin conocer P(A ∩ B)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA" data-text="En el enunciado: &lt;em&gt;&#x27;Calcule la probabilidad de que una factura tenga error tributario (E), sabiendo que fue emitida de forma manual (M)&#x27;&lt;/em&gt;, ¿cuál es el evento condicionante que debe colocarse en el denominador?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">35. U02_P35_Identificacion_Denominador_Condicional</span>
+                <div>
+                    <span class="q-badge badge-cat">03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">En el enunciado: <em>'Calcule la probabilidad de que una factura tenga error tributario (E), sabiendo que fue emitida de forma manual (M)'</em>, ¿cuál es el evento condicionante que debe colocarse en el denominador?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>El evento M (Factura emitida de forma manual)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>El evento E (Factura con error tributario)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>La intersección E ∩ M</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>El total de facturas N</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA" data-text="Relacione las partes de una tabla de contingencia con su concepto estadístico:">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">36. U02_P36_Match_Elementos_Tabla_Contingencia</span>
+                <div>
+                    <span class="q-badge badge-cat">03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA</span>
+                    <span class="q-badge badge-type">Emparejamiento</span>
+                </div>
+            </div>
+            <div class="q-text">Relacione las partes de una tabla de contingencia con su concepto estadístico:</div>
+<table class="match-table">
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Celdas centrales de la tabla</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Probabilidades Conjuntas P(A_i ∩ B_j)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Totales de las filas y columnas en los márgenes</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Probabilidades Marginales P(A_i) o P(B_j)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Cociente entre celda interior y total de fila/columna</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Probabilidad Condicional P(A|B)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Suma de todas las frecuencias relativas en la esquina inferior</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Total del Espacio Muestral (1.00)</td>
+                </tr>
+</table>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA" data-text="Asocie cada expresión con su fórmula formal de cálculo:">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">37. U02_P37_Match_Notacion_Condicional</span>
+                <div>
+                    <span class="q-badge badge-cat">03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA</span>
+                    <span class="q-badge badge-type">Emparejamiento</span>
+                </div>
+            </div>
+            <div class="q-text">Asocie cada expresión con su fórmula formal de cálculo:</div>
+<table class="match-table">
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> P(A | B)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ P(A ∩ B) / P(B)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> P(B | A)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ P(A ∩ B) / P(A)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> P(A' | B)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ 1 - P(A | B)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> P(A ∩ B) a partir de la condicional</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ P(B) · P(A | B)</td>
+                </tr>
+</table>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA" data-text="En un estudio con 100 contadores (40 con maestría, 60 sin maestría; 30 con maestría tienen cargo directivo y 15 sin maestría tienen cargo directivo), determine:">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">38. U02_P38_Match_Calculos_Personal_UAGRM</span>
+                <div>
+                    <span class="q-badge badge-cat">03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA</span>
+                    <span class="q-badge badge-type">Emparejamiento</span>
+                </div>
+            </div>
+            <div class="q-text">En un estudio con 100 contadores (40 con maestría, 60 sin maestría; 30 con maestría tienen cargo directivo y 15 sin maestría tienen cargo directivo), determine:</div>
+<table class="match-table">
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Probabilidad de tener cargo directivo: P(Dir)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ 45/100 = 0.45 (45%)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Probabilidad de tener maestría: P(M)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ 40/100 = 0.40 (40%)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Probabilidad de ser directivo DADO que tiene maestría: P(Dir|M)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ 30/40 = 0.75 (75%)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Probabilidad de ser directivo DADO que NO tiene maestría: P(Dir|M')</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ 15/60 = 0.25 (25%)</td>
+                </tr>
+</table>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA" data-text="Vincule la condición probabilística con el impacto en la toma de decisiones contables:">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">39. U02_P39_Match_Decisiones_Condicionales</span>
+                <div>
+                    <span class="q-badge badge-cat">03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA</span>
+                    <span class="q-badge badge-type">Emparejamiento</span>
+                </div>
+            </div>
+            <div class="q-text">Vincule la condición probabilística con el impacto en la toma de decisiones contables:</div>
+<table class="match-table">
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> P(Mora | Microempresa) = 13.3% vs P(Mora | Gran Empresa) = 5%</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Segmentar tasas de interés por nivel de riesgo de cartera</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> P(Error | Sistema Antiguo) = 18% vs P(Error | Sistema Nuevo) = 2%</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Justificar la inversión en migración tecnológica ERP</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> P(Fraude | Pago Efectivo) = 12% vs P(Fraude | Transferencia QR) = 0.5%</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Restringir pagos en efectivo e incentivar banca digital</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> P(A | B) = P(A)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ No se requiere tratamiento diferenciado (Independencia)</td>
+                </tr>
+</table>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES" data-text="Si los eventos \(A_1, A_2, \dots, A_k\) forman una partición del espacio muestral \(S\), ¿cómo se calcula la &lt;strong&gt;Probabilidad Total&lt;/strong&gt; de un evento arbitrario \(B\)?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">40. U02_P40_Ley_Probabilidad_Total_Definicion</span>
+                <div>
+                    <span class="q-badge badge-cat">04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Si los eventos \(A_1, A_2, \dots, A_k\) forman una partición del espacio muestral \(S\), ¿cómo se calcula la <strong>Probabilidad Total</strong> de un evento arbitrario \(B\)?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(B) = \sum_{i=1}^k P(A_i) \cdot P(B|A_i)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(B) = \sum_{i=1}^k P(A_i) + P(B|A_i)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(B) = \frac{\sum P(A_i)}{k}\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(B) = P(A_1) \cdot P(A_2) \dotsm P(A_k)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES" data-text="Una empresa fabrica productos en dos plantas: Planta 1 produce el 70% del inventario (\(P(A_1)=0.70\)) con un 2% de defectuosos (\(P(D|A_1)=0.02\)); Planta 2 produce el 30% restante (\(P(A_2)=0.30\)) con un 4% de defectuosos (\(P(D|A_2)=0.04\)). ¿Cuál es la probabilidad total de que un producto elegido al azar esté defectuoso?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">41. U02_P41_Calculo_Probabilidad_Total_Dos_Plantas</span>
+                <div>
+                    <span class="q-badge badge-cat">04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Una empresa fabrica productos en dos plantas: Planta 1 produce el 70% del inventario (\(P(A_1)=0.70\)) con un 2% de defectuosos (\(P(D|A_1)=0.02\)); Planta 2 produce el 30% restante (\(P(A_2)=0.30\)) con un 4% de defectuosos (\(P(D|A_2)=0.04\)). ¿Cuál es la probabilidad total de que un producto elegido al azar esté defectuoso?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(D) = (0.70 \times 0.02) + (0.30 \times 0.04) = 0.014 + 0.012 = 0.026 \quad (2.6\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(D) = 0.02 + 0.04 = 0.06 \quad (6.0\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(D) = \frac{0.02 + 0.04}{2} = 0.03 \quad (3.0\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(D) = 0.0008\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES" data-text="Siguiendo el caso anterior (donde \(P(D) = 0.026\)), si un inspector de calidad encuentra un producto defectuoso, ¿cuál es la probabilidad a posteriori de que provenga de la Planta 2 (\(A_2\))?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">42. U02_P42_Teorema_Bayes_Planta2</span>
+                <div>
+                    <span class="q-badge badge-cat">04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Siguiendo el caso anterior (donde \(P(D) = 0.026\)), si un inspector de calidad encuentra un producto defectuoso, ¿cuál es la probabilidad a posteriori de que provenga de la Planta 2 (\(A_2\))?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(A_2|D) = \frac{0.012}{0.026} \approx 0.4615 \quad (46.15\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A_2|D) = \frac{0.014}{0.026} \approx 0.5385 \quad (53.85\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A_2|D) = 0.3000 \quad (30.0\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(A_2|D) = 0.0400 \quad (4.0\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES" data-text="Tres proveedores abastecen materia prima: P1 entrega el 50% (tasa no conforme 1%), P2 el 30% (tasa no conforme 3%) y P3 el 20% (tasa no conforme 5%). ¿Cuál es la probabilidad total de recibir un lote no conforme \(P(NC)\)?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">43. U02_P43_Tres_Proveedores_Bayes_Auditoria</span>
+                <div>
+                    <span class="q-badge badge-cat">04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Tres proveedores abastecen materia prima: P1 entrega el 50% (tasa no conforme 1%), P2 el 30% (tasa no conforme 3%) y P3 el 20% (tasa no conforme 5%). ¿Cuál es la probabilidad total de recibir un lote no conforme \(P(NC)\)?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(P(NC) = (0.50)(0.01) + (0.30)(0.03) + (0.20)(0.05) = 0.005 + 0.009 + 0.010 = 0.024 \quad (2.4\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(NC) = 0.01 + 0.03 + 0.05 = 0.09 \quad (9.0\%)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(NC) = 0.0300\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(P(NC) = 0.0015\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES" data-text="Con los datos de los tres proveedores anteriores (donde \(P(NC) = 0.024\)), si se detecta un insumo no conforme, ¿cuál proveedor tiene la mayor probabilidad a posteriori de ser el causante?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">44. U02_P44_Proveedor_Mayor_Culpabilidad_Bayes</span>
+                <div>
+                    <span class="q-badge badge-cat">04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Con los datos de los tres proveedores anteriores (donde \(P(NC) = 0.024\)), si se detecta un insumo no conforme, ¿cuál proveedor tiene la mayor probabilidad a posteriori de ser el causante?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>Proveedor 3, con \(P(P_3|NC) = \frac{0.010}{0.024} \approx 0.4167 \quad (41.67\%)\).</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Proveedor 1, porque abastece el 50% del volumen.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Proveedor 2, con 50%.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Todos tienen la misma probabilidad de 33.33%.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES" data-text="En la formulación del Teorema de Bayes, ¿qué representa el término \(P(A_j)\)?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">45. U02_P45_Terminologia_Bayesiana_A_Priori</span>
+                <div>
+                    <span class="q-badge badge-cat">04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">En la formulación del Teorema de Bayes, ¿qué representa el término \(P(A_j)\)?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>La probabilidad a priori del estado o hipótesis A_j antes de conocer la nueva evidencia.</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>La probabilidad a posteriori después de la evidencia.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>La verosimilitud de observar la evidencia.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>La probabilidad total de la evidencia.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES" data-text="¿Qué nombre técnico recibe el término condicional \(P(B|A_j)\) en la estructura del Teorema de Bayes?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">46. U02_P46_Terminologia_Bayesiana_Verosimilitud</span>
+                <div>
+                    <span class="q-badge badge-cat">04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">¿Qué nombre técnico recibe el término condicional \(P(B|A_j)\) en la estructura del Teorema de Bayes?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>Verosimilitud (Likelihood).</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Probabilidad a priori.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Probabilidad a posteriori.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Probabilidad conjunta marginal.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES" data-text="Si se calculan todas las probabilidades a posteriori \(P(A_1|B), P(A_2|B), \dots, P(A_k|B)\) sobre una partición completa del espacio muestral, ¿cuánto debe sumar exactamente su total?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">47. U02_P47_Suma_Probabilidades_A_Posteriori</span>
+                <div>
+                    <span class="q-badge badge-cat">04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Si se calculan todas las probabilidades a posteriori \(P(A_1|B), P(A_2|B), \dots, P(A_k|B)\) sobre una partición completa del espacio muestral, ¿cuánto debe sumar exactamente su total?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>\(\sum_{i=1}^k P(A_i|B) = 1.00\)</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(\sum P(A_i|B) = P(B)\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>\(\sum P(A_i|B) = 0\)</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Puede ser mayor a 1 si la evidencia es contundente.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES" data-text="Un software de auditoría detecta transacciones fraudulentas con 99% de precisión (sensibilidad). Si el fraude en la empresa es extremadamente raro (0.01% de tasa base), ¿por qué la mayoría de las alertas positivas resultan ser falsas alarmas?">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">48. U02_P48_Falacia_Tasa_Base_Auditoria</span>
+                <div>
+                    <span class="q-badge badge-cat">04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES</span>
+                    <span class="q-badge badge-type">Opción Múltiple</span>
+                </div>
+            </div>
+            <div class="q-text">Un software de auditoría detecta transacciones fraudulentas con 99% de precisión (sensibilidad). Si el fraude en la empresa es extremadamente raro (0.01% de tasa base), ¿por qué la mayoría de las alertas positivas resultan ser falsas alarmas?</div>
+<div class="options-box">
+                <div class="opt-row correct">
+                    <span>Porque el 99.99% de operaciones legítimas genera más falsos positivos en volumen absoluto que el escaso 0.01% de fraudes reales.</span>
+                    <span style="font-size: 11px; font-weight: bold;">(Respuesta Correcta 100%)</span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Porque el software está descalibrado matemáticamente.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Porque el Teorema de Bayes no aplica a sistemas automáticos.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+
+                <div class="opt-row ">
+                    <span>Porque las operaciones legítimas son mutuamente excluyentes.</span>
+                    <span style="font-size: 11px; font-weight: bold;"></span>
+                </div>
+</div>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES" data-text="Relacione cada componente de la ecuación de Bayes con su definición formal:">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">49. U02_P49_Match_Terminos_Bayes</span>
+                <div>
+                    <span class="q-badge badge-cat">04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES</span>
+                    <span class="q-badge badge-type">Emparejamiento</span>
+                </div>
+            </div>
+            <div class="q-text">Relacione cada componente de la ecuación de Bayes con su definición formal:</div>
+<table class="match-table">
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> P(A_j)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Probabilidad A Priori (Estado inicial)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> P(B | A_j)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Verosimilitud o Likelihood de la evidencia</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> P(B) = Σ P(A_i)P(B|A_i)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Ley de Probabilidad Total (Denominador)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> P(A_j | B)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Probabilidad A Posteriori (Estado actualizado)</td>
+                </tr>
+</table>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES" data-text="Tres líneas de producción L1 (40%), L2 (35%) y L3 (25%) con tasas de falla 1%, 2% y 4% respectivamente. Determine:">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">50. U02_P50_Match_Casos_Bayes_Auditoria</span>
+                <div>
+                    <span class="q-badge badge-cat">04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES</span>
+                    <span class="q-badge badge-type">Emparejamiento</span>
+                </div>
+            </div>
+            <div class="q-text">Tres líneas de producción L1 (40%), L2 (35%) y L3 (25%) con tasas de falla 1%, 2% y 4% respectivamente. Determine:</div>
+<table class="match-table">
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Probabilidad total de falla P(Falla)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ (0.40)(0.01)+(0.35)(0.02)+(0.25)(0.04) = 0.021 (2.1%)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Probabilidad de que la falla sea de L1: P(L1|Falla)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ 0.004 / 0.021 = 0.1905 (19.05%)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Probabilidad de que la falla sea de L2: P(L2|Falla)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ 0.007 / 0.021 = 0.3333 (33.33%)</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Probabilidad de que la falla sea de L3: P(L3|Falla)</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ 0.010 / 0.021 = 0.4762 (47.62%)</td>
+                </tr>
+</table>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES" data-text="Vincule las condiciones axiomáticas para la partición del espacio muestral en Bayes:">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">51. U02_P51_Match_Condiciones_Particion</span>
+                <div>
+                    <span class="q-badge badge-cat">04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES</span>
+                    <span class="q-badge badge-type">Emparejamiento</span>
+                </div>
+            </div>
+            <div class="q-text">Vincule las condiciones axiomáticas para la partición del espacio muestral en Bayes:</div>
+<table class="match-table">
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Eventos Mutuamente Excluyentes dos a dos</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ A_i ∩ A_j = ∅ para todo i ≠ j</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Eventos Colectivamente Exhaustivos</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ A₁ ∪ A₂ ∪ ... ∪ A_k = S</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Suma de probabilidades a priori</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Σ P(A_i) = 1.00</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Existencia de la evidencia</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ P(B) > 0</td>
+                </tr>
+</table>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+        <div class="q-card" data-cat="04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES" data-text="Asocie los beneficios metodológicos del análisis bayesiano en la gestión contable:">
+            <div class="q-meta">
+                <span style="font-weight: bold; color: var(--uagrm-blue);">52. U02_P52_Match_Impacto_Forense_Bayes</span>
+                <div>
+                    <span class="q-badge badge-cat">04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES</span>
+                    <span class="q-badge badge-type">Emparejamiento</span>
+                </div>
+            </div>
+            <div class="q-text">Asocie los beneficios metodológicos del análisis bayesiano en la gestión contable:</div>
+<table class="match-table">
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Incorporación dinámica de nueva evidencia de auditoría</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Actualización continua de matrices de riesgo</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Cálculo del valor predictivo positivo en alertas de control</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Optimización de recursos de fiscalización</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Ponderación de causas múltiples en desbalances contables</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Identificación objetiva del departamento responsable</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 50%;"><strong>Premisa:</strong> Integración formal de juicio experto con datos muestrales</td>
+                    <td style="width: 50%; color: var(--emerald-green); font-weight: 600;">✓ Enfoque probabilístico bayesiano</td>
+                </tr>
+</table>
+            <div class="solution-box">
+                <strong>💡 Solución y Retroalimentación:</strong> Verifique la aplicación rigurosa de las fórmulas de la Unidad 2 de Probabilidades.
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let solutionsVisible = false;
+
+    function toggleAllSolutions() {
+        solutionsVisible = !solutionsVisible;
+        document.querySelectorAll('.solution-box').forEach(s => {
+            if (solutionsVisible) s.classList.add('active');
+            else s.classList.remove('active');
+        });
+    }
+
+    function filterQuestions() {
+        const cat = document.getElementById('catFilter').value;
+        const query = document.getElementById('searchBox').value.toLowerCase();
+
+        document.querySelectorAll('.q-card').forEach(card => {
+            const cardCat = card.getAttribute('data-cat');
+            const cardText = card.getAttribute('data-text').toLowerCase();
+
+            const matchCat = (cat === 'all' || cardCat.includes(cat));
+            const matchQuery = (!query || cardText.includes(query));
+
+            if (matchCat && matchQuery) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        if (window.MathJax) {
+            MathJax.typesetPromise();
+        }
+    }
+</script>
+
+</body>
+</html>

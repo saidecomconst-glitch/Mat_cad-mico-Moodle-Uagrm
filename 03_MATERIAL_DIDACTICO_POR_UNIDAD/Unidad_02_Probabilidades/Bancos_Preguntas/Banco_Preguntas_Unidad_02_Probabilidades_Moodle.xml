@@ -1,0 +1,1951 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- CATEGORÍA: UNIDAD_02_PROBABILIDADES/01_CONCEPTOS_AXIOMAS_Y_ADICION -->
+<question type="category">
+  <category>
+    <text>$course$/top/BANCO_PREGUNTAS_MAT260/UNIDAD_02_PROBABILIDADES/01_CONCEPTOS_AXIOMAS_Y_ADICION</text>
+  </category>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P01_Concepto_Espacio_Muestral</text></name>
+  <questiontext format="html">
+    <text><![CDATA[En el contexto del control interno y auditoría financiera, ¿cómo se define formalmente el <strong>Espacio Muestral (S)</strong> de un experimento aleatorio?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[El conjunto de todos los resultados elementales posibles e indivisibles del experimento.]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! El espacio muestral S abarca la totalidad de los puntos muestrales posibles.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Únicamente los resultados que cumplen con los criterios de auditoría satisfactoria.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Eso sería un subconjunto o evento particular A, no todo el espacio muestral.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[El promedio aritmético de las observaciones históricas.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. El espacio muestral es un conjunto de resultados, no una medida de tendencia central.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[La probabilidad acumulada de que ocurra una contingencia tributaria.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. La probabilidad es un número escalar entre 0 y 1, mientras que el espacio muestral es un conjunto.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P02_Enfoque_Clasico_Laplace</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Un lote de 150 comprobantes contables contiene 30 facturas con retención del IUE, 60 con retención del IT y 60 sin retenciones. Si todos los comprobantes tienen la misma probabilidad de ser seleccionados, ¿cuál es la probabilidad clásica de extraer un comprobante con retención del IUE?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(\text{IUE}) = \frac{30}{150} = 0.20 \quad (20\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Enfoque clásico de Laplace: \(P(\text{IUE}) = \frac{30}{150} = 0.20\) (20%).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(\text{IUE}) = \frac{30}{120} = 0.25 \quad (25\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Dividió entre los casos desfavorables en lugar del espacio muestral total (150).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(\text{IUE}) = \frac{60}{150} = 0.40 \quad (40\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 60 corresponde a comprobantes con IT o sin retención.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(\text{IUE}) = 0.80 \quad (80\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 80% es la probabilidad del complemento (no tener retención IUE).]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P03_Axioma_No_Negatividad</text></name>
+  <questiontext format="html">
+    <text><![CDATA[De acuerdo con los axiomas fundamentales de Kolmogorov, para cualquier evento contable o financiero \(A\), ¿cuál de las siguientes afirmaciones sobre su probabilidad \(P(A)\) es estrictamente verdadera?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(0 \le P(A) \le 1\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Toda medida de probabilidad está acotada entre 0 (evento imposible) y 1 (evento seguro).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(-1 \le P(A) \le 1\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. La probabilidad no puede tomar valores negativos.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A) \ge 1\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. La probabilidad no puede exceder a 1.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A) = 0.50\) para cualquier evento]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 0.50 solo aplica a eventos equiprobables de dos opciones.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P04_Regla_Complemento_Auditoria</text></name>
+  <questiontext format="html">
+    <text><![CDATA[La probabilidad de que una empresa comercial sea seleccionada por el SIN para una fiscalización externa durante la presente gestión es de \(P(F) = 0.07\). ¿Cuál es la probabilidad de que la empresa NO sea fiscalizada (\(F'\))?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(F') = 1 - 0.07 = 0.93 \quad (93\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Por el axioma del evento complementario: \(P(F') = 1 - P(F) = 1 - 0.07 = 0.93\) (93%).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(F') = 0.07\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 0.07 es la probabilidad de sí ser fiscalizada.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(F') = 1.07\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Sumó en lugar de restar al evento seguro 1.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(F') = 0.85\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Error aritmético.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P05_Regla_Especial_Adicion_Disjuntos</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Un departamento de adquisiciones evalúa cotizaciones de tres proveedores independientes (A, B y C) para un contrato exclusivo. Si las probabilidades de adjudicación son \(P(A) = 0.35\), \(P(B) = 0.40\) y \(P(C) = 0.15\), y los eventos son mutuamente excluyentes, ¿cuál es la probabilidad de que gane el contrato alguno de estos tres proveedores?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(A \cup B \cup C) = 0.35 + 0.40 + 0.15 = 0.90 \quad (90\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Al ser eventos disjuntos: \(P(A \cup B \cup C) = 0.35 + 0.40 + 0.15 = 0.90\) (90%).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A \cup B \cup C) = 0.35 \times 0.40 \times 0.15 = 0.0210\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Aplicó la regla de la multiplicación para eventos conjuntos en vez de la adición para unión.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A \cup B \cup C) = 1 - 0.90 = 0.10\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 0.10 es la probabilidad de que no gane ninguno de los tres.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A \cup B \cup C) = 0.75\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Omitió al proveedor C.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P06_Regla_General_Adicion_Solapados</text></name>
+  <questiontext format="html">
+    <text><![CDATA[En una entidad bancaria, el 50% de los clientes posee tarjeta de débito (\(P(D)=0.50\)), el 30% posee tarjeta de crédito (\(P(C)=0.30\)) y el 15% posee ambas tarjetas (\(P(D \cap C)=0.15\)). ¿Cuál es la probabilidad de que un cliente elegido al azar posea al menos una de las dos tarjetas?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(D \cup C) = 0.50 + 0.30 - 0.15 = 0.65 \quad (65\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Regla general de la adición: \(P(D \cup C) = P(D) + P(C) - P(D \cap C) = 0.50 + 0.30 - 0.15 = 0.65\) (65%).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(D \cup C) = 0.50 + 0.30 = 0.80 \quad (80\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. No restó la intersección (0.15), incurriendo en doble contabilización.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(D \cup C) = 0.15\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 0.15 es la probabilidad de la intersección, no de la unión.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(D \cup C) = 0.35\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 0.35 es la probabilidad de no tener ninguna tarjeta.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P07_Eventos_Mutuamente_Excluyentes_Definicion</text></name>
+  <questiontext format="html">
+    <text><![CDATA[¿Qué condición matemática caracteriza rigurosamente a dos eventos \(A\) y \(B\) como <strong>mutuamente excluyentes</strong>?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(A \cap B = \emptyset \implies P(A \cap B) = 0\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! No pueden ocurrir de forma simultánea, por lo que su intersección es el conjunto vacío y su probabilidad es cero.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A \cap B) = P(A) \cdot P(B)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Esta es la condición de independencia estadística.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A) + P(B) = 1\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Esta es la condición de eventos complementarios.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A|B) = P(A)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Esta es otra forma de expresar independencia estadística.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P08_Probabilidad_Subjetiva_Definicion</text></name>
+  <questiontext format="html">
+    <text><![CDATA[El directorio de una corporación debe evaluar la probabilidad de éxito en el lanzamiento de una criptomoneda institucional propia, para lo cual no existen registros históricos previos ni simetría clásica. ¿Qué enfoque probabilístico se aplica en esta decisión gerencial?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[Enfoque Subjetivo o Juicio de Expertos.]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Se basa en el grado de creencia fundamentado en el juicio profesional ante situaciones únicas sin datos históricos.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Enfoque Clásico a Priori.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. El enfoque clásico requiere eventos elementales equiprobables.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Enfoque Empírico Frecuentista.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. El enfoque empírico exige ensayos repetitivos en condiciones estables.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Distribución Normal Estandarizada.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. No corresponde a un enfoque conceptual de probabilidad.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P09_Calculo_Union_Tres_Eventos_Disjuntos</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Un arqueo de valores clasifica la cartera de inversiones en 3 opciones mutuamente excluyentes: Bonos del Estado (40%), Depósitos a Plazo Fijo (35%) y Acciones Preferentes (25%). ¿Cuál es la probabilidad de que una inversión seleccionada al azar sea un Bono o un DPF?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(\text{Bono} \cup \text{DPF}) = 0.40 + 0.35 = 0.75 \quad (75\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Al ser disjuntos: \(0.40 + 0.35 = 0.75\) (75%).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(\text{Bono} \cup \text{DPF}) = 0.40 \times 0.35 = 0.14\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Multiplicó en lugar de sumar.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(\text{Bono} \cup \text{DPF}) = 0.25\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 0.25 es la probabilidad de las acciones.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(\text{Bono} \cup \text{DPF}) = 1.00\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 1.00 abarca las tres opciones.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="matching">
+  <name><text>U02_P10_Match_Enfoques_Probabilidad</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Relacione cada situación empresarial con el enfoque de probabilidad respectivo según Anderson y Lind:]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <subquestion format="html">
+    <text><![CDATA[Cálculo de probabilidad al extraer una carta de baraja o lanzar un dado equilibrado.]]></text>
+    <answer><text><![CDATA[Enfoque Clásico a Priori (Laplace)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Porcentaje de facturas con mora según el registro contable de los últimos 5 años.]]></text>
+    <answer><text><![CDATA[Enfoque Empírico o Frecuencia Relativa]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Grado de confianza del auditor sobre la viabilidad de una reestructuración de pasivos.]]></text>
+    <answer><text><![CDATA[Enfoque Subjetivo o Juicio Profesional]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[A medida que n tiende a infinito, la frecuencia relativa converge a la probabilidad.]]></text>
+    <answer><text><![CDATA[Ley de los Grandes Números]]></text></answer>
+  </subquestion>
+</question>
+
+<question type="matching">
+  <name><text>U02_P11_Match_Axiomas_Kolmogorov</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Asocie cada axioma de probabilidad de Kolmogorov con su expresión analítica formal:]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <subquestion format="html">
+    <text><![CDATA[Axioma de No Negatividad]]></text>
+    <answer><text><![CDATA[0 ≤ P(A) ≤ 1 para todo evento A]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Axioma del Evento Seguro]]></text>
+    <answer><text><![CDATA[P(S) = 1.00]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Axioma del Evento Imposible]]></text>
+    <answer><text><![CDATA[P(∅) = 0.00]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Axioma del Evento Complementario]]></text>
+    <answer><text><![CDATA[P(A') = 1 - P(A)]]></text></answer>
+  </subquestion>
+</question>
+
+<question type="matching">
+  <name><text>U02_P12_Match_Reglas_Adicion</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Vincule la tipología de eventos con su fórmula de adición correspondiente:]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <subquestion format="html">
+    <text><![CDATA[Eventos Mutuamente Excluyentes (A ∩ B = ∅)]]></text>
+    <answer><text><![CDATA[P(A ∪ B) = P(A) + P(B)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Eventos No Excluyentes (A ∩ B ≠ ∅)]]></text>
+    <answer><text><![CDATA[P(A ∪ B) = P(A) + P(B) - P(A ∩ B)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Probabilidad Conjunta en Eventos Disjuntos]]></text>
+    <answer><text><![CDATA[P(A ∩ B) = 0]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Eventos Colectivamente Exhaustivos]]></text>
+    <answer><text><![CDATA[P(A₁ ∪ A₂ ∪ ... ∪ A_k) = 1.00]]></text></answer>
+  </subquestion>
+</question>
+
+<question type="matching">
+  <name><text>U02_P13_Match_Calculos_Numericos_Adicion</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Dados P(A) = 0.60, P(B) = 0.30 y P(A ∩ B) = 0.18, determine el valor numérico exacto:]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <subquestion format="html">
+    <text><![CDATA[Probabilidad de la Unión: P(A ∪ B)]]></text>
+    <answer><text><![CDATA[0.72 (72%)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Probabilidad del Complemento: P(A')]]></text>
+    <answer><text><![CDATA[0.40 (40%)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Probabilidad de que ocurra SOLO A: P(A - B)]]></text>
+    <answer><text><![CDATA[0.42 (42%)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Probabilidad de que no ocurra ni A ni B: P((A ∪ B)')]]></text>
+    <answer><text><![CDATA[0.28 (28%)]]></text></answer>
+  </subquestion>
+</question>
+
+<!-- CATEGORÍA: UNIDAD_02_PROBABILIDADES/02_MULTIPLICACION_E_INDEPENDENCIA -->
+<question type="category">
+  <category>
+    <text>$course$/top/BANCO_PREGUNTAS_MAT260/UNIDAD_02_PROBABILIDADES/02_MULTIPLICACION_E_INDEPENDENCIA</text>
+  </category>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P14_Regla_Especial_Multiplicacion_Independientes</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Si dos eventos contables A y B son estadísticamente independientes con \(P(A) = 0.40\) y \(P(B) = 0.25\), ¿cuál es la probabilidad de que ambos ocurran simultáneamente (\(P(A \cap B)\))?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(A \cap B) = 0.40 \times 0.25 = 0.10 \quad (10\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! En eventos independientes: \(P(A \cap B) = P(A) \cdot P(B) = 0.40 \times 0.25 = 0.10\) (10%).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A \cap B) = 0.40 + 0.25 = 0.65\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Sumó en lugar de multiplicar.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A \cap B) = 0.40 / 0.25 = 1.60\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. La probabilidad no puede exceder 1.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A \cap B) = 0\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Sería 0 solo si fuesen mutuamente excluyentes.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P15_Muestreo_Sin_Reemplazo_Facturas</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Un auditor revisa una carpeta con 20 comprobantes de diario, de los cuales 4 presentan observaciones formales. Si extrae 2 comprobantes al azar SIN reemplazo, ¿cuál es la probabilidad de que ambos comprobantes tengan observaciones?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(E_1 \cap E_2) = \frac{4}{20} \times \frac{3}{19} = \frac{12}{380} = \frac{3}{95} \approx 0.0316 \quad (3.16\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Al ser sin reemplazo: \(P(E_1) = 4/20\) y \(P(E_2|E_1) = 3/19\). Su producto es \(\frac{12}{380} \approx 3.16\%\).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(E_1 \cap E_2) = \frac{4}{20} \times \frac{4}{20} = 0.0400 \quad (4.00\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Ese cálculo corresponde a muestreo CON reemplazo.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(E_1 \cap E_2) = \frac{4}{20} + \frac{3}{19} = 0.3579\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Sumó en lugar de multiplicar.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(E_1 \cap E_2) = 0.20\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 4/20 = 0.20 es solo la probabilidad de la primera factura.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P16_Criterio_Formal_Independencia</text></name>
+  <questiontext format="html">
+    <text><![CDATA[¿Cuál de las siguientes igualdades constituye la definición matemática rigurosa de <strong>independencia estadística</strong> entre dos eventos A y B?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(A|B) = P(A) \quad \text{o equivalentemente} \quad P(A \cap B) = P(A) \cdot P(B)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! La ocurrencia de B no modifica la probabilidad de ocurrencia de A.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A \cap B) = 0\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Esa es la condición de eventos mutuamente excluyentes.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A \cup B) = P(A) + P(B)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Esa es la regla especial de la adición para eventos disjuntos.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A) = P(B)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Dos eventos pueden tener probabilidades distintas y ser plenamente independientes.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P17_Redundancia_Servidores_ERP</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Un sistema bancario cuenta con dos servidores independientes que respaldan la base de datos contable. La probabilidad de falla diaria de cada servidor es de 0.01. ¿Cuál es la probabilidad de que el sistema ERP funcione con normalidad durante el día (es decir, que al menos un servidor opere)?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(\text{Operar}) = 1 - (0.01 \times 0.01) = 1 - 0.0001 = 0.9999 \quad (99.99\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! La probabilidad de falla total es \(0.01 \times 0.01 = 0.0001\). Por el complemento: \(1 - 0.0001 = 0.9999\) (99.99%).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(\text{Operar}) = 1 - (0.01 + 0.01) = 0.9800 \quad (98.00\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Trató los fallos como excluyentes en vez de simultáneos e independientes.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(\text{Operar}) = 0.9900 \quad (99.00\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 0.99 es la confiabilidad de un solo servidor.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(\text{Operar}) = 0.0001\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 0.0001 es la probabilidad de falla simultánea.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P18_Prueba_Independencia_Datos_Reales</text></name>
+  <questiontext format="html">
+    <text><![CDATA[En un estudio de auditoría tributaria se halló que \(P(A) = 0.50\), \(P(B) = 0.40\) y \(P(A \cap B) = 0.20\). ¿Son los eventos A y B independientes?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[Sí, porque \(P(A) \times P(B) = 0.50 \times 0.40 = 0.20 = P(A \cap B)\).]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Se cumple exactamente la igualdad \(P(A \cap B) = P(A) \cdot P(B)\).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[No, porque la suma de sus probabilidades es 0.90 y no 1.00.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. La suma de probabilidades marginales no tiene relación con la independencia.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[No, porque tienen intersección no vacía.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Para ser independientes con probabilidades no nulas, la intersección DEBE ser distinta de cero.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Son mutuamente excluyentes.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Al ser P(A ∩ B) = 0.20 > 0, no son excluyentes.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P19_Muestreo_Tres_Etapas_Sin_Reemplazo</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Una caja chica contiene 10 billetes de 100 Bs, de los cuales 2 son falsificados. Si el cajero extrae sucesivamente 2 billetes sin reemplazo, ¿cuál es la probabilidad de que NINGUNO sea falsificado?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(N_1 \cap N_2) = \frac{8}{10} \times \frac{7}{9} = \frac{56}{90} = \frac{28}{45} \approx 0.6222 \quad (62.22\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Hay 8 billetes legítimos: \(P(N_1) = 8/10\) y \(P(N_2|N_1) = 7/9\). Su producto da \(\frac{56}{90} \approx 62.22\%\).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(N_1 \cap N_2) = \frac{8}{10} \times \frac{8}{10} = 0.6400 \quad (64.00\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Ese valor corresponde a muestreo con reemplazo.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(N_1 \cap N_2) = \frac{2}{10} \times \frac{1}{9} \approx 0.0222\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 0.0222 es la probabilidad de que AMBOS sean falsos.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(N_1 \cap N_2) = 0.80\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 8/10 = 0.80 es la probabilidad de un solo billete.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P20_Relacion_Disjuncion_Independencia</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Si dos eventos A y B tienen probabilidades no nulas (\(P(A)>0\) y \(P(B)>0\)) y son mutuamente excluyentes, ¿pueden ser estadísticamente independientes?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[No, son necesariamente dependientes, ya que si ocurre uno, la probabilidad del otro se vuelve cero.]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Al ser disjuntos \(P(A \cap B) = 0\), mientras que \(P(A) \cdot P(B) > 0\). Como \(0 \neq P(A)P(B)\), son dependientes.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Sí, porque al no tocarse no se influyen.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Error conceptual muy común: La exclusión mutua implica dependencia absoluta.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Depende del tamaño de la muestra.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. La propiedad es analítica y universal.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Solo si sus probabilidades suman 1.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Si suman 1 son complementarios, lo que confirma su dependencia.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P21_Control_Dual_Firmas_Auditoria</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Un procedimiento de pago exige la aprobación sucesiva de dos directores. La probabilidad de que el Director 1 apruebe la orden es de 0.80 (\(P(D_1)=0.80\)). Dado que el Director 1 aprobó, la probabilidad de que el Director 2 también apruebe es de 0.90 (\(P(D_2|D_1)=0.90\)). ¿Cuál es la probabilidad de que la orden sea aprobada por ambos directores?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(D_1 \cap D_2) = 0.80 \times 0.90 = 0.72 \quad (72\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Regla general de la multiplicación: \(P(D_1 \cap D_2) = P(D_1) \cdot P(D_2|D_1) = 0.80 \times 0.90 = 0.72\) (72%).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(D_1 \cap D_2) = 0.80 + 0.90 = 1.70\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Sumó probabilidades superando el límite de 1.00.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(D_1 \cap D_2) = 0.90 / 0.80 = 1.125\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Dividió probabilidades erróneamente.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(D_1 \cap D_2) = 0.85\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Promedió las probabilidades.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P22_Componentes_En_Serie_Confiabilidad</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Un proceso de auditoría electrónica requiere que 3 filtros de seguridad independientes se ejecuten con éxito. Sus probabilidades de funcionamiento correcto son 0.95, 0.90 y 0.98 respectivamente. ¿Cuál es la confiabilidad global del proceso (probabilidad de que los 3 filtros operen sin error)?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(F_1 \cap F_2 \cap F_3) = 0.95 \times 0.90 \times 0.98 \approx 0.8379 \quad (83.79\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! En sistemas en serie independientes: \(P(\text{Éxito}) = 0.95 \times 0.90 \times 0.98 = 0.8379\) (83.79%).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(\text{Éxito}) = \frac{0.95 + 0.90 + 0.98}{3} = 0.9433\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Calculó el promedio aritmético simple.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(\text{Éxito}) = 0.9000\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 0.90 es solo el valor del eslabón más débil.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(\text{Éxito}) = 0.9900\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. La confiabilidad en serie siempre es menor que el componente más bajo.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="matching">
+  <name><text>U02_P23_Match_Formulas_Multiplicacion</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Relacione cada contexto probabilístico con su fórmula de multiplicación correspondiente:]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <subquestion format="html">
+    <text><![CDATA[Regla de Multiplicación para Eventos Independientes]]></text>
+    <answer><text><![CDATA[P(A ∩ B) = P(A) · P(B)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Regla General de Multiplicación (Eventos Dependientes)]]></text>
+    <answer><text><![CDATA[P(A ∩ B) = P(A) · P(B|A)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Condición de Independencia Estadística]]></text>
+    <answer><text><![CDATA[P(A|B) = P(A)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Confiabilidad de Sistema con 2 Componentes en Paralelo]]></text>
+    <answer><text><![CDATA[1 - [P(F₁) · P(F₂)]]]></text></answer>
+  </subquestion>
+</question>
+
+<question type="matching">
+  <name><text>U02_P24_Match_Muestreo_Con_Sin_Reemplazo</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Vincule las propiedades del muestreo con su modalidad metodológica:]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <subquestion format="html">
+    <text><![CDATA[La probabilidad de selección de cada elemento se mantiene constante en cada intento.]]></text>
+    <answer><text><![CDATA[Muestreo Con Reemplazo (Independiente)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[El espacio muestral N disminuye en 1 tras cada extracción.]]></text>
+    <answer><text><![CDATA[Muestreo Sin Reemplazo (Dependiente)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Metodología estándar en auditoría de facturas y arqueos de inventario físico.]]></text>
+    <answer><text><![CDATA[Muestreo Sin Reemplazo]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Generación de números pseudoaleatorios en simulaciones de Monte Carlo.]]></text>
+    <answer><text><![CDATA[Muestreo Con Reemplazo]]></text></answer>
+  </subquestion>
+</question>
+
+<question type="matching">
+  <name><text>U02_P25_Match_Calculos_Independencia</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Con P(A) = 0.50 y P(B) = 0.30 siendo A y B estadísticamente independientes, determine:]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <subquestion format="html">
+    <text><![CDATA[Probabilidad conjunta P(A ∩ B)]]></text>
+    <answer><text><![CDATA[0.15 (15%)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Probabilidad de la unión P(A ∪ B)]]></text>
+    <answer><text><![CDATA[0.65 (65%)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Probabilidad condicional P(A|B)]]></text>
+    <answer><text><![CDATA[0.50 (50%)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Probabilidad de que no ocurra ninguno: P((A ∪ B)')]]></text>
+    <answer><text><![CDATA[0.35 (35%)]]></text></answer>
+  </subquestion>
+</question>
+
+<question type="matching">
+  <name><text>U02_P26_Match_Casos_Empresariales_Multiplicacion</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Asocie cada caso con su modelo de probabilidad multiplicativo:]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <subquestion format="html">
+    <text><![CDATA[Dos clientes crediticios seleccionados al azar incurren en mora de forma aislada]]></text>
+    <answer><text><![CDATA[P(M₁) · P(M₂)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Extracción sucesiva de 3 facturas con sobreprecio sin reponerlas]]></text>
+    <answer><text><![CDATA[(k/N) · ((k-1)/(N-1)) · ((k-2)/(N-2))]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Servidor web principal y servidor de respaldo simultáneos]]></text>
+    <answer><text><![CDATA[1 - [P(Falla₁) · P(Falla₂)]]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Aprobación secuencial de solicitud por Analista y Jefe de Crédito]]></text>
+    <answer><text><![CDATA[P(Analista) · P(Jefe | Analista)]]></text></answer>
+  </subquestion>
+</question>
+
+<!-- CATEGORÍA: UNIDAD_02_PROBABILIDADES/03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA -->
+<question type="category">
+  <category>
+    <text>$course$/top/BANCO_PREGUNTAS_MAT260/UNIDAD_02_PROBABILIDADES/03_PROBABILIDAD_CONDICIONAL_Y_CONTINGENCIA</text>
+  </category>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P27_Definicion_Probabilidad_Condicional</text></name>
+  <questiontext format="html">
+    <text><![CDATA[¿Cómo se define formalmente la <strong>Probabilidad Condicional</strong> de que ocurra el evento A, dado que ya ocurrió el evento B (con \(P(B) > 0\))?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(A|B) = \frac{P(A \cap B)}{P(B)}\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! El espacio muestral se reduce a B: \(P(A|B) = \frac{P(A \cap B)}{P(B)}\).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A|B) = \frac{P(A \cap B)}{P(A)}\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Ese es el cálculo de P(B|A).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A|B) = P(A) \cdot P(B)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Esa es la probabilidad conjunta en eventos independientes.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A|B) = P(A) + P(B)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Esa es la unión de eventos disjuntos.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P28_Tabla_Contingencia_Micro_Gran_Empresa</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Una entidad financiera clasifica 500 créditos: 300 corresponden a Microempresas (M) y 200 a Grandes Empresas (G). De ellos, 40 microempresas y 10 grandes empresas están en mora (D). Si se extrae un crédito al azar y resulta ser de una Gran Empresa (G), ¿cuál es la probabilidad de que esté en mora \(P(D|G)\)?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(D|G) = \frac{10}{200} = 0.05 \quad (5.0\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Entre las 200 grandes empresas, 10 están en mora: \(P(D|G) = \frac{10}{200} = 0.05\) (5%).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(D|G) = \frac{10}{500} = 0.02 \quad (2.0\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 10/500 es la probabilidad conjunta P(G ∩ D).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(D|G) = \frac{10}{50} = 0.20 \quad (20.0\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 10/50 es la probabilidad inversa P(G|D).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(D|G) = \frac{200}{500} = 0.40\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 200/500 es la probabilidad marginal P(G).]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P29_Probabilidad_Marginal_Mora</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Con los mismos datos de la cartera de 500 créditos (donde hay 50 morosos en total: 40 micro y 10 grandes), ¿cuál es la probabilidad marginal global de mora \(P(D)\)?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(D) = \frac{50}{500} = 0.10 \quad (10.0\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! La probabilidad marginal suma todas las moras sobre la población total: \(P(D) = \frac{40 + 10}{500} = \frac{50}{500} = 0.10\) (10%).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(D) = \frac{40}{300} \approx 0.1333\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 13.33% es la tasa condicional de microempresas P(D|M).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(D) = \frac{10}{200} = 0.05\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 5% es la tasa condicional de grandes empresas P(D|G).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(D) = 0.50\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Error de escala.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P30_Evaluacion_Independencia_Contingencia</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Dado que la mora global es \(P(D) = 10\%\), mientras que la mora en microempresas es \(P(D|M) = 13.33\%\) y en grandes empresas es \(P(D|G) = 5\%\), ¿qué concluye el informe de auditoría sobre la relación entre tamaño de empresa y mora?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[Son variables dependientes, ya que la condición de mora cambia significativamente según el tamaño de la empresa.]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Al diferir las probabilidades condicionales de la marginal (13.33% ≠ 10% ≠ 5%), se demuestra dependencia estadística.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Son variables independientes porque todas las probabilidades son positivas.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. La independencia exige igualdad estricta entre P(D|M), P(D|G) y P(D).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Son eventos mutuamente excluyentes.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Hay microempresas y grandes empresas en mora, no son disjuntos.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[No se puede concluir sin una prueba Z.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. A nivel poblacional, la verificación de independencia probabilística es determinística.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P31_Calculo_Arbol_Probabilidades</text></name>
+  <questiontext format="html">
+    <text><![CDATA[En un diagrama de árbol de crédito, el 70% de las solicitudes proviene de clientes antiguos (\(P(A)=0.70\)) y el 30% de clientes nuevos (\(P(N)=0.30\)). La tasa de aprobación es del 80% para antiguos (\(P(Ap|A)=0.80\)) y del 40% para nuevos (\(P(Ap|N)=0.40\)). ¿Cuál es la probabilidad conjunta de que una solicitud sea de un cliente nuevo y resulte aprobada?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(N \cap Ap) = 0.30 \times 0.40 = 0.12 \quad (12.0\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Multiplicación de la rama correspondiente: \(P(N) \cdot P(Ap|N) = 0.30 \times 0.40 = 0.12\) (12%).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(N \cap Ap) = 0.70 \times 0.80 = 0.56\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 0.56 es la probabilidad de cliente antiguo aprobado.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(N \cap Ap) = 0.30 + 0.40 = 0.70\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Sumó en lugar de multiplicar a lo largo de la rama.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(N \cap Ap) = 0.40 / 0.30 = 1.33\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. La probabilidad no puede superar 1.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P32_Probabilidad_Total_Aprobacion_Arbol</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Con los datos del árbol anterior, ¿cuál es la probabilidad total de que una solicitud cualquiera resulte aprobada \(P(Ap)\)?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(Ap) = (0.70 \times 0.80) + (0.30 \times 0.40) = 0.56 + 0.12 = 0.68 \quad (68.0\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Suma de todas las ramas que concluyen en aprobación: \(0.56 + 0.12 = 0.68\) (68%).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(Ap) = 0.80 + 0.40 = 1.20\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Sumó directamente las probabilidades condicionales.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(Ap) = \frac{0.80 + 0.40}{2} = 0.60\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Calculó promedio simple ignorando las proporciones 70% y 30%.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(Ap) = 0.56\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Omitió las aprobaciones de clientes nuevos.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P33_Despeje_Probabilidad_Conjunta</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Si se conoce que la probabilidad condicional es \(P(A|B) = 0.75\) y la probabilidad marginal es \(P(B) = 0.40\), ¿cuál es el valor de la probabilidad conjunta \(P(A \cap B)\)?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(A \cap B) = P(B) \times P(A|B) = 0.40 \times 0.75 = 0.30 \quad (30\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Despejando: \(P(A \cap B) = P(B) \cdot P(A|B) = 0.40 \times 0.75 = 0.30\) (30%).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A \cap B) = 0.75 / 0.40 = 1.875\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Dividió en lugar de multiplicar.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A \cap B) = 0.75 - 0.40 = 0.35\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Restó probabilidades.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A \cap B) = 0.40 / 0.75 = 0.5333\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Error en el despeje algebraico.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P34_Suma_Probabilidades_Condicionales_Complemento</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Si se sabe con certeza que ocurrió el evento B, ¿cuánto es el valor de \(P(A|B) + P(A'|B)\)?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[Exactamente 1.00]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Dado que B es el nuevo espacio muestral reducido, la suma de las probabilidades condicionales de un evento y su complemento es siempre 1.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Igual a P(B)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. El espacio muestral condicionado está normalizado a 1.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Menor a 1 si son eventos dependientes]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Se cumple siempre 1 sin importar dependencia.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[No se puede determinar sin conocer P(A ∩ B)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Es una propiedad axiomática universal.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P35_Identificacion_Denominador_Condicional</text></name>
+  <questiontext format="html">
+    <text><![CDATA[En el enunciado: <em>'Calcule la probabilidad de que una factura tenga error tributario (E), sabiendo que fue emitida de forma manual (M)'</em>, ¿cuál es el evento condicionante que debe colocarse en el denominador?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[El evento M (Factura emitida de forma manual)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! La expresión 'sabiendo que...' o 'dado que...' define el evento condicionante que va en el denominador: P(E|M) = P(E ∩ M) / P(M).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[El evento E (Factura con error tributario)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. E es el evento de interés que va en el numerador.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[La intersección E ∩ M]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. La intersección va en el numerador.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[El total de facturas N]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Eso sería para una probabilidad no condicionada.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="matching">
+  <name><text>U02_P36_Match_Elementos_Tabla_Contingencia</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Relacione las partes de una tabla de contingencia con su concepto estadístico:]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <subquestion format="html">
+    <text><![CDATA[Celdas centrales de la tabla]]></text>
+    <answer><text><![CDATA[Probabilidades Conjuntas P(A_i ∩ B_j)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Totales de las filas y columnas en los márgenes]]></text>
+    <answer><text><![CDATA[Probabilidades Marginales P(A_i) o P(B_j)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Cociente entre celda interior y total de fila/columna]]></text>
+    <answer><text><![CDATA[Probabilidad Condicional P(A|B)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Suma de todas las frecuencias relativas en la esquina inferior]]></text>
+    <answer><text><![CDATA[Total del Espacio Muestral (1.00)]]></text></answer>
+  </subquestion>
+</question>
+
+<question type="matching">
+  <name><text>U02_P37_Match_Notacion_Condicional</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Asocie cada expresión con su fórmula formal de cálculo:]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <subquestion format="html">
+    <text><![CDATA[P(A | B)]]></text>
+    <answer><text><![CDATA[P(A ∩ B) / P(B)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[P(B | A)]]></text>
+    <answer><text><![CDATA[P(A ∩ B) / P(A)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[P(A' | B)]]></text>
+    <answer><text><![CDATA[1 - P(A | B)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[P(A ∩ B) a partir de la condicional]]></text>
+    <answer><text><![CDATA[P(B) · P(A | B)]]></text></answer>
+  </subquestion>
+</question>
+
+<question type="matching">
+  <name><text>U02_P38_Match_Calculos_Personal_UAGRM</text></name>
+  <questiontext format="html">
+    <text><![CDATA[En un estudio con 100 contadores (40 con maestría, 60 sin maestría; 30 con maestría tienen cargo directivo y 15 sin maestría tienen cargo directivo), determine:]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <subquestion format="html">
+    <text><![CDATA[Probabilidad de tener cargo directivo: P(Dir)]]></text>
+    <answer><text><![CDATA[45/100 = 0.45 (45%)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Probabilidad de tener maestría: P(M)]]></text>
+    <answer><text><![CDATA[40/100 = 0.40 (40%)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Probabilidad de ser directivo DADO que tiene maestría: P(Dir|M)]]></text>
+    <answer><text><![CDATA[30/40 = 0.75 (75%)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Probabilidad de ser directivo DADO que NO tiene maestría: P(Dir|M')]]></text>
+    <answer><text><![CDATA[15/60 = 0.25 (25%)]]></text></answer>
+  </subquestion>
+</question>
+
+<question type="matching">
+  <name><text>U02_P39_Match_Decisiones_Condicionales</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Vincule la condición probabilística con el impacto en la toma de decisiones contables:]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <subquestion format="html">
+    <text><![CDATA[P(Mora | Microempresa) = 13.3% vs P(Mora | Gran Empresa) = 5%]]></text>
+    <answer><text><![CDATA[Segmentar tasas de interés por nivel de riesgo de cartera]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[P(Error | Sistema Antiguo) = 18% vs P(Error | Sistema Nuevo) = 2%]]></text>
+    <answer><text><![CDATA[Justificar la inversión en migración tecnológica ERP]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[P(Fraude | Pago Efectivo) = 12% vs P(Fraude | Transferencia QR) = 0.5%]]></text>
+    <answer><text><![CDATA[Restringir pagos en efectivo e incentivar banca digital]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[P(A | B) = P(A)]]></text>
+    <answer><text><![CDATA[No se requiere tratamiento diferenciado (Independencia)]]></text></answer>
+  </subquestion>
+</question>
+
+<!-- CATEGORÍA: UNIDAD_02_PROBABILIDADES/04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES -->
+<question type="category">
+  <category>
+    <text>$course$/top/BANCO_PREGUNTAS_MAT260/UNIDAD_02_PROBABILIDADES/04_PROBABILIDAD_TOTAL_Y_TEOREMA_BAYES</text>
+  </category>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P40_Ley_Probabilidad_Total_Definicion</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Si los eventos \(A_1, A_2, \dots, A_k\) forman una partición del espacio muestral \(S\), ¿cómo se calcula la <strong>Probabilidad Total</strong> de un evento arbitrario \(B\)?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(B) = \sum_{i=1}^k P(A_i) \cdot P(B|A_i)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Ley de Probabilidad Total: \(P(B) = P(A_1)P(B|A_1) + P(A_2)P(B|A_2) + \dots + P(A_k)P(B|A_k)\).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(B) = \sum_{i=1}^k P(A_i) + P(B|A_i)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Sumó en lugar de calcular la suma ponderada de productos.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(B) = \frac{\sum P(A_i)}{k}\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Eso es un promedio simple de las probabilidades a priori.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(B) = P(A_1) \cdot P(A_2) \dotsm P(A_k)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Esa es una multiplicación múltiple sin considerar las verosimilitudes.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P41_Calculo_Probabilidad_Total_Dos_Plantas</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Una empresa fabrica productos en dos plantas: Planta 1 produce el 70% del inventario (\(P(A_1)=0.70\)) con un 2% de defectuosos (\(P(D|A_1)=0.02\)); Planta 2 produce el 30% restante (\(P(A_2)=0.30\)) con un 4% de defectuosos (\(P(D|A_2)=0.04\)). ¿Cuál es la probabilidad total de que un producto elegido al azar esté defectuoso?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(D) = (0.70 \times 0.02) + (0.30 \times 0.04) = 0.014 + 0.012 = 0.026 \quad (2.6\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! \(P(D) = P(A_1)P(D|A_1) + P(A_2)P(D|A_2) = 0.014 + 0.012 = 0.026\) (2.6%).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(D) = 0.02 + 0.04 = 0.06 \quad (6.0\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Sumó las tasas sin ponderarlas por la participación de cada planta.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(D) = \frac{0.02 + 0.04}{2} = 0.03 \quad (3.0\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Promedió de forma simple ignorando las proporciones 70% y 30%.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(D) = 0.0008\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Multiplicó 0.02 × 0.04.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P42_Teorema_Bayes_Planta2</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Siguiendo el caso anterior (donde \(P(D) = 0.026\)), si un inspector de calidad encuentra un producto defectuoso, ¿cuál es la probabilidad a posteriori de que provenga de la Planta 2 (\(A_2\))?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(A_2|D) = \frac{0.012}{0.026} \approx 0.4615 \quad (46.15\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Teorema de Bayes: \(P(A_2|D) = \frac{P(A_2)P(D|A_2)}{P(D)} = \frac{0.012}{0.026} \approx 0.4615\) (46.15%). Aunque la Planta 2 solo produce el 30%, ante un defecto la probabilidad sube al 46.15%.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A_2|D) = \frac{0.014}{0.026} \approx 0.5385 \quad (53.85\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 53.85% es la probabilidad de que provenga de la Planta 1.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A_2|D) = 0.3000 \quad (30.0\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 30% es la probabilidad a priori antes de verificar el defecto.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(A_2|D) = 0.0400 \quad (4.0\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. 4% es la verosimilitud condicional P(D|A_2).]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P43_Tres_Proveedores_Bayes_Auditoria</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Tres proveedores abastecen materia prima: P1 entrega el 50% (tasa no conforme 1%), P2 el 30% (tasa no conforme 3%) y P3 el 20% (tasa no conforme 5%). ¿Cuál es la probabilidad total de recibir un lote no conforme \(P(NC)\)?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(P(NC) = (0.50)(0.01) + (0.30)(0.03) + (0.20)(0.05) = 0.005 + 0.009 + 0.010 = 0.024 \quad (2.4\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! \(P(NC) = 0.005 + 0.009 + 0.010 = 0.024\) (2.4%).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(NC) = 0.01 + 0.03 + 0.05 = 0.09 \quad (9.0\%)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Sumó tasas directas sin ponderar.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(NC) = 0.0300\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Calculó el promedio simple de (1+3+5)/3.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(P(NC) = 0.0015\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Multiplicó 0.01 × 0.03 × 0.05.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P44_Proveedor_Mayor_Culpabilidad_Bayes</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Con los datos de los tres proveedores anteriores (donde \(P(NC) = 0.024\)), si se detecta un insumo no conforme, ¿cuál proveedor tiene la mayor probabilidad a posteriori de ser el causante?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[Proveedor 3, con \(P(P_3|NC) = \frac{0.010}{0.024} \approx 0.4167 \quad (41.67\%)\).]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! \(P(P_1|NC) = 0.005/0.024 = 20.83\%\), \(P(P_2|NC) = 0.009/0.024 = 37.50\%\) y \(P(P_3|NC) = 0.010/0.024 = 41.67\%\). P3 es el principal responsable.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Proveedor 1, porque abastece el 50% del volumen.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. El 50% es a priori; su baja tasa de fallas (1%) reduce su probabilidad a posteriori a solo 20.83%.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Proveedor 2, con 50%.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. P2 tiene 37.50%.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Todos tienen la misma probabilidad de 33.33%.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Las tasas y volúmenes son heterogéneos.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P45_Terminologia_Bayesiana_A_Priori</text></name>
+  <questiontext format="html">
+    <text><![CDATA[En la formulación del Teorema de Bayes, ¿qué representa el término \(P(A_j)\)?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[La probabilidad a priori del estado o hipótesis A_j antes de conocer la nueva evidencia.]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Es la probabilidad inicial basada en datos históricos o estimaciones previas.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[La probabilidad a posteriori después de la evidencia.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Esa es P(A_j|B).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[La verosimilitud de observar la evidencia.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Esa es P(B|A_j).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[La probabilidad total de la evidencia.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Esa es P(B).]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P46_Terminologia_Bayesiana_Verosimilitud</text></name>
+  <questiontext format="html">
+    <text><![CDATA[¿Qué nombre técnico recibe el término condicional \(P(B|A_j)\) en la estructura del Teorema de Bayes?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[Verosimilitud (Likelihood).]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Indica qué tan probable es observar la evidencia B si el estado causante A_j es verdadero.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Probabilidad a priori.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Esa es P(A_j).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Probabilidad a posteriori.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Esa es P(A_j|B).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Probabilidad conjunta marginal.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Es una probabilidad condicional.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P47_Suma_Probabilidades_A_Posteriori</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Si se calculan todas las probabilidades a posteriori \(P(A_1|B), P(A_2|B), \dots, P(A_k|B)\) sobre una partición completa del espacio muestral, ¿cuánto debe sumar exactamente su total?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[\(\sum_{i=1}^k P(A_i|B) = 1.00\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Las probabilidades a posteriori forman una distribución de probabilidad completa sobre los estados posibles dado B, por lo que su suma es estrictamente 1.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(\sum P(A_i|B) = P(B)\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. La suma de probabilidades sobre la partición da 1, no P(B).]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[\(\sum P(A_i|B) = 0\)]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Los valores son estrictamente positivos.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Puede ser mayor a 1 si la evidencia es contundente.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Ninguna suma de probabilidades sobre una partición puede superar a 1.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="multichoice">
+  <name><text>U02_P48_Falacia_Tasa_Base_Auditoria</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Un software de auditoría detecta transacciones fraudulentas con 99% de precisión (sensibilidad). Si el fraude en la empresa es extremadamente raro (0.01% de tasa base), ¿por qué la mayoría de las alertas positivas resultan ser falsas alarmas?]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  <answer fraction="100" format="html">
+    <text><![CDATA[Porque el 99.99% de operaciones legítimas genera más falsos positivos en volumen absoluto que el escaso 0.01% de fraudes reales.]]></text>
+    <feedback format="html">
+      <text><![CDATA[¡Correcto! Fenómeno conocido como falacia de la tasa base: al ser tan baja la prevalencia inicial, la gran masa de transacciones legítimas domina el denominador.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Porque el software está descalibrado matemáticamente.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Es un resultado natural del Teorema de Bayes ante tasas base muy bajas.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Porque el Teorema de Bayes no aplica a sistemas automáticos.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. Bayes es el fundamento matemático de los algoritmos de detección.]]></text>
+    </feedback>
+  </answer>
+  <answer fraction="0" format="html">
+    <text><![CDATA[Porque las operaciones legítimas son mutuamente excluyentes.]]></text>
+    <feedback format="html">
+      <text><![CDATA[Incorrecto. No explica el efecto de las proporciones poblacionales.]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<question type="matching">
+  <name><text>U02_P49_Match_Terminos_Bayes</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Relacione cada componente de la ecuación de Bayes con su definición formal:]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <subquestion format="html">
+    <text><![CDATA[P(A_j)]]></text>
+    <answer><text><![CDATA[Probabilidad A Priori (Estado inicial)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[P(B | A_j)]]></text>
+    <answer><text><![CDATA[Verosimilitud o Likelihood de la evidencia]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[P(B) = Σ P(A_i)P(B|A_i)]]></text>
+    <answer><text><![CDATA[Ley de Probabilidad Total (Denominador)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[P(A_j | B)]]></text>
+    <answer><text><![CDATA[Probabilidad A Posteriori (Estado actualizado)]]></text></answer>
+  </subquestion>
+</question>
+
+<question type="matching">
+  <name><text>U02_P50_Match_Casos_Bayes_Auditoria</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Tres líneas de producción L1 (40%), L2 (35%) y L3 (25%) con tasas de falla 1%, 2% y 4% respectivamente. Determine:]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <subquestion format="html">
+    <text><![CDATA[Probabilidad total de falla P(Falla)]]></text>
+    <answer><text><![CDATA[(0.40)(0.01)+(0.35)(0.02)+(0.25)(0.04) = 0.021 (2.1%)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Probabilidad de que la falla sea de L1: P(L1|Falla)]]></text>
+    <answer><text><![CDATA[0.004 / 0.021 = 0.1905 (19.05%)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Probabilidad de que la falla sea de L2: P(L2|Falla)]]></text>
+    <answer><text><![CDATA[0.007 / 0.021 = 0.3333 (33.33%)]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Probabilidad de que la falla sea de L3: P(L3|Falla)]]></text>
+    <answer><text><![CDATA[0.010 / 0.021 = 0.4762 (47.62%)]]></text></answer>
+  </subquestion>
+</question>
+
+<question type="matching">
+  <name><text>U02_P51_Match_Condiciones_Particion</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Vincule las condiciones axiomáticas para la partición del espacio muestral en Bayes:]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <subquestion format="html">
+    <text><![CDATA[Eventos Mutuamente Excluyentes dos a dos]]></text>
+    <answer><text><![CDATA[A_i ∩ A_j = ∅ para todo i ≠ j]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Eventos Colectivamente Exhaustivos]]></text>
+    <answer><text><![CDATA[A₁ ∪ A₂ ∪ ... ∪ A_k = S]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Suma de probabilidades a priori]]></text>
+    <answer><text><![CDATA[Σ P(A_i) = 1.00]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Existencia de la evidencia]]></text>
+    <answer><text><![CDATA[P(B) > 0]]></text></answer>
+  </subquestion>
+</question>
+
+<question type="matching">
+  <name><text>U02_P52_Match_Impacto_Forense_Bayes</text></name>
+  <questiontext format="html">
+    <text><![CDATA[Asocie los beneficios metodológicos del análisis bayesiano en la gestión contable:]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1.0000000</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <subquestion format="html">
+    <text><![CDATA[Incorporación dinámica de nueva evidencia de auditoría]]></text>
+    <answer><text><![CDATA[Actualización continua de matrices de riesgo]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Cálculo del valor predictivo positivo en alertas de control]]></text>
+    <answer><text><![CDATA[Optimización de recursos de fiscalización]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Ponderación de causas múltiples en desbalances contables]]></text>
+    <answer><text><![CDATA[Identificación objetiva del departamento responsable]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[Integración formal de juicio experto con datos muestrales]]></text>
+    <answer><text><![CDATA[Enfoque probabilístico bayesiano]]></text></answer>
+  </subquestion>
+</question>
+</quiz>

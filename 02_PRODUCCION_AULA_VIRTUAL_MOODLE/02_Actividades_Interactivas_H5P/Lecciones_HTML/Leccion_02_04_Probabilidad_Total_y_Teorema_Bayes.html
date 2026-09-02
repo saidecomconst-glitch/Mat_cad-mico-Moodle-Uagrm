@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lección 2.4: Teorema de la Probabilidad Total y Teorema de Bayes | Estadística II - UAGRM</title>
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --uagrm-blue: #002b49;
+            --uagrm-accent: #0284c7;
+            --uagrm-red: #b22222;
+            --uagrm-green: #047857;
+            --uagrm-gold: #d97706;
+            --uagrm-purple: #7c3aed;
+            --uagrm-bg: #f8fafc;
+            --uagrm-card: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--uagrm-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 15px;
+        }
+
+        .lesson-container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: var(--uagrm-card);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 43, 73, 0.08);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .lesson-header {
+            background: linear-gradient(135deg, var(--uagrm-blue) 0%, #004b7a 100%);
+            color: #ffffff;
+            padding: 25px 30px;
+            position: relative;
+            border-bottom: 4px solid var(--uagrm-red);
+        }
+
+        .badge-leccion {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .lesson-header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .lesson-header h2 {
+            font-size: 15px;
+            color: #bae6fd;
+            font-weight: 400;
+        }
+
+        .progress-section {
+            background: #f1f5f9;
+            padding: 12px 30px;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .progress-bar-container {
+            flex-grow: 1;
+            background: #e2e8f0;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, var(--uagrm-accent), var(--uagrm-green));
+            height: 100%;
+            width: 8%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--uagrm-blue);
+            min-width: 140px;
+            text-align: right;
+        }
+
+        .page-content {
+            display: none;
+            padding: 30px;
+            min-height: 480px;
+        }
+
+        .page-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .page-num-badge {
+            background: var(--uagrm-blue);
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .page-title h3 {
+            font-size: 18px;
+            color: var(--uagrm-blue);
+        }
+
+        .nav-buttons {
+            background: #f8fafc;
+            padding: 18px 30px;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-prev {
+            background: #e2e8f0;
+            color: var(--text-dark);
+        }
+
+        .btn-prev:hover {
+            background: #cbd5e1;
+        }
+
+        .btn-next {
+            background: var(--uagrm-accent);
+            color: white;
+        }
+
+        .btn-next:hover {
+            background: #0369a1;
+        }
+
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* ESTILOS DE PREGUNTAS */
+        .question-box {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 22px;
+            margin-bottom: 20px;
+        }
+
+        .question-enunciado {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--uagrm-blue);
+            margin-bottom: 15px;
+        }
+
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .option-item {
+            background: #f8fafc;
+            border: 1.5px solid var(--border-light);
+            border-radius: 6px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14.5px;
+        }
+
+        .option-item:hover:not(.locked) {
+            border-color: var(--uagrm-accent);
+            background: #f0f9ff;
+        }
+
+        .option-item.selected {
+            border-color: var(--uagrm-accent);
+            background: #e0f2fe;
+            font-weight: 600;
+        }
+
+        .option-item.correct {
+            border-color: var(--uagrm-green);
+            background: #ecfdf5;
+            color: #065f46;
+            font-weight: 600;
+        }
+
+        .option-item.incorrect {
+            border-color: var(--uagrm-red);
+            background: #fef2f2;
+            color: #991b1b;
+        }
+
+        .feedback-box {
+            margin-top: 15px;
+            padding: 14px 18px;
+            border-radius: 6px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .feedback-box.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .feedback-box.correct-fb {
+            background: #ecfdf5;
+            border-left: 4px solid var(--uagrm-green);
+            color: #065f46;
+        }
+
+        .feedback-box.incorrect-fb {
+            background: #fef2f2;
+            border-left: 4px solid var(--uagrm-red);
+            color: #991b1b;
+        }
+
+        /* ESTILOS EMPAREJAMIENTO */
+        .matching-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .match-card {
+            background: #f8fafc;
+            border: 1.5px dashed var(--border-light);
+            border-radius: 6px;
+            padding: 12px 14px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .match-select {
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid #cbd5e1;
+            background: white;
+            font-size: 13.5px;
+            outline: none;
+            width: 100%;
+        }
+
+        .btn-check-match {
+            background: var(--uagrm-blue);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* CAJAS DE TEORÍA Y EJEMPLOS */
+        .formula-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--uagrm-accent);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+            font-size: 14.5px;
+        }
+
+        .example-box {
+            background: #f0fdf4;
+            border-left: 4px solid var(--uagrm-green);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+            font-size: 14.5px;
+        }
+
+        .example-box h4 {
+            color: var(--uagrm-green);
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+
+        .formula-box h4 {
+            color: var(--uagrm-accent);
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+
+        .math-display {
+            text-align: center;
+            margin: 12px 0;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="lesson-container">
+    <!-- HEADER -->
+    <div class="lesson-header">
+        <span class="badge-leccion">UNIDAD 2 • LECCIÓN 2.4</span>
+        <h1>Teorema de la Probabilidad Total y Teorema de Bayes</h1>
+        <h2>Partición del Espacio Muestral, Actualización a Priori y a Posteriori en Auditoría y Riesgo • MSc. Anselmo Salguero Arano</h2>
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="progress-section">
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="progress-text" id="progressText">Página 1 de 13 (8%)</div>
+    </div>
+
+    <!-- PÁGINA 1: TEORÍA -->
+    <div class="page-content active" id="page1">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 1</span>
+            <h3>Fundamento Teórico y Síntesis Conceptual</h3>
+        </div>
+        
+<div class="formula-box">
+    <h4 style="color: var(--uagrm-blue); margin-bottom: 8px;">📌 Fundamentos Teóricos: Teorema de Bayes y Probabilidad Total (Anderson & Lind)</h4>
+    <p>El Teorema de Bayes es la herramienta cuantitativa fundamental para actualizar probabilidades iniciales (<em>a priori</em>) a la luz de nueva evidencia muestral o hallazgos de auditoría (<em>a posteriori</em>):</p>
+    
+    <!-- SVG INFOGRAFÍA VIBRANTE TEORÍA 2.4 -->
+    <svg viewBox="0 0 820 220" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; display: block; margin: 15px auto; background: #ffffff; border-radius: 8px; border: 1px solid #e2e8f0; padding: 5px;">
+      <defs>
+        <linearGradient id="gradB1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#7c3aed"/>
+          <stop offset="100%" stop-color="#5b21b6"/>
+        </linearGradient>
+        <linearGradient id="gradB2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0284c7"/>
+          <stop offset="100%" stop-color="#002b49"/>
+        </linearGradient>
+      </defs>
+      <rect width="820" height="220" fill="#f8fafc" rx="8"/>
+      
+      <!-- Panel 1: Partición y Probabilidad Total -->
+      <g transform="translate(15, 15)">
+        <rect width="380" height="190" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5" rx="6"/>
+        <rect width="380" height="30" fill="url(#gradB1)" rx="6 6 0 0"/>
+        <text x="190" y="20" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Partición y Teorema de Probabilidad Total</text>
+        
+        <!-- Caja del espacio muestral S con 3 particiones -->
+        <rect x="25" y="45" width="100" height="75" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+        <text x="75" y="70" font-size="11" font-weight="bold" fill="#6d28d9" text-anchor="middle">A₁ (50%)</text>
+        <rect x="125" y="45" width="100" height="75" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+        <text x="175" y="70" font-size="11" font-weight="bold" fill="#6d28d9" text-anchor="middle">A₂ (30%)</text>
+        <rect x="225" y="45" width="130" height="75" fill="#ddd6fe" stroke="#7c3aed" stroke-width="1.5"/>
+        <text x="290" y="70" font-size="11" font-weight="bold" fill="#6d28d9" text-anchor="middle">A₃ (20%)</text>
+        
+        <!-- Óvalo de evidencia B superpuesto -->
+        <ellipse cx="190" cy="85" rx="140" ry="26" fill="#fee2e2" fill-opacity="0.6" stroke="#b22222" stroke-width="2"/>
+        <text x="190" y="90" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">Evidencia B (Hallazgo de Auditoría)</text>
+        
+        <rect x="20" y="130" width="340" height="42" fill="#faf5ff" stroke="#e9d5ff" rx="4"/>
+        <text x="190" y="146" font-size="10.5" font-weight="bold" fill="#6d28d9" text-anchor="middle">Ley de Probabilidad Total:</text>
+        <text x="190" y="162" font-size="11.5" font-weight="bold" fill="#b22222" text-anchor="middle">P(B) = P(A₁)P(B|A₁) + P(A₂)P(B|A₂) + P(A₃)P(B|A₃)</text>
+      </g>
+
+      <!-- Panel 2: Teorema de Bayes -->
+      <g transform="translate(415, 15)">
+        <rect width="390" height="190" fill="#ffffff" stroke="#0284c7" stroke-width="1.5" rx="6"/>
+        <rect width="390" height="30" fill="url(#gradB2)" rx="6 6 0 0"/>
+        <text x="195" y="20" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Ecuación Fundamental del Teorema de Bayes</text>
+
+        <!-- Fórmula Central -->
+        <rect x="20" y="42" width="350" height="52" fill="#eff6ff" stroke="#bae6fd" rx="4"/>
+        <text x="195" y="62" font-size="10.5" font-weight="bold" fill="#002b49" text-anchor="middle">Probabilidad a Posteriori del Estado A_j dado B:</text>
+        <text x="195" y="84" font-size="13" font-weight="bold" fill="#b22222" text-anchor="middle">P(A_j | B) = [ P(A_j) · P(B | A_j) ] / P(B)</text>
+
+        <!-- Pasos de Aplicación -->
+        <g transform="translate(20, 102)">
+          <rect width="110" height="40" fill="#f0f9ff" stroke="#0284c7" rx="4"/>
+          <text x="55" y="18" font-size="9.5" font-weight="bold" fill="#0369a1" text-anchor="middle">1. A Priori</text>
+          <text x="55" y="32" font-size="10" fill="#002b49" text-anchor="middle">P(A_j)</text>
+          <path d="M 115 20 L 130 20" stroke="#0284c7" stroke-width="2"/>
+          <rect x="135" y="0" width="110" height="40" fill="#fef2f2" stroke="#b22222" rx="4"/>
+          <text x="190" y="18" font-size="9.5" font-weight="bold" fill="#991b1b" text-anchor="middle">2. Evidencia</text>
+          <text x="190" y="32" font-size="10" fill="#002b49" text-anchor="middle">P(B | A_j)</text>
+          <path d="M 250 20 L 265 20" stroke="#0284c7" stroke-width="2"/>
+          <rect x="270" y="0" width="100" height="40" fill="#ecfdf5" stroke="#047857" rx="4"/>
+          <text x="320" y="18" font-size="9.5" font-weight="bold" fill="#065f46" text-anchor="middle">3. A Posteriori</text>
+          <text x="320" y="32" font-size="10" font-weight="bold" fill="#047857" text-anchor="middle">P(A_j | B)</text>
+        </g>
+        
+        <text x="195" y="168" font-size="10.5" fill="#475569" text-anchor="middle">Permite focalizar la auditoría forense con evidencia objetiva</text>
+      </g>
+    </svg>
+
+    <ul style="margin: 10px 0 10px 25px;">
+        <li><strong>Partición del Espacio Muestral:</strong> Los estados \(A_1, A_2, \dots, A_k\) son mutuamente excluyentes (\(A_i \cap A_j = \emptyset\)) y colectivamente exhaustivos (\(\sum P(A_i) = 1\)).</li>
+        <li><strong>Probabilidad Total:</strong> El denominador de Bayes integra la suma ponderada de todas las trayectorias que conducen al evento \(B\).</li>
+    </ul>
+</div>
+
+<div class="example-box">
+    <h4>💡 Ejemplo 2.4: Detección de Irregularidades en Órdenes de Pago (Anderson)</h4>
+    <p><strong>Problema:</strong> Tres departamentos originan órdenes de pago: Ventas (\(P(A_1)=0.50\)), Adquisiciones (\(P(A_2)=0.30\)) y Logística (\(P(A_3)=0.20\)). Las tasas de irregularidad contable (\(F\)) son \(P(F|A_1)=0.01\), \(P(F|A_2)=0.04\) y \(P(F|A_3)=0.02\). Si se detecta una orden irregular, ¿cuál es la probabilidad de que provenga de Adquisiciones?</p>
+    <p><strong>Desarrollo Analítico:</strong></p>
+    <ul style="margin-left: 20px;">
+        <li><em>Probabilidad Total:</em> \(P(F) = (0.50)(0.01) + (0.30)(0.04) + (0.20)(0.02) = 0.005 + 0.012 + 0.004 = \mathbf{0.021 \quad (2.1\%)}\).</li>
+        <li><em>Teorema de Bayes:</em> \(P(A_2|F) = \frac{P(A_2)P(F|A_2)}{P(F)} = \frac{(0.30)(0.04)}{0.021} = \frac{0.012}{0.021} \approx \mathbf{0.5714 \quad (57.14\%)}\).</li>
+    </ul>
+    <p><strong>Conclusión Forense:</strong> Aunque Adquisiciones solo emite el 30% de las órdenes (a priori), ante una irregularidad comprobada la probabilidad se eleva al <strong>57.14%</strong> (a posteriori).</p>
+</div>
+
+    </div>
+
+    <!-- PÁGINA 2: MULTIMEDIA -->
+    <div class="page-content" id="page2">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 2</span>
+            <h3>Refuerzo Audiovisual y Guía de Observación</h3>
+        </div>
+        
+<div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 10px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
+    <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
+        <div style="font-size: 36px;">🎬</div>
+        <div>
+            <h4 style="color: var(--uagrm-blue); font-size: 16px;">Video Educativo: Intuición Geométrica del Teorema de Bayes (3Blue1Brown / UAGRM)</h4>
+            <p style="font-size: 13.5px; color: var(--text-muted);">Comprenda la actualización bayesiana de probabilidades mediante áreas y proporciones visuales.</p>
+        </div>
+    </div>
+    
+    <div style="position: relative; padding-bottom: 45%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid #cbd5e1; margin-bottom: 20px; background: #000;">
+        <iframe style="position: absolute; top:0; left: 0; width: 100%; height: 100%;" 
+                src="https://www.youtube-nocookie.com/embed/HZGCoVF3YvM" 
+                title="Teorema de Bayes Visual" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+    </div>
+
+    <div style="background: #f8fafc; border-left: 4px solid var(--uagrm-accent); padding: 15px; border-radius: 0 6px 6px 0; font-size: 13.5px;">
+        <strong>📋 Guía de Observación para el Estudiante:</strong>
+        <ul style="margin: 6px 0 0 20px;">
+            <li>Visualice el espacio muestral particionado y cómo la evidencia restringe el análisis solo a la franja donde ocurrió el evento observable.</li>
+            <li>Identifique los tres términos clave: Probabilidad a Priori, Verosimilitud (Likelihood) y Probabilidad a Posteriori.</li>
+        </ul>
+    </div>
+</div>
+
+    </div>
+
+    <!-- PÁGINA 3: EJERCICIO 1 (Opción Múltiple) -->
+    <div class="page-content" id="page3">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 3</span>
+            <h3>Actividad Formativa 1 de 10: Cálculo de Probabilidad Total en Auditoría de Facturación</h3>
+        </div>
+        <div class="question-box">
+
+            <div class="question-enunciado">Una empresa procesa pagos a través de 2 sucursales: Sucursal Norte procesa el 60% de las facturas (P(N)=0.60) con tasa de error del 2% (P(E|N)=0.02); Sucursal Sur procesa el 40% restante (P(S)=0.40) con tasa de error del 5% (P(E|S)=0.05). ¿Cuál es la probabilidad total de que una factura seleccionada al azar contenga error?</div>
+            
+<svg viewBox="0 0 500 90" xmlns="http://www.w3.org/2000/svg" style="max-width: 440px; display: block; margin: 10px auto; background: #ffffff; border-radius: 6px; border: 1px solid #e2e8f0;">
+  <rect width="500" height="90" fill="#f8fafc" rx="6"/>
+  <rect x="25" y="15" width="180" height="60" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
+  <text x="115" y="38" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">Norte: 0.60 × 0.02</text>
+  <text x="115" y="58" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">= 0.012 (1.2%)</text>
+  <text x="230" y="50" font-size="18" font-weight="bold" fill="#7c3aed" text-anchor="middle">+</text>
+  <rect x="255" y="15" width="180" height="60" fill="#fef2f2" stroke="#b22222" rx="4"/>
+  <text x="345" y="38" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">Sur: 0.40 × 0.05</text>
+  <text x="345" y="58" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">= 0.020 (2.0%)</text>
+</svg>
+
+            <div class="options-grid" id="optGrid_3">
+
+                <div class="option-item" onclick="selectOption(3, 0, true)">
+                    <span style="font-weight: bold; width: 24px;">A)</span>
+                    <span>\(P(E) = (0.60 \times 0.02) + (0.40 \times 0.05) = 0.012 + 0.020 = 0.032 \quad (3.2\%)\)</span>
+                </div>
+
+                <div class="option-item" onclick="selectOption(3, 1, false)">
+                    <span style="font-weight: bold; width: 24px;">B)</span>
+                    <span>\(P(E) = 0.02 + 0.05 = 0.07 \quad (7.0\%)\)</span>
+                </div>
+
+                <div class="option-item" onclick="selectOption(3, 2, false)">
+                    <span style="font-weight: bold; width: 24px;">C)</span>
+                    <span>\(P(E) = \frac{0.02 + 0.05}{2} = 0.035 \quad (3.5\%)\)</span>
+                </div>
+
+                <div class="option-item" onclick="selectOption(3, 3, false)">
+                    <span style="font-weight: bold; width: 24px;">D)</span>
+                    <span>\(P(E) = 0.0010\)</span>
+                </div>
+
+            </div>
+            <div class="feedback-box" id="fb_3"></div>
+
+        </div>
+    </div>
+
+    <!-- PÁGINA 4: EJERCICIO 2 (Emparejamiento) -->
+    <div class="page-content" id="page4">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 4</span>
+            <h3>Actividad Formativa 2 de 10: Emparejamiento: Términos Fundamentales del Análisis Bayesiano</h3>
+        </div>
+        <div class="question-box">
+
+            <div class="question-enunciado">Relacione cada concepto bayesiano con su definición formal según Anderson y Lind:</div>
+            
+            <div class="matching-container">
+
+                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
+                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
+
+                <div class="match-card">
+                    <span><strong>1.</strong> Probabilidad A Priori: P(A_i)</span>
+                </div>
+                <div class="match-card">
+                    <select class="match-select" id="match_select_4_0">
+                        <option value="">-- Seleccione una opción --</option>
+<option value="0">Probabilidad inicial asignada a un estado antes de observar nueva evidencia</option>
+<option value="1">Probabilidad condicional de observar la evidencia B dado que ocurrió el estado A_i</option>
+<option value="2">Suma ponderada de todas las verosimilitudes sobre la partición del espacio muestral</option>
+<option value="3">Probabilidad actualizada del estado A_i tras haber verificado la ocurrencia de B</option>
+
+                    </select>
+                </div>
+
+                <div class="match-card">
+                    <span><strong>2.</strong> Verosimilitud o Likelihood: P(B | A_i)</span>
+                </div>
+                <div class="match-card">
+                    <select class="match-select" id="match_select_4_1">
+                        <option value="">-- Seleccione una opción --</option>
+<option value="0">Probabilidad inicial asignada a un estado antes de observar nueva evidencia</option>
+<option value="1">Probabilidad condicional de observar la evidencia B dado que ocurrió el estado A_i</option>
+<option value="2">Suma ponderada de todas las verosimilitudes sobre la partición del espacio muestral</option>
+<option value="3">Probabilidad actualizada del estado A_i tras haber verificado la ocurrencia de B</option>
+
+                    </select>
+                </div>
+
+                <div class="match-card">
+                    <span><strong>3.</strong> Probabilidad Marginal Total: P(B)</span>
+                </div>
+                <div class="match-card">
+                    <select class="match-select" id="match_select_4_2">
+                        <option value="">-- Seleccione una opción --</option>
+<option value="0">Probabilidad inicial asignada a un estado antes de observar nueva evidencia</option>
+<option value="1">Probabilidad condicional de observar la evidencia B dado que ocurrió el estado A_i</option>
+<option value="2">Suma ponderada de todas las verosimilitudes sobre la partición del espacio muestral</option>
+<option value="3">Probabilidad actualizada del estado A_i tras haber verificado la ocurrencia de B</option>
+
+                    </select>
+                </div>
+
+                <div class="match-card">
+                    <span><strong>4.</strong> Probabilidad A Posteriori: P(A_i | B)</span>
+                </div>
+                <div class="match-card">
+                    <select class="match-select" id="match_select_4_3">
+                        <option value="">-- Seleccione una opción --</option>
+<option value="0">Probabilidad inicial asignada a un estado antes de observar nueva evidencia</option>
+<option value="1">Probabilidad condicional de observar la evidencia B dado que ocurrió el estado A_i</option>
+<option value="2">Suma ponderada de todas las verosimilitudes sobre la partición del espacio muestral</option>
+<option value="3">Probabilidad actualizada del estado A_i tras haber verificado la ocurrencia de B</option>
+
+                    </select>
+                </div>
+
+            </div>
+            <button class="btn-check-match" onclick="checkMatching(4, [{"left": "Probabilidad A Priori: P(A_i)", "right": "Probabilidad inicial asignada a un estado antes de observar nueva evidencia"}, {"left": "Verosimilitud o Likelihood: P(B | A_i)", "right": "Probabilidad condicional de observar la evidencia B dado que ocurri\u00f3 el estado A_i"}, {"left": "Probabilidad Marginal Total: P(B)", "right": "Suma ponderada de todas las verosimilitudes sobre la partici\u00f3n del espacio muestral"}, {"left": "Probabilidad A Posteriori: P(A_i | B)", "right": "Probabilidad actualizada del estado A_i tras haber verificado la ocurrencia de B"}])">Verificar Respuestas</button>
+            <div class="feedback-box" id="fb_4"></div>
+
+        </div>
+    </div>
+
+    <!-- PÁGINA 5: EJERCICIO 3 (Opción Múltiple) -->
+    <div class="page-content" id="page5">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 5</span>
+            <h3>Actividad Formativa 3 de 10: Aplicación del Teorema de Bayes para Sucursal Sur</h3>
+        </div>
+        <div class="question-box">
+
+            <div class="question-enunciado">Siguiendo el caso anterior (donde P(E) = 0.032), un auditor interno descubre una factura con error grave. ¿Cuál es la probabilidad a posteriori de que dicha factura proceda de la Sucursal Sur (S)?</div>
+            
+<svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 440px; display: block; margin: 10px auto; background: #ffffff; border-radius: 6px; border: 1px solid #e2e8f0;">
+  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
+  <text x="140" y="42" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">P(S|E) = P(S ∩ E) / P(E)</text>
+  <text x="350" y="42" font-size="13" font-weight="bold" fill="#b22222" text-anchor="middle">0.020 / 0.032 = ?</text>
+</svg>
+
+            <div class="options-grid" id="optGrid_5">
+
+                <div class="option-item" onclick="selectOption(5, 0, true)">
+                    <span style="font-weight: bold; width: 24px;">A)</span>
+                    <span>\(P(S|E) = \frac{0.020}{0.032} = 0.6250 \quad (62.5\%)\)</span>
+                </div>
+
+                <div class="option-item" onclick="selectOption(5, 1, false)">
+                    <span style="font-weight: bold; width: 24px;">B)</span>
+                    <span>\(P(S|E) = \frac{0.012}{0.032} = 0.3750 \quad (37.5\%)\)</span>
+                </div>
+
+                <div class="option-item" onclick="selectOption(5, 2, false)">
+                    <span style="font-weight: bold; width: 24px;">C)</span>
+                    <span>\(P(S|E) = 0.4000 \quad (40.0\%)\)</span>
+                </div>
+
+                <div class="option-item" onclick="selectOption(5, 3, false)">
+                    <span style="font-weight: bold; width: 24px;">D)</span>
+                    <span>\(P(S|E) = 0.0500 \quad (5.0\%)\)</span>
+                </div>
+
+            </div>
+            <div class="feedback-box" id="fb_5"></div>
+
+        </div>
+    </div>
+
+    <!-- PÁGINA 6: EJERCICIO 4 (Emparejamiento) -->
+    <div class="page-content" id="page6">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 6</span>
+            <h3>Actividad Formativa 4 de 10: Emparejamiento: Fórmulas y Expresiones del Teorema de Bayes</h3>
+        </div>
+        <div class="question-box">
+
+            <div class="question-enunciado">Asocie cada componente matemático con su expresión correspondiente:</div>
+            
+            <div class="matching-container">
+
+                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
+                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
+
+                <div class="match-card">
+                    <span><strong>1.</strong> Denominador de Bayes (Ley de Probabilidad Total)</span>
+                </div>
+                <div class="match-card">
+                    <select class="match-select" id="match_select_6_0">
+                        <option value="">-- Seleccione una opción --</option>
+<option value="0">Σ P(A_i) · P(B | A_i)</option>
+<option value="1">P(A_j) · P(B | A_j)</option>
+<option value="2">P(A_j | B) = [P(A_j)P(B|A_j)] / [Σ P(A_i)P(B|A_i)]</option>
+<option value="3">Σ P(A_i | B) = 1.00</option>
+
+                    </select>
+                </div>
+
+                <div class="match-card">
+                    <span><strong>2.</strong> Numerador de Bayes (Probabilidad Conjunta)</span>
+                </div>
+                <div class="match-card">
+                    <select class="match-select" id="match_select_6_1">
+                        <option value="">-- Seleccione una opción --</option>
+<option value="0">Σ P(A_i) · P(B | A_i)</option>
+<option value="1">P(A_j) · P(B | A_j)</option>
+<option value="2">P(A_j | B) = [P(A_j)P(B|A_j)] / [Σ P(A_i)P(B|A_i)]</option>
+<option value="3">Σ P(A_i | B) = 1.00</option>
+
+                    </select>
+                </div>
+
+                <div class="match-card">
+                    <span><strong>3.</strong> Fórmula completa del Teorema de Bayes</span>
+                </div>
+                <div class="match-card">
+                    <select class="match-select" id="match_select_6_2">
+                        <option value="">-- Seleccione una opción --</option>
+<option value="0">Σ P(A_i) · P(B | A_i)</option>
+<option value="1">P(A_j) · P(B | A_j)</option>
+<option value="2">P(A_j | B) = [P(A_j)P(B|A_j)] / [Σ P(A_i)P(B|A_i)]</option>
+<option value="3">Σ P(A_i | B) = 1.00</option>
+
+                    </select>
+                </div>
+
+                <div class="match-card">
+                    <span><strong>4.</strong> Suma de todas las probabilidades a posteriori</span>
+                </div>
+                <div class="match-card">
+                    <select class="match-select" id="match_select_6_3">
+                        <option value="">-- Seleccione una opción --</option>
+<option value="0">Σ P(A_i) · P(B | A_i)</option>
+<option value="1">P(A_j) · P(B | A_j)</option>
+<option value="2">P(A_j | B) = [P(A_j)P(B|A_j)] / [Σ P(A_i)P(B|A_i)]</option>
+<option value="3">Σ P(A_i | B) = 1.00</option>
+
+                    </select>
+                </div>
+
+            </div>
+            <button class="btn-check-match" onclick="checkMatching(6, [{"left": "Denominador de Bayes (Ley de Probabilidad Total)", "right": "\u03a3 P(A_i) \u00b7 P(B | A_i)"}, {"left": "Numerador de Bayes (Probabilidad Conjunta)", "right": "P(A_j) \u00b7 P(B | A_j)"}, {"left": "F\u00f3rmula completa del Teorema de Bayes", "right": "P(A_j | B) = [P(A_j)P(B|A_j)] / [\u03a3 P(A_i)P(B|A_i)]"}, {"left": "Suma de todas las probabilidades a posteriori", "right": "\u03a3 P(A_i | B) = 1.00"}])">Verificar Respuestas</button>
+            <div class="feedback-box" id="fb_6"></div>
+
+        </div>
+    </div>
+
+    <!-- PÁGINA 7: EJERCICIO 5 (Opción Múltiple) -->
+    <div class="page-content" id="page7">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 7</span>
+            <h3>Actividad Formativa 5 de 10: Evaluación de Alertas en Detección de Fraude</h3>
+        </div>
+        <div class="question-box">
+
+            <div class="question-enunciado">Un algoritmo de auditoría continua detecta transacciones fraudulentas. En la empresa, el 1% de las operaciones son fraudulentas (P(F)=0.01). El sistema genera alerta positiva en el 90% de los fraudes reales (P(A|F)=0.90), pero tiene una tasa de falsa alarma del 5% en operaciones legítimas (P(A|F')=0.05). ¿Cuál es la probabilidad total de que el sistema emita una alerta P(A)?</div>
+            
+<svg viewBox="0 0 500 90" xmlns="http://www.w3.org/2000/svg" style="max-width: 440px; display: block; margin: 10px auto; background: #ffffff; border-radius: 6px; border: 1px solid #e2e8f0;">
+  <rect width="500" height="90" fill="#f8fafc" rx="6"/>
+  <rect x="25" y="15" width="190" height="60" fill="#fef2f2" stroke="#b22222" rx="4"/>
+  <text x="120" y="38" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">Fraude Real: (0.01)(0.90)</text>
+  <text x="120" y="58" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">= 0.0090</text>
+  <text x="240" y="50" font-size="18" font-weight="bold" fill="#7c3aed" text-anchor="middle">+</text>
+  <rect x="265" y="15" width="210" height="60" fill="#eff6ff" stroke="#0284c7" rx="4"/>
+  <text x="370" y="38" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">Falsa Alarma: (0.99)(0.05)</text>
+  <text x="370" y="58" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">= 0.0495</text>
+</svg>
+
+            <div class="options-grid" id="optGrid_7">
+
+                <div class="option-item" onclick="selectOption(7, 0, true)">
+                    <span style="font-weight: bold; width: 24px;">A)</span>
+                    <span>\(P(A) = (0.01 \times 0.90) + (0.99 \times 0.05) = 0.0090 + 0.0495 = 0.0585 \quad (5.85\%)\)</span>
+                </div>
+
+                <div class="option-item" onclick="selectOption(7, 1, false)">
+                    <span style="font-weight: bold; width: 24px;">B)</span>
+                    <span>\(P(A) = 0.90 + 0.05 = 0.9500\)</span>
+                </div>
+
+                <div class="option-item" onclick="selectOption(7, 2, false)">
+                    <span style="font-weight: bold; width: 24px;">C)</span>
+                    <span>\(P(A) = 0.0090\)</span>
+                </div>
+
+                <div class="option-item" onclick="selectOption(7, 3, false)">
+                    <span style="font-weight: bold; width: 24px;">D)</span>
+                    <span>\(P(A) = 0.0500\)</span>
+                </div>
+
+            </div>
+            <div class="feedback-box" id="fb_7"></div>
+
+        </div>
+    </div>
+
+    <!-- PÁGINA 8: EJERCICIO 6 (Emparejamiento) -->
+    <div class="page-content" id="page8">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 8</span>
+            <h3>Actividad Formativa 6 de 10: Emparejamiento: Auditoría de Máquinas Embotelladoras (Caso Práctico)</h3>
+        </div>
+        <div class="question-box">
+
+            <div class="question-enunciado">Planta cervecera: Máquina 1 (60% producción, 1% falla) y Máquina 2 (40% producción, 3% falla):</div>
+            
+            <div class="matching-container">
+
+                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
+                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
+
+                <div class="match-card">
+                    <span><strong>1.</strong> Probabilidad total de botella defectuosa: P(Defecto)</span>
+                </div>
+                <div class="match-card">
+                    <select class="match-select" id="match_select_8_0">
+                        <option value="">-- Seleccione una opción --</option>
+<option value="0">(0.60)(0.01) + (0.40)(0.03) = 0.018 (1.8%)</option>
+<option value="1">0.006 / 0.018 = 0.3333 (33.33%)</option>
+<option value="2">0.012 / 0.018 = 0.6667 (66.67%)</option>
+<option value="3">Priorizar calibración y ajuste mecánico en Máquina 2</option>
+
+                    </select>
+                </div>
+
+                <div class="match-card">
+                    <span><strong>2.</strong> Probabilidad de que el defecto provenga de Máquina 1: P(M1|Defecto)</span>
+                </div>
+                <div class="match-card">
+                    <select class="match-select" id="match_select_8_1">
+                        <option value="">-- Seleccione una opción --</option>
+<option value="0">(0.60)(0.01) + (0.40)(0.03) = 0.018 (1.8%)</option>
+<option value="1">0.006 / 0.018 = 0.3333 (33.33%)</option>
+<option value="2">0.012 / 0.018 = 0.6667 (66.67%)</option>
+<option value="3">Priorizar calibración y ajuste mecánico en Máquina 2</option>
+
+                    </select>
+                </div>
+
+                <div class="match-card">
+                    <span><strong>3.</strong> Probabilidad de que el defecto provenga de Máquina 2: P(M2|Defecto)</span>
+                </div>
+                <div class="match-card">
+                    <select class="match-select" id="match_select_8_2">
+                        <option value="">-- Seleccione una opción --</option>
+<option value="0">(0.60)(0.01) + (0.40)(0.03) = 0.018 (1.8%)</option>
+<option value="1">0.006 / 0.018 = 0.3333 (33.33%)</option>
+<option value="2">0.012 / 0.018 = 0.6667 (66.67%)</option>
+<option value="3">Priorizar calibración y ajuste mecánico en Máquina 2</option>
+
+                    </select>
+                </div>
+
+                <div class="match-card">
+                    <span><strong>4.</strong> Decisión del auditor de mantenimiento</span>
+                </div>
+                <div class="match-card">
+                    <select class="match-select" id="match_select_8_3">
+                        <option value="">-- Seleccione una opción --</option>
+<option value="0">(0.60)(0.01) + (0.40)(0.03) = 0.018 (1.8%)</option>
+<option value="1">0.006 / 0.018 = 0.3333 (33.33%)</option>
+<option value="2">0.012 / 0.018 = 0.6667 (66.67%)</option>
+<option value="3">Priorizar calibración y ajuste mecánico en Máquina 2</option>
+
+                    </select>
+                </div>
+
+            </div>
+            <button class="btn-check-match" onclick="checkMatching(8, [{"left": "Probabilidad total de botella defectuosa: P(Defecto)", "right": "(0.60)(0.01) + (0.40)(0.03) = 0.018 (1.8%)"}, {"left": "Probabilidad de que el defecto provenga de M\u00e1quina 1: P(M1|Defecto)", "right": "0.006 / 0.018 = 0.3333 (33.33%)"}, {"left": "Probabilidad de que el defecto provenga de M\u00e1quina 2: P(M2|Defecto)", "right": "0.012 / 0.018 = 0.6667 (66.67%)"}, {"left": "Decisi\u00f3n del auditor de mantenimiento", "right": "Priorizar calibraci\u00f3n y ajuste mec\u00e1nico en M\u00e1quina 2"}])">Verificar Respuestas</button>
+            <div class="feedback-box" id="fb_8"></div>
+
+        </div>
+    </div>
+
+    <!-- PÁGINA 9: EJERCICIO 7 (Opción Múltiple) -->
+    <div class="page-content" id="page9">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 9</span>
+            <h3>Actividad Formativa 7 de 10: Valor Predictivo Positivo (Teorema de Bayes en Alertas)</h3>
+        </div>
+        <div class="question-box">
+
+            <div class="question-enunciado">Con los datos del caso de fraude anterior (donde P(A) = 0.0585 y P(F ∩ A) = 0.0090), si el sistema emite una alerta positiva en una transacción, ¿cuál es la probabilidad real de que dicha transacción sea efectivamente fraudulenta P(F|A)?</div>
+            
+<svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 440px; display: block; margin: 10px auto; background: #ffffff; border-radius: 6px; border: 1px solid #e2e8f0;">
+  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
+  <text x="140" y="42" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">P(F|A) = P(F ∩ A) / P(A)</text>
+  <text x="350" y="42" font-size="13" font-weight="bold" fill="#7c3aed" text-anchor="middle">0.0090 / 0.0585 = ?</text>
+</svg>
+
+            <div class="options-grid" id="optGrid_9">
+
+                <div class="option-item" onclick="selectOption(9, 0, true)">
+                    <span style="font-weight: bold; width: 24px;">A)</span>
+                    <span>\(P(F|A) = \frac{0.0090}{0.0585} \approx 0.1538 \quad (15.38\%)\)</span>
+                </div>
+
+                <div class="option-item" onclick="selectOption(9, 1, false)">
+                    <span style="font-weight: bold; width: 24px;">B)</span>
+                    <span>\(P(F|A) = 0.9000 \quad (90.0\%)\)</span>
+                </div>
+
+                <div class="option-item" onclick="selectOption(9, 2, false)">
+                    <span style="font-weight: bold; width: 24px;">C)</span>
+                    <span>\(P(F|A) = 0.0100 \quad (1.0\%)\)</span>
+                </div>
+
+                <div class="option-item" onclick="selectOption(9, 3, false)">
+                    <span style="font-weight: bold; width: 24px;">D)</span>
+                    <span>\(P(F|A) = 0.5000\)</span>
+                </div>
+
+            </div>
+            <div class="feedback-box" id="fb_9"></div>
+
+        </div>
+    </div>
+
+    <!-- PÁGINA 10: EJERCICIO 8 (Emparejamiento) -->
+    <div class="page-content" id="page10">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 10</span>
+            <h3>Actividad Formativa 8 de 10: Emparejamiento: Evaluación de Riesgo de Crédito con Bayes</h3>
+        </div>
+        <div class="question-box">
+
+            <div class="question-enunciado">Banco comercial: 80% clientes pagan al día (P(C)=0.80) y 20% incumplen (P(I)=0.20):</div>
+            
+            <div class="matching-container">
+
+                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
+                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
+
+                <div class="match-card">
+                    <span><strong>1.</strong> Informe negativo en central de riesgo dado que el cliente es moroso: P(Inf|I)</span>
+                </div>
+                <div class="match-card">
+                    <select class="match-select" id="match_select_10_0">
+                        <option value="">-- Seleccione una opción --</option>
+<option value="0">0.85 (85% de sensibilidad)</option>
+<option value="1">0.10 (10% de falso positivo)</option>
+<option value="2">(0.80)(0.10) + (0.20)(0.85) = 0.25 (25%)</option>
+<option value="3">(0.20)(0.85) / 0.25 = 0.68 (68%)</option>
+
+                    </select>
+                </div>
+
+                <div class="match-card">
+                    <span><strong>2.</strong> Falsa alarma: Informe negativo en central dado que el cliente es cumplidor: P(Inf|C)</span>
+                </div>
+                <div class="match-card">
+                    <select class="match-select" id="match_select_10_1">
+                        <option value="">-- Seleccione una opción --</option>
+<option value="0">0.85 (85% de sensibilidad)</option>
+<option value="1">0.10 (10% de falso positivo)</option>
+<option value="2">(0.80)(0.10) + (0.20)(0.85) = 0.25 (25%)</option>
+<option value="3">(0.20)(0.85) / 0.25 = 0.68 (68%)</option>
+
+                    </select>
+                </div>
+
+                <div class="match-card">
+                    <span><strong>3.</strong> Probabilidad total de informe negativo: P(Inf)</span>
+                </div>
+                <div class="match-card">
+                    <select class="match-select" id="match_select_10_2">
+                        <option value="">-- Seleccione una opción --</option>
+<option value="0">0.85 (85% de sensibilidad)</option>
+<option value="1">0.10 (10% de falso positivo)</option>
+<option value="2">(0.80)(0.10) + (0.20)(0.85) = 0.25 (25%)</option>
+<option value="3">(0.20)(0.85) / 0.25 = 0.68 (68%)</option>
+
+                    </select>
+                </div>
+
+                <div class="match-card">
+                    <span><strong>4.</strong> Probabilidad de que un cliente con informe negativo realmente incumpla: P(I|Inf)</span>
+                </div>
+                <div class="match-card">
+                    <select class="match-select" id="match_select_10_3">
+                        <option value="">-- Seleccione una opción --</option>
+<option value="0">0.85 (85% de sensibilidad)</option>
+<option value="1">0.10 (10% de falso positivo)</option>
+<option value="2">(0.80)(0.10) + (0.20)(0.85) = 0.25 (25%)</option>
+<option value="3">(0.20)(0.85) / 0.25 = 0.68 (68%)</option>
+
+                    </select>
+                </div>
+
+            </div>
+            <button class="btn-check-match" onclick="checkMatching(10, [{"left": "Informe negativo en central de riesgo dado que el cliente es moroso: P(Inf|I)", "right": "0.85 (85% de sensibilidad)"}, {"left": "Falsa alarma: Informe negativo en central dado que el cliente es cumplidor: P(Inf|C)", "right": "0.10 (10% de falso positivo)"}, {"left": "Probabilidad total de informe negativo: P(Inf)", "right": "(0.80)(0.10) + (0.20)(0.85) = 0.25 (25%)"}, {"left": "Probabilidad de que un cliente con informe negativo realmente incumpla: P(I|Inf)", "right": "(0.20)(0.85) / 0.25 = 0.68 (68%)"}])">Verificar Respuestas</button>
+            <div class="feedback-box" id="fb_10"></div>
+
+        </div>
+    </div>
+
+    <!-- PÁGINA 11: EJERCICIO 9 (Opción Múltiple) -->
+    <div class="page-content" id="page11">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 11</span>
+            <h3>Actividad Formativa 9 de 10: Condición Axiomática de Partición en Bayes</h3>
+        </div>
+        <div class="question-box">
+
+            <div class="question-enunciado">Para poder aplicar rigurosamente el Teorema de Bayes sobre un conjunto de eventos causantes \(A_1, A_2, \dots, A_k\), ¿qué condición matemática deben cumplir obligatoriamente dichos eventos?</div>
+            
+<svg viewBox="0 0 500 70" xmlns="http://www.w3.org/2000/svg" style="max-width: 440px; display: block; margin: 10px auto; background: #ffffff; border-radius: 6px; border: 1px solid #e2e8f0;">
+  <rect width="500" height="70" fill="#f8fafc" rx="6"/>
+  <rect x="50" y="15" width="180" height="40" fill="#f3e8ff" stroke="#7c3aed" rx="4"/>
+  <text x="140" y="38" font-size="11" font-weight="bold" fill="#6d28d9" text-anchor="middle">A_i ∩ A_j = ∅ (Disjuntos)</text>
+  <text x="250" y="40" font-size="16" font-weight="bold" fill="#002b49" text-anchor="middle">Y</text>
+  <rect x="270" y="15" width="180" height="40" fill="#eff6ff" stroke="#0284c7" rx="4"/>
+  <text x="360" y="38" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">∪ A_i = S (Exhaustivos)</text>
+</svg>
+
+            <div class="options-grid" id="optGrid_11">
+
+                <div class="option-item" onclick="selectOption(11, 0, true)">
+                    <span style="font-weight: bold; width: 24px;">A)</span>
+                    <span>Deben formar una partición del espacio muestral (ser mutuamente excluyentes y colectivamente exhaustivos).</span>
+                </div>
+
+                <div class="option-item" onclick="selectOption(11, 1, false)">
+                    <span style="font-weight: bold; width: 24px;">B)</span>
+                    <span>Deben ser eventos totalmente independientes entre sí.</span>
+                </div>
+
+                <div class="option-item" onclick="selectOption(11, 2, false)">
+                    <span style="font-weight: bold; width: 24px;">C)</span>
+                    <span>Deben tener todos exactamente la misma probabilidad a priori.</span>
+                </div>
+
+                <div class="option-item" onclick="selectOption(11, 3, false)">
+                    <span style="font-weight: bold; width: 24px;">D)</span>
+                    <span>Su probabilidad conjunta debe ser siempre mayor a 0.50.</span>
+                </div>
+
+            </div>
+            <div class="feedback-box" id="fb_11"></div>
+
+        </div>
+    </div>
+
+    <!-- PÁGINA 12: EJERCICIO 10 (Emparejamiento) -->
+    <div class="page-content" id="page12">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 12</span>
+            <h3>Actividad Formativa 10 de 10: Emparejamiento: Comparativa Antes vs. Después de la Evidencia</h3>
+        </div>
+        <div class="question-box">
+
+            <div class="question-enunciado">Relacione cómo cambia la perspectiva del auditor tras la aplicación de Bayes:</div>
+            
+            <div class="matching-container">
+
+                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
+                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
+
+                <div class="match-card">
+                    <span><strong>1.</strong> Perspectiva A Priori (Sin Inspección)</span>
+                </div>
+                <div class="match-card">
+                    <select class="match-select" id="match_select_12_0">
+                        <option value="">-- Seleccione una opción --</option>
+<option value="0">Basada únicamente en proporciones históricas de volumen de transacciones</option>
+<option value="1">Ajustada cuantitativamente por la fuerza probatoria del hallazgo</option>
+<option value="2">Reduce drásticamente las falsas alarmas y eleva P(A_j|B)</option>
+<option value="3">Condiciona fuertemente el resultado aun con pruebas muy precisas</option>
+
+                    </select>
+                </div>
+
+                <div class="match-card">
+                    <span><strong>2.</strong> Perspectiva A Posteriori (Con Evidencia)</span>
+                </div>
+                <div class="match-card">
+                    <select class="match-select" id="match_select_12_1">
+                        <option value="">-- Seleccione una opción --</option>
+<option value="0">Basada únicamente en proporciones históricas de volumen de transacciones</option>
+<option value="1">Ajustada cuantitativamente por la fuerza probatoria del hallazgo</option>
+<option value="2">Reduce drásticamente las falsas alarmas y eleva P(A_j|B)</option>
+<option value="3">Condiciona fuertemente el resultado aun con pruebas muy precisas</option>
+
+                    </select>
+                </div>
+
+                <div class="match-card">
+                    <span><strong>3.</strong> Impacto de una prueba con alta especificidad</span>
+                </div>
+                <div class="match-card">
+                    <select class="match-select" id="match_select_12_2">
+                        <option value="">-- Seleccione una opción --</option>
+<option value="0">Basada únicamente en proporciones históricas de volumen de transacciones</option>
+<option value="1">Ajustada cuantitativamente por la fuerza probatoria del hallazgo</option>
+<option value="2">Reduce drásticamente las falsas alarmas y eleva P(A_j|B)</option>
+<option value="3">Condiciona fuertemente el resultado aun con pruebas muy precisas</option>
+
+                    </select>
+                </div>
+
+                <div class="match-card">
+                    <span><strong>4.</strong> Impacto de la tasa base (Prevalencia)</span>
+                </div>
+                <div class="match-card">
+                    <select class="match-select" id="match_select_12_3">
+                        <option value="">-- Seleccione una opción --</option>
+<option value="0">Basada únicamente en proporciones históricas de volumen de transacciones</option>
+<option value="1">Ajustada cuantitativamente por la fuerza probatoria del hallazgo</option>
+<option value="2">Reduce drásticamente las falsas alarmas y eleva P(A_j|B)</option>
+<option value="3">Condiciona fuertemente el resultado aun con pruebas muy precisas</option>
+
+                    </select>
+                </div>
+
+            </div>
+            <button class="btn-check-match" onclick="checkMatching(12, [{"left": "Perspectiva A Priori (Sin Inspecci\u00f3n)", "right": "Basada \u00fanicamente en proporciones hist\u00f3ricas de volumen de transacciones"}, {"left": "Perspectiva A Posteriori (Con Evidencia)", "right": "Ajustada cuantitativamente por la fuerza probatoria del hallazgo"}, {"left": "Impacto de una prueba con alta especificidad", "right": "Reduce dr\u00e1sticamente las falsas alarmas y eleva P(A_j|B)"}, {"left": "Impacto de la tasa base (Prevalencia)", "right": "Condiciona fuertemente el resultado aun con pruebas muy precisas"}])">Verificar Respuestas</button>
+            <div class="feedback-box" id="fb_12"></div>
+
+        </div>
+    </div>
+
+    <!-- PÁGINA 13: CIERRE Y EVALUACIÓN FINAL -->
+    <div class="page-content" id="page13">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 13</span>
+            <h3>Síntesis Ejecutiva y Reporte de Desempeño</h3>
+        </div>
+        
+<div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 10px; padding: 25px;">
+    <h4 style="color: var(--uagrm-blue); margin-bottom: 15px; font-size: 17px;">🏁 Síntesis Ejecutiva de la Lección 2.4</h4>
+    <p style="font-size: 14px; margin-bottom: 15px;">¡Felicitaciones! Ha concluido la Lección 2.4 y el ciclo interactivo completo de la Unidad 2. Ahora cuenta con las competencias analíticas para formular e interpretar el Teorema de Bayes en auditoría forense, control interno y evaluación de riesgos financieros.</p>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+        <div style="background: #eff6ff; padding: 15px; border-radius: 8px; border-left: 4px solid var(--uagrm-accent);">
+            <strong style="color: var(--uagrm-blue);">Puntos Clave para Recordar:</strong>
+            <ul style="margin: 8px 0 0 18px; font-size: 13.5px;">
+                <li>Ley de Probabilidad Total: \(P(B) = \sum P(A_i)P(B|A_i)\).</li>
+                <li>Teorema de Bayes: \(P(A_j|B) = \frac{P(A_j)P(B|A_j)}{P(B)}\).</li>
+                <li>La probabilidad a posteriori integra la tasa base a priori con la evidencia observable.</li>
+            </ul>
+        </div>
+        <div style="background: #ecfdf5; padding: 15px; border-radius: 8px; border-left: 4px solid var(--uagrm-green); text-align: center;">
+            <div style="font-size: 13px; font-weight: bold; color: var(--uagrm-green); text-transform: uppercase;">Puntaje Formativo Obtenido</div>
+            <div id="finalScoreDisplay" style="font-size: 30px; font-weight: 800; color: var(--uagrm-blue); margin: 6px 0;">100 / 100 Puntos</div>
+            <div style="font-size: 12px; color: var(--text-muted);">¡Excelente dominio de la Unidad 2!</div>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    <!-- NAV BUTTONS -->
+    <div class="nav-buttons">
+        <button class="btn btn-prev" id="btnPrev" onclick="navigatePage(-1)" disabled>← Anterior</button>
+        <button class="btn btn-next" id="btnNext" onclick="navigatePage(1)">Siguiente →</button>
+    </div>
+</div>
+
+<script>
+    let currentPage = 1;
+    const totalPages = 13;
+    let score = 0;
+    let answeredPages = new Set();
+
+    function updateNav() {
+        document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+        const activeP = document.getElementById('page' + currentPage);
+        if (activeP) activeP.classList.add('active');
+
+        document.getElementById('btnPrev').disabled = (currentPage === 1);
+        if (currentPage === totalPages) {
+            document.getElementById('btnNext').innerText = 'Finalizar Lección ✓';
+            document.getElementById('btnNext').style.background = 'var(--uagrm-green)';
+        } else {
+            document.getElementById('btnNext').innerText = 'Siguiente →';
+            document.getElementById('btnNext').style.background = 'var(--uagrm-accent)';
+        }
+
+        const pct = Math.round((currentPage / totalPages) * 100);
+        document.getElementById('progressBar').style.width = pct + '%';
+        document.getElementById('progressText').innerText = `Página ${currentPage} de ${totalPages} (${pct}%)`;
+
+        if (window.MathJax) {
+            MathJax.typesetPromise();
+        }
+    }
+
+    function navigatePage(dir) {
+        if (dir === 1 && currentPage === totalPages) {
+            alert('¡Felicitaciones! Ha completado la Lección 2.4. Su puntaje formativo ha sido registrado.');
+            return;
+        }
+        currentPage += dir;
+        if (currentPage < 1) currentPage = 1;
+        if (currentPage > totalPages) currentPage = totalPages;
+        updateNav();
+    }
+
+    // Multi-choice logic
+    const mcFeedbacks = {};
+    mcFeedbacks[3] = {"0": "\u00a1Exacto! Aplicando la Ley de Probabilidad Total: \\(P(E) = P(N)P(E|N) + P(S)P(E|S) = 0.012 + 0.020 = 0.032\\) (3.2%).", "1": "Error: Sum\u00f3 directamente las tasas condicionales sin ponderarlas por la participaci\u00f3n de cada sucursal.", "2": "Error: Calcul\u00f3 un promedio simple ignorando los pesos reales (60% y 40%).", "3": "Error: Multiplic\u00f3 0.02 \u00d7 0.05."};
+    mcFeedbacks[5] = {"0": "\u00a1Excelente! Aplicando el Teorema de Bayes: \\(P(S|E) = \\frac{P(S)P(E|S)}{P(E)} = \\frac{0.020}{0.032} = 0.625\\) (62.5%). Aunque la Sucursal Sur solo emite el 40% de facturas, su alta tasa de error la hace responsable del 62.5% de los errores hallados.", "1": "Error: 37.5% es la probabilidad de que proceda de la Sucursal Norte.", "2": "Error: 40% es la probabilidad a priori, antes de observar la existencia de error.", "3": "Error: 5% es la verosimilitud condicional P(E|S)."};
+    mcFeedbacks[7] = {"0": "\u00a1Correcto! La probabilidad total de alerta es la suma de aciertos verdaderos m\u00e1s falsas alarmas: \\(0.0090 + 0.0495 = 0.0585\\) (5.85%).", "1": "Error: Sum\u00f3 las tasas condicionales directamente sin ponderar por la poblaci\u00f3n de base.", "2": "Error: Omiti\u00f3 considerar las falsas alarmas originadas en el 99% de transacciones leg\u00edtimas.", "3": "Error: 0.05 es solo la tasa de falsa alarma en leg\u00edtimas."};
+    mcFeedbacks[9] = {"0": "\u00a1Exacto! Teorema de Bayes: \\(P(F|A) = \\frac{0.0090}{0.0585} \\approx 0.1538\\) (15.38%). Aunque la prueba es del 90% de sensibilidad, debido a la baja prevalencia del fraude (1%), solo el 15.38% de las alertas confirmar\u00e1 un fraude real.", "1": "Error de la falacia de la tasa base: Confundi\u00f3 la sensibilidad P(A|F) con el valor predictivo posterior P(F|A).", "2": "Error: 1% es la probabilidad a priori antes de aplicar el algoritmo.", "3": "Error de c\u00e1lculo aritm\u00e9tico."};
+    mcFeedbacks[11] = {"0": "\u00a1Excelente! La base axiom\u00e1tica del Teorema de Bayes exige que los eventos \\(A_i\\) dividan al espacio muestral \\(S\\) sin solapamientos (\\(A_i \\cap A_j = \\emptyset\\)) y cubriendo la totalidad de \\(S\\) (\\(\\sum P(A_i) = 1\\)).", "1": "Error: Los eventos de una partici\u00f3n son mutuamente excluyentes, lo que significa que son dependientes.", "2": "Error: El Teorema de Bayes funciona con probabilidades a priori homog\u00e9neas o heterog\u00e9neas.", "3": "Error: No existe restricci\u00f3n de umbral m\u00ednimo en probabilidades conjuntas."};
+
+    function selectOption(pageNum, optIdx, isCorrect) {
+        const grid = document.getElementById('optGrid_' + pageNum);
+        const options = grid.querySelectorAll('.option-item');
+        
+        options.forEach(o => o.classList.add('locked'));
+        options[optIdx].classList.add(isCorrect ? 'correct' : 'incorrect');
+
+        const fb = document.getElementById('fb_' + pageNum);
+        fb.className = 'feedback-box show ' + (isCorrect ? 'correct-fb' : 'incorrect-fb');
+        fb.innerHTML = (isCorrect ? '<strong>✓ ¡Correcto!</strong> ' : '<strong>✗ Incorrecto.</strong> ') + mcFeedbacks[pageNum][optIdx];
+
+        if (!answeredPages.has(pageNum)) {
+            answeredPages.add(pageNum);
+            if (isCorrect) score += 10;
+            updateFinalScore();
+        }
+        if (window.MathJax) MathJax.typesetPromise();
+    }
+
+    function checkMatching(pageNum, pairs) {
+        let allCorrect = true;
+        for (let i = 0; i < pairs.length; i++) {
+            const sel = document.getElementById(`match_select_${pageNum}_${i}`);
+            if (parseInt(sel.value) !== i) {
+                allCorrect = false;
+                sel.style.borderColor = 'var(--uagrm-red)';
+                sel.style.background = '#fef2f2';
+            } else {
+                sel.style.borderColor = 'var(--uagrm-green)';
+                sel.style.background = '#ecfdf5';
+            }
+        }
+
+        const fb = document.getElementById('fb_' + pageNum);
+        fb.className = 'feedback-box show ' + (allCorrect ? 'correct-fb' : 'incorrect-fb');
+        fb.innerHTML = allCorrect ? 
+            '<strong>✓ ¡Excelente relación!</strong> Todos los conceptos y expresiones han sido vinculados correctamente.' :
+            '<strong>✗ Revise las asociaciones:</strong> Algunos emparejamientos son incorrectos. Verifique las definiciones y fórmulas.';
+
+        if (!answeredPages.has(pageNum)) {
+            answeredPages.add(pageNum);
+            if (allCorrect) score += 10;
+            updateFinalScore();
+        }
+        if (window.MathJax) MathJax.typesetPromise();
+    }
+
+    function updateFinalScore() {
+        const scoreEl = document.getElementById('finalScoreDisplay');
+        if (scoreEl) {
+            scoreEl.innerText = score + ' / 100 Puntos';
+        }
+    }
+</script>
+
+</body>
+</html>
