@@ -1,0 +1,280 @@
+\chapter{Pruebas de Hipótesis para una Población}
+\label{cap:pruebas_hipotesis}
+
+\section*{Objetivos de Aprendizaje de la Unidad}
+Al finalizar el estudio de esta unidad, el estudiante de Contaduría Pública será capaz de:
+\begin{enumerate}
+    \item Formular con precisión la \textbf{hipótesis nula ($H_0$)} y la \textbf{hipótesis alternativa ($H_1$)} para problemas de decisión en auditoría, finanzas y control de gestión.
+    \item Comprender y evaluar el riesgo de cometer un \textbf{Error Tipo I ($\alpha$)} y un \textbf{Error Tipo II ($\beta$)}, así como el concepto de nivel de significancia.
+    \item Ejecutar la metodología sistemática de \textbf{5 pasos} para pruebas de hipótesis bilaterales y unilaterales (cola izquierda y cola derecha).
+    \item Realizar pruebas de hipótesis para la \textbf{media poblacional ($\mu$)} utilizando la distribución Normal ($Z$) y la distribución $t$ de Student.
+    \item Tomar decisiones mediante el enfoque tradicional de \textbf{valores críticos} y el enfoque contemporáneo del \textbf{valor $p$ ($p$-value)}.
+    \item Efectuar pruebas de hipótesis para la \textbf{proporción poblacional ($\pi$)} en auditoría tributaria y cumplimiento normativo.
+\end{enumerate}
+
+\section{Fundamentos de la Prueba de Hipótesis en la Toma de Decisiones}
+En la práctica profesional del contador público y del auditor financiero, con frecuencia es indispensable tomar decisiones sobre afirmaciones relativas a parámetros poblacionales basadas únicamente en la evidencia proporcionada por una muestra.
+
+Por ejemplo, la gerencia financiera puede afirmar que el tiempo medio de cobranza de facturas es de 30 días, o el departamento tributario puede sostener que la tasa de error en las declaraciones juradas no supera el 3\%. La \textbf{Prueba de Hipótesis} es el procedimiento formal basado en la teoría de la probabilidad que permite determinar si la evidencia muestral respalda o refuta dichas aseveraciones.
+
+\begin{definicion}{Hipótesis Estadística, Hipótesis Nula e Hipótesis Alternativa}
+\begin{itemize}
+    \item \textbf{Hipótesis Estadística:} Afirmación o conjetura acerca del valor numérico de uno o más parámetros de una población.
+    \item \textbf{Hipótesis Nula ($H_0$):} Enunciado tentativo que establece que el parámetro es igual a un valor específico o que no existe diferencia ni efecto real. Siempre contiene el signo de igualdad ($=$, $\le$ o $\ge$). Es la hipótesis que se somete a prueba directa y que se mantiene a menos que los datos muestrales aporten evidencia contundente en su contra.
+    \item \textbf{Hipótesis Alternativa ($H_1$ o $H_a$):} Enunciado que se acepta como verdadero si la evidencia muestral conduce al rechazo de $H_0$. Contiene signos de desigualdad estricta ($\ne$, $<$, $>$). Suele representar la sospecha del auditor o la nueva hipótesis de investigación.
+\end{itemize}
+\end{definicion}
+
+\section{Estructura de las Pruebas de Hipótesis y Tipos de Errores}
+
+\subsection{Tipos de Pruebas según la Dirección de la Hipótesis Alternativa}
+\begin{enumerate}
+    \item \textbf{Prueba Bilateral o de Dos Colas:}
+    \[
+    \begin{cases} H_0: \mu = \mu_0 \\ H_1: \mu \ne \mu_0 \end{cases}
+    \]
+    La región de rechazo se divide en partes iguales ($\alpha/2$) en ambos extremos de la distribución.
+    
+    \item \textbf{Prueba Unilateral de Cola Derecha (Cola Superior):}
+    \[
+    \begin{cases} H_0: \mu \le \mu_0 \\ H_1: \mu > \mu_0 \end{cases}
+    \]
+    La región de rechazo ($\alpha$) se concentra totalmente en el extremo derecho superior.
+    
+    \item \textbf{Prueba Unilateral de Cola Izquierda (Cola Inferior):}
+    \[
+    \begin{cases} H_0: \mu \ge \mu_0 \\ H_1: \mu < \mu_0 \end{cases}
+    \]
+    La región de rechazo ($\alpha$) se concentra totalmente en el extremo izquierdo inferior.
+\end{enumerate}
+
+\subsection{Matriz de Decisiones y Errores Tipo I y Tipo II}
+Al contrastar una hipótesis estadística con base en una muestra aleatoria, existe la posibilidad de tomar una decisión incorrecta debido a la variabilidad del muestreo:
+
+\begin{center}
+\small
+\begin{tabular}{l|c|c}
+\toprule
+\multirow{2}{*}{\textbf{Decisión Muestral}} & \multicolumn{2}{c}{\textbf{Estado Real de la Población}} \\
+\cmidrule{2-3}
+& \textbf{$H_0$ es Verdadera} & \textbf{$H_0$ es Falsa} \\
+\midrule
+\textbf{No Rechazar $H_0$} & Decisión Correcta ($1 - \alpha$) & Error Tipo II ($\beta$) \\
+\textbf{Rechazar $H_0$} & \textbf{Error Tipo I ($\alpha$)} & Decisión Correcta: Potencia ($1 - \beta$) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{definicion}{Error Tipo I, Nivel de Significancia y Error Tipo II}
+\begin{itemize}
+    \item \textbf{Error Tipo I ($\alpha$):} Rechazar la hipótesis nula $H_0$ cuando en realidad es verdadera. La probabilidad de cometer este error se denomina \textbf{Nivel de Significancia ($\alpha$)}, y típicamente se fija en $0.05$ (5\%), $0.01$ (1\%) o $0.10$ (10\%).
+    \item \textbf{Error Tipo II ($\beta$):} No rechazar la hipótesis nula $H_0$ cuando en realidad es falsa.
+    \item \textbf{Potencia de la Prueba ($1 - \beta$):} Probabilidad de rechazar correctamente una hipótesis nula que es falsa.
+\end{itemize}
+\end{definicion}
+
+\begin{alerta}[Riesgo del Auditor y Errores en Auditoría]
+En una auditoría financiera:
+\begin{itemize}
+    \item Un \textbf{Error Tipo I} significa concluir que los estados financieros contienen errores materiales cuando en realidad son correctos (genera costos adicionales innecesarios de revisión).
+    \item Un \textbf{Error Tipo II} (Riesgo de Detección) significa no detectar incorrecciones materiales y emitir una opinión favorable indebida, lo cual acarrea seria responsabilidad legal para el auditor.
+\end{itemize}
+\end{alerta}
+
+\section{Metodología General de 5 Pasos para la Prueba de Hipótesis}
+Siguiendo las pautas pedagógicas de \textit{Anderson, Sweeney \& Williams} y \textit{Lind, Marchal \& Wathen}, todo contraste de hipótesis debe desarrollarse conforme a los siguientes cinco pasos:
+
+\begin{formulario}[Los 5 Pasos Metodológicos de una Prueba de Hipótesis]
+\begin{enumerate}
+    \item \textbf{Paso 1:} Formular la Hipótesis Nula ($H_0$) y la Hipótesis Alternativa ($H_1$).
+    \item \textbf{Paso 2:} Seleccionar el Nivel de Significancia ($\alpha$).
+    \item \textbf{Paso 3:} Identificar el Estadístico de Prueba ($Z$ o $t$) y su distribución muestral.
+    \item \textbf{Paso 4:} Formular la Regla de Decisión (mediante Valor Crítico o Enfoque del Valor $p$).
+    \item \textbf{Paso 5:} Calcular el estadístico muestral, tomar la decisión y redactar la conclusión en el contexto contable/financiero.
+\end{enumerate}
+\end{formulario}
+
+\section{Pruebas para la Media Poblacional ($\mu$)}
+
+\subsection{Caso A: Desviación Estándar Poblacional $\sigma$ Conocida (Distribución $Z$)}
+Cuando la desviación estándar poblacional $\sigma$ es conocida (o la muestra es grande $n \ge 30$ por el TLC), el estadístico de prueba es:
+\begin{equation}
+    Z_{\text{calc}} = \frac{\bar{X} - \mu_0}{\frac{\sigma}{\sqrt{n}}}
+\end{equation}
+
+\begin{ejemplo}{Verificación del Saldo Promedio en Cuentas por Cobrar (Ref. Anderson)}
+El departamento de crédito y cobranzas de una distribuidora comercial en Santa Cruz afirma que el saldo promedio adeudado por sus clientes es de $3{,}500$ Bs con una desviación estándar histórica $\sigma = 600$ Bs. 
+
+Un auditor externo selecciona una muestra aleatoria de $n = 64$ cuentas y encuentra una media muestral de $\bar{X} = 3{,}320$ Bs. Con un nivel de significancia de $\alpha = 0.05$, ¿existe evidencia suficiente para refutar la afirmación de la gerencia?
+
+\tcbline
+\textbf{Solución Paso a Paso:}
+\begin{enumerate}
+    \item \textbf{Paso 1: Planteamiento de Hipótesis (Prueba Bilateral):}
+    \[
+    \begin{cases} H_0: \mu = 3{,}500 \text{ Bs} \\ H_1: \mu \ne 3{,}500 \text{ Bs} \end{cases}
+    \]
+    
+    \item \textbf{Paso 2: Nivel de Significancia:} $\alpha = 0.05 \implies \alpha/2 = 0.025$.
+    
+    \item \textbf{Paso 3: Estadístico de Prueba:}
+    Como $\sigma = 600$ es conocida y $n = 64 \ge 30$:
+    \[
+    Z_{\text{calc}} = \frac{\bar{X} - \mu_0}{\frac{\sigma}{\sqrt{n}}}
+    \]
+    
+    \item \textbf{Paso 4: Regla de Decisión (Valores Críticos):}
+    Para $\alpha/2 = 0.025$, los valores críticos en la tabla Normal Estándar son $Z_{\text{crit}} = \pm 1.96$.
+    \begin{itemize}
+        \item Se rechaza $H_0$ si $Z_{\text{calc}} < -1.96$ o si $Z_{\text{calc}} > +1.96$.
+        \item No se rechaza $H_0$ si $-1.96 \le Z_{\text{calc}} \le +1.96$.
+    \end{itemize}
+    
+    \item \textbf{Paso 5: Cálculo del Estadístico y Decisión:}
+    \[
+    \sigma_{\bar{X}} = \frac{600}{\sqrt{64}} = \frac{600}{8} = 75 \text{ Bs}
+    \]
+    \[
+    Z_{\text{calc}} = \frac{3{,}320 - 3{,}500}{75} = \frac{-180}{75} = -2.40
+    \]
+    Como $Z_{\text{calc}} = -2.40 < -1.96$, el estadístico cae en la \textbf{región de rechazo}.
+    
+    \textbf{Enfoque del Valor $p$ ($p$-value):}
+    \[
+    p\text{-valor} = 2 \cdot P(Z \le -2.40) = 2 \cdot (0.0082) = 0.0164
+    \]
+    Como $p\text{-valor} = 0.0164 < \alpha = 0.05$, se confirma el rechazo de $H_0$.
+\end{enumerate}
+
+\textbf{Conclusión Contable:} Con un 5\% de nivel de significancia (95\% de confianza), existe evidencia estadística suficiente para rechazar la afirmación de la empresa. El saldo promedio real de las cuentas por cobrar es significativamente diferente de $3{,}500$ Bs (de hecho, es inferior), lo cual debe reflejarse en los informes de auditoría.
+\end{ejemplo}
+
+\subsection{Caso B: Desviación Estándar Poblacional $\sigma$ Desconocida y Muestra Pequeña (Distribución $t$ de Student)}
+Cuando la población es normal, $\sigma$ es desconocida y la muestra es pequeña ($n < 30$), se utiliza la desviación estándar muestral $S$ y la \textbf{Distribución $t$ de Student} con $gl = n - 1$ grados de libertad:
+\begin{equation}
+    t_{\text{calc}} = \frac{\bar{X} - \mu_0}{\frac{S}{\sqrt{n}}}, \quad gl = n - 1
+\end{equation}
+
+\begin{casocontable}{Auditoría de Tiempos de Cierre Mensual Contable (Ref. Lind)}
+La firma de auditoría «Contadores & Asociados» implementó un nuevo software ERP con la promesa de que el tiempo promedio necesario para procesar el cierre contable mensual sería \textbf{menor a 16 horas}. 
+
+Para comprobarlo, se auditó una muestra de $n = 16$ cierres contables mensuales en diversas empresas clientes, obteniéndose una media muestral de $\bar{X} = 14.5$ horas y una desviación estándar muestral $S = 2.8$ horas. Con $\alpha = 0.01$, ¿el nuevo sistema cumple su promesa?
+
+\tcbline
+\textbf{Solución Paso a Paso:}
+\begin{enumerate}
+    \item \textbf{Paso 1: Planteamiento de Hipótesis (Cola Izquierda):}
+    \[
+    \begin{cases} H_0: \mu \ge 16 \text{ horas} \\ H_1: \mu < 16 \text{ horas} \text{ (el ERP reduce el tiempo)} \end{cases}
+    \]
+    
+    \item \textbf{Paso 2: Nivel de Significancia:} $\alpha = 0.01$.
+    
+    \item \textbf{Paso 3: Estadístico de Prueba:}
+    Distribución $t$ de Student con $gl = n - 1 = 16 - 1 = 15$ grados de libertad.
+    
+    \item \textbf{Paso 4: Regla de Decisión (Valor Crítico):}
+    Buscando en la tabla $t$ con $gl = 15$ y $\alpha = 0.01$ (unilateral izquierda):
+    \[
+    t_{\text{crit}} = -t_{0.01, 15} = -2.602
+    \]
+    Se rechaza $H_0$ si $t_{\text{calc}} < -2.602$.
+    
+    \item \textbf{Paso 5: Cálculo del Estadístico y Decisión:}
+    \[
+    S_{\bar{X}} = \frac{S}{\sqrt{n}} = \frac{2.8}{\sqrt{16}} = \frac{2.8}{4} = 0.70 \text{ horas}
+    \]
+    \[
+    t_{\text{calc}} = \frac{14.5 - 16.0}{0.70} = \frac{-1.50}{0.70} \approx -2.143
+    \]
+    Como $t_{\text{calc}} = -2.143 > -2.602$, el estadístico \textbf{NO cae en la región de rechazo}.
+\end{enumerate}
+
+\textbf{Conclusión para la Dirección:} Con un nivel de significancia de $\alpha = 0.01$, no existe evidencia estadística suficiente para rechazar $H_0$. Aunque el promedio muestral fue de 14.5 horas, la variabilidad de los datos no permite afirmar con 99\% de certeza que el tiempo medio poblacional sea estrictamente inferior a 16 horas.
+\end{casocontable}
+
+\section{Pruebas de Hipótesis para la Proporción Poblacional ($\pi$)}
+En auditoría tributaria y evaluación de cumplimiento, la variable de interés frecuentemente es un atributo dicotómico (ej. factura con/sin retención del IUE/IT, cuenta al día/en mora). 
+
+Para muestras donde $n \cdot \pi_0 \ge 5$ y $n \cdot (1 - \pi_0) \ge 5$, la distribución muestral de la proporción $p$ se aproxima a la normal:
+\begin{equation}
+    Z_{\text{calc}} = \frac{p - \pi_0}{\sigma_p} = \frac{p - \pi_0}{\sqrt{\frac{\pi_0 (1 - \pi_0)}{n}}}
+\end{equation}
+
+\begin{ejemplo}{Auditoría Tributaria de Emisión de Facturas Electrónicas}
+La administración tributaria nacional estipula que una empresa no debe superar una tasa de error del $\pi_0 = 4\%$ ($0.04$) en la emisión de facturas electrónicas para mantener su certificación de contribuyente preferente.
+
+En una auditoría impositiva se revisa una muestra aleatoria de $n = 400$ facturas emitidas por la compañía durante el último trimestre, detectándose $x = 24$ facturas con errores de codificación o timbrado. Con un nivel de significancia de $\alpha = 0.05$, ¿se debe revocar la certificación a la empresa?
+
+\tcbline
+\textbf{Solución Paso a Paso:}
+\begin{enumerate}
+    \item \textbf{Paso 1: Hipótesis (Prueba Unilateral de Cola Derecha):}
+    \[
+    \begin{cases} H_0: \pi \le 0.04 \text{ (cumple el estándar)} \\ H_1: \pi > 0.04 \text{ (supera la tasa de error permitida)} \end{cases}
+    \]
+    
+    \item \textbf{Paso 2: Nivel de Significancia:} $\alpha = 0.05$.
+    
+    \item \textbf{Paso 3: Proporción Muestral y Estadístico:}
+    \[
+    p = \frac{x}{n} = \frac{24}{400} = 0.06 \quad (6\%)
+    \]
+    Verificación de supuestos: $400(0.04) = 16 \ge 5$ y $400(0.96) = 384 \ge 5$.
+    
+    \item \textbf{Paso 4: Regla de Decisión:}
+    Para $\alpha = 0.05$ (cola derecha): $Z_{\text{crit}} = +1.645$.
+    Se rechaza $H_0$ si $Z_{\text{calc}} > +1.645$.
+    
+    \item \textbf{Paso 5: Cálculo y Decisión:}
+    \[
+    \sigma_p = \sqrt{\frac{0.04(1 - 0.04)}{400}} = \sqrt{\frac{0.04 \cdot 0.96}{400}} = \sqrt{\frac{0.0384}{400}} = \sqrt{0.000096} \approx 0.009798
+    \]
+    \[
+    Z_{\text{calc}} = \frac{0.06 - 0.04}{0.009798} = \frac{0.02}{0.009798} \approx +2.04
+    \]
+    Como $Z_{\text{calc}} = +2.04 > +1.645$, se \textbf{rechaza $H_0$}.
+    
+    \[
+    p\text{-valor} = P(Z \ge 2.04) = 1 - 0.9793 = 0.0207 < 0.05
+    \]
+\end{enumerate}
+
+\textbf{Dictamen del Auditor:} A un nivel de significancia del 5\%, la evidencia muestral demuestra que la proporción real de facturas con errores supera el 4\% máximo permitido. Se recomienda a la gerencia adoptar acciones correctivas de inmediato en el sistema de facturación.
+\end{ejemplo}
+
+\section{Ejercicios Propuestos de la Unidad}
+
+\subsection*{Nivel 1: Conceptos y Mecánica Operativa}
+\begin{enumerate}
+    \item Enuncie las diferencias conceptuales entre un Error Tipo I y un Error Tipo II en pruebas estadísticas. Dé un ejemplo de cada uno en el contexto del peritaje contable.
+    \item Para cada una de las siguientes situaciones, formule la hipótesis nula ($H_0$) y la hipótesis alternativa ($H_1$):
+    \begin{enumerate}
+        \item Un banco afirma que el saldo medio de sus depósitos a plazo fijo es de $50{,}000$ Bs.
+        \item Un auditor sospecha que el tiempo medio de atención a clientes en caja supera los 8 minutos.
+        \item Un gerente de compras sostiene que menos del 2\% de los insumos recibidos presentan defectos.
+    \end{enumerate}
+    \item Si se realiza una prueba de hipótesis bilateral para la media con muestra grande y se obtiene un estadístico $Z_{\text{calc}} = -2.15$, determine la decisión que se debe tomar con niveles de significancia de:
+    \begin{enumerate}
+        \item $\alpha = 0.05$
+        \item $\alpha = 0.01$
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Nivel 2: Aplicaciones en Finanzas y Auditoría}
+\begin{enumerate}[resume]
+    \item Una cadena de farmacias en Santa Cruz sostiene que el gasto promedio por cliente en cada compra es de $85$ Bs con una desviación estándar $\sigma = 18$ Bs. Un analista financiero toma una muestra de $n = 81$ compras y registra una media muestral de $\bar{X} = 81.5$ Bs. Con un nivel de significancia de $\alpha = 0.05$, pruebe si el gasto medio es significativamente menor que $85$ Bs.
+    \item Un departamento de auditoría interna de una entidad financiera revisa una muestra de $n = 25$ créditos comerciales para verificar la tasa de interés promedio cobrada. La media muestral fue de $\bar{X} = 14.2\%$ anual con una desviación estándar muestral $S = 1.5\%$. Si la política institucional estipula una tasa media de $15.0\%$, verifique con $\alpha = 0.02$ si la tasa real cobrada difiere de la política oficial.
+    \item Una empresa importadora afirma que a lo sumo el 5\% de sus productos importados sufren demoras aduaneras. En una auditoría de comercio exterior se revisan $n = 300$ despachos, encontrándose que 24 tuvieron demoras. Pruebe la afirmación de la empresa con $\alpha = 0.01$.
+\end{enumerate}
+
+\subsection*{Nivel 3: Casos Integrales de Toma de Decisiones}
+\begin{enumerate}[resume]
+    \item La gerencia de recursos humanos de una corporación financiera implementó un programa intensivo de capacitación en Excel avanzado y Power BI para sus analistas contables. Antes del programa, el tiempo medio empleado en elaborar el informe de gestión mensual era de 40 horas con $\sigma = 6$ horas. Tras la capacitación, una muestra aleatoria de $n = 36$ analistas registró una media de $\bar{X} = 37.2$ horas.
+    \begin{enumerate}
+        \item Formule las hipótesis correspondientes para evaluar si la capacitación redujo efectivamente el tiempo de elaboración.
+        \item Calcule el estadístico de prueba y determine el valor $p$ ($p$-value).
+        \item ¿Qué recomendación emitiría a la gerencia general con $\alpha = 0.01$?
+    \end{enumerate}
+    \item En una auditoría forense sobre $n = 500$ transacciones bancarias sospechosas, se identificó que 45 correspondían a transferencias sin respaldo documental completo. Pruebe si la proporción real de transferencias no respaldadas excede el umbral de tolerancia crítica fijado por la Unidad de Investigaciones Financieras (UIF) en $\pi = 0.06$, empleando $\alpha = 0.05$.
+\end{enumerate}

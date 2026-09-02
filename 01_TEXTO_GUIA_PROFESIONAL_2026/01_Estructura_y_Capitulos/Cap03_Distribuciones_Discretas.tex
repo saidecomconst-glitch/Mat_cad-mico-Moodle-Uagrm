@@ -1,0 +1,289 @@
+\chapter{Distribuciones de Probabilidad para Variables Aleatorias Discretas}
+\label{cap:distribuciones_discretas}
+
+\section*{Objetivos de Aprendizaje de la Unidad}
+Al finalizar el estudio de esta unidad, el estudiante será capaz de:
+\begin{enumerate}
+    \item Definir y calcular la \textbf{función de probabilidad}, el \textbf{valor esperado} (media $\mu$) y la \textbf{varianza} ($\sigma^2$) de una variable aleatoria discreta.
+    \item Identificar las condiciones de aplicación y calcular probabilidades con la \textbf{Distribución Binomial} en auditoría de cumplimiento y control de calidad.
+    \item Modelar procesos de muestreo sin reemplazo en poblaciones finitas utilizando la \textbf{Distribución Hipergeométrica}.
+    \item Aplicar la \textbf{Distribución de Poisson} para modelar la tasa de llegadas de clientes a bancos y eventos raros en sistemas de información contable.
+    \item Utilizar la \textbf{aproximación de Poisson a probabilidades binomiales} cuando el tamaño de muestra es grande y la probabilidad de éxito es pequeña.
+\end{enumerate}
+
+\section{Variables Aleatorias Discretas y sus Distribuciones}
+
+\begin{definicion}{Variable Aleatoria Discreta}
+Una \textbf{variable aleatoria} $X$ es una función que asigna un valor numérico real a cada resultado del espacio muestral de un experimento aleatorio. Se denomina \textbf{discreta} si el conjunto de sus valores posibles es finito o infinito numerable (números enteros $0, 1, 2, 3, \dots$).
+\end{definicion}
+
+\subsection{Propiedades de la Función de Probabilidad $P(X=x) = f(x)$}
+\begin{enumerate}
+    \item $f(x) \ge 0$ para todo valor $x$.
+    \item $\sum_{\text{todos los } x} f(x) = 1$.
+\end{enumerate}
+
+\subsection{Valor Esperado y Varianza de una Variable Discreta}
+\begin{definicion}{Valor Esperado, Varianza y Desviación Estándar}
+\begin{itemize}
+    \item \textbf{Valor Esperado (Media Poblacional $\mu$):}
+    \begin{equation}
+        E(X) = \mu = \sum x \cdot f(x)
+    \end{equation}
+    \item \textbf{Varianza ($\sigma^2$):}
+    \begin{equation}
+        Var(X) = \sigma^2 = E[(X - \mu)^2] = \sum (x - \mu)^2 f(x) = \left[ \sum x^2 f(x) \right] - \mu^2
+    \end{equation}
+    \item \textbf{Desviación Estándar ($\sigma$):}
+    \begin{equation}
+        \sigma = \sqrt{\sigma^2}
+    \end{equation}
+\end{itemize}
+\end{definicion}
+
+\section{Distribución de Bernoulli}
+Un ensayo de Bernoulli es un experimento que solo admite dos resultados posibles y mutuamente excluyentes: \textbf{Éxito} ($X=1$) con probabilidad $p$, o \textbf{Fracaso} ($X=0$) con probabilidad $q = 1-p$.
+\begin{equation}
+    E(X) = p, \qquad Var(X) = p(1-p) = pq
+\end{equation}
+
+\section{Distribución Binomial}
+\begin{definicion}{Proceso y Distribución Binomial}
+Un experimento binomial consiste en $n$ repeticiones independientes de ensayos de Bernoulli, donde:
+\begin{enumerate}
+    \item El número de ensayos $n$ es fijo.
+    \item Cada ensayo solo tiene dos resultados posibles: Éxito ($p$) y Fracaso ($q = 1-p$).
+    \item La probabilidad de éxito $p$ permanece constante de un ensayo a otro.
+    \item Los ensayos son estadísticamente independientes entre sí.
+\end{enumerate}
+La función de probabilidad del número de éxitos $X$ en $n$ ensayos es:
+\begin{equation}
+    P(X = x) = \binom{n}{x} p^x (1-p)^{n-x} = \frac{n!}{x!(n-x)!} p^x q^{n-x}, \quad \text{para } x = 0, 1, 2, \dots, n
+\end{equation}
+\end{definicion}
+
+\subsection{Parámetros de la Distribución Binomial}
+\begin{itemize}
+    \item \textbf{Media o Valor Esperado:} $\mu = E(X) = n \cdot p$
+    \item \textbf{Varianza:} $\sigma^2 = n \cdot p \cdot q = n \cdot p \cdot (1-p)$
+    \item \textbf{Desviación Estándar:} $\sigma = \sqrt{n \cdot p \cdot q}$
+\end{itemize}
+
+\begin{ejemplo}{Auditoría de Facturación Electrónica (Basado en Anderson)}
+Una auditoría preliminar en una cadena de supermercados determinó que el $10\%$ ($p = 0.10$) de las facturas electrónicas emitidas contienen algún error de registro contable o glosa incompleta. El auditor tributario selecciona al azar una muestra de $n = 6$ facturas para su revisión detallada. Calcule:
+\begin{enumerate}[label=\alph*)]
+    \item La probabilidad de que exactamente 2 facturas contengan errores.
+    \item La probabilidad de que ninguna factura contenga errores.
+    \item La probabilidad de que al menos 2 facturas contengan errores.
+    \item El número esperado y la desviación estándar de facturas erróneas.
+\end{enumerate}
+
+\tcbline
+\textbf{Solución Paso a Paso:}
+Identificamos los parámetros: $n = 6$, $p = 0.10$, $q = 1 - 0.10 = 0.90$.
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Exactamente 2 facturas erróneas ($x = 2$):}
+    \[
+    P(X = 2) = \binom{6}{2} (0.10)^2 (0.90)^{6-2} = 15 \cdot (0.01) \cdot (0.90)^4 = 15 \cdot 0.01 \cdot 0.6561 = 0.0984 \implies 9.84\%
+    \]
+    \item \textbf{Ninguna factura con errores ($x = 0$):}
+    \[
+    P(X = 0) = \binom{6}{0} (0.10)^0 (0.90)^6 = 1 \cdot 1 \cdot 0.531441 \approx 0.5314 \implies 53.14\%
+    \]
+    \item \textbf{Al menos 2 facturas con errores ($P(X \ge 2)$):}
+    Usamos la regla del complemento para simplificar el cálculo:
+    \[
+    P(X \ge 2) = 1 - [P(X = 0) + P(X = 1)]
+    \]
+    Calculamos $P(X = 1)$:
+    \[
+    P(X = 1) = \binom{6}{1} (0.10)^1 (0.90)^5 = 6 \cdot 0.10 \cdot 0.59049 = 0.3543
+    \]
+    Sustituyendo:
+    \[
+    P(X \ge 2) = 1 - (0.5314 + 0.3543) = 1 - 0.8857 = 0.1143 \implies 11.43\%
+    \]
+    \item \textbf{Media y Desviación Estándar:}
+    \begin{align*}
+        \mu &= n \cdot p = 6 \cdot 0.10 = 0.60 \text{ facturas con error en promedio.} \\
+        \sigma &= \sqrt{n \cdot p \cdot q} = \sqrt{6 \cdot 0.10 \cdot 0.90} = \sqrt{0.54} \approx 0.7348 \text{ facturas.}
+    \end{align*}
+\end{enumerate}
+\end{ejemplo}
+
+\section{Distribución Hipergeométrica}
+\begin{definicion}{Distribución Hipergeométrica (Muestreo Sin Reemplazo)}
+Cuando se extrae una muestra de tamaño $n$ \textbf{sin reemplazo} a partir de una población finita de tamaño $N$, donde existen $T$ elementos clasificados como éxitos y $N-T$ clasificados como fracasos, la probabilidad de obtener exactamente $x$ éxitos en la muestra es:
+\begin{equation}
+    P(X = x) = \frac{\binom{T}{x} \binom{N-T}{n-x}}{\binom{N}{n}}
+\end{equation}
+para $\max(0, n - (N-T)) \le x \le \min(n, T)$.
+\end{definicion}
+
+\subsection{Parámetros de la Hipergeométrica}
+\begin{itemize}
+    \item \textbf{Media:} $\mu = n \left( \dfrac{T}{N} \right)$
+    \item \textbf{Varianza:} $\sigma^2 = n \left( \dfrac{T}{N} \right) \left( 1 - \dfrac{T}{N} \right) \left( \dfrac{N - n}{N - 1} \right)$
+\end{itemize}
+donde el término $\frac{N-n}{N-1}$ es el \textbf{Factor de Corrección por Población Finita (FCPF)}.
+
+\begin{ejemplo}{Auditoría de Contratos Públicos (Basado en Lind)}
+El departamento de auditoría interna de una entidad pública revisa un expediente de $N = 20$ contratos de compras adjudicados el mes anterior. Se sabe que $T = 5$ de estos contratos presentan irregularidades en la documentación de respaldo. El auditor jefe selecciona al azar una muestra de $n = 4$ contratos para fiscalización presencial sin reemplazo.
+\begin{enumerate}[label=\alph*)]
+    \item ¿Cuál es la probabilidad de que la muestra contenga exactamente 2 contratos con irregularidades?
+    \item ¿Cuál es la probabilidad de no encontrar ningún contrato irregular en la muestra?
+\end{enumerate}
+
+\tcbline
+\textbf{Solución:}
+Datos: $N = 20$, $T = 5$ irregulares, $N - T = 15$ conformes, $n = 4$.
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Exactamente 2 irregulares ($x = 2$):}
+    \[
+    P(X = 2) = \frac{\binom{5}{2} \binom{15}{4-2}}{\binom{20}{4}} = \frac{\binom{5}{2} \binom{15}{2}}{\binom{20}{4}}
+    \]
+    Calculamos cada combinatorio:
+    \begin{align*}
+        \binom{5}{2} &= 10, \qquad \binom{15}{2} = \frac{15 \cdot 14}{2} = 105, \qquad \binom{20}{4} = \frac{20 \cdot 19 \cdot 18 \cdot 17}{4 \cdot 3 \cdot 2 \cdot 1} = 4{,}845 \\
+        P(X = 2) &= \frac{10 \cdot 105}{4{,}845} = \frac{1{,}050}{4{,}845} \approx 0.2167 \implies 21.67\%
+    \end{align*}
+    \item \textbf{Ningún contrato irregular ($x = 0$):}
+    \[
+    P(X = 0) = \frac{\binom{5}{0} \binom{15}{4}}{\binom{20}{4}} = \frac{1 \cdot 1{,}365}{4{,}845} \approx 0.2817 \implies 28.17\%
+    \]
+\end{enumerate}
+\end{ejemplo}
+
+\section{Distribución de Poisson}
+\begin{definicion}{Distribución de Poisson}
+Se aplica a experimentos donde se cuenta el número de veces $X$ que ocurre un evento en un \textbf{intervalo continuo} determinado de tiempo, área, volumen o distancia.
+\begin{equation}
+    P(X = x) = \frac{\lambda^x e^{-\lambda}}{x!}, \quad \text{para } x = 0, 1, 2, 3, \dots
+\end{equation}
+donde $\lambda$ ($\lambda > 0$) es la tasa promedio de ocurrencias por intervalo y $e \approx 2.71828$.
+\end{definicion}
+
+\subsection{Parámetros de la Distribución de Poisson}
+\begin{itemize}
+    \item \textbf{Media:} $\mu = E(X) = \lambda$
+    \item \textbf{Varianza:} $\sigma^2 = Var(X) = \lambda$
+    \item \textbf{Desviación Estándar:} $\sigma = \sqrt{\lambda}$
+\end{itemize}
+
+\begin{ejemplo}{Atención a Clientes en Cajas Bancarias (Basado en Anderson)}
+En una agencia bancaria del centro de Santa Cruz, los clientes llegan a la ventanilla de depósitos a razón promedio de $\lambda = 3$ clientes cada 10 minutos durante las horas pico. Calcule:
+\begin{enumerate}[label=\alph*)]
+    \item La probabilidad de que lleguen exactamente 4 clientes en un lapso de 10 minutos.
+    \item La probabilidad de que no llegue ningún cliente en 10 minutos.
+    \item La probabilidad de que lleguen más de 2 clientes en 10 minutos.
+    \item La probabilidad de que lleguen exactamente 2 clientes en un periodo de 20 minutos.
+\end{enumerate}
+
+\tcbline
+\textbf{Solución Paso a Paso:}
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Exactamente 4 clientes en 10 min ($\lambda = 3, x = 4$):}
+    \[
+    P(X = 4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \cdot 0.049787}{24} = \frac{4.03275}{24} = 0.1680 \implies 16.80\%
+    \]
+    \item \textbf{Ningún cliente en 10 min ($x = 0$):}
+    \[
+    P(X = 0) = \frac{3^0 e^{-3}}{0!} = \frac{1 \cdot 0.049787}{1} \approx 0.0498 \implies 4.98\%
+    \]
+    \item \textbf{Más de 2 clientes en 10 min ($P(X > 2)$):}
+    \[
+    P(X > 2) = 1 - [P(X = 0) + P(X = 1) + P(X = 2)]
+    \]
+    Calculamos $P(X = 1)$ y $P(X = 2)$:
+    \begin{align*}
+        P(X = 1) &= \frac{3^1 e^{-3}}{1!} = 3(0.049787) = 0.1494 \\
+        P(X = 2) &= \frac{3^2 e^{-3}}{2!} = \frac{9(0.049787)}{2} = 0.2240 \\
+        P(X > 2) &= 1 - (0.0498 + 0.1494 + 0.2240) = 1 - 0.4232 = 0.5768 \implies 57.68\%
+    \end{align*}
+    \item \textbf{Llegadas en un periodo de 20 minutos:}
+    Al duplicar el intervalo de tiempo, la tasa esperada se ajusta proporcionalmente: $\lambda_{20\text{min}} = 3 \times 2 = 6$.
+    \[
+    P(X = 2) = \frac{6^2 e^{-6}}{2!} = \frac{36 \cdot 0.002479}{2} = 18 \cdot 0.002479 = 0.0446 \implies 4.46\%
+    \]
+\end{enumerate}
+\end{ejemplo}
+
+\section{Aproximación de Poisson a la Distribución Binomial}
+Cuando en un experimento binomial el número de ensayos $n$ es muy grande ($n \ge 20$ o preferentemente $n \ge 100$) y la probabilidad de éxito $p$ es muy pequeña ($p \le 0.05$ o $np \le 10$), la distribución binomial converge a una distribución de Poisson con parámetro:
+\begin{equation}
+    \lambda = n \cdot p
+\end{equation}
+
+\begin{ejemplo}{Detección de Errores Raros en Transferencias Interbancarias}
+Un sistema interbancario procesa $n = 2{,}000$ transferencias diarias. La probabilidad de que una transferencia individual sufra una falla técnica de acreditación es de $p = 0.0015$. Utilice la aproximación de Poisson para calcular la probabilidad de que se presenten exactamente 3 fallas en un día.
+
+\tcbline
+\textbf{Solución:}
+Comprobamos condiciones: $n = 2{,}000 \ge 100$ y $p = 0.0015 \le 0.05$.
+Calculamos la tasa media: $\lambda = n \cdot p = 2{,}000 \times 0.0015 = 3.0$.
+\[
+P(X = 3) = \frac{3^3 e^{-3}}{3!} = \frac{27 \cdot 0.049787}{6} = 0.2240 \implies 22.40\%
+\]
+\end{ejemplo}
+
+\section{Formulario Resumen del Capítulo 3}
+\begin{formulario}[Resumen de Fórmulas — Distribuciones Discretas]
+\begin{itemize}
+    \item \textbf{Valor Esperado Discreto:} $\mu = \sum x f(x), \quad \sigma^2 = \sum x^2 f(x) - \mu^2$
+    \item \textbf{Binomial:} $P(X=x) = \dbinom{n}{x} p^x q^{n-x}, \quad \mu = np, \quad \sigma = \sqrt{npq}$
+    \item \textbf{Hipergeométrica:} $P(X=x) = \dfrac{\dbinom{T}{x} \dbinom{N-T}{n-x}}{\dbinom{N}{n}}, \quad \mu = n\left(\dfrac{T}{N}\right)$
+    \item \textbf{Poisson:} $P(X=x) = \dfrac{\lambda^x e^{-\lambda}}{x!}, \quad \mu = \lambda, \quad \sigma = \sqrt{\lambda}$
+    \item \textbf{Aprox. Poisson a Binomial:} $\lambda = n \cdot p$ (si $n \ge 100$ y $p \le 0.05$)
+\end{itemize}
+\end{formulario}
+
+\section{Ejercicios Propuestos de la Unidad}
+
+\subsection*{Nivel 1: Identificación de Distribuciones y Cálculo Básico}
+\begin{enumerate}
+    \item Identifique y justifique qué modelo de distribución de probabilidad discreta (Binomial, Hipergeométrica o Poisson) es el más adecuado para modelar cada una de las siguientes situaciones:
+    \begin{enumerate}[label=\alph*)]
+        \item El número de clientes que ingresan a una agencia bancaria entre las 10:00 y las 11:00 de la mañana.
+        \item El número de facturas con errores de retención en una muestra de 10 facturas extraídas con reemplazo de un talonario con 15\% de errores.
+        \item El número de cheques sin fondos en una muestra de 5 cheques extraídos sin reemplazo de un lote de 20 cheques que contiene 3 sin fondos.
+    \end{enumerate}
+    \item Una variable aleatoria discreta $X$ sigue una distribución Binomial con $n = 10$ ensayos y probabilidad de éxito $p = 0.20$. Calcule:
+    \begin{enumerate}[label=\alph*)]
+        \item $P(X = 0)$
+        \item $P(X = 2)$
+        \item $P(X \le 2)$
+        \item El valor esperado $E(X)$ y la desviación estándar $\sigma$.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Nivel 2: Aplicaciones en Auditoría y Control de Calidad}
+\begin{enumerate}[resume]
+    \item Un banco sabe que el 5\% de los solicitantes de crédito personal presentan información laboral no comprobable o falsificada. Si un oficial de crédito revisa 8 solicitudes seleccionadas al azar:
+    \begin{enumerate}[label=\alph*)]
+        \item ¿Cuál es la probabilidad de encontrar exactamente 1 solicitud irregular?
+        \item ¿Cuál es la probabilidad de encontrar al menos 1 solicitud irregular?
+    \end{enumerate}
+    \item Un lote de 25 computadoras para el laboratorio contable contiene 4 equipos con fallas en la memoria RAM. Si se eligen 5 computadoras al azar sin reemplazo para instalarlas en el departamento de auditoría:
+    \begin{enumerate}[label=\alph*)]
+        \item Calcule la probabilidad de que ningún equipo sea defectuoso.
+        \item Calcule la probabilidad de encontrar exactamente 2 defectuosos.
+        \item Calcule el número esperado de computadoras defectuosas en la muestra.
+    \end{enumerate}
+    \item En una central de atención telefónica de cobranzas, las consultas por deudas vencidas ingresan a una tasa media de $\lambda = 4$ llamadas por hora.
+    \begin{enumerate}[label=\alph*)]
+        \item Calcule la probabilidad de recibir exactamente 3 llamadas en una hora determinada.
+        \item Calcule la probabilidad de recibir al menos 2 llamadas en una hora.
+        \item Calcule la probabilidad de recibir exactamente 5 llamadas en un turno de 2 horas continuas ($\lambda = 8$).
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Nivel 3: Casos Integrales y Aproximaciones}
+\begin{enumerate}[resume]
+    \item Una compañía aseguradora en Santa Cruz tiene una cartera de $n = 5{,}000$ pólizas de seguro contra accidentes laborales para empresas constructoras. La probabilidad histórica de que un trabajador asegurado sufra un accidente grave que requiera indemnización máxima durante el año es de $p = 0.0006$.
+    \begin{enumerate}[label=\alph*)]
+        \item Justifique por qué es válido emplear la aproximación de Poisson a la distribución Binomial.
+        \item Determine el parámetro $\lambda$ de la distribución de Poisson equivalente.
+        \item Calcule la probabilidad de que la aseguradora deba pagar exactamente 2 indemnizaciones máximas en el año.
+        \item Calcule la probabilidad de que deba pagar más de 3 indemnizaciones en el año.
+    \end{enumerate}
+\end{enumerate}

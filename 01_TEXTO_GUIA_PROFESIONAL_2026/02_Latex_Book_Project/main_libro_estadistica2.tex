@@ -1,0 +1,110 @@
+\documentclass[11pt,twoside,openright]{book}
+
+% Estilos, paquetes, geometría, colores y entornos pedagógicos
+\input{estilos_libro.tex}
+
+\begin{document}
+
+% --- PARTE PRELIMINAR (FRONTMATTER) ---
+\frontmatter
+
+% Portada Oficial
+\input{caratula.tex}
+
+% Página de Créditos y Presentación Institucional
+\thispagestyle{empty}
+\vspace*{12cm}
+\begin{flushleft}
+    \textbf{ESTADÍSTICA II: Probabilidades, Inferencia y Modelos de Decisión}\\
+    \textit{Texto Guía Universitario Teórico-Práctico (Edición 2026)}\\[0.3cm]
+    \copyright\ 2026 MSc. Ing. Anselmo Salguero Arano\\
+    Universidad Autónoma Gabriel René Moreno (UAGRM)\\
+    Facultad de Ciencias Contables, Auditoría, Sistemas de Control de Gestión y Finanzas\\
+    Carrera de Contaduría Pública\\
+    Santa Cruz de la Sierra -- Bolivia\\[0.4cm]
+    \small Todos los derechos reservados. Este texto ha sido elaborado como material oficial de docencia universitaria y apoyo al aprendizaje presencial y virtual en la plataforma Moodle de la UAGRM.
+\end{flushleft}
+\clearpage
+
+% Prólogo / Presentación del Autor
+\chapter*{Presentación y Guía Didáctica}
+\addcontentsline{toc}{chapter}{Presentación y Guía Didáctica}
+
+El presente texto guía ha sido diseñado y estructurado específicamente para los estudiantes de la Carrera de \textbf{Contaduría Pública} de la Universidad Autónoma Gabriel René Moreno (UAGRM), respondiendo fielmente a las exigencias del programa analítico oficial de la asignatura \textbf{Estadística II (MAT-260)} y ampliando su alcance hacia la inferencia y los modelos cuantitativos contemporáneos.
+
+En el ejercicio profesional de la contaduría pública, la auditoría tributaria y financiera, el peritaje judicial y la gestión financiera corporativa, las decisiones estratégicas se enfrentan cotidianamente a escenarios de incertidumbre y grandes volúmenes de datos transaccionales. Las estimaciones contables, la determinación del riesgo crediticio, el muestreo de comprobantes y la segregación de costos ya no pueden basarse en la simple intuición, sino en el rigor metódico de las probabilidades, la inferencia estadística y la econometría aplicada.
+
+\section*{Estructura y Características Distintivas de la Edición 2026:}
+\begin{itemize}
+    \item \textbf{Siete (7) Unidades Temáticas Integrales:}
+    \begin{enumerate}
+        \item \textbf{Unidad 1: Análisis Combinatorio y Métodos de Conteo:} Fundamentos de conteo, permutaciones y combinaciones aplicadas a códigos contables y muestras de auditoría.
+        \item \textbf{Unidad 2: Teoría y Fundamentos de Probabilidad:} Reglas de adición, multiplicación, tablas de contingencia y Teorema de Bayes en detección de fraudes y riesgo.
+        \item \textbf{Unidad 3: Distribuciones de Probabilidad Discretas:} Modelado con distribuciones Binomial, Hipergeométrica y Poisson en control de calidad y auditoría de cumplimiento.
+        \item \textbf{Unidad 4: Distribuciones de Probabilidad Continuas:} Distribución Normal Gaussiana, estandarización $Z$, percentiles y tiempos de servicio con la distribución Exponencial.
+        \item \textbf{Unidad 5: Distribuciones Muestrales e Intervalos de Confianza:} Teorema del Límite Central, error estándar, intervalos con $Z$ y $t$ de Student, y tamaño óptimo de muestra (NIA 530).
+        \item \textbf{Unidad 6: Pruebas de Hipótesis para una Población:} Toma de decisiones basada en 5 pasos para medias y proporciones, valores críticos y enfoque del valor $p$ ($p$-value).
+        \item \textbf{Unidad 7: Regresión Lineal Simple y Correlación:} Diagramas de dispersión, coeficiente de Pearson $r$, ajuste por MCO, coeficiente de determinación $R^2$ y separación de costos fijos y variables.
+    \end{enumerate}
+    \item \textbf{Enfoque Aplicado a la Realidad Empresarial Boliviana:} La teoría matemática se fundamenta de forma rigurosa y se complementa de inmediato con casos prácticos de auditoría impositiva, finanzas corporativas y contabilidad gerencial.
+    \item \textbf{Abundancia de Ejercicios Resueltos y Propuestos Graduados:} Se articulan los mejores problemas clásicos de los textos de referencia internacional más prestigiosos (\textit{Anderson, Sweeney \& Williams} y \textit{Lind, Marchal \& Wathen}).
+\end{itemize}
+
+\vspace{1.2cm}
+\begin{flushright}
+    \textbf{MSc. Ing. Anselmo Salguero Arano}\\
+    \textit{Docente Titular de Estadística II (MAT-260)}\\
+    UAGRM -- Santa Cruz de la Sierra, Bolivia
+\end{flushright}
+\clearpage
+
+% Tabla de Contenidos
+\tableofcontents
+\clearpage
+
+% --- CUERPO PRINCIPAL DEL LIBRO (MAINMATTER) ---
+\mainmatter
+
+% Capítulo 1: Análisis Combinatorio
+\input{../01_Estructura_y_Capitulos/Cap01_Analisis_Combinatorio.tex}
+
+% Capítulo 2: Probabilidades
+\input{../01_Estructura_y_Capitulos/Cap02_Teoria_de_Probabilidades.tex}
+
+% Capítulo 3: Distribuciones Discretas
+\input{../01_Estructura_y_Capitulos/Cap03_Distribuciones_Discretas.tex}
+
+% Capítulo 4: Distribuciones Continuas
+\input{../01_Estructura_y_Capitulos/Cap04_Distribuciones_Continuas.tex}
+
+% Capítulo 5: Muestreo e Intervalos de Confianza
+\input{../01_Estructura_y_Capitulos/Cap05_Muestreo_e_Intervalos_Confianza.tex}
+
+% Capítulo 6: Pruebas de Hipótesis
+\input{../01_Estructura_y_Capitulos/Cap06_Pruebas_de_Hipotesis.tex}
+
+% Capítulo 7: Regresión Lineal y Correlación
+\input{../01_Estructura_y_Capitulos/Cap07_Regresion_Lineal_y_Correlacion.tex}
+
+% --- PARTE FINAL (BACKMATTER) ---
+\backmatter
+
+% Apéndice de Tablas
+\input{../01_Estructura_y_Capitulos/Apendice_Tablas_Estadisticas.tex}
+
+% Bibliografía General
+\chapter*{Bibliografía de Referencia}
+\addcontentsline{toc}{chapter}{Bibliografía de Referencia}
+
+\begin{enumerate}
+    \item \textbf{Anderson, D. R., Sweeney, D. J., Williams, T. A., Camm, J. D., \& Cochran, J. J.} (2019). \textit{Estadística para administración y economía} (13a ed.). Cengage Learning Editores.
+    \item \textbf{Lind, D. A., Marchal, W. G., \& Wathen, S. A.} (2019). \textit{Estadística aplicada a los negocios y la economía} (17a ed.). McGraw-Hill Interamericana.
+    \item \textbf{Kazmier, L. J.} (2006). \textit{Estadística aplicada a la administración y economía} (4a ed.). McGraw-Hill (Serie Schaum).
+    \item \textbf{Martínez Bencardino, C.} (2012). \textit{Estadística y muestreo} (13a ed.). Ecoe Ediciones.
+    \item \textbf{Moya Calderón, R.} (2014). \textit{Probabilidad e inferencia estadística}. Editorial San Marcos.
+    \item \textbf{Devore, J. L.} (2016). \textit{Probabilidad y estadística para ingeniería y ciencias} (9a ed.). Cengage Learning.
+    \item \textbf{Walpole, R. E., Myers, R. H., Myers, S. L., \& Ye, K.} (2012). \textit{Probabilidad y estadística para ingeniería y ciencias} (9a ed.). Pearson Educación.
+    \item \textbf{Zylberberg, A. D.} (2006). \textit{Probabilidad y estadística}. Editorial Nueva Librería.
+\end{enumerate}
+
+\end{document}

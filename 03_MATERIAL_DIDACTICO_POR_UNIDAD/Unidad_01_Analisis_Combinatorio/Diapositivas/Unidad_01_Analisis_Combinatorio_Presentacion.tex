@@ -1,0 +1,651 @@
+\documentclass[10pt]{beamer}
+
+% --- PAQUETES REQUERIDOS ---
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fontspec}
+
+% --- CONFIGURACIÓN DE RUTAS DE IMÁGENES ---
+\graphicspath{{../../}{../}{./}}
+
+% --- CONFIGURACIÓN DE FUENTE (XeLaTeX / LuaLaTeX) ---
+\setmainfont{Verdana}
+\setsansfont{Verdana}
+\setmonofont{Verdana}
+
+% --- PALETA DE COLORES INSTITUCIONAL ---
+\definecolor{dodgerblue}{RGB}{30, 144, 255}
+\definecolor{darkblue}{RGB}{0, 51, 102}
+\definecolor{firebrick}{RGB}{178, 34, 34}
+\definecolor{gold}{RGB}{255, 215, 0}
+\definecolor{lightblue}{RGB}{232, 244, 250}
+\definecolor{boxborder}{RGB}{0, 102, 153}
+\definecolor{softgray}{RGB}{248, 249, 250}
+\definecolor{darkgreen}{RGB}{34, 139, 34}
+
+% --- CONFIGURACIÓN DEL TEMA BEAMER ---
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\setbeamercolor{palette primary}{bg=dodgerblue, fg=white}
+\setbeamercolor{palette secondary}{bg=darkblue, fg=white}
+\setbeamercolor{palette tertiary}{bg=dodgerblue, fg=white}
+\setbeamercolor{frametitle}{bg=dodgerblue, fg=white}
+\setbeamercolor{title}{fg=darkblue}
+\setbeamercolor{block title}{bg=dodgerblue, fg=white}
+\setbeamercolor{block body}{bg=lightblue, fg=black}
+\setbeamercolor{block title alerted}{bg=firebrick, fg=white}
+\setbeamercolor{block body alerted}{bg=red!8, fg=black}
+\setbeamercolor{block title example}{bg=darkgreen, fg=white}
+\setbeamercolor{block body example}{bg=green!8, fg=black}
+
+\setbeamertemplate{navigation symbols}{}
+
+% --- VIÑETAS PERSONALIZADAS ---
+\setbeamertemplate{itemize item}{\color{dodgerblue}\scriptsize$\blacksquare$}
+\setbeamertemplate{itemize subitem}{\color{darkblue}\tiny$\blacktriangleright$}
+
+% --- PIE DE PÁGINA TRICOLOR ---
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.5ex,dp=1ex,center]{palette primary}%
+    MSc. Anselmo Salguero Arano
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.5ex,dp=1ex,center]{palette secondary}%
+    Unidad N° 1: Análisis Combinatorio
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.5ex,dp=1ex,right]{palette tertiary}%
+    \color{darkblue}\textbf{\insertframenumber{} / \inserttotalframenumber}\hspace*{2ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+% --- COMANDOS PERSONALIZADOS ---
+\newcommand{\formulabox}[1]{%
+  \begin{center}
+  \begin{tikzpicture}
+    \node[fill=lightblue, draw=boxborder, line width=1pt, rounded corners=4pt, inner sep=3.5pt, text width=0.90\textwidth, align=center] {#1};
+  \end{tikzpicture}
+  \end{center}
+}
+
+\newcommand{\alertbox}[1]{%
+  \begin{center}
+  \begin{tikzpicture}
+    \node[fill=red!8, draw=firebrick, line width=1pt, rounded corners=4pt, inner sep=3.5pt, text width=0.90\textwidth, align=center] {#1};
+  \end{tikzpicture}
+  \end{center}
+}
+
+% --- INFORMACIÓN DEL DOCUMENTO ---
+\title[Análisis Combinatorio]{Unidad N° 1: Análisis Combinatorio e Introducción a la Inferencia}
+\author{MSc. Anselmo Salguero Arano}
+\institute[UAGRM]{UAGRM - Carrera de Contaduría Pública}
+\date{}
+
+\begin{document}
+
+% ==================== PORTADA ====================
+\begin{frame}[plain]
+  \centering
+  \vspace*{-0.2cm}
+  \begin{minipage}{0.35\textwidth}
+    \centering
+    \includegraphics[width=0.75\linewidth]{Logouagrm.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.35\textwidth}
+    \centering
+    \includegraphics[width=0.75\linewidth]{Logocont.png}
+  \end{minipage}
+  
+  \vspace{0.25cm}
+  {\large \textbf{UNIVERSIDAD AUTÓNOMA GABRIEL RENÉ MORENO}}\\[0.05cm]
+  {\footnotesize Facultad de Ciencias Contables, Auditoría, Sistemas de Control de Gestión y Finanzas}\\[0.05cm]
+  {\small \textbf{CARRERA DE CONTADURÍA PÚBLICA}}\\[0.25cm]
+  
+  {\Large \color{firebrick} \textbf{ESTADÍSTICA II}}\\[0.1cm]
+  {\large \color{darkblue} \textbf{UNIDAD N° 1: ANÁLISIS COMBINATORIO}}\\[0.1cm]
+  {\small \textit{Fundamentos Matemáticos del Muestreo y la Inferencia Estadística}}\\[0.3cm]
+  
+  {\normalsize \textbf{Docente: MSc. Anselmo Salguero Arano}}
+\end{frame}
+
+% ==================== SECCIÓN 1: INTRODUCCIÓN INTUITIVA ====================
+\begin{frame}{El Gran Salto: De Describir a Inferir}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{\textbf{Estadística I: Descriptiva}}
+        \begin{itemize}
+          \item \textbf{Enfoque:} Pasado o presente.
+          \item \textbf{Certeza:} $100\%$ exacta.
+          \item \textbf{Función:} Resume y clasifica datos observados.
+          \item \textbf{Ejemplo:} Ventas totales y gastos ejecutados en 2025.
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{\textbf{Estadística II: Inferencial}}
+        \begin{itemize}
+          \item \textbf{Enfoque:} Generaliza hacia el todo.
+          \item \textbf{Certeza:} Riesgo controlado.
+          \item \textbf{Función:} Proyecta de la \textbf{muestra} a la \textbf{población}.
+          \item \textbf{Ejemplo:} Auditar $150$ facturas para estimar el error en $50.000$.
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+
+  \vspace{0.15cm}
+  \alertbox{\textbf{Idea Central:} No revisamos el $100\%$ de operaciones; con rigor matemático concluimos sobre la población con margen de confianza controlado.}
+\end{frame}
+
+\begin{frame}{Contraste Metodológico: Cuadro Comparativo}
+  \begin{table}
+    \centering
+    \footnotesize
+    \begin{tabular}{p{2.1cm} p{4.3cm} p{4.3cm}}
+      \toprule
+      \textbf{Dimensión} & \textbf{Estadística Descriptiva} & \textbf{Estadística Inferencial} \\
+      \midrule
+      \textbf{Propósito} & Describir y resumir la información disponible. & Predecir, estimar y tomar decisiones gerenciales. \\
+      \addlinespace
+      \textbf{Datos} & Población completa o registro histórico. & Muestra representativa extraída al azar. \\
+      \addlinespace
+      \textbf{Herramientas} & Tablas de frecuencia, media, dispersión. & Probabilidades, intervalos de confianza, hipótesis. \\
+      \addlinespace
+      \textbf{Conclusión} & Certeza matemática exacta sobre lo medido. & Conclusión inductiva con margen de error ($\alpha$). \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\begin{frame}{¿Por qué Empezamos con Análisis Combinatorio?}
+  \textbf{El Puente Hacia la Probabilidad y el Muestreo:}
+  \begin{itemize}
+    \item La toma de decisiones en auditoría se fundamenta en la \textbf{Probabilidad Clásica (Regla de Laplace)}:
+    $$P(\text{Evento A}) = \frac{\text{Número de casos favorables}}{\text{Número total de casos posibles}}$$
+    \item En auditoría y finanzas manejamos poblaciones con miles de operaciones; el número de muestras posibles es astronómico.
+    \item \textbf{El Análisis Combinatorio} nos enseña a cuantificar el tamaño del espacio muestral \textbf{sin necesidad de enumerar caso por caso}.
+  \end{itemize}
+
+  \formulabox{
+    \textbf{Objetivo Didáctico:}\\[0.05cm]
+    Aprender a contar agrupaciones, secuencias y muestras para calcular probabilidades exactas de riesgo contable y financiero.
+  }
+\end{frame}
+
+% ==================== SECCIÓN 1.1: CONCEPTOS FUNDAMENTALES DE PROBABILIDAD ====================
+\begin{frame}{Experimento, Espacio Muestral y Evento (Lind / Anderson)}
+  \begin{block}{\textbf{1. Experimento y Espacio Muestral ($S$)}}
+    \textbf{Experimento (Lind):} Proceso que genera una de varias observaciones posibles (ej. extraer una factura al azar).
+    
+    \textbf{Espacio Muestral ($S$):} Total de resultados: $S = \{\text{Conforme}, \text{Con Error}\}$.
+  \end{block}
+
+  \begin{block}{\textbf{2. Evento o Suceso (Anderson)}}
+    Subconjunto de uno o más resultados del espacio muestral ($A \subseteq S$).
+    \begin{itemize}
+      \item \textbf{Ejemplo Contable:} Evento $A = \{\text{Factura con crédito fiscal no válido}\}$.
+      \item \textbf{Simple:} Un solo resultado. \quad \textbf{Compuesto:} Dos o más resultados.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Eventos Mutuamente Excluyentes vs. No Excluyentes}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{\textbf{Mutuamente Excluyentes}}
+        \textbf{NO ocurren al mismo tiempo}. ($A \cap B = \emptyset$).
+        \begin{itemize}
+          \item \textbf{Ejemplo 1:} Gestión con \textbf{Utilidad} o \textbf{Pérdida}.
+          \item \textbf{Ejemplo 2:} Cheque \textbf{Cobrado} o \textbf{Anulado}.
+          \item \textbf{Regla:} Suma directa ($m + n$).
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{\textbf{No Excluyentes (Traslape)}}
+        \textbf{SÍ ocurren juntos}. ($A \cap B \neq \emptyset$).
+        \begin{itemize}
+          \item \textbf{Ejemplo 1:} Auditor que además es \textbf{Docente}.
+          \item \textbf{Ejemplo 2:} Empresa con \textbf{Deuda Fiscal} y \textbf{Bancaria}.
+          \item \textbf{Regla:} Restar intersección.
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+
+  \vspace{0.15cm}
+  \alertbox{\textbf{Conexión Didáctica:} El Principio Aditivo del Conteo exige que las alternativas sean \textbf{mutuamente excluyentes} (viajar por aire \textbf{O} tierra).}
+\end{frame}
+
+% ==================== SECCIÓN 2: PRINCIPIOS DE CONTEO Y FACTORIAL ====================
+\begin{frame}{Principios Fundamentales del Conteo}
+  \begin{block}{\textbf{1. Principio Aditivo (Regla del ``O'')}}
+    Si una tarea $A$ ocurre de $m$ maneras y una tarea $B$ de $n$ maneras, y \textbf{no pueden ocurrir simultáneamente} (mutuamente excluyentes):
+    $$\text{N° total de formas} = m + n$$
+  \end{block}
+
+  \begin{block}{\textbf{2. Principio Multiplicativo (Regla del ``Y'')}}
+    Si un procedimiento consta de $k$ etapas sucesivas, con $n_1$ formas en la primera, $n_2$ en la segunda, \dots, y $n_k$ en la $k$-ésima:
+    $$\text{N° total de formas} = n_1 \times n_2 \times \dots \times n_k$$
+  \end{block}
+\end{frame}
+
+\begin{frame}{La Función Factorial ($n!$) y Propiedades}
+  \textbf{Definición:} Para cualquier número entero positivo $n$, el factorial es el producto continuado de todos los enteros desde $n$ hasta $1$:
+
+  \formulabox{
+    $$n! = n \times (n-1) \times (n-2) \times \dots \times 2 \times 1$$
+    $$\text{Convención matemática formal: } \mathbf{0! = 1} \quad \text{y} \quad \mathbf{1! = 1}$$
+  }
+
+  \textbf{Propiedad de Recurrencia (Para simplificación):}
+  $$n! = n \times (n-1)! = n \times (n-1) \times (n-2)!$$
+  
+  \textbf{Ejemplo directo:}
+  $$\frac{9!}{7!} = \frac{9 \times 8 \times 7!}{7!} = 9 \times 8 = 72$$
+\end{frame}
+
+\begin{frame}{Ejercicio Resuelto 1.1: Principio Multiplicativo}
+  \begin{columns}[T]
+    \begin{column}{0.62\textwidth}
+      \textbf{Enunciado:} El área de sistemas crea contraseñas de acceso al sistema contable con $2$ letras (de $26$) y $4$ dígitos ($0$ al $9$).
+      \begin{enumerate}[a)]
+        \item ¿Cuántas claves si se permite repetición?
+        \item ¿Cuántas claves si NO se permite repetición?
+      \end{enumerate}
+      \vspace{0.08cm}
+      \textbf{Desarrollo:}
+      \begin{itemize}
+        \item \textbf{a) Con repetición:}
+        $$N_a = 26^2 \times 10^4 = \mathbf{6.760.000 \text{ claves}}$$
+        \item \textbf{b) Sin repetición:}
+        $$N_b = 26 \times 25 \times 10 \times 9 \times 8 \times 7 = \mathbf{3.276.000}$$
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.36\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{seguridad_erp.jpg}\\[0.05cm]
+      {\tiny \textbf{Seguridad de Claves ERP}}
+    \end{column}
+  \end{columns}
+  \vspace{0.05cm}
+  \textbf{Interpretación:} No permitir repetición reduce a menos de la mitad las combinaciones disponibles, aumentando la unicidad de las credenciales.
+\end{frame}
+
+\begin{frame}{Ejercicio Resuelto 1.2: Principio Aditivo y Multiplicativo}
+  \textbf{Enunciado:} Un equipo auditor viaja de Santa Cruz a Sucre para una fiscalización. Puede elegir viajar por vía aérea ($2$ aerolíneas con $3$ vuelos cada una) \textbf{o} por vía terrestre ($3$ empresas con $4$ horarios cada una). ¿De cuántas formas puede programar el viaje?
+
+  \vspace{0.15cm}
+  \textbf{Análisis y Desarrollo:}
+  \begin{itemize}
+    \item Opciones aéreas: $2 \times 3 = 6$ itinerarios.
+    \item Opciones terrestres: $3 \times 4 = 12$ itinerarios.
+    \item Como el viaje es por aire \textbf{O} por tierra (mutuamente excluyente):
+  \end{itemize}
+
+  $$N_{\text{total}} = N_{\text{Aire}} + N_{\text{Tierra}} = (2 \times 3) + (3 \times 4) = 6 + 12 = \mathbf{18 \text{ opciones}}$$
+
+  \textbf{Interpretación:} La firma dispone de $18$ alternativas independientes para coordinar la logística de la comisión de auditoría.
+\end{frame}
+
+\begin{frame}{Ejercicio Resuelto 1.3: Operaciones con Factoriales}
+  \textbf{Enunciado:} En el diseño de un plan de muestreo probabilístico, simplifique analíticamente la siguiente expresión combinatoria:
+  $$E = \frac{14! \times 5!}{12! \times 7!}$$
+
+  \vspace{0.1cm}
+  \textbf{Desarrollo Paso a Paso:}
+  \begin{enumerate}
+    \item Descomponemos los factoriales mayores:
+    $$14! = 14 \times 13 \times 12! \qquad 7! = 7 \times 6 \times 5!$$
+    \item Sustituimos en la fracción:
+    $$E = \frac{(14 \times 13 \times 12!) \times 5!}{12! \times (7 \times 6 \times 5!)} = \frac{14 \times 13}{7 \times 6} = \frac{2 \times 13}{6} = \mathbf{\frac{13}{3} \approx 4.33}$$
+  \end{enumerate}
+
+  \textbf{Interpretación:} La simplificación analítica de factoriales previene desbordamientos de cálculo al procesar espacios muestrales grandes.
+\end{frame}
+
+% ==================== SECCIÓN 3: PERMUTACIONES ====================
+\begin{frame}{Permutaciones (El Orden SÍ Importa)}
+  \textbf{Concepto Clave:} Una permutación es un ordenamiento o arreglo de elementos donde \textbf{la posición de cada objeto altera el resultado} ($AB \neq BA$).
+
+  \formulabox{
+    \textbf{1. Permutación Simple (de los $n$ elementos):}\\[0.05cm]
+    $$P_n = n!$$\\[0.1cm]
+    \textbf{2. Permutaciones de $n$ elementos tomados de $r$ en $r$ ($r \le n$):}\\[0.05cm]
+    $${_n P_r} = \frac{n!}{(n-r)!}$$
+  }
+\end{frame}
+
+\begin{frame}{Permutaciones con Repetición y Circulares}
+  \begin{block}{\textbf{3. Permutaciones con Elementos Repetidos}}
+    Ordenamientos de $n$ objetos donde el primero se repite $n_1$ veces, el segundo $n_2$ veces, \dots, ($n_1 + n_2 + \dots + n_k = n$):
+    $$P_n^{n_1, n_2, \dots, n_k} = \frac{n!}{n_1! \times n_2! \times \dots \times n_k!}$$
+  \end{block}
+
+  \begin{block}{\textbf{4. Permutaciones Circulares}}
+    Disposiciones cerradas alrededor de una mesa o círculo (sin punto inicial fijo):
+    $$PC_n = (n-1)!$$
+  \end{block}
+\end{frame}
+
+\begin{frame}{Ejercicio Resuelto 2.1: Permutaciones (${_n P_r}$)}
+  \textbf{Enunciado:} Una sociedad auditora cuenta con $8$ contadores seniors. Se debe elegir la directiva del proyecto: Director de Auditoría, Encargado de Campo y Supervisor de Control de Calidad. ¿De cuántas formas se puede constituir?
+
+  \vspace{0.15cm}
+  \textbf{Análisis:}
+  \begin{itemize}
+    \item Total de profesionales: $n = 8$, Cargos a cubrir: $r = 3$.
+    \item ¿Importa el orden? \textbf{SÍ}, cada cargo tiene responsabilidades distintas.
+  \end{itemize}
+
+  \vspace{0.1cm}
+  \textbf{Desarrollo:}
+  $${_8 P_3} = \frac{8!}{(8-3)!} = \frac{8!}{5!} = 8 \times 7 \times 6 = \mathbf{336 \text{ directivas}}$$
+
+  \textbf{Interpretación:} Existen $336$ estructuras de liderazgo posibles para la ejecución del proyecto de auditoría.
+\end{frame}
+
+\begin{frame}{Ejercicio Resuelto 2.2: Permutaciones con Repetición}
+  \textbf{Enunciado:} En el archivo de una empresa se deben ordenar $7$ carpetas: $3$ de Ingresos (idénticas), $2$ de Egresos (idénticas) y $2$ de Traspasos (idénticas). ¿De cuántas maneras pueden alinearse en el estante?
+
+  \vspace{0.15cm}
+  \textbf{Análisis y Desarrollo:}
+  \begin{itemize}
+    \item Total: $n = 7$. Repeticiones: $n_1 = 3$ (Ingresos), $n_2 = 2$ (Egresos), $n_3 = 2$ (Traspasos).
+  \end{itemize}
+
+  $$P_7^{3, 2, 2} = \frac{7!}{3! \times 2! \times 2!} = \frac{7 \times 6 \times 5 \times 4 \times 3!}{3! \times 2 \times 2} = \frac{840}{4} = \mathbf{210 \text{ secuencias}}$$
+
+  \textbf{Interpretación:} Se pueden presentar $210$ secuencias visuales organizadas de archivo en el departamento contable.
+\end{frame}
+
+\begin{frame}{Ejercicio Resuelto 2.3: Permutaciones Circulares}
+  \textbf{Enunciado:} El Director Financiero y $5$ auditores ($6$ personas en total) se sientan a negociar el dictamen de auditoría en una mesa redonda.
+  \begin{enumerate}[a)]
+    \item ¿De cuántas maneras pueden ubicarse libremente?
+    \item ¿De cuántas formas si el Director Financiero debe estar siempre al lado del Auditor Senior?
+  \end{enumerate}
+
+  \vspace{0.1cm}
+  \textbf{Desarrollo:}
+  \begin{itemize}
+    \item \textbf{a) Ubicación libre:}
+    $$PC_6 = (6-1)! = 5! = \mathbf{120 \text{ formas}}$$
+    \item \textbf{b) Director y Senior juntos (1 bloque + 4 auditores = 5 elementos):}
+    $$N_b = PC_5 \times 2! = (5-1)! \times 2 = 24 \times 2 = \mathbf{48 \text{ formas}}$$
+  \end{itemize}
+
+  \textbf{Interpretación:} La adyacencia estratégica reduce a $48$ las configuraciones de la reunión.
+\end{frame}
+
+% ==================== SECCIÓN 3.1: FILAS CON RESTRICCIONES ====================
+\begin{frame}{Permutaciones en Fila con Restricciones}
+  \begin{block}{\textbf{El Método del Bloque (Elementos que deben estar juntos)}}
+    Cuando $k$ personas u objetos específicos deben permanecer siempre juntos:
+    \begin{enumerate}
+      \item Se agrupan los $k$ elementos como \textbf{un solo bloque indivisible} ($1$ elemento).
+      \item Se calcula la permutación externa con los $(n - k + 1)$ elementos resultantes.
+      \item Se multiplica por la \textbf{permutación interna} dentro del bloque ($k!$).
+    \end{enumerate}
+  \end{block}
+
+  \formulabox{
+    \textbf{Fórmula General de Agrupamiento en Fila:}\\[0.06cm]
+    $$N_{\text{juntos}} = (n - k + 1)! \times k!$$
+  }
+\end{frame}
+
+\begin{frame}{Ejercicio Resuelto 2.4: Fila con 2 Personas Juntas}
+  \begin{columns}[T]
+    \begin{column}{0.62\textwidth}
+      \textbf{Enunciado:} En la ventanilla del SIN se forman $7$ contadores en fila. Dos auditores específicos (Carlos y Ana) deben estar juntos. ¿De cuántas formas se alinean?
+      
+      \vspace{0.08cm}
+      \textbf{Desarrollo:}
+      \begin{enumerate}
+        \item Bloque $[C, A]$ = $1$ elemento.
+        \item Total: $1 \text{ bloque} + 5 \text{ personas} = 6 \text{ elem}$.
+        \item Externa: $P_6 = 6! = 720$.
+        \item Interna: $[C, A]$ o $[A, C] \rightarrow 2! = 2$.
+      \end{enumerate}
+      $$N = 6! \times 2! = 720 \times 2 = \mathbf{1.440 \text{ formas}}$$
+    \end{column}
+    \begin{column}{0.36\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{fila_auditores.jpg}\\[0.05cm]
+      {\tiny \textbf{Bloque $[C, A]$ + 5 auditores}}
+    \end{column}
+  \end{columns}
+  \vspace{0.05cm}
+  \textbf{Interpretación:} Existen $1.440$ ordenamientos donde Carlos y Ana permanecen juntos.
+\end{frame}
+
+\begin{frame}{Ejercicio Resuelto 2.5: Fila con 3 Personas Juntas}
+  \textbf{Enunciado:} En el auditorio se forman en fila $8$ profesionales: $3$ docentes y $5$ auditores. Los $3$ docentes deben ubicarse siempre juntos. ¿De cuántas maneras pueden alinearse?
+
+  \vspace{0.1cm}
+  \textbf{Desarrollo Paso a Paso:}
+  \begin{itemize}
+    \item Bloque de $3$ docentes: $[D_1, D_2, D_3]$ ($1$ elemento).
+    \item Total en fila: $1 \text{ bloque} + 5 \text{ auditores} = \mathbf{6 \text{ elementos}}$.
+    \item Permutaciones externas: $P_6 = 6! = 720 \text{ formas}$.
+    \item Permutaciones internas ($3$ docentes): $P_3 = 3! = 6 \text{ formas}$.
+    \item Total por principio multiplicativo:
+    $$N_{\text{total}} = 6! \times 3! = 720 \times 6 = \mathbf{4.320 \text{ formas}}$$
+  \end{itemize}
+
+  \textbf{Interpretación:} La exigencia de que los 3 docentes estén juntos genera $4.320$ configuraciones posibles.
+\end{frame}
+
+\begin{frame}{Ejercicio Resuelto 2.6: Personas que NO Deben Estar Juntas}
+  \textbf{Enunciado:} En la misma fila de $7$ contadores del Ejercicio 2.4, ¿de cuántas maneras se forman si Carlos y Ana \textbf{NO pueden estar juntos}?
+
+  \vspace{0.1cm}
+  \textbf{Estrategia: Método del Complemento}
+  $$\text{N° Separados} = \text{Total sin restricción} - \text{Formas juntos}$$
+
+  \vspace{0.08cm}
+  \textbf{Desarrollo:}
+  \begin{itemize}
+    \item Total libre ($7$ personas): $N_{\text{total}} = 7! = 5.040 \text{ formas}$.
+    \item Formas juntos (Ej. 2.4): $N_{\text{juntos}} = 6! \times 2! = 1.440 \text{ formas}$.
+    \item Resta complementaria:
+    $$N_{\text{separados}} = 5.040 - 1.440 = \mathbf{3.600 \text{ formas}}$$
+  \end{itemize}
+
+  \textbf{Interpretación:} En el $71.43\%$ ($3.600/5.040$) de las alineaciones, los auditores quedan separados.
+\end{frame}
+
+\begin{frame}{Ejercicio Resuelto 2.7: Múltiples Bloques Simultáneos en Fila}
+  \textbf{Enunciado:} En una fila de $9$ asientos se sientan: $4$ auditores financieros, $3$ tributarios y $2$ de sistemas. Los miembros de cada área deben sentarse \textbf{juntos entre sí}. ¿Cuántas disposiciones existen?
+
+  \vspace{0.08cm}
+  \textbf{Desarrollo:}
+  \begin{itemize}
+    \item Se tienen $3$ bloques: $[\text{Financieros}], [\text{Tributarios}], [\text{Sistemas}]$.
+    \item Permutación de los $3$ bloques: $P_3 = 3! = 6$.
+    \item Permutaciones internas:
+    $$\text{Financieros: } 4! = 24 \qquad \text{Tributarios: } 3! = 6 \qquad \text{Sistemas: } 2! = 2$$
+    \item Total por principio multiplicativo:
+    $$N = 3! \times (4! \times 3! \times 2!) = 6 \times (24 \times 6 \times 2) = 6 \times 288 = \mathbf{1.728 \text{ formas}}$$
+  \end{itemize}
+
+  \textbf{Interpretación:} Existen $1.728$ distribuciones de protocolo respetando la cohesión por área técnica.
+\end{frame}
+
+% ==================== SECCIÓN 4: COMBINACIONES ====================
+\begin{frame}{Combinaciones (El Orden NO Importa)}
+  \textbf{Concepto Clave:} Una combinación es una selección o muestra de $r$ objetos tomados de un conjunto de $n$ objetos, donde \textbf{el orden de elección no altera el grupo} ($AB = BA$).
+
+  \formulabox{
+    \textbf{Fórmula de Combinaciones Simples (${_n C_r}$ o $\binom{n}{r}$):}\\[0.1cm]
+    $${_n C_r} = \binom{n}{r} = \frac{n!}{r!(n-r)!}$$
+  }
+
+  \textbf{Propiedades Binomiales Clave:}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}
+        \item $\binom{n}{0} = 1 \quad \text{y} \quad \binom{n}{n} = 1$
+        \item $\binom{n}{1} = n$
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}
+        \item \textbf{Simetría:} $\binom{n}{r} = \binom{n}{n-r}$
+        \item Ejemplo: $\binom{15}{13} = \binom{15}{2} = 105$
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Combinaciones con Repetición}
+  \textbf{Definición:} Selección de $r$ elementos de un conjunto de $n$ tipos distintos, donde los elementos de un mismo tipo pueden ser seleccionados repetidamente:
+
+  \formulabox{
+    \textbf{Fórmula de Combinaciones con Repetición ($CR_n^r$):}\\[0.1cm]
+    $$CR_n^r = \binom{n+r-1}{r} = \frac{(n+r-1)!}{r!(n-1)!}$$
+  }
+
+  \begin{block}{\textbf{Aplicación en Finanzas y Presupuestos}}
+    Permite modelar las maneras de asignar $r$ unidades idénticas de inversión o presupuesto entre $n$ partidas o centros de costos.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Ejercicio Resuelto 3.1: Muestreo de Auditoría Simple}
+  \begin{columns}[T]
+    \begin{column}{0.62\textwidth}
+      \textbf{Enunciado:} Para la revisión de cuentas por cobrar, un auditor debe seleccionar una muestra no ordenada de $4$ carpetas de clientes a partir de un grupo de $14$ deudores significativos. ¿Cuántas muestras distintas se pueden formar?
+
+      \vspace{0.08cm}
+      \textbf{Desarrollo:}
+      $${_{14} C_4} = \binom{14}{4} = \frac{14!}{4! \times 10!}$$
+      $${_{14} C_4} = \frac{14 \times 13 \times 12 \times 11}{4 \times 3 \times 2 \times 1} = \mathbf{1.001 \text{ muestras}}$$
+    \end{column}
+    \begin{column}{0.36\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{muestreo_auditoria.jpg}\\[0.05cm]
+      {\tiny \textbf{Selección de Muestras}}
+    \end{column}
+  \end{columns}
+  \vspace{0.08cm}
+  \textbf{Interpretación:} El auditor dispone de $1.001$ combinaciones de muestras posibles para emitir su dictamen técnico.
+\end{frame}
+
+\begin{frame}{Ejercicio Resuelto 3.2: Muestreo Estratificado}
+  \textbf{Enunciado:} En una consultora tributaria trabajan $6$ especialistas en IVA y $5$ en IUE. Se debe formar un equipo de $4$ consultores integrado por \textbf{exactamente $2$ especialistas en IVA y $2$ en IUE}. ¿Cuántos equipos se pueden constituir?
+
+  \vspace{0.1cm}
+  \textbf{Desarrollo:}
+  \begin{itemize}
+    \item Selección especialistas IVA ($2$ de $6$):
+    $${_6 C_2} = \binom{6}{2} = \frac{6 \times 5}{2 \times 1} = 15 \text{ formas}$$
+    \item Selección especialistas IUE ($2$ de $5$):
+    $${_5 C_2} = \binom{5}{2} = \frac{5 \times 4}{2 \times 1} = 10 \text{ formas}$$
+    \item Principio Multiplicativo (IVA \textbf{Y} IUE):
+    $$N_{\text{equipos}} = {_6 C_2} \times {_5 C_2} = 15 \times 10 = \mathbf{150 \text{ equipos}}$$
+  \end{itemize}
+
+  \textbf{Interpretación:} Se pueden estructurar $150$ comisiones balanceadas con la especialidad requerida.
+\end{frame}
+
+\begin{frame}{Ejercicio Resuelto 3.3: Muestreo con Condición ``Al menos uno''}
+  \textbf{Enunciado:} De un lote de $10$ declaraciones juradas, $3$ presentan inconsistencias y $7$ están correctas. Al extraer una muestra de $3$ declaraciones al azar:
+  \begin{enumerate}[a)]
+    \item ¿Cuántas muestras totales se pueden formar?
+    \item ¿Cuántas muestras contienen \textbf{al menos una con inconsistencia}?
+  \end{enumerate}
+
+  \vspace{0.05cm}
+  \textbf{Desarrollo:}
+  \begin{itemize}
+    \item \textbf{Total de muestras:} $N_{\text{total}} = \binom{10}{3} = \frac{10 \times 9 \times 8}{3 \times 2 \times 1} = 120$
+    \item \textbf{Muestras sin error (solo correctas):} $N_{\text{sin error}} = \binom{7}{3} = 35$
+    \item \textbf{Por Complemento (Al menos una con error):}
+    $$N_{\text{con error}} = N_{\text{total}} - N_{\text{sin error}} = 120 - 35 = \mathbf{85 \text{ muestras}}$$
+  \end{itemize}
+
+  \textbf{Interpretación:} En $85$ de las $120$ muestras ($70.83\%$), la auditoría detectará irregularidades fiscales.
+\end{frame}
+
+% ==================== SECCIÓN 5: GUÍA METODOLÓGICA ====================
+\begin{frame}{Guía de Decisión Rápida: ¿Qué Técnica Utilizar?}
+  \centering
+  \begin{table}
+    \footnotesize
+    \begin{tabular}{l c c l}
+      \toprule
+      \textbf{Técnica} & \textbf{¿Orden?} & \textbf{¿Todos ($n$)?} & \textbf{Fórmula Clave} \\
+      \midrule
+      \textbf{Principio Multiplicativo} & Sí / Secuencia & $k$ etapas & $n_1 \times n_2 \times \dots \times n_k$ \\
+      \addlinespace
+      \textbf{Permutación Simple} & \textbf{SÍ} & \textbf{SÍ} ($r=n$) & $P_n = n!$ \\
+      \addlinespace
+      \textbf{Permutación / Variación} & \textbf{SÍ} & \textbf{NO} ($r < n$) & ${_n P_r} = \frac{n!}{(n-r)!}$ \\
+      \addlinespace
+      \textbf{Permutación con Bloques} & \textbf{SÍ} & Con restricción & $(n-k+1)! \times k!$ \\
+      \addlinespace
+      \textbf{Permutación Repetición} & \textbf{SÍ} & \textbf{SÍ} & $P_n^{n_1, \dots, n_k} = \frac{n!}{\prod n_i!}$ \\
+      \addlinespace
+      \textbf{Combinación Simple} & \textbf{NO} & \textbf{NO} ($r \le n$) & ${_n C_r} = \binom{n}{r} = \frac{n!}{r!(n-r)!}$ \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+
+  \vspace{0.1cm}
+  \alertbox{\textbf{Regla Práctica:} Si formas \textbf{equipos, muestras o lotes} $\rightarrow$ Combinaciones. Si asignas \textbf{puestos, órdenes, filas o códigos} $\rightarrow$ Permutaciones.}
+\end{frame}
+
+\begin{frame}{Conexión Directa con la Próxima Clase}
+  \begin{block}{\textbf{El Paso Hacia la Unidad 2: Teoría de Probabilidades}}
+    En la siguiente sesión utilizaremos estos conteos para determinar la probabilidad de éxito en auditoría y control de calidad:
+    $$P(\text{Detectar error}) = \frac{\text{Muestras con error}}{\text{Muestras totales}} = \frac{85}{120} = 0.7083 \ (70.83\%)$$
+  \end{block}
+
+  \vspace{0.25cm}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}
+        \item Espacios muestrales finitos.
+        \item Probabilidad condicional.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}
+        \item Teorema de Bayes en auditoría.
+        \item Muestreo de aceptación.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ==================== CIERRE ====================
+\begin{frame}[plain]
+  \centering
+  \vspace{1.0cm}
+  {\Huge \color{dodgerblue} \textbf{¡Muchas Gracias!}}\\[0.4cm]
+  {\Large \color{darkblue} \textbf{MSc. Anselmo Salguero Arano}}\\[0.2cm]
+  {\normalsize \textbf{Docente de Estadística II}}\\[0.1cm]
+  {\small \color{boxborder} Carrera de Contaduría Pública --- UAGRM}\\[0.8cm]
+
+  \begin{minipage}{0.25\textwidth}
+    \centering
+    \includegraphics[width=0.7\linewidth]{Logouagrm.png}
+  \end{minipage}
+  \hspace{1cm}
+  \begin{minipage}{0.25\textwidth}
+    \centering
+    \includegraphics[width=0.7\linewidth]{Logocont.png}
+  \end{minipage}
+\end{frame}
+
+\end{document}

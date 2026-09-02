@@ -1,0 +1,170 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{enumitem}
+
+\geometry{margin=2.5cm}
+
+\begin{document}
+
+% ----------------------------------------------------------------------
+% ENCABEZADO INSTITUCIONAL
+% ----------------------------------------------------------------------
+\begin{center}
+    \textbf{\Large UNIVERSIDAD AUTÓNOMA GABRIEL RENÉ MORENO} \\[0.2cm]
+    \textbf{\large FACULTAD DE CIENCIAS CONTABLES} \\[0.2cm]
+    \textbf{\large CARRERA DE CONTADURÍA PÚBLICA} \\[0.5cm]
+    \textbf{\large ESTADÍSTICA II MAT-260} \\[1cm]
+\end{center}
+
+\tableofcontents
+\vspace{1cm}
+\hrule
+\vspace{1cm}
+
+% ----------------------------------------------------------------------
+% UNIDAD 1
+% ----------------------------------------------------------------------
+\section{Unidad 1: Análisis Combinatorio}
+
+\subsection{Introducción}
+El \textbf{análisis combinatorio} es la rama de las matemáticas que trata los diversos tipos de arreglos o selecciones que se pueden formar con los elementos de un conjunto. 
+El estudio del análisis combinatorio sirve como base para comprender y resolver problemas sobre probabilidades, ya que nos permite contar de manera eficiente los resultados posibles de un experimento aleatorio sin necesidad de enumerarlos uno por uno.
+
+\subsection{Conteo}
+El proceso de conteo simplifica la cuantificación de eventos. Para ello, nos apoyamos en dos principios fundamentales:
+
+\textbf{Ley de la multiplicación:} Si una elección consta de $k$ pasos, donde el primero puede realizarse de $n_{1}$ maneras, el segundo de $n_{2}$ maneras, y así sucesivamente, el número total de formas en que toda la situación puede resolverse es el producto de todas estas formas.
+\[
+\text{Total de formas} = n_{1} \times n_{2} \times \dots \times n_{k}
+\]
+Esta ley aplica para eventos que no son mutuamente excluyentes (pueden ocurrir en forma conjunta de manera secuencial).
+
+\textbf{Ley de la adición:} Si un evento $A$ puede ocurrir de $n$ formas diferentes y un evento $B$ de $m$ formas diferentes, cumpliendo la condición de que los eventos $A$ y $B$ son mutuamente excluyentes (la ocurrencia de uno impide la del otro), el número total de formas es la suma de sus formas individuales.
+\[
+\text{Total de formas} = n + m
+\]
+
+\vspace{0.5cm}
+\textbf{Ejemplo resuelto 1: Ley de la multiplicación} \\
+Un estudiante de Contaduría Pública desea armar un conjunto de ropa formal para una presentación. Tiene 4 camisas distintas, 3 pantalones de vestir y 2 pares de zapatos. ¿De cuántas formas diferentes puede vestirse?
+
+\textbf{Solución paso a paso:}
+\begin{enumerate}[noitemsep]
+    \item Identificamos el número de opciones para el primer paso (camisas): $n_{1} = 4$.
+    \item Identificamos el número de opciones para el segundo paso (pantalones): $n_{2} = 3$.
+    \item Identificamos el número de opciones para el tercer paso (zapatos): $n_{3} = 2$.
+    \item Dado que la elección de una prenda no excluye a la otra, aplicamos la ley de la multiplicación:
+    \[
+    \text{Formas totales} = 4 \times 3 \times 2 = 24
+    \]
+\end{enumerate}
+El estudiante puede armar 24 conjuntos de ropa formal diferentes.
+
+\subsection{Permutaciones}
+Una \textbf{permutación} es un arreglo ordenado de elementos. El número de permutaciones de $n$ objetos es el número de formas en las que pueden acomodarse esos objetos considerando estrictamente el orden de colocación.
+
+\textbf{Permutaciones de $n$ objetos (Factorial):} El número total de arreglos posibles de $n$ objetos tomados todos a la vez es $n$ factorial, denotado por $P_{n} = n!$.
+\[
+P_{n} = n! = n \times (n-1) \times (n-2) \times \dots \times 3 \times 2 \times 1
+\]
+\textbf{Propiedades del factorial:} $0! = 1$ y $1! = 1$.
+
+\textbf{Permutaciones de $n$ objetos tomados de $r$ a la vez:} Cuando nos interesa el número de arreglos de un subgrupo de tamaño $r$ extraído de un conjunto mayor $n$, utilizamos la fórmula:
+\[
+_{n}P_{r} = \frac{n!}{(n-r)!}
+\]
+
+\textbf{Permutaciones con repetición:} Si de $n$ objetos, $r_{1}$ son idénticos, $r_{2}$ son idénticos y así sucesivamente, el número de permutaciones distinguibles es:
+\[
+P_{\text{repetición}} = \frac{n!}{r_{1}! \times r_{2}! \times \dots \times r_{k}!}
+\]
+
+\textbf{Permutaciones circulares:} El número de formas en que $n$ objetos pueden acomodarse en un círculo (donde el punto de inicio es relativo) se calcula como:
+\[
+P_{\text{circular}} = (n-1)!
+\]
+
+\vspace{0.5cm}
+\textbf{Ejemplo resuelto 2: Permutaciones de $n$ tomados de $r$} \\
+Una firma auditora debe asignar a 3 de sus 8 mejores auditores a tres sucursales distintas: una en La Paz, una en Cochabamba y otra en Santa Cruz. ¿De cuántas formas distintas se puede hacer la asignación?
+
+\textbf{Solución paso a paso:}
+\begin{enumerate}[noitemsep]
+    \item Identificamos que el orden importa, ya que asignar al auditor A a La Paz y al auditor B a Santa Cruz es un arreglo diferente a asignar a B a La Paz y a A a Santa Cruz.
+    \item Identificamos la población total $n = 8$ y los puestos a ocupar $r = 3$.
+    \item Aplicamos la fórmula de permutaciones sin repetición:
+    \[
+    _{8}P_{3} = \frac{8!}{(8-3)!} = \frac{8!}{5!}
+    \]
+    \item Desarrollamos el factorial de 8 hasta el 5 para poder simplificar:
+    \[
+    _{8}P_{3} = \frac{8 \times 7 \times 6 \times 5!}{5!} = 8 \times 7 \times 6 = 336
+    \]
+\end{enumerate}
+Existen 336 formas diferentes de asignar a los tres auditores a las sucursales correspondientes.
+
+\subsection{Combinaciones}
+Una \textbf{combinación} es una selección o agrupación de objetos sin tener en cuenta el orden en que son seleccionados. A diferencia de las permutaciones, en las combinaciones solo nos interesa qué elementos componen el grupo, no cómo están acomodados.
+
+\textbf{Combinaciones de $n$ objetos tomados de $r$ a la vez:} El número de combinaciones posibles se obtiene dividiendo las permutaciones entre las formas de ordenar el subgrupo $r$:
+\[
+_{n}C_{r} = \frac{n!}{r! (n-r)!}
+\]
+
+\vspace{0.5cm}
+\textbf{Ejemplo resuelto 3: Combinaciones} \\
+Para revisar y auditar los balances de una empresa, se requiere formar un equipo de 4 analistas. Si el departamento cuenta con 10 analistas disponibles, ¿de cuántas formas se puede seleccionar el equipo de trabajo?
+
+\textbf{Solución paso a paso:}
+\begin{enumerate}[noitemsep]
+    \item Observamos que el orden de selección no es relevante (el equipo formado por Ana, Luis, Carlos y María es exactamente el mismo sin importar quién fue nombrado primero). Usamos combinaciones.
+    \item Determinamos la población $n = 10$ y el tamaño del subgrupo $r = 4$.
+    \item Reemplazamos los valores en la fórmula de combinaciones:
+    \[
+    _{10}C_{4} = \frac{10!}{4! (10-4)!} = \frac{10!}{4! \times 6!}
+    \]
+    \item Expandimos el numerador hasta el 6 factorial para facilitar la simplificación:
+    \[
+    _{10}C_{4} = \frac{10 \times 9 \times 8 \times 7 \times 6!}{4 \times 3 \times 2 \times 1 \times 6!}
+    \]
+    \item Simplificamos el cálculo aritmético multiplicando el denominador ($4 \times 3 \times 2 \times 1 = 24$) y operando:
+    \[
+    _{10}C_{4} = \frac{5040}{24} = 210
+    \]
+\end{enumerate}
+El gerente puede formar 210 equipos de analistas diferentes.
+
+\subsection{Diferencia entre Permutación y Combinación}
+La principal diferencia y la clave para resolver cualquier ejercicio de la unidad es \textbf{la importancia del orden}. 
+A cada grupo ordenado de elementos se le llama permutación, mientras que a un grupo no ordenado se le llama combinación. 
+
+Para explicarlo de manera evidente, consideremos un conjunto de letras $\{A, B, C\}$. 
+Si deseamos seleccionar grupos de 3 letras evaluando cada caso, tenemos:
+\begin{itemize}
+    \item \textbf{Permutación (el orden importa):} Obtendremos 6 arreglos diferentes: $(A,B,C)$, $(A,C,B)$, $(B,A,C)$, $(B,C,A)$, $(C,A,B)$, y $(C,B,A)$. Cada uno representa una permutación diferente por su orden de colocación.
+    \item \textbf{Combinación (el orden no importa):} Esas mismas letras representan exactamente un mismo grupo en su naturaleza elemental. Por tanto, las 6 permutaciones representan $1$ sola combinación.
+\end{itemize}
+
+% ----------------------------------------------------------------------
+% EJERCICIOS PROPUESTOS
+% ----------------------------------------------------------------------
+\subsection{Ejercicios propuestos}
+\begin{enumerate}
+    \item Una clave de acceso al aula virtual Moodle debe estar formada por 3 vocales distintas seguidas de 2 dígitos pares distintos. Utilizando la ley de la multiplicación, ¿cuántas contraseñas diferentes pueden crearse?
+    
+    \item En una mesa redonda de la Facultad de Ciencias Contables deben sentarse el decano, el vicedecano y 4 directores de carrera. ¿De cuántas formas distintas pueden acomodarse considerando la permutación circular?
+    
+    \item De un grupo de 15 estudiantes destacados de Estadística II, el docente debe seleccionar a un comité de 4 personas para coordinar un seminario. ¿De cuántas maneras diferentes puede seleccionar al grupo si no hay jerarquía entre ellos?
+    
+    \item Con las letras de la palabra "PROBABILIDAD", ¿cuántas permutaciones diferentes se pueden formar considerando que existen letras repetidas?
+    
+    \item Se desea conformar una comisión de presupuesto compuesta por 3 profesores titulares y 2 profesores interinos. Si hay 8 profesores titulares y 5 profesores interinos disponibles, ¿de cuántas maneras se puede establecer dicha comisión?
+\end{enumerate}
+
+\end{document}

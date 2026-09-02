@@ -1,0 +1,317 @@
+// ==============================================================================
+// BANCO DE PREGUNTAS DIAGNÓSTICAS - ESTADÍSTICA II (MAT-260 EP)
+// 40 PREGUNTAS: MATEMÁTICAS BÁSICAS (1-20) Y ESTADÍSTICA DESCRIPTIVA (21-40)
+// MSc. Anselmo Salguero Arano - UAGRM
+// ==============================================================================
+
+// ------------------------------------------------------------------------------
+// BLOQUE 1: MATEMÁTICAS BÁSICAS, ARITMÉTICA, ÁLGEBRA Y SUMATORIAS (PREGUNTAS 1 - 20)
+// ------------------------------------------------------------------------------
+
+$CATEGORY: $course$/top/Diagnostico_Estadistica_2/Matematicas_Basicas
+
+// Pregunta 1: Jerarquía de operaciones y fracciones
+::P01_Jerarquia_Operaciones::Al resolver la operación $\frac{3}{4} + \frac{5}{2} \cdot \frac{1}{3} - \frac{7}{12}$, ¿cuál es el resultado simplificado? {
+    ~$\frac{1}{2}$ # Incorrecto. Revise la multiplicación previa: $\frac{5}{2}\cdot\frac{1}{3}=\frac{5}{6}$.
+    =$\frac{1}{1}$ # Correcto: $\frac{3}{4} + \frac{5}{6} - \frac{7}{12} = \frac{9 + 10 - 7}{12} = \frac{12}{12} = 1$.
+    ~$\frac{5}{6}$ # Incorrecto. Faltó sumar correctamente con el mínimo común múltiplo.
+    ~$\frac{4}{3}$ # Incorrecto. Revise las sumas y restas de fracciones.
+}
+
+// Pregunta 2: Leyes de exponentes y potencias
+::P02_Leyes_Exponentes::Simplifique la expresión $\frac{(2^3 \cdot 2^{-1})^2}{2^2}$: {
+    =$2^2 = 4$ # Correcto: $(2^{3-1})^2 / 2^2 = (2^2)^2 / 2^2 = 2^4 / 2^2 = 2^2 = 4$.
+    ~$2^3 = 8$ # Incorrecto. Revise el producto de potencias de igual base.
+    ~$2^1 = 2$ # Incorrecto. Verifique la división de potencias.
+    ~$2^0 = 1$ # Incorrecto. Verifique los exponentes.
+}
+
+// Pregunta 3: Notación de Sumatoria Simple
+::P03_Sumatoria_Simple::Si $x_1 = 3$, $x_2 = 5$, $x_3 = 7$ y $x_4 = 9$, el valor de $\sum_{i=1}^{4} (x_i - 2)$ es: {
+    =16 # Correcto: $(3-2) + (5-2) + (7-2) + (9-2) = 1 + 3 + 5 + 7 = 16$. También $\sum x_i - 4(2) = 24 - 8 = 16$.
+    ~24 # Incorrecto. Ese es el valor de $\sum x_i$ sin restar la constante 2 a cada término.
+    ~18 # Incorrecto. Revise la suma término a término.
+    ~20 # Incorrecto. Verifique el cálculo de cada diferencia.
+}
+
+// Pregunta 4: Propiedad de la Sumatoria de una Constante
+::P04_Sumatoria_Constante::Para cualquier constante $c = 8$ y $n = 15$ datos, el valor de $\sum_{i=1}^{15} c$ es igual a: {
+    =120 # Correcto: $\sum_{i=1}^{n} c = n \cdot c = 15 \cdot 8 = 120$.
+    ~8 # Incorrecto. La constante se suma a sí misma 15 veces.
+    ~15 # Incorrecto. Debe multiplicarse $n$ por $c$.
+    ~64 # Incorrecto. No se eleva al cuadrado la constante.
+}
+
+// Pregunta 5: Sumatoria de Diferencias al Cuadrado
+::P05_Sumatoria_Cuadrados::Dados los valores $x = \{2, 4, 6\}$ con media $\bar{x} = 4$, el valor de $\sum_{i=1}^{3} (x_i - \bar{x})^2$ es: {
+    =8 # Correcto: $(2-4)^2 + (4-4)^2 + (6-4)^2 = (-2)^2 + 0^2 + 2^2 = 4 + 0 + 4 = 8$.
+    ~0 # Incorrecto. $\sum (x_i - \bar{x}) = 0$, pero las desviaciones elevadas al cuadrado son positivas.
+    ~4 # Incorrecto. Faltó sumar el segundo término cuadrático.
+    ~16 # Incorrecto. Verifique los cuadrados individuales antes de sumar.
+}
+
+// Pregunta 6: Ecuación lineal y despeje de media
+::P06_Despeje_Media::Si la media aritmética de 5 notas es $\bar{x} = 65$, y cuatro de ellas son $60, 70, 55, 80$, ¿cuál es el valor de la quinta nota $x_5$? {
+    =60 # Correcto: $\frac{60+70+55+80+x_5}{5} = 65 \Rightarrow 265 + x_5 = 325 \Rightarrow x_5 = 325 - 265 = 60$.
+    ~65 # Incorrecto. Si fuera 65, la suma total sería 330 dando un promedio de 66.
+    ~50 # Incorrecto. Revise el despeje de la ecuación.
+    ~75 # Incorrecto. Verifique la suma de las 4 notas conocidas.
+}
+
+// Pregunta 7: Despeje de fórmula de estandarización Z
+::P07_Despeje_Z::En la fórmula de estandarización normal $Z = \frac{X - \mu}{\sigma}$, al despejar la variable original $X$ se obtiene: {
+    =$X = \mu + Z\sigma$ # Correcto: Multiplicando por $\sigma$ se tiene $Z\sigma = X - \mu$, sumando $\mu$: $X = \mu + Z\sigma$.
+    ~$X = \frac{Z\sigma}{\mu}$ # Incorrecto. No corresponde a un despeje algebraico válido.
+    ~$X = \mu - Z\sigma$ # Incorrecto. El signo de $\mu$ pasa a sumar, no a restar.
+    ~$X = \frac{\mu + Z}{\sigma}$ # Incorrecto. La desviación estándar $\sigma$ multiplica a $Z$.
+}
+
+// Pregunta 8: Despeje de tamaño muestral
+::P08_Despeje_Muestral::Dada la fórmula del margen de error $E = Z \cdot \frac{\sigma}{\sqrt{n}}$, al despejar el tamaño de muestra $n$ se obtiene: {
+    =$n = \frac{Z^2 \cdot \sigma^2}{E^2}$ # Correcto: $\sqrt{n} = \frac{Z\sigma}{E}$, elevando ambos miembros al cuadrado: $n = \frac{Z^2 \sigma^2}{E^2}$.
+    ~$n = \frac{Z \cdot \sigma}{E^2}$ # Incorrecto. Olvidó elevar al cuadrado el numerador.
+    ~$n = \sqrt{\frac{Z \cdot \sigma}{E}}$ # Incorrecto. Debe despejarse elevando al cuadrado.
+    ~$n = \frac{E^2}{Z^2 \cdot \sigma^2}$ # Incorrecto. La fracción está invertida.
+}
+
+// Pregunta 9: Porcentajes y Proporciones en Finanzas
+::P09_Porcentajes_Ventas::Una empresa incrementó sus ventas de 120,000 Bs a 150,000 Bs. ¿Cuál fue el porcentaje de incremento relativo? {
+    =25% # Correcto: $\frac{150,000 - 120,000}{120,000} \cdot 100 = \frac{30,000}{120,000} \cdot 100 = 25\%$.
+    ~20% # Incorrecto. El 20% se obtendría si se divide sobre el valor final, pero la tasa de crecimiento es sobre la base inicial.
+    ~30% # Incorrecto. El incremento absoluto es 30,000 Bs, pero en porcentaje es el 25%.
+    ~15% # Incorrecto. Revise la fórmula de variación porcentual.
+}
+
+// Pregunta 10: Propiedad de Desviaciones respecto a la Media (V/F)
+::P10_Propiedad_Suma_Desviaciones::La suma de las desviaciones de un conjunto de datos respecto a su media aritmética siempre es igual a cero ($\sum (x_i - \bar{x}) = 0$). {TRUE#Correcto: Es una propiedad matemática fundamental de la media aritmética debido a que los desvíos positivos compensan exactamente a los negativos.}
+
+// Pregunta 11: Raíz Cuadrada y Propiedades de Radicales
+::P11_Radicales::Al simplificar la expresión $\sqrt{\frac{144}{25} \cdot 100}$ se obtiene: {
+    =24 # Correcto: $\sqrt{\frac{144 \cdot 100}{25}} = \sqrt{144 \cdot 4} = \sqrt{576} = 24$, o bien $\frac{12}{5} \cdot 10 = 24$.
+    ~20 # Incorrecto. Verifique la raíz de cada factor.
+    ~12 # Incorrecto. Faltó multiplicar por la raíz del término exterior.
+    ~48 # Incorrecto. Revise la simplificación de fracciones bajo el radical.
+}
+
+// Pregunta 12: Ecuación de la Recta
+::P12_Ecuacion_Recta::La ecuación lineal que pasa por el punto $(0, 5)$ con pendiente $m = 3$ está dada por: {
+    =$y = 3x + 5$ # Correcto: La forma pendiente-intersección es $y = mx + b$, donde $m=3$ y $b=5$.
+    ~$y = 5x + 3$ # Incorrecto. La pendiente multiplica a $x$ y el intercepto es la constante.
+    ~$y = 3x - 5$ # Incorrecto. El intercepto en el eje Y es $+5$.
+    ~$y = \frac{1}{3}x + 5$ # Incorrecto. La pendiente dada es $3$.
+}
+
+// Pregunta 13: Factorial de un Número
+::P13_Factorial::El valor numérico de $\frac{7!}{5! \cdot 2!}$ (fundamental para combinatoria y distribución binomial) es: {
+    =21 # Correcto: $\frac{7 \cdot 6 \cdot 5!}{5! \cdot 2 \cdot 1} = \frac{42}{2} = 21$.
+    ~42 # Incorrecto. Olvidó dividir entre $2! = 2$.
+    ~14 # Incorrecto. Verifique el producto en el numerador.
+    ~7 # Incorrecto. Revise el desarrollo factorial.
+}
+
+// Pregunta 14: Factorial de Cero (V/F)
+::P14_Factorial_Cero::Por definición y convención matemática en combinatoria y probabilidad, $0! = 1$. {TRUE#Correcto: Por axioma combinatorio y función Gamma, $0! = 1$, lo que permite evaluar distribuciones como Binomial y Poisson cuando $k=0$.}
+
+// Pregunta 15: Notación de Conjuntos y Probabilidad
+::P15_Union_Interseccion::Si el conjunto $A = \{1, 2, 3, 4, 5\}$ y $B = \{4, 5, 6, 7\}$, la intersección $A \cap B$ es: {
+    =$\{4, 5\}$ # Correcto: La intersección está formada por los elementos comunes a ambos conjuntos.
+    ~$\{1, 2, 3, 4, 5, 6, 7\}$ # Incorrecto. Esa es la unión $A \cup B$.
+    ~$\{1, 2, 3\}$ # Incorrecto. Esa es la diferencia $A - B$.
+    ~$\emptyset$ # Incorrecto. Sí existen elementos comunes (4 y 5).
+}
+
+// Pregunta 16: Cardinalidad de Conjunto Producto
+::P16_Cardinalidad_Producto::Si un auditor debe seleccionar un comprobante de un lote de 4 tipos de facturas y de 5 sucursales distintas, el total de combinaciones posibles es: {
+    =20 # Correcto: Principio fundamental de conteo: $4 \times 5 = 20$ combinaciones.
+    ~9 # Incorrecto. No deben sumarse, sino multiplicarse por el principio multiplicativo.
+    ~15 # Incorrecto. Verifique el producto $4 \times 5$.
+    ~25 # Incorrecto. Revise los valores de cada conjunto.
+}
+
+// Pregunta 17: Logaritmo Natural y Exponencial
+::P17_Logaritmo_Exponencial::Si se tiene la expresión $e^{\ln(15)}$, su valor exacto es: {
+    =15 # Correcto: La función exponencial y el logaritmo natural son funciones inversas: $e^{\ln(x)} = x$ para $x > 0$.
+    ~1 # Incorrecto. Recuerde la propiedad de funciones inversas.
+    ~0 # Incorrecto. $\ln(e) = 1$, pero $e^{\ln(15)} = 15$.
+    ~$\ln(15)$ # Incorrecto. Se simplifica directamente a 15.
+}
+
+// Pregunta 18: Emparejamiento - Conceptos de Álgebra y Sumatorias
+::P18_Emparejamiento_Matematicas::Relacione cada símbolo o propiedad matemática con su definición correcta: {
+    =$\sum_{i=1}^{n} x_i$ -> Suma de todos los valores desde el primero hasta el enésimo
+    =$n!$ -> Producto sucesivo de todos los enteros positivos desde 1 hasta n
+    =$|a|$ -> Distancia de un número al origen, siempre no negativa
+    =$\bar{x} = \frac{\sum x_i}{n}$ -> Media aritmética o promedio de una muestra
+}
+
+// Pregunta 19: Emparejamiento - Leyes de Signos y Operaciones
+::P19_Emparejamiento_Operaciones::Relacione cada operación con su resultado exacto: {
+    =$(-3) \cdot (-4)$ -> 12
+    =$-5 + (-7)$ -> -12
+    =$(-2)^3$ -> -8
+    =$(-2)^4$ -> 16
+}
+
+// Pregunta 20: Despeje en Proporciones
+::P20_Proporcion_Muestral::Si en una muestra $\frac{x}{250} = 0.08$, ¿cuál es el valor de $x$ (cantidad de éxitos en auditoría)? {
+    =20 # Correcto: $x = 250 \cdot 0.08 = 20$.
+    ~25 # Incorrecto. $250 \times 0.10 = 25$, pero aquí es 0.08.
+    ~18 # Incorrecto. Revise el producto decimal.
+    ~200 # Incorrecto. Verifique la posición de la coma decimal.
+}
+
+// ------------------------------------------------------------------------------
+// BLOQUE 2: ESTADÍSTICA DESCRIPTIVA, TABLAS Y MEDIDAS (PREGUNTAS 21 - 40)
+// ------------------------------------------------------------------------------
+
+$CATEGORY: $course$/top/Diagnostico_Estadistica_2/Estadistica_Descriptiva
+
+// Pregunta 21: Población vs Muestra
+::P21_Poblacion_Muestra::En un estudio sobre el cumplimiento tributario en Santa Cruz, la totalidad de todas las empresas legalmente registradas en el SIN representa: {
+    =La Población # Correcto: La población es el conjunto completo de todos los elementos o unidades de análisis bajo estudio.
+    ~La Muestra # Incorrecto. La muestra es solo un subconjunto representativo de la población.
+    ~El Parámetro # Incorrecto. El parámetro es una medida numérica que describe a la población.
+    ~El Estadístico # Incorrecto. El estadístico se calcula sobre los datos de una muestra.
+}
+
+// Pregunta 22: Clasificación de Variables - Variable Cuantitativa Discreta
+::P22_Variable_Discreta::¿Cuál de las siguientes variables corresponde a una variable cuantitativa discreta? {
+    =Número de transacciones bancarias rechazadas en un día # Correcto: Se obtiene mediante conteo y solo toma valores enteros no negativos (0, 1, 2, ...).
+    ~Monto en bolivianos de los ingresos mensuales # Incorrecto. Es continua porque puede tomar cualquier valor en un intervalo real.
+    ~Nivel de satisfacción del cliente (Bajo, Medio, Alto) # Incorrecto. Es cualitativa ordinal.
+    ~Tiempo en minutos que tarda una auditoría # Incorrecto. Es cuantitativa continua.
+}
+
+// Pregunta 23: Clasificación de Variables - Variable Cualitativa Nominal
+::P23_Variable_Nominal::El tipo de cuenta contable (Activo, Pasivo, Patrimonio, Ingreso, Gasto) es un ejemplo de variable: {
+    =Cualitativa Nominal # Correcto: Representa categorías sin un orden jerárquico intrínseco natural.
+    ~Cualitativa Ordinal # Incorrecto. En las variables ordinales existe una jerarquía o rango estricto.
+    ~Cuantitativa Continua # Incorrecto. No se expresa numéricamente por medición.
+    ~Cuantitativa Discreta # Incorrecto. No es una variable numérica.
+}
+
+// Pregunta 24: Cálculo de la Media Aritmética
+::P24_Calculo_Media::Los tiempos (en días) para cerrar un balance mensual en 5 sucursales fueron: 4, 6, 7, 7, 11. La media aritmética es: {
+    =7 días # Correcto: $\bar{x} = \frac{4+6+7+7+11}{5} = \frac{35}{5} = 7$.
+    ~6.5 días # Incorrecto. Revise la suma de los 5 valores.
+    ~8 días # Incorrecto. La suma total es 35, dividida entre 5 da 7.
+    ~7.5 días # Incorrecto. Verifique la división.
+}
+
+// Pregunta 25: Cálculo de la Mediana
+::P25_Calculo_Mediana::Para el conjunto de datos ordenados: 12, 15, 18, 22, 28, 35, la mediana ($Me$) es: {
+    =20 # Correcto: Al ser $n=6$ (par), la mediana es el promedio de los dos datos centrales: $\frac{18 + 22}{2} = 20$.
+    ~18 # Incorrecto. Al haber un número par de datos, se promedian los dos del centro.
+    ~22 # Incorrecto. Debe calcularse la semisuma de 18 y 22.
+    ~21.67 # Incorrecto. Ese valor corresponde a la media, no a la mediana.
+}
+
+// Pregunta 26: Cálculo de la Moda
+::P26_Calculo_Moda::En los registros de auditoría se encontraron los siguientes errores por lote: 3, 5, 2, 5, 8, 5, 2, 9. La moda ($Mo$) es: {
+    =5 # Correcto: La moda es el valor con mayor frecuencia absoluta (el 5 se repite 3 veces).
+    ~2 # Incorrecto. El 2 se repite solo 2 veces, mientras que el 5 se repite 3 veces.
+    ~4.875 # Incorrecto. Ese es el promedio aritmético.
+    ~8 # Incorrecto. El 8 solo aparece una vez.
+}
+
+// Pregunta 27: Medida de tendencia central robusta ante valores atípicos
+::P27_Medida_Robusta::Cuando una distribución de datos económicos presenta valores extremos o atípicos muy elevados (asimetría pronunciada), la medida de tendencia central más representativa es: {
+    =La Mediana # Correcto: La mediana es una medida robusta que no se ve afectada por valores extremos atípicos.
+    ~La Media Aritmética # Incorrecto. La media es muy sensible y se distorsiona fuertemente con valores extremos.
+    ~La Varianza # Incorrecto. La varianza es una medida de dispersión, no de tendencia central.
+    ~El Rango # Incorrecto. El rango depende exclusivamente de los dos valores más extremos.
+}
+
+// Pregunta 28: Cálculo del Rango Estadístico
+::P28_Calculo_Rango::Si el sueldo mínimo de un grupo de analistas es 3,200 Bs y el sueldo máximo es 8,500 Bs, el rango o recorrido de los sueldos es: {
+    =5,300 Bs # Correcto: $R = X_{max} - X_{min} = 8,500 - 3,200 = 5,300$ Bs.
+    ~5,850 Bs # Incorrecto. Ese es el promedio de los extremos.
+    ~11,700 Bs # Incorrecto. No se suman los extremos, se restan.
+    ~4,300 Bs # Incorrecto. Revise la resta.
+}
+
+// Pregunta 29: Varianza Muestral vs Poblacional
+::P29_Divisor_Varianza_Muestral::En el cálculo de la varianza muestral ($S^2$), la suma de cuadrados $\sum (x_i - \bar{x})^2$ se divide entre: {
+    =$n - 1$ (grados de libertad) # Correcto: Se divide entre $n-1$ para obtener un estimador insesgado de la varianza poblacional.
+    ~$n$ # Incorrecto. La división entre $N$ se usa para la varianza poblacional $\sigma^2$.
+    ~$n + 1$ # Incorrecto. No existe esa fórmula en estadística estándar.
+    ~$\sqrt{n}$ # Incorrecto. Eso se utiliza en el error estándar, no en la varianza.
+}
+
+// Pregunta 30: Desviación Estándar
+::P30_Desviacion_Estandar::Si la varianza muestral del tiempo de entrega de pedidos es $S^2 = 36 \text{ días}^2$, la desviación estándar muestral $S$ es: {
+    =6 días # Correcto: La desviación estándar es la raíz cuadrada positiva de la varianza: $S = \sqrt{36} = 6$ días.
+    ~18 días # Incorrecto. No se divide entre 2, se extrae la raíz cuadrada.
+    ~1,296 días # Incorrecto. No se eleva al cuadrado, se aplica raíz.
+    ~6 días al cuadrado # Incorrecto. Las unidades de la desviación estándar son lineales (días), no cuadráticas.
+}
+
+// Pregunta 31: Coeficiente de Variación (CV)
+::P31_Coeficiente_Variacion::Un activo financiero A tiene media de rendimiento $\bar{x} = 20\%$ y desviación $S = 4\%$. ¿Cuál es su Coeficiente de Variación ($CV$)? {
+    =20% # Correcto: $CV = \frac{S}{\bar{x}} \cdot 100\% = \frac{4}{20} \cdot 100\% = 0.20 \cdot 100\% = 20\%$.
+    ~5% # Incorrecto. Revise la fracción $\frac{4}{20} = 0.20$.
+    ~80% # Incorrecto. La desviación estándar va en el numerador.
+    ~16% # Incorrecto. Verifique la división.
+}
+
+// Pregunta 32: Comparación de Variabilidad Relativa (V/F)
+::P32_Uso_CV::El Coeficiente de Variación ($CV$) permite comparar la dispersión relativa entre dos conjuntos de datos que poseen diferentes unidades de medida o medias muy distintas. {TRUE#Correcto: Al ser una medida adimensional porcentual, el CV es el indicador idóneo para comparar la homogeneidad o riesgo relativo entre variables con distintas escalas.}
+
+// Pregunta 33: Suma de Frecuencias Relativas
+::P33_Frecuencias_Relativas::En cualquier tabla de frecuencias, la suma de todas las frecuencias relativas simples $\sum h_i$ siempre es igual a: {
+    =1.00 (o 100%) # Correcto: Cada $h_i = \frac{f_i}{n}$, por lo que $\sum h_i = \frac{\sum f_i}{n} = \frac{n}{n} = 1$.
+    ~$n$ # Incorrecto. La suma que da $n$ es la de las frecuencias absolutas $\sum f_i$.
+    ~0 # Incorrecto. Las frecuencias relativas son siempre valores positivos mayores o iguales a 0.
+    ~La media $\bar{x}$ # Incorrecto. No tiene relación con la media aritmética.
+}
+
+// Pregunta 34: Marca de Clase en Intervalos
+::P34_Marca_Clase::Para el intervalo de clase $[40, 60)$, la marca de clase o punto medio $x_i$ es: {
+    =50 # Correcto: $x_i = \frac{L_i + L_s}{2} = \frac{40 + 60}{2} = \frac{100}{2} = 50$.
+    ~20 # Incorrecto. Ese es el ancho o amplitud del intervalo ($60 - 40 = 20$).
+    ~45 # Incorrecto. La semisuma es exactamente 50.
+    ~55 # Incorrecto. Verifique el promedio de los límites.
+}
+
+// Pregunta 35: Gráfico Estadístico para Variables Continuas
+::P35_Grafico_Histograma::El gráfico estadístico formado por rectángulos contiguos cuyas bases corresponden a los intervalos de clase y sus alturas a las frecuencias se denomina: {
+    =Histograma # Correcto: El histograma es la representación gráfica estándar para distribuciones de frecuencias con datos cuantitativos agrupados en intervalos.
+    ~Diagrama de Sectores (Torta) # Incorrecto. El diagrama de sectores se utiliza principalmente para variables cualitativas.
+    ~Diagrama de Dispersión # Incorrecto. Se usa para analizar la relación bivariada entre dos variables continuas.
+    ~Gráfico de Barras Separadas # Incorrecto. Las barras separadas se usan para variables cualitativas o discretas sin continuidad.
+}
+
+// Pregunta 36: Propiedad de la Desviación Estándar (V/F)
+::P36_Desviacion_No_Negativa::La desviación estándar de cualquier conjunto de datos reales nunca puede ser un número negativo ($S \ge 0$). {TRUE#Correcto: Como es la raíz cuadrada de una suma de desviaciones al cuadrado dividida entre $n-1$, $S$ es siempre mayor o igual a cero.}
+
+// Pregunta 37: Regla Empírica de la Distribución Normal
+::P37_Regla_Campana::En una distribución simétrica con forma de campana (Normal), aproximadamente qué porcentaje de los datos se encuentra dentro del intervalo $[\mu - \sigma, \mu + \sigma]$: {
+    =Aproximadamente 68% # Correcto: Según la regla empírica, el 68.26% de los datos se ubica a $\pm 1$ desviación estándar de la media.
+    ~Aproximadamente 95% # Incorrecto. El 95.44% se ubica a $\pm 2$ desviaciones estándar.
+    ~Aproximadamente 99.7% # Incorrecto. El 99.73% se ubica a $\pm 3$ desviaciones estándar.
+    ~Exactamente 50% # Incorrecto. El 50% corresponde a la mitad de la distribución.
+}
+
+// Pregunta 38: Emparejamiento - Medidas Estadísticas y sus Fórmulas
+::P38_Emparejamiento_Medidas::Relacione cada medida estadística descriptiva con su fórmula correspondiente: {
+    =Media Aritmética Muestral -> $\bar{x} = \frac{\sum x_i}{n}$
+    =Varianza Muestral -> $S^2 = \frac{\sum (x_i - \bar{x})^2}{n - 1}$
+    =Desviación Estándar Muestral -> $S = \sqrt{S^2}$
+    =Coeficiente de Variación -> $CV = \frac{S}{\bar{x}} \cdot 100\%$
+}
+
+// Pregunta 39: Emparejamiento - Tipos de Gráficos y su Uso
+::P39_Emparejamiento_Graficos::Relacione cada tipo de gráfico con la información que mejor representa: {
+    =Histograma -> Distribución de frecuencias para variables cuantitativas continuas en intervalos
+    =Diagrama de Barras -> Frecuencias de categorías cualitativas o valores cuantitativos discretos
+    =Polígono de Frecuencias -> Representación lineal que une los puntos de las marcas de clase
+    =Ojiva -> Gráfico de frecuencias absolutas o relativas acumuladas
+}
+
+// Pregunta 40: Probabilidad Clásica de Laplace
+::P40_Probabilidad_Laplace::Si un lote de 100 facturas contiene 8 facturas con errores de cálculo, la probabilidad de seleccionar al azar una factura con error es: {
+    =0.08 (o 8%) # Correcto: Según la definición clásica de Laplace: $P(A) = \frac{\text{Casos Favorables}}{\text{Casos Posibles}} = \frac{8}{100} = 0.08 = 8\%$.
+    ~0.80 (o 80%) # Incorrecto. $\frac{8}{100} = 0.08$, no $0.80$.
+    ~0.008 (o 0.8%) # Incorrecto. Verifique los ceros decimales.
+    ~0.92 (o 92%) # Incorrecto. Esa es la probabilidad del evento complementario (factura sin error).
+}

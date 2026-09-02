@@ -1,0 +1,294 @@
+\chapter{Regresión Lineal Simple y Correlación Aplicada a Costos y Finanzas}
+\label{cap:regresion_correlacion}
+
+\section*{Objetivos de Aprendizaje de la Unidad}
+Al finalizar el estudio de esta unidad, el estudiante de Contaduría Pública será capaz de:
+\begin{enumerate}
+    \item Construir e interpretar \textbf{diagramas de dispersión} para identificar patrones de relación lineal, no lineal o ausencia de correlación entre variables empresariales.
+    \item Calcular e interpretar con exactitud el \textbf{Coeficiente de Correlación de Pearson ($r$)} y evaluar la fuerza y sentido de la asociación bivariada.
+    \item Ajustar la ecuación de la \textbf{recta de regresión lineal simple} mediante el método de los \textbf{Mínimos Cuadrados Ordinarios (MCO)}.
+    \item Separar e interpretar los componentes de \textbf{Costo Fijo ($\beta_0$)} y \textbf{Costo Variable Unitario ($\beta_1$)} en la estructura de costos mixtos de una empresa.
+    \item Evaluar la bondad de ajuste del modelo mediante el \textbf{Coeficiente de Determinación ($R^2$)} y el \textbf{Error Estándar de la Estimación ($s_{yx}$)}.
+    \item Generar \textbf{pronósticos puntuales y por intervalo} para la toma de decisiones gerenciales, financieras y presupuestarias.
+\end{enumerate}
+
+\section{Introducción al Análisis de Relaciones Bivariadas}
+En las ciencias contables, financieras y administrativas, las decisiones rara vez involucran una sola variable aislada. Por el contrario, los directores financieros y contadores analizan continuamente cómo una variable influye o se relaciona con otra:
+\begin{itemize}
+    \item ¿Cómo varía el \textbf{Costo Total de Producción ($Y$)} en función del \textbf{Número de Horas-Máquina o Unidades Producidas ($X$)}?
+    \item ¿En qué medida el incremento en los \textbf{Gastos de Publicidad ($X$)} impulsa los \textbf{Ingresos por Ventas ($Y$)}?
+    \item ¿Cómo influye el \textbf{Plazo de Crédito otorgado ($X$)} en el \textbf{Monto de Cuentas Incobrables ($Y$)}?
+\end{itemize}
+
+El \textbf{Análisis de Correlación} cuantifica la fuerza y dirección de la relación lineal entre dos variables, mientras que el \textbf{Análisis de Regresión} formula una ecuación matemática para estimar o predecir el valor de la variable dependiente $Y$ a partir de la variable independiente $X$.
+
+\section{El Diagrama de Dispersión}
+
+\begin{definicion}{Diagrama de Dispersión}
+Un \textbf{Diagrama de Dispersión} es una representación gráfica cartesiana donde cada observación muestral se grafica como un punto en el plano bidimensional $(x_i, y_i)$.
+\begin{itemize}
+    \item \textbf{Eje Horizontal ($X$):} Variable independiente, predictora o explicativa.
+    \item \textbf{Eje Vertical ($Y$):} Variable dependiente, de respuesta o pronosticada.
+\end{itemize}
+\end{definicion}
+
+El diagrama de dispersión es el primer paso indispensable en cualquier estudio econométrico o contable, pues permite verificar visualmente si la relación tiene tendencia lineal positiva, lineal negativa, curvilínea o si los puntos se encuentran completamente dispersos sin correlación aparente.
+
+\section{Coeficiente de Correlación Lineal de Pearson ($r$)}
+Desarrollado por Karl Pearson, mide el grado de asociación lineal entre dos variables cuantitativas continuas.
+
+\begin{definicion}{Coeficiente de Correlación Muestral de Pearson ($r$)}
+Para una muestra de $n$ pares de observaciones $(x_1, y_1), (x_2, y_2), \dots, (x_n, y_n)$, el coeficiente $r$ se calcula como:
+\begin{equation}
+    r = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \cdot \sum (y_i - \bar{y})^2}} = \frac{n \sum x_i y_i - (\sum x_i)(\sum y_i)}{\sqrt{\left[ n \sum x_i^2 - (\sum x_i)^2 \right] \left[ n \sum y_i^2 - (\sum y_i)^2 \right]}}
+\end{equation}
+\end{definicion}
+
+\subsection{Propiedades e Interpretación de $r$}
+\begin{enumerate}
+    \item \textbf{Rango Acotado:} $-1 \le r \le +1$.
+    \item \textbf{Sentido de la Relación:}
+    \begin{itemize}
+        \item Si $r > 0$: Correlación positiva o directa (al aumentar $X$, tiende a aumentar $Y$).
+        \item Si $r < 0$: Correlación negativa o inversa (al aumentar $X$, tiende a disminuir $Y$).
+        \item Si $r = 0$: Ausencia de correlación lineal (no existe relación lineal entre las variables).
+    \end{itemize}
+    \item \textbf{Fuerza de la Asociación (Criterio Estándar en Negocios):}
+    \begin{itemize}
+        \item $|r| \ge 0.90$: Correlación lineal muy fuerte o excelente.
+        \item $0.70 \le |r| < 0.90$: Correlación lineal fuerte.
+        \item $0.40 \le |r| < 0.70$: Correlación lineal moderada.
+        \item $0.20 \le |r| < 0.40$: Correlación lineal débil.
+        \item $|r| < 0.20$: Correlación lineal muy débil o nula.
+    \end{itemize}
+\end{enumerate}
+
+\begin{alerta}[Correlación no Implica Causalidad]
+Un valor alto de $r$ demuestra que dos variables numéricas covarían juntas en el tiempo o espacio, pero \textbf{NO prueba que $X$ sea la causa directa de $Y$}. La causalidad solo puede establecerse mediante teoría económica, conocimiento contable del negocio y diseño experimental controlado.
+\end{alerta}
+
+\section{Modelo de Regresión Lineal Simple por Mínimos Cuadrados}
+El modelo de regresión lineal simple asume que la variable dependiente $Y$ está relacionada linealmente con la variable independiente $X$ según la ecuación poblacional:
+\begin{equation}
+    Y = \beta_0 + \beta_1 X + \varepsilon
+\end{equation}
+donde $\beta_0$ es el intercepto poblacional, $\beta_1$ es la pendiente poblacional y $\varepsilon$ es el término de error aleatorio con media cero ($\varepsilon \sim N(0, \sigma^2)$).
+
+A partir de una muestra, se estima la **Ecuación de Regresión Muestral**:
+\begin{equation}
+    \hat{Y} = b_0 + b_1 X
+\end{equation}
+donde $\hat{Y}$ es el valor estimado de $Y$, $b_0$ es el estimador del intercepto y $b_1$ es el estimador de la pendiente.
+
+\subsection{Fórmulas de los Mínimos Cuadrados Ordinarios (MCO)}
+El método de MCO minimiza la suma de los residuos cuadráticos $\sum (y_i - \hat{y}_i)^2$:
+
+\begin{formulario}[Ecuaciones de Regresión Lineal por MCO]
+\begin{equation}
+    \mathbf{b_1 = \frac{n \sum x_i y_i - (\sum x_i)(\sum y_i)}{n \sum x_i^2 - (\sum x_i)^2} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}}
+\end{equation}
+\begin{equation}
+    \mathbf{b_0 = \bar{y} - b_1 \bar{x} = \frac{\sum y_i - b_1 \sum x_i}{n}}
+\end{equation}
+\end{formulario}
+
+\subsection{Interpretación Económica y Contable de los Coeficientes}
+\begin{itemize}
+    \item \textbf{Pendiente ($b_1$):} Representa el cambio promedio estimado en la variable dependiente $Y$ por cada incremento de una unidad en la variable independiente $X$. En contabilidad de costos, $b_1$ representa el **Costo Variable Unitario**.
+    \item \textbf{Intercepto ($b_0$):} Representa el valor esperado de $Y$ cuando $X = 0$. En contabilidad de costos, $b_0$ representa el **Costo Fijo Total**.
+\end{itemize}
+
+\section{Bondad de Ajuste: Coeficiente de Determinación ($R^2$)}
+
+\begin{definicion}{Coeficiente de Determinación ($R^2$)}
+El \textbf{Coeficiente de Determinación ($R^2$)} es la proporción de la variación total de la variable dependiente $Y$ que es explicada por la recta de regresión lineal en función de $X$:
+\begin{equation}
+    R^2 = (r)^2 = \frac{\text{Variación Explicada (SCR)}}{\text{Variación Total (SCT)}} = 1 - \frac{\text{Variación Residual (SCE)}}{\text{SCT}}
+\end{equation}
+\end{definicion}
+
+\textbf{Interpretación:} Si $R^2 = 0.88$, se concluye que el \textbf{88\% de la variabilidad observada en $Y$} es explicada por el modelo lineal en función de $X$, mientras que el 12\% restante se debe a factores no considerados o fluctuaciones aleatorias.
+
+\section{Error Estándar de la Estimación ($s_{yx}$)}
+Mide la dispersión promedio de los datos observados alrededor de la recta de regresión:
+\begin{equation}
+    s_{yx} = \sqrt{\frac{\sum (y_i - \hat{y}_i)^2}{n - 2}} = \sqrt{\frac{\sum y_i^2 - b_0 \sum y_i - b_1 \sum x_i y_i}{n - 2}}
+\end{equation}
+
+\section{Ejemplos y Casos Resueltos Paso a Paso}
+
+\begin{casocontable}{Separación de Costos Semivariables en una Empresa Industrial (Ref. Anderson)}
+El departamento de contabilidad de costos de una empresa manufacturera en el Parque Industrial de Santa Cruz desea desagregar su costo de mantenimiento en componentes fijos y variables. Se recolectaron los datos mensuales de **Horas de Máquina ($X$, en cientos)** y el **Costo Total de Mantenimiento ($Y$, en miles de Bs)** durante los últimos 6 meses:
+
+\begin{center}
+\small
+\begin{tabular}{c|cc|ccc}
+\toprule
+\textbf{Mes ($i$)} & \textbf{Horas-Máquina ($x_i$)} & \textbf{Costo Mantenimiento ($y_i$)} & $x_i^2$ & $y_i^2$ & $x_i y_i$ \\
+\midrule
+1 & 3 & 8 & 9 & 64 & 24 \\
+2 & 4 & 9 & 16 & 81 & 36 \\
+3 & 6 & 12 & 36 & 144 & 72 \\
+4 & 8 & 15 & 64 & 225 & 120 \\
+5 & 10 & 17 & 100 & 289 & 170 \\
+6 & 11 & 19 & 121 & 361 & 209 \\
+\midrule
+\textbf{Suma ($\sum$)} & \textbf{42} & \textbf{80} & \textbf{346} & \textbf{1,164} & \textbf{631} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Se solicita al auditor:
+\begin{enumerate}
+    \item Calcular el coeficiente de correlación de Pearson ($r$) e interpretarlo.
+    \item Ajustar la recta de regresión de costos por MCO: $\hat{Y} = b_0 + b_1 X$.
+    \item Interpretar los coeficientes $b_0$ y $b_1$ en términos de Costo Fijo y Costo Variable.
+    \item Calcular el coeficiente de determinación ($R^2$).
+    \item Pronosticar el costo total de mantenimiento para un mes con $X = 9$ (900 horas-máquina).
+\end{enumerate}
+
+\tcbline
+\textbf{Solución Paso a Paso:}
+\begin{enumerate}
+    \item \textbf{Cálculo de Medias Muestrales:}
+    \[
+    n = 6, \quad \bar{x} = \frac{\sum x_i}{n} = \frac{42}{6} = 7, \quad \bar{y} = \frac{\sum y_i}{n} = \frac{80}{6} \approx 13.333
+    \]
+    
+    \item \textbf{Cálculo del Coeficiente de Correlación ($r$):}
+    \[
+    r = \frac{6(631) - (42)(80)}{\sqrt{\left[ 6(346) - (42)^2 \right] \left[ 6(1164) - (80)^2 \right]}}
+    \]
+    \[
+    r = \frac{3786 - 3360}{\sqrt{\left[ 2076 - 1764 \right] \left[ 6984 - 6400 \right]}} = \frac{426}{\sqrt{312 \cdot 584}} = \frac{426}{\sqrt{182208}} = \frac{426}{426.858} \approx 0.998
+    \]
+    \textbf{Interpretación:} Existe una correlación lineal positiva casi perfecta ($r = +0.998$) entre las horas-máquina y el costo de mantenimiento.
+    
+    \item \textbf{Cálculo de los Coeficientes de Regresión ($b_1$ y $b_0$):}
+    \[
+    b_1 = \frac{n \sum xy - (\sum x)(\sum y)}{n \sum x^2 - (\sum x)^2} = \frac{426}{312} \approx 1.3654 \text{ mil Bs por cada 100 horas}
+    \]
+    \[
+    b_0 = \bar{y} - b_1 \bar{x} = 13.3333 - (1.36538)(7) = 13.3333 - 9.5577 = 3.7756 \text{ miles de Bs}
+    \]
+    
+    La ecuación de regresión estimada es:
+    \[
+    \mathbf{\hat{Y} = 3.776 + 1.365 X}
+    \]
+    
+    \item \textbf{Interpretación Contable de la Estructura de Costos:}
+    \begin{itemize}
+        \item \textbf{Costo Fijo Base ($b_0$):} $3{,}776$ Bs mensuales independientemente del uso de maquinaria (sueldos fijos de supervisión, seguros y mantenimiento preventivo base).
+        \item \textbf{Costo Variable Unitario ($b_1$):} $13.65$ Bs por cada hora-máquina adicional operada ($1.365$ mil Bs por cada 100 horas).
+    \end{itemize}
+    
+    \item \textbf{Coeficiente de Determinación ($R^2$):}
+    \[
+    R^2 = (r)^2 = (0.998)^2 \approx 0.996 \quad (99.6\%)
+    \]
+    El \textbf{99.6\% de la variabilidad del costo de mantenimiento} queda explicada por el volumen de horas-máquina operadas. El modelo es extraordinariamente confiable.
+    
+    \item \textbf{Pronóstico Presupuestario para $X = 9$ (900 horas):}
+    \[
+    \hat{Y} = 3.776 + 1.365(9) = 3.776 + 12.285 = 16.061 \text{ miles de Bs}
+    \]
+    \textbf{Conclusión para el Presupuesto:} Para un nivel de actividad de 900 horas-máquina, se debe presupuestar un costo total de mantenimiento de \textbf{$16{,}061$ Bs}.
+\end{enumerate}
+\end{casocontable}
+
+\begin{ejemplo}{Inversión Publicitaria e Ingresos por Ventas (Ref. Lind)}
+Una cadena de tiendas comerciales evaluó el efecto del gasto publicitario semanal ($X$, en miles de Bs) sobre el volumen de ventas ($Y$, en miles de Bs) durante 5 semanas:
+$(2, 20), (3, 25), (5, 34), (6, 38), (8, 48)$.
+
+\tcbline
+\textbf{Solución Paso a Paso:}
+\begin{enumerate}
+    \item \textbf{Sumatorias Básicas:}
+    $n = 5$, $\sum x = 24$, $\sum y = 165$, $\sum x^2 = 138$, $\sum y^2 = 5909$, $\sum xy = 899$.
+    \[
+    \bar{x} = \frac{24}{5} = 4.8, \quad \bar{y} = \frac{165}{5} = 33.0
+    \]
+    
+    \item \textbf{Cálculo de Parámetros por MCO:}
+    \[
+    b_1 = \frac{5(899) - (24)(165)}{5(138) - (24)^2} = \frac{4495 - 3960}{690 - 576} = \frac{535}{114} \approx 4.693
+    \]
+    \[
+    b_0 = 33.0 - 4.693(4.8) = 33.0 - 22.526 = 10.474
+    \]
+    Ecuación de ventas: $\mathbf{\hat{Y} = 10.474 + 4.693 X}$.
+    
+    \item \textbf{Interpretación Financiera:}
+    Por cada $1{,}000$ Bs adicionales invertidos en publicidad, las ventas aumentan en promedio en $4{,}693$ Bs. Las ventas base sin publicidad son de aproximadamente $10{,}474$ Bs.
+\end{enumerate}
+\end{ejemplo}
+
+\section{Ejercicios Propuestos de la Unidad}
+
+\subsection*{Nivel 1: Conceptos y Coeficiente de Correlación}
+\begin{enumerate}
+    \item Explique detalladamente la diferencia conceptual y práctica entre el Coeficiente de Correlación ($r$) y el Coeficiente de Determinación ($R^2$).
+    \item Dados los siguientes coeficientes de correlación muestrales obtenidos en diversos estudios de mercado, clasifique cada uno según su fuerza y sentido:
+    \begin{enumerate}
+        \item $r = +0.87$
+        \item $r = -0.94$
+        \item $r = +0.12$
+        \item $r = -0.55$
+        \item $r = 0.00$
+    \end{enumerate}
+    \item Para una muestra de $n = 10$ empresas, se calcularon las siguientes sumatorias entre inversión en tecnología ($X$) y rentabilidad operativa ($Y$):
+    $\sum x = 50$, $\sum y = 80$, $\sum x^2 = 300$, $\sum y^2 = 720$, $\sum xy = 440$.
+    Calcule el coeficiente de correlación de Pearson $r$ e interprete su valor.
+\end{enumerate}
+
+\subsection*{Nivel 2: Regresión y Análisis de Costos Empresariales}
+\begin{enumerate}[resume]
+    \item Una empresa de transporte y logística desea modelar el gasto semanal en combustible ($Y$, en miles de Bs) en función del kilometraje recorrido ($X$, en miles de km). Se registraron los datos de 8 camiones:
+    \begin{center}
+    \begin{tabular}{l|cccccccc}
+    \toprule
+    Camión & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+    \midrule
+    Kilometraje ($X$) & 1.2 & 1.8 & 2.0 & 2.5 & 3.0 & 3.5 & 4.0 & 4.8 \\
+    Gasto Combustible ($Y$) & 2.8 & 3.9 & 4.2 & 5.1 & 6.0 & 6.8 & 7.9 & 9.2 \\
+    \bottomrule
+    \end{tabular}
+    \end{center}
+    \begin{enumerate}
+        \item Determine la ecuación de regresión lineal simple mediante mínimos cuadrados.
+        \item Interprete el costo fijo base y el costo marginal por kilómetro recorrido.
+        \item Calcule el coeficiente de determinación $R^2$ y comente la calidad del ajuste.
+        \item Estime el gasto en combustible si un camión recorre $3.2$ miles de kilómetros en una semana.
+    \end{enumerate}
+
+    \item En un estudio sobre gestión de cobranzas en una casa comercial, se recolectó el número de llamadas de recordatorio realizadas a clientes morosos ($X$) y los días de retraso en la cancelación de la cuota ($Y$):
+    $(1, 35), (2, 28), (3, 24), (4, 18), (5, 12), (6, 10)$.
+    \begin{enumerate}
+        \item Calcule el coeficiente de correlación $r$.
+        \item Ajuste la recta de regresión $\hat{Y} = b_0 + b_1 X$.
+        \item Pronostique los días de retraso esperados si se efectúan 4 llamadas de cobranza.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Nivel 3: Casos Integrales de Pronóstico Financiero}
+\begin{enumerate}[resume]
+    \item La gerencia financiera de una cadena hotelera en Santa Cruz analizó la relación entre el porcentaje de ocupación mensual ($X$, en \%) y la utilidad operativa neta ($Y$, en decenas de miles de Bs) durante los últimos 10 meses:
+    $\sum x = 650$, $\sum y = 480$, $\sum x^2 = 44500$, $\sum y^2 = 24800$, $\sum xy = 32800$.
+    \begin{enumerate}
+        \item Determine la ecuación de regresión lineal.
+        \item Si en temporada alta se proyecta una ocupación del 85\%, estime la utilidad operativa neta esperada.
+        \item Calcule e interprete el coeficiente de determinación $R^2$.
+    \end{enumerate}
+
+    \item Un auditor fiscal examina la relación entre los ingresos brutos declarados ($X$, en millones de Bs) y el monto total de crédito fiscal IVA computado ($Y$, en cientos de miles de Bs) para un sector comercial:
+    $\bar{x} = 12.0$, $\bar{y} = 8.5$, $s_x = 3.2$, $s_y = 2.4$, $r = 0.85$, $n = 30$.
+    \begin{enumerate}
+        \item Calcule los coeficientes de la recta de regresión lineal $\hat{Y} = b_0 + b_1 X$ utilizando las propiedades de las medias y desviaciones estándar:
+        \[
+        b_1 = r \cdot \frac{s_y}{s_x}, \quad b_0 = \bar{y} - b_1 \bar{x}
+        \]
+        \item Si una empresa del sector declara ingresos brutos por $15.0$ millones de Bs, ¿cuál es el crédito fiscal estimado que el auditor esperaría encontrar en sus libros?
+        \item Si la empresa declara un crédito fiscal de $14.0$ cientos de miles de Bs para ese nivel de ingresos, ¿qué sospecha justificada podría formular el auditor para iniciar una fiscalización a fondo?
+    \end{enumerate}
+\end{enumerate}

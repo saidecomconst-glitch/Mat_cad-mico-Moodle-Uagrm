@@ -1,0 +1,1588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/Examen Diagnóstico</text>
+    </category>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P01_Jerarquia_Fracciones</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Al resolver la operación \( \frac{3}{4} + \frac{5}{2} \cdot \frac{1}{3} - \frac{7}{12} \), ¿cuál es el resultado simplificado?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Resolución paso a paso: Primero multiplicamos \( \frac{5}{2} \cdot \frac{1}{3} = \frac{5}{6} \). Luego con común denominador 12: \( \frac{9 + 10 - 7}{12} = \frac{12}{12} = 1 \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[1]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: \( \frac{3}{4} + \frac{5}{6} - \frac{7}{12} = \frac{9 + 10 - 7}{12} = \frac{12}{12} = 1 \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( \frac{1}{2} \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Verifique el producto \( \frac{5}{2}\cdot\frac{1}{3}=\frac{5}{6} \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( \frac{5}{6} \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Falta operar con el común denominador 12.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( \frac{4}{3} \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Revise la suma y resta final.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P02_Leyes_Exponentes</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Simplifique la expresión \( \frac{(2^{3} \cdot 2^{-1})^{2}}{2^{2}} \):</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Desarrollo: \( 2^{3} \cdot 2^{-1} = 2^{2} \). Luego \( (2^{2})^{2} = 2^{4} \). Finalmente \( \frac{2^{4}}{2^{2}} = 2^{4-2} = 2^{2} = 4 \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[4 (o \( 2^{2} \))]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: \( (2^{3-1})^{2} / 2^{2} = (2^{2})^{2} / 2^{2} = 2^{4} / 2^{2} = 2^{2} = 4 \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[8 (o \( 2^{3} \))]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Potencia de potencia multiplica exponentes: \( (2^{2})^{2} = 2^{4} \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[2 (o \( 2^{1} \))]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Revise la resta de exponentes.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[1 (o \( 2^{0} \))]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. El exponente no es cero.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P03_Radicales</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Al simplificar la expresión \( \sqrt{\frac{144}{25} \cdot 100} \), se obtiene:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Desarrollo: \( \frac{\sqrt{144}}{\sqrt{25}} \cdot \sqrt{100} = \frac{12}{5} \cdot 10 = 12 \cdot 2 = 24 \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[24]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: \( \sqrt{\frac{144}{25} \cdot 100} = \sqrt{\frac{14400}{25}} = \sqrt{576} = 24 \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[20]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. \( \frac{12}{5} \cdot 10 = 24 \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[12]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Faltó operar con la raíz de 100.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[48]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Verifique la división.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P04_Logaritmo_Exponencial</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Determine el valor exacto de la expresión \( e^{\ln(15)} \):</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Por definición de funciones inversas continuas: \( e^{\ln(k)} = k \) para todo \( k > 0 \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[15]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: La función exponencial y el logaritmo natural son inversas: \( e^{\ln(x)} = x \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[1]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. \( \ln(e) = 1 \), pero aquí se tiene \( e^{\ln(15)} = 15 \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[0]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. La base no se anula.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( \ln(15) \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Se simplifica a 15.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P05_Despeje_Z</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En la fórmula de estandarización normal \( Z = \frac{X - \mu}{\sigma} \), al despejar la variable original \( X \) se obtiene:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Despeje algebraico: Multiplicando ambos miembros por \( \sigma \): \( Z\sigma = X - \mu \). Sumando \( \mu \): \( X = \mu + Z\sigma \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\( X = \mu + Z\sigma \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: \( Z\sigma = X - \mu \Rightarrow X = \mu + Z\sigma \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( X = \frac{Z\sigma}{\mu} \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Despeje erróneo.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( X = \mu - Z\sigma \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. El signo pasa positivo al sumar \( \mu \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( X = \frac{\mu + Z}{\sigma} \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. \( \sigma \) multiplica a \( Z \).]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P06_Despeje_Muestral_n</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Dada la ecuación del margen de error \( E = Z \cdot \frac{\sigma}{\sqrt{n}} \), al despejar el tamaño muestral \( n \) se obtiene:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Despeje: \( \sqrt{n} \cdot E = Z\sigma \Rightarrow \sqrt{n} = \frac{Z\sigma}{E} \Rightarrow n = \left(\frac{Z\sigma}{E}\right)^{2} = \frac{Z^{2}\sigma^{2}}{E^{2}} \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\( n = \frac{Z^{2} \cdot \sigma^{2}}{E^{2}} \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: \( \sqrt{n} = \frac{Z\sigma}{E} \Rightarrow n = \frac{Z^{2}\sigma^{2}}{E^{2}} \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( n = \frac{Z \cdot \sigma}{E^{2}} \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Debe elevarse al cuadrado todo el numerador.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( n = \sqrt{\frac{Z\sigma}{E}} \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Se eleva al cuadrado para eliminar la raíz.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( n = \frac{E^{2}}{Z^{2}\sigma^{2}} \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. La fracción está invertida.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P07_Ecuacion_Lineal_Regresion</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>La recta de regresión lineal con pendiente \( m = 3 \) que intersecta al eje vertical en \( (0, 5) \) corresponde a:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Forma explícita: \( y = mx + b \), sustituyendo \( m=3 \) y \( b=5 \) resulta \( y = 3x + 5 \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\( y = 3x + 5 \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: Forma punto-pendiente \( y - y_1 = m(x - x_1) \Rightarrow y - 5 = 3(x - 0) \Rightarrow y = 3x + 5 \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( y = 5x + 3 \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. La pendiente 3 es el coeficiente de \( x \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( y = 3x - 5 \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. El intercepto es positivo (+5).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( y = \frac{1}{3}x + 5 \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. La pendiente es 3.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P08_Factorial_Combinatoria</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Calcule el valor del coeficiente binomial \( \binom{7}{2} = \frac{7!}{5! \cdot 2!} \):</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Desarrollo: \( \frac{7 \cdot 6 \cdot 5!}{5! \cdot 2} = \frac{42}{2} = 21 \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[21]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: \( \frac{7 \cdot 6 \cdot 5!}{5! \cdot 2 \cdot 1} = \frac{42}{2} = 21 \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[42]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Faltó dividir entre \( 2! = 2 \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[14]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Verifique la simplificación.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[7]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Revise el cálculo factorial.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P09_Conjuntos_Interseccion</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Dados los conjuntos de clientes \( A = \{1, 2, 3, 4, 5\} \) y \( B = \{4, 5, 6, 7\} \), la intersección \( A \cap B \) es:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>La intersección contiene los elementos presentes simultáneamente en \( A \) y \( B \): \( \{4, 5\} \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\( \{4, 5\} \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: Elementos comunes que pertenecen a ambos conjuntos.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( \{1, 2, 3, 4, 5, 6, 7\} \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Esa es la unión \( A \cup B \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( \{1, 2, 3\} \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Esa es la diferencia \( A - B \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( \emptyset \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. La intersección no es vacía.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P10_Proporcion_Muestral</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Si en una muestra contable se cumple la igualdad \( \frac{x}{250} = 0.08 \), el valor de \( x \) es:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Despejando \( x \): \( x = 250 \cdot 0.08 = 20 \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[20]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: \( x = 250 \cdot 0.08 = 20 \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[25]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. \( 250 \times 0.10 = 25 \), pero la proporción es 0.08.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[18]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Verifique la multiplicación decimal.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[200]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Revise la posición del decimal.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P11_Media_Muestral</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Los tiempos (en días) para completar una auditoría en 5 sucursales fueron: 4, 6, 7, 7, 11. La media aritmética \( \bar{x} \) es:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Fórmula: \( \bar{x} = \frac{\sum x_i}{n} = \frac{4+6+7+7+11}{5} = \frac{35}{5} = 7 \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[7 días]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: \( \bar{x} = \frac{4+6+7+7+11}{5} = \frac{35}{5} = 7 \) días.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[6.5 días]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. La suma total es 35.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[8 días]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. \( 35 / 5 = 7 \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[7.5 días]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Verifique la división.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P12_Mediana_Pares</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Para el conjunto de datos ordenados: 12, 15, 18, 22, 28, 35, la mediana (\( Me \)) es:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Para \( n=6 \) par: Las posiciones centrales son \( \frac{6}{2}=3 \) (valor 18) y \( 4 \) (valor 22). Su promedio es \( \frac{18+22}{2} = 20 \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[20]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: Al ser \( n=6 \) (par), la mediana es el promedio de los dos datos centrales: \( \frac{18 + 22}{2} = 20 \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[18]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Se promedian los dos datos centrales 18 y 22.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[22]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. La mediana se ubica en el punto medio de 18 y 22.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[21.67]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Ese es el promedio aritmético, no la mediana.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P13_Moda_Frecuencia</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En los registros contables se observaron los siguientes errores: 3, 5, 2, 5, 8, 5, 2, 9. La moda (\( Mo \)) es:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>La moda es el valor que ocurre con mayor frecuencia. El 5 se repite 3 veces.</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[5]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: Es el valor con mayor frecuencia absoluta (se repite 3 veces).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[2]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. El 2 solo se repite 2 veces.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[4.875]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Ese es el promedio aritmético.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[8]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Solo aparece 1 vez.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P14_Medida_Robusta_Anderson</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Según Anderson et al., cuando una distribución económica presenta valores extremos muy altos, la medida de posición central más representativa es:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>La mediana es una medida robusta de posición central que preserva la representatividad en presencia de valores atípicos severos.</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[La Mediana]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: La mediana es resistente y no se ve afectada por valores extremos.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[La Media Aritmética]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. La media es muy sensible y se distorsiona con datos atípicos.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[La Varianza]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Es una medida de dispersión cuadrática muy sensible a extremos.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El Rango]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. El rango depende 100% de los dos extremos.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P15_Rango_Intercuartilico_IQR</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>El Rango Intercuartílico (\( IQR \)), que mide la dispersión del 50% central de las observaciones, se define formalmente como:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Definición: \( IQR = Q_3 - Q_1 \). Elimina la influencia del 25% inferior y 25% superior de observaciones.</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\( IQR = Q_3 - Q_1 \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: Es la diferencia entre el percentil 75 (\( Q_3 \)) y el percentil 25 (\( Q_1 \)).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( IQR = Q_3 + Q_1 \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. No se suman los cuartiles.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( IQR = \frac{Q_3 - Q_1}{2} \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Esa es la desviación semi-intercuartílica.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( IQR = X_{max} - X_{min} \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Ese es el Rango total.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P16_Varianza_Muestral_Divisor</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En el cálculo de la varianza muestral \( S^{2} \), la suma de desviaciones cuadráticas se divide entre:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Principio de insesgadez: Dividir entre \( n-1 \) corrige el sesgo y proporciona los grados de libertad correctos.</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\( n - 1 \) (grados de libertad)]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: La división entre \( n-1 \) garantiza que la varianza muestral sea un estimador insesgado de la varianza poblacional \( \sigma^{2} \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( n \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. La división entre \( N \) se reserva para la varianza poblacional.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( n + 1 \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. No se suma 1 en el denominador.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( \sqrt{n} \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Se usa en el error estándar de la media.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P17_Desviacion_Estandar_Calculo</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Si la varianza muestral del tiempo de entrega de suministros es \( S^{2} = 36 \text{ días}^{2} \), la desviación estándar muestral \( S \) es:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Fórmula: \( S = \sqrt{S^{2}} = \sqrt{36} = 6 \) días.</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[6 días]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: \( S = \sqrt{S^{2}} = \sqrt{36} = 6 \) días.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[18 días]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. No se divide entre 2, se aplica raíz cuadrada.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[1,296 días]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. No se eleva al cuadrado.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[6 días al cuadrado]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. La desviación estándar tiene unidades lineales.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P18_Coeficiente_Variacion_Calculo</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Un fondo de inversión presenta una rentabilidad media \( \bar{x} = 20\% \) con desviación \( S = 4\% \). ¿Cuál es su Coeficiente de Variación (\( CV \))?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Cálculo: \( CV = \frac{S}{\bar{x}} \cdot 100\% = \frac{4\%}{20\%} \cdot 100\% = 20\% \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[20%]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: \( CV = \frac{S}{\bar{x}} \cdot 100\% = \frac{4}{20} \cdot 100\% = 20\% \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[5%]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. \( 4/20 = 0.20 = 20\% \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[80%]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. La desviación estándar va en el numerador.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[16%]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Revise la fracción.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P19_Sesgo_Asimetria_Anderson</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Observe el siguiente gráfico de formas de distribución:</p><img src="data:image/png;base64," alt="Formas de Sesgo y Asimetría" style="width: 100%; max-width: 600px; height: auto; display: block; margin: 10px auto; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);"><p>Cuando una distribución económica presenta <strong>Sesgo Positivo (Asimetría a la derecha)</strong>, la relación ordinal entre las medidas de tendencia central es:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>En distribuciones con sesgo positivo, los valores atípicos elevados incrementan el valor de la media aritmética por encima de la mediana y la moda.</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Media > Mediana > Moda]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: La cola alargada a la derecha arrastra la media hacia valores mayores que la mediana y la moda.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Media = Mediana = Moda]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Esa igualdad ocurre en distribuciones perfectamente simétricas.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Media < Mediana < Moda]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Esa condición corresponde a sesgo negativo (asimetría a la izquierda).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[No avancé este tema antes]]></text>
+      <feedback format="html">
+        <text><![CDATA[📌 Registro diagnóstico anotado: Este concepto de forma y asimetría será profundizado en el curso.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P20_Curtosis_Clasificacion</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Analice el gráfico de apuntamiento (curtosis) comparativo:</p><img src="data:image/png;base64," alt="Comparación de Curtosis" style="width: 100%; max-width: 600px; height: auto; display: block; margin: 10px auto; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);"><p>Una distribución con coeficiente de <strong>Curtosis mayor a cero (\( K > 0 \))</strong>, caracterizada por un pico pronunciado y colas pesadas, se clasifica como:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Clasificación de Curtosis: Leptocúrtica (\( K > 0 \)), Mesocúrtica (\( K = 0 \)), Platicúrtica (\( K < 0 \)).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Leptocúrtica]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: Presenta mayor apuntamiento central y colas más gruesas que la distribución normal.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Mesocúrtica]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. La mesocúrtica tiene curtosis igual a cero (curva normal estándar).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Platicúrtica]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. La platicúrtica tiene curtosis menor a cero (aplanada).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[No avancé este tema antes]]></text>
+      <feedback format="html">
+        <text><![CDATA[📌 Registro diagnóstico anotado: La clasificación de curtosis será desarrollada en el módulo de distribuciones.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P21_Histograma_Interpretacion</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>A partir del siguiente histograma de frecuencias:</p><img src="data:image/png;base64," alt="Histograma de Frecuencias" style="width: 100%; max-width: 600px; height: auto; display: block; margin: 10px auto; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);"><p>¿Cuál es el intervalo modal (la clase con mayor frecuencia observada) y cuántas observaciones contiene?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Lectura de histograma: La clase modal es el intervalo con la barra de mayor altura: [30-40) con 22 frecuencias.</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Intervalo [30 - 40) con 22 observaciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: La barra más alta corresponde a [30-40) con \( f_i = 22 \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Intervalo [40 - 50) con 15 observaciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Es la segunda clase con mayor frecuencia, pero no la modal.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Intervalo [20 - 30) con 12 observaciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Verifique la barra más alta.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Intervalo [10 - 20) con 5 observaciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Es la clase de menor frecuencia.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P22_Boxplot_Interpretacion</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Analice el siguiente diagrama de caja y bigotes (Boxplot):</p><img src="data:image/png;base64," alt="Diagrama de Caja y Bigotes" style="width: 100%; max-width: 600px; height: auto; display: block; margin: 10px auto; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);"><p>¿Cuáles son los valores correspondientes al Primer Cuartil (\( Q_1 \)), la Mediana (\( Me \)) y el Tercer Cuartil (\( Q_3 \))?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>En el Boxplot: El extremo inferior de la caja es \( Q_1 = 35 \), la línea interna es la Mediana \( Me = 50 \), y el extremo superior es \( Q_3 = 70 \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Q1 = 35, Mediana = 50, Q3 = 70]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: La caja inicia en \( Q_1 = 35 \), la línea central roja está en \( Me = 50 \) y el borde superior en \( Q_3 = 70 \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Q1 = 20, Mediana = 50, Q3 = 85]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. 20 y 85 son los valores mínimo y máximo de los bigotes.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Q1 = 35, Mediana = 60, Q3 = 70]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. La línea roja central marca 50.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Q1 = 50, Mediana = 70, Q3 = 85]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Revise la escala horizontal.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P23_Ojiva_Interpretacion</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Considere la siguiente ojiva de frecuencias relativas acumuladas:</p><img src="data:image/png;base64," alt="Ojiva de Frecuencias Acumuladas" style="width: 100%; max-width: 600px; height: auto; display: block; margin: 10px auto; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);"><p>¿Qué porcentaje acumulado de colaboradores percibe un salario menor o igual a 4,000 Bs?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Lectura de Ojiva: Al proyectar el valor 4,000 Bs sobre el eje de frecuencias acumuladas se obtiene un 45%.</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[45%]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: En la escala vertical acumulada, el límite superior 4,000 Bs intersecta con el 45%.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[15%]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. 15% corresponde a salarios menores o iguales a 3,000 Bs.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[80%]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. 80% corresponde al límite de 5,000 Bs.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[100%]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. 100% corresponde al límite final de 6,000 Bs.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="matching">
+    <name><text>P24_Emparejamiento_Formulas</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Relacione cada medida descriptiva con su formulación matemática rigurosa:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Relación de fórmulas fundamentales de estadística descriptiva.</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <shuffleanswers>true</shuffleanswers>
+    <subquestion format="html">
+      <text><![CDATA[Media Muestral (\( \bar{x} \))]]></text>
+      <answer><text><![CDATA[\bar{x} = \sum x_i / n]]></text></answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Varianza Muestral (\( S^2 \))]]></text>
+      <answer><text><![CDATA[S^2 = \sum (x_i - \bar{x})^2 / (n - 1)]]></text></answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Desviación Estándar (\( S \))]]></text>
+      <answer><text><![CDATA[S = \sqrt{S^2}]]></text></answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Coeficiente de Variación (\( CV \))]]></text>
+      <answer><text><![CDATA[CV = (S / \bar{x}) * 100%]]></text></answer>
+    </subquestion>
+  </question>
+
+  <question type="matching">
+    <name><text>P25_Emparejamiento_Graficos</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Relacione cada tipo de gráfico con su característica técnica principal:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Definiciones de gráficos estadísticos estándar.</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <shuffleanswers>true</shuffleanswers>
+    <subquestion format="html">
+      <text><![CDATA[Histograma]]></text>
+      <answer><text><![CDATA[Rectángulos contiguos para variables continuas agrupadas en clases]]></text></answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Diagrama de Caja (Boxplot)]]></text>
+      <answer><text><![CDATA[Resumen de 5 números (Mínimo, Q1, Mediana, Q3, Máximo)]]></text></answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Ojiva]]></text>
+      <answer><text><![CDATA[Gráfico lineal de frecuencias acumuladas relativas o absolutas]]></text></answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Diagrama de Dispersión]]></text>
+      <answer><text><![CDATA[Representación bivariada de pares de datos (x, y)]]></text></answer>
+    </subquestion>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P26_Poblacion_Muestra</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>La totalidad de los contribuyentes legalmente registrados en el Servicio de Impuestos Nacionales de Santa Cruz constituye:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>La población es la colección completa de todos los elementos que se van a estudiar.</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[La Población objetivo]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: Es el conjunto completo de todas las unidades de análisis bajo investigación.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Una Muestra representativa]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. La muestra es solo un subconjunto.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Un Parámetro]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. El parámetro es una medida numérica poblacional.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Un Estadístico muestral]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. El estadístico se calcula en una muestra.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P27_Variable_Discreta</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>¿Cuál de las siguientes variables es cuantitativa discreta?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Las variables discretas asumen valores numéricos aislados provenientes de conteo.</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Número de facturas emitidas con errores de cálculo]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: Proviene de un conteo de números enteros no negativos.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Ingresos mensuales en bolivianos]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Es continua.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Nivel de riesgo crediticio (Bajo, Medio, Alto)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Es cualitativa ordinal.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Tiempo exacto empleado en una auditoría]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Es continua.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P28_Variable_Nominal</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>El tipo de auditoría realizada (Financiera, Tributaria, Operativa, Forense) clasifica como variable:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Las variables cualitativas nominales son etiquetas descriptivas sin orden intrínseco.</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Cualitativa Nominal]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: Categorías sin jerarquía ni orden natural obligatorio.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Cualitativa Ordinal]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. No existe jerarquía entre tipos de auditoría.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Cuantitativa Continua]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. No es una magnitud numérica.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Cuantitativa Discreta]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. No proviene de conteo numérico.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P29_Suma_Frecuencias_Relativas</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En toda distribución de frecuencias, la sumatoria de las frecuencias relativas \( \sum h_i \) es exactamente igual a:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Propiedad axiomática: La suma total de proporciones de todas las clases es 1.00 (100%).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[1.00 (o 100%)]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: \( \sum h_i = \frac{\sum f_i}{n} = \frac{n}{n} = 1.00 \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( n \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. La suma que resulta \( n \) es la de frecuencias absolutas \( \sum f_i \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[0]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Las frecuencias relativas son no negativas.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( \bar{x} \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. No guarda relación con la media.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P30_Marca_de_Clase</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Para el intervalo de clase \( [40, 60) \), la marca de clase o punto medio \( x_i \) es:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>La marca de clase es la semisuma de los límites inferior y superior: \( (40+60)/2 = 50 \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[50]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: \( x_i = \frac{L_i + L_s}{2} = \frac{40 + 60}{2} = 50 \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[20]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. 20 es el ancho del intervalo (\( 60 - 40 \)).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[45]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. La semisuma es 50.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[55]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Verifique el punto medio.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P31_Regla_Empirica_Normal</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En una distribución simétrica con forma de campana (Normal), ¿qué porcentaje aproximado de las observaciones se ubica en el intervalo \( [\mu - \sigma, \mu + \sigma] \)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Regla empírica normal: 68.3% a \( \pm 1\sigma \), 95.4% a \( \pm 2\sigma \), 99.7% a \( \pm 3\sigma \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Aproximadamente 68.3%]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: Regla empírica para \( \pm 1 \) desviación estándar en la distribución Normal.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Aproximadamente 95.4%]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Corresponde a \( \pm 2 \) desviaciones estándar.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Aproximadamente 99.7%]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Corresponde a \( \pm 3 \) desviaciones estándar.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[50.0%]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. 50% es la mitad de la curva.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P32_Probabilidad_Laplace</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Si en un lote de 200 comprobantes contables existen 16 comprobantes con discrepancias, la probabilidad de seleccionar al azar un comprobante con error es:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Probabilidad clásica de Laplace: \( P = \frac{\text{Casos Favorables}}{\text{Casos Posibles}} = \frac{16}{200} = 0.08 \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[0.08 (u 8%)]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: \( P(A) = \frac{16}{200} = 0.08 = 8\% \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[0.16 (o 16%)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. \( 16/200 = 0.08 \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[0.008 (o 0.8%)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Verifique la división decimal.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[0.92 (o 92%)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Esa es la probabilidad de comprobante sin error.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P33_Percentil_Calculo</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>El percentil 75 (\( P_{75} \)) de una distribución de ingresos corresponde exactamente a:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Equivalencias: \( Q_1 = P_{25} \), \( Q_2 = Me = P_{50} \), \( Q_3 = P_{75} \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[El Tercer Cuartil (Q3)]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: \( P_{75} \) y \( Q_3 \) son idénticos por definición.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[La Mediana]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. La mediana es el percentil 50 (\( P_{50} \)).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El Primer Cuartil (Q1)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. \( Q_1 \) es el percentil 25.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[El Rango Intercuartílico]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. El IQR es la diferencia \( Q_3 - Q_1 \).]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P34_Rango_Muestral</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Si el costo operativo mínimo mensual de una flota fue 12,000 Bs y el costo máximo fue 28,500 Bs, el rango muestral es:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>El rango o recorrido es la diferencia absoluta entre el valor máximo y el valor mínimo: \( 28,500 - 12,000 = 16,500 \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[16,500 Bs]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: \( R = X_{max} - X_{min} = 28,500 - 12,000 = 16,500 \) Bs.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[20,250 Bs]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Ese es el promedio de los extremos.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[40,500 Bs]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. No se suman los extremos.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[14,000 Bs]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Revise la sustracción.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P35_Comparacion_CV</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>El Coeficiente de Variación (\( CV \)) es la medida idónea para:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>El CV elimina las unidades de medida permitiendo comparar la variabilidad relativa entre diferentes poblaciones.</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Comparar la dispersión relativa entre muestras con diferentes medias o unidades de medida]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: Al ser adimensional porcentual, neutraliza la escala de magnitud.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Calcular el centro de gravedad de una distribución]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Esa función la cumple la media aritmética.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Determinar el grado de asimetría de la muestra]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Para asimetría se usa el coeficiente de sesgo.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Reemplazar a la desviación estándar en la fórmula de Z]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. \( Z \) requiere la desviación estándar \( \sigma \).]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P36_Varianza_No_Negativa</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>La varianza muestral \( S^{2} \) y la desviación estándar \( S \) de un conjunto de datos numéricos reales cumplen siempre la condición:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Por definición matemática de suma de cuadrados, la varianza y la desviación estándar nunca pueden tomar valores negativos.</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\( S^2 \ge 0 \) y \( S \ge 0 \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: Como es la suma de desviaciones elevadas al cuadrado y su raíz positiva, jamás pueden ser negativas.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Pueden ser negativas si la media es negativa]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Las desviaciones al cuadrado siempre son no negativas.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( S^2 \) es siempre menor que \( S \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Si \( S > 1 \), \( S^2 > S \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Siempre son iguales a 1]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Solo en la normal estándar tipificada.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P37_Combinatoria_Orden</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Cuando se seleccionan \( k \) elementos de un total de \( n \) objetos donde el orden de selección NO tiene relevancia, se debe emplear:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>En el análisis combinatorio: Combinaciones = Sin importar el orden; Permutaciones = Importando el orden.</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Combinaciones \( C(n, k) \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: Las combinaciones se usan cuando el orden de los elementos no altera el resultado del subconjunto.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Permutaciones \( P(n, k) \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Las permutaciones se utilizan cuando el orden sí importa.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Regla de la Suma simple]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. No modela selecciones de subconjuntos sin orden.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Factorial simple \( n! \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. El factorial ordena los \( n \) elementos completos.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P38_Logaritmo_Producto</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>De acuerdo a las propiedades operativas de los logaritmos, la expresión \( \ln(A \cdot B) \) es idéntica a:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Propiedad fundamental de logaritmos: \( \ln(A \cdot B) = \ln(A) + \ln(B) \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\( \ln(A) + \ln(B) \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: El logaritmo de un producto es la suma de los logaritmos de los factores.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( \ln(A) \cdot \ln(B) \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. No se multiplican los logaritmos.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( \ln(A) - \ln(B) \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Esa es la propiedad del cociente \( \ln(A/B) \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\( B \cdot \ln(A) \)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Esa es la propiedad de la potencia \( \ln(A^B) \).]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P39_Despeje_Error_E</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Si se conoce un intervalo de confianza para la media \( [380, 420] \), ¿cuál es el margen de error \( E \) y la media muestral \( \bar{x} \)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>El centro del intervalo es \( \bar{x} = (380+420)/2 = 400 \) y el radio (margen de error) es \( E = 400 - 380 = 20 \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Media = 400 y Margen de Error = 20]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: \( \bar{x} = \frac{380+420}{2} = 400 \) y \( E = \frac{420-380}{2} = 20 \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Media = 400 y Margen de Error = 40]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. 40 es la amplitud total del intervalo (\( 2E \)).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Media = 380 y Margen de Error = 20]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. 380 es el límite inferior.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Media = 420 y Margen de Error = 40]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. 420 es el límite superior.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <question type="multichoice">
+    <name><text>P40_Probabilidad_Complementaria</text></name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Si la probabilidad de que un proceso contable presente retrasos en fin de mes es \( P(A) = 0.15 \), la probabilidad complementaria de que se cierre a tiempo es:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Regla del complemento de probabilidad: \( P(A^c) = 1 - P(A) = 1 - 0.15 = 0.85 \).</p>]]></text>
+    </generalfeedback>
+    <defaultmark>1.0000000</defaultmark>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[0.85 (u 85%)]]></text>
+      <feedback format="html">
+        <text><![CDATA[✅ Correcto: Axioma del complemento: \( P(A^c) = 1 - P(A) = 1 - 0.15 = 0.85 \).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[0.15 (o 15%)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. Esa es la probabilidad del evento original.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[0.50 (o 50%)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. No son eventos equiprobables.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[0.70 (o 70%)]]></text>
+      <feedback format="html">
+        <text><![CDATA[❌ Incorrecto. \( 1 - 0.15 = 0.85 \).]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

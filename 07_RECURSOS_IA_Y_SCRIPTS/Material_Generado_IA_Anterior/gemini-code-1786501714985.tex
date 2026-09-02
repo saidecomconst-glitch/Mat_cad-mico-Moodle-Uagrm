@@ -1,0 +1,451 @@
+\documentclass[12pt,letterpaper]{book}
+
+% === PAQUETES OBLIGATORIOS ===
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multicol}
+\usepackage[many]{tcolorbox}
+
+% === COLORES INSTITUCIONALES UAGRM ===
+\definecolor{UAGRMblue}{RGB}{0,51,102}
+\definecolor{UAGRMgGold}{RGB}{180,140,60}
+
+% === CONFIGURACIÓN DE ENCABEZADOS Y PIES DE PÁGINA ===
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\color{UAGRMblue}\textbf{UAGRM -- Fac. de Ciencias Contables}}
+\fancyhead[R]{\color{UAGRMblue}Estadística II -- MAT-260}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{UAGRMblue}\leaders\hrule height \headrulewidth\hfill}}
+
+% === CONFIGURACIÓN DE ENTORNOS DIDÁCTICOS (tcolorbox) ===
+\newtcolorbox{definicion}[1][]{
+    skin=enhanced,
+    breakable,
+    colback=blue!5,
+    colframe=blue!50!black,
+    fonttitle=\bfseries\large,
+    title=Definición,
+    attach boxed title to top left={xshift=5mm, yshift=-2mm},
+    boxed title style={colback=blue!50!black, colframe=blue!50!black, sharp corners},
+    #1
+}
+
+\newcounter{ejemplo}[chapter]
+\newtcolorbox{ejemplo}[1][]{
+    skin=enhanced,
+    breakable,
+    step=ejemplo,
+    colback=green!5,
+    colframe=green!50!black,
+    fonttitle=\bfseries\large,
+    title=Ejemplo resuelto \theejemplo,
+    attach boxed title to top left={xshift=5mm, yshift=-2mm},
+    boxed title style={colback=green!50!black, colframe=green!50!black, sharp corners},
+    #1
+}
+
+\newtcolorbox{alerta}[1][]{
+    skin=enhanced,
+    breakable,
+    colback=orange!5,
+    colframe=orange,
+    fonttitle=\bfseries\large,
+    title=\textbf{⚠ ¡Cuidado! / Recuerda ➤},
+    attach boxed title to top left={xshift=5mm, yshift=-2mm},
+    boxed title style={colback=orange, colframe=orange, sharp corners},
+    #1
+}
+
+\newtcolorbox{formulaclave}[1][]{
+    skin=enhanced,
+    colback=gray!10,
+    colframe=gray!50!black,
+    fonttitle=\bfseries,
+    halign=center,
+    #1
+}
+
+% === DATOS DEL DOCUMENTO ===
+\title{\Huge\color{UAGRMblue}\textbf{TEXTO GUÍA: ESTADÍSTICA II}\\ 
+\Large Carrera de Contaduría Pública}
+\author{\textbf{Docente: MSc. Anselmo Salguero Arano}}
+\date{\today}
+
+\begin{document}
+
+\frontmatter
+
+% === PORTADA ===
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    {\Huge \color{UAGRMblue} \textbf{UNIVERSIDAD AUTÓNOMA} \\ \textbf{GABRIEL RENÉ MORENO}}\\[1cm]
+    {\LARGE \color{UAGRMgGold} Facultad de Ciencias Contables \\ Carrera de Contaduría Pública}\\[2cm]
+    
+    {\Huge \textbf{TEXTO GUÍA: ESTADÍSTICA II}}\\[0.5cm]
+    {\Large \textbf{MAT-260}}\\[2cm]
+    
+    {\Large \textbf{Docente: MSc. Anselmo Salguero Arano}}\\[3cm]
+    
+    {\large Santa Cruz de la Sierra -- Bolivia}\\[1cm]
+    {\large \the\year}
+    \vfill
+\end{titlepage}
+
+\tableofcontents
+
+\mainmatter
+
+% ==========================================
+% UNIDAD 1: ANÁLISIS COMBINATORIO
+% ==========================================
+\chapter{Unidad N°1: Análisis Combinatorio}
+
+% --- PÁGINA DE APERTURA ---
+\begin{center}
+    \Large\textit{\color{UAGRMgGold}"El arte de contar las opciones nos permite medir y mitigar la incertidumbre en la toma de decisiones financieras."}
+\end{center}
+
+\vspace{1cm}
+
+\begin{center}
+\begin{tikzpicture}[
+    level distance=2.5cm,
+    level 1/.style={sibling distance=5cm},
+    level 2/.style={sibling distance=2.5cm},
+    every node/.style={draw, rectangle, rounded corners, fill=blue!10, text centered, text width=3cm}
+]
+\node {Proyecto de Auditoría}
+    child {node {Sucursal Norte}
+        child {node {Auditor A}}
+        child {node {Auditor B}}
+    }
+    child {node {Sucursal Sur}
+        child {node {Auditor A}}
+        child {node {Auditor B}}
+    };
+\end{tikzpicture}
+\captionof{figure}{Diagrama de árbol de decisiones para la asignación de personal de auditoría.}
+\end{center}
+
+\newpage
+
+% --- INTRODUCCIÓN ---
+\section{Introducción}
+El análisis combinatorio es la rama de las matemáticas encargada de estudiar las diversas formas de agrupar o seleccionar elementos de un conjunto. En el ejercicio de la Contaduría Pública, nos enfrentamos continuamente a la necesidad de evaluar múltiples escenarios.
+
+Entender cuántas combinaciones posibles existen al estructurar un portafolio de inversiones, al planificar rutas de muestreo para una auditoría, o al calcular probabilidades de escenarios de riesgo crediticio, resulta fundamental. El conteo riguroso permite al contador público proyectar cifras exactas y mitigar el riesgo de estimaciones deficientes.
+
+A lo largo de esta unidad, se desarrollarán los principios aditivo y multiplicativo, así como las técnicas de permutación y combinación. El objetivo es estructurar la base lógica necesaria para el posterior estudio de la teoría de probabilidades.
+
+% --- PRINCIPIOS DE CONTEO ---
+\section{Principios Fundamentales de Conteo}
+
+Para abordar problemas donde debemos determinar el total de resultados posibles de un evento, utilizamos dos reglas fundamentales: la Ley de la Multiplicación y la Ley de la Adición.
+
+\begin{definicion}
+    \textbf{Ley de la Multiplicación:} Si una decisión o evento puede ocurrir de $n_{1}$ formas distintas, y por cada una de estas, un segundo evento puede ocurrir de $n_{2}$ formas, entonces el número total de formas en que pueden ocurrir ambos eventos en secuencia es el producto $n_{1} \times n_{2}$.
+\end{definicion}
+
+\begin{ejemplo}
+    \textbf{Planteamiento:} Un gerente de auditoría necesita planificar la revisión anual. Debe seleccionar primero una de las $4$ sucursales principales para iniciar, y luego asignar a uno de los $3$ auditores senior disponibles para dirigir la visita. ¿Cuántas formas distintas tiene para organizar el inicio de la auditoría?
+    
+    \textbf{Datos:}
+    \begin{itemize}
+        \item Sucursales ($n_{1}$) = 4
+        \item Auditores senior ($n_{2}$) = 3
+    \end{itemize}
+    
+    \textbf{Solución:}
+    Aplicando la Ley de la Multiplicación:
+    \[ Total = n_{1} \times n_{2} = 4 \times 3 = 12 \text{ formas distintas} \]
+    
+    \textbf{Interpretación:} El gerente cuenta con 12 combinaciones iniciales posibles para arrancar su cronograma de auditoría, lo que le permite diversificar el enfoque de control.
+\end{ejemplo}
+
+\begin{ejemplo}
+    \textbf{Planteamiento:} El departamento de TI exige a los analistas financieros crear un PIN de seguridad temporal que conste de 2 letras (de un alfabeto de 26) seguidas de 2 dígitos numéricos (del 0 al 9). Si se permite repetir caracteres, ¿cuántos PIN diferentes se pueden generar?
+    
+    \textbf{Datos:}
+    \begin{itemize}
+        \item Letra 1 ($n_{1}$) = 26, Letra 2 ($n_{2}$) = 26
+        \item Dígito 1 ($n_{3}$) = 10, Dígito 2 ($n_{4}$) = 10
+    \end{itemize}
+    
+    \textbf{Solución:}
+    Multiplicando las opciones de cada etapa:
+    \[ Total = 26 \times 26 \times 10 \times 10 = 67,600 \text{ contraseñas distintas} \]
+    
+    \textbf{Interpretación:} Existen 67,600 códigos únicos, lo cual da al departamento de sistemas un margen objetivo para cuantificar la vulnerabilidad o probabilidad de que un código sea adivinado al azar.
+\end{ejemplo}
+
+\begin{definicion}
+    \textbf{Ley de la Adición:} Si un evento $A$ puede ocurrir de $n$ formas y un evento $B$ puede ocurrir de $m$ formas, y ambos eventos no pueden ocurrir de manera simultánea (son mutuamente excluyentes), entonces el número total de formas en que puede ocurrir $A$ o $B$ es $n + m$.
+\end{definicion}
+
+\begin{ejemplo}
+    \textbf{Planteamiento:} Un cliente de una firma contable desea invertir sus excedentes de liquidez. El asesor le ofrece elegir un único instrumento: puede optar por uno de $5$ bonos gubernamentales o uno de $4$ fondos mutuos. ¿Cuántas opciones de inversión tiene en total?
+    
+    \textbf{Datos:}
+    \begin{itemize}
+        \item Bonos ($n$) = 5
+        \item Fondos mutuos ($m$) = 4
+    \end{itemize}
+    
+    \textbf{Solución:}
+    Dado que solo elegirá un instrumento (eventos excluyentes), se suman las opciones:
+    \[ Total = n + m = 5 + 4 = 9 \text{ opciones} \]
+    
+    \textbf{Interpretación:} El cliente tiene 9 alternativas directas para colocar su capital. Al conocer el total exacto, el asesor puede presentar una matriz de rentabilidad completa para cada una.
+\end{ejemplo}
+
+% --- PERMUTACIONES ---
+\section{Permutaciones}
+
+Las permutaciones abordan el conteo de agrupaciones donde el \textbf{orden de los elementos sí importa}. Es decir, el arreglo $(A, B)$ es considerado diferente al arreglo $(B, A)$.
+
+\begin{definicion}
+    El número de permutaciones de $n$ objetos distintos tomados de $r$ a la vez (donde $r \leq n$) se denota por $P_{r}^{n}$ o $_{n}P_{r}$ y se calcula como:
+    \begin{formulaclave}
+        \[ P_{r}^{n} = \frac{n!}{(n-r)!} \]
+    \end{formulaclave}
+    Si se toman todos los objetos ($n=r$), la fórmula se reduce a $P_{n}^{n} = n!$.
+\end{definicion}
+
+\begin{ejemplo}
+    \textbf{Planteamiento:} La junta de socios de un banco debe elegir a un Presidente, un Vicepresidente y un Tesorero de entre un grupo de 6 candidatos altamente calificados. ¿De cuántas maneras se pueden ocupar estos tres cargos directivos?
+    
+    \textbf{Datos:}
+    \begin{itemize}
+        \item Total de candidatos ($n$) = 6
+        \item Cargos a ocupar ($r$) = 3
+    \end{itemize}
+    
+    \textbf{Solución:}
+    Puesto que los cargos tienen jerarquía y funciones distintas, el orden importa. Usamos permutaciones:
+    \[ P_{3}^{6} = \frac{6!}{(6-3)!} = \frac{6 \times 5 \times 4 \times 3!}{3!} = 6 \times 5 \times 4 = 120 \]
+    
+    \textbf{Interpretación:} Existen 120 estructuras de liderazgo diferentes que la junta puede formar, cada una representando un posible escenario de dirección estratégica y fiscal para el banco.
+\end{ejemplo}
+
+\begin{ejemplo}
+    \textbf{Planteamiento:} Un equipo de control de calidad fiscal detecta un lote de 5 facturas con inconsistencias. El supervisor requiere revisar las 5 facturas una tras otra para buscar patrones de fraude. ¿De cuántas maneras puede ordenar la secuencia de revisión de estas facturas?
+    
+    \textbf{Datos:}
+    \begin{itemize}
+        \item Facturas totales ($n$) = 5
+        \item Facturas a ordenar ($r$) = 5
+    \end{itemize}
+    
+    \textbf{Solución:}
+    Es una permutación donde todos los elementos participan:
+    \[ P_{5}^{5} = 5! = 5 \times 4 \times 3 \times 2 \times 1 = 120 \]
+    
+    \textbf{Interpretación:} El supervisor puede generar 120 cronogramas de revisión secuencial. En auditorías forenses, el orden de revisión puede afectar el descubrimiento de desviaciones progresivas.
+\end{ejemplo}
+
+\begin{alerta}
+    Recuerda ➤ La diferencia clave para usar Permutaciones es la existencia de jerarquía, tiempos o posiciones distintas. Si las palabras "orden", "secuencia" o "cargo" están en el problema, debes pensar en Permutaciones.
+\end{alerta}
+
+\begin{ejemplo}
+    \textbf{Planteamiento:} En un almuerzo corporativo para discutir la fusión de dos firmas contables, 4 socios fundadores deben sentarse en una mesa circular de 4 asientos. ¿De cuántas maneras distintas pueden ubicarse alrededor de la mesa?
+    
+    \textbf{Datos:}
+    \begin{itemize}
+        \item Socios ($n$) = 4
+    \end{itemize}
+    
+    \textbf{Solución:}
+    Para permutaciones circulares se aplica la fórmula $P_{circular} = (n-1)!$:
+    \[ P_{circular} = (4-1)! = 3! = 3 \times 2 \times 1 = 6 \]
+    
+    \textbf{Interpretación:} Solo existen 6 disposiciones relativas distintas. En negociaciones de alto nivel, la posición física de los negociadores puede ser clave, y este cálculo muestra las limitadas opciones de asientos.
+\end{ejemplo}
+
+% --- COMBINACIONES ---
+\section{Combinaciones}
+
+A diferencia de las permutaciones, las combinaciones se utilizan cuando el \textbf{orden de los elementos no importa}. El conjunto $(A, B, C)$ es exactamente idéntico al conjunto $(C, A, B)$. Nos enfocamos únicamente en la conformación del subgrupo.
+
+\begin{definicion}
+    El número de combinaciones de $n$ objetos tomados de $r$ en $r$ se denota por $C_{r}^{n}$, $_{n}C_{r}$ o $\binom{n}{r}$, y se calcula mediante la fórmula:
+    \begin{formulaclave}
+        \[ C_{r}^{n} = \frac{n!}{r!(n-r)!} \]
+    \end{formulaclave}
+\end{definicion}
+
+\begin{ejemplo}
+    \textbf{Planteamiento:} El Servicio de Impuestos Nacionales desea conformar un comité especial de fiscalización seleccionado de un departamento compuesto por 8 especialistas tributarios. El comité estará formado por 3 especialistas con las mismas responsabilidades. ¿De cuántas formas se puede conformar el comité?
+    
+    \textbf{Datos:}
+    \begin{itemize}
+        \item Especialistas disponibles ($n$) = 8
+        \item Tamaño del comité ($r$) = 3
+    \end{itemize}
+    
+    \textbf{Solución:}
+    Como no hay jerarquías dentro del comité, el orden no importa. Utilizamos combinaciones:
+    \[ C_{3}^{8} = \frac{8!}{3!(8-3)!} = \frac{8 \times 7 \times 6 \times 5!}{3 \times 2 \times 1 \times 5!} = \frac{336}{6} = 56 \]
+    
+    \textbf{Interpretación:} Se pueden estructurar 56 comités diferentes. Este dato permite al director rotar al personal evitando sesgos o favoritismos en las fiscalizaciones prolongadas.
+\end{ejemplo}
+
+\begin{ejemplo}
+    \textbf{Planteamiento:} De un inventario físico de 12 lotes de mercadería, un auditor externo decide realizar una prueba sustantiva seleccionando al azar una muestra de 4 lotes. ¿Cuántas muestras diferentes es posible extraer?
+    
+    \textbf{Datos:}
+    \begin{itemize}
+        \item Lotes totales ($n$) = 12
+        \item Lotes a muestrear ($r$) = 4
+    \end{itemize}
+    
+    \textbf{Solución:}
+    Extraer el lote A y luego el lote B es igual que extraer el B y luego el A.
+    \[ C_{4}^{12} = \frac{12!}{4!(12-4)!} = \frac{12 \times 11 \times 10 \times 9 \times 8!}{4 \times 3 \times 2 \times 1 \times 8!} = \frac{11,880}{24} = 495 \]
+    
+    \textbf{Interpretación:} Existen 495 muestras de auditoría posibles. Esta base es primordial para sustentar estadísticamente la representatividad de la muestra de inventario evaluada ante los accionistas.
+\end{ejemplo}
+
+\begin{ejemplo}
+    \textbf{Planteamiento:} En una empresa hay 5 contadores y 4 ingenieros financieros. Se requiere armar una comisión de presupuestos integrada obligatoriamente por 3 contadores y 2 ingenieros. ¿De cuántas maneras puede formarse esta comisión mixta?
+    
+    \textbf{Datos:}
+    \begin{itemize}
+        \item Contadores: total ($n_1$) = 5, a elegir ($r_1$) = 3
+        \item Ingenieros: total ($n_2$) = 4, a elegir ($r_2$) = 2
+    \end{itemize}
+    
+    \textbf{Solución:}
+    Combinamos los métodos de conteo. Aplicamos combinaciones por separado y luego la ley de la multiplicación:
+    \[ C_{3}^{5} = \frac{5!}{3!(2)!} = 10 \]
+    \[ C_{2}^{4} = \frac{4!}{2!(2)!} = 6 \]
+    \[ Total = 10 \times 6 = 60 \]
+    
+    \textbf{Interpretación:} Se dispone de 60 opciones para constituir el comité interdisciplinario. Analizar estas agrupaciones es vital para garantizar equipos que minimicen conflictos de interés.
+\end{ejemplo}
+
+
+% --- TABLA RESUMEN ---
+\section{Tabla Resumen de Fórmulas}
+
+\begin{table}[h!]
+\centering
+\caption{Resumen de Técnicas de Análisis Combinatorio}
+\begin{tabular}{@{}llcc@{}}
+\toprule
+\textbf{Técnica} & \textbf{Fórmula} & \textbf{¿Importa el orden?} & \textbf{Condición de uso} \\ \midrule
+Ley Multiplicación & $n_1 \times n_2 \times \dots \times n_k$ & Sí / No & Sucesión de eventos independientes \\
+Permutación Simple & $P_{n} = n!$ & Sí & Se toman todos los elementos \\
+Permutación Parcial & $P_{r}^{n} = \frac{n!}{(n-r)!}$ & Sí & Se toman $r$ elementos de $n$ ($r < n$) \\
+Permutación Circular & $P_c = (n-1)!$ & Sí & Arreglo en círculo o circuito cerrado \\
+Combinaciones & $C_{r}^{n} = \frac{n!}{r!(n-r)!}$ & No & Selecciones de subgrupos sin jerarquía \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% --- EJERCICIOS PROPUESTOS ---
+\section{Ejercicios Propuestos}
+
+\subsection*{Nivel A: Aplicación Directa (Básico)}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item Calcule $P_{4}^{7}$ y explique su desarrollo matemático.
+    \item Se requiere asignar 5 computadoras portátiles a 5 pasantes contables diferentes. ¿De cuántas formas se puede realizar la entrega?
+    \item Determine cuántos subgrupos de 2 elementos se pueden extraer de un conjunto de 6 elementos ($C_{2}^{6}$).
+    \item Un candado de seguridad tiene 3 rodillos, cada uno con los dígitos del 0 al 9. ¿Cuántas combinaciones de código existen si se pueden repetir números?
+\end{enumerate}
+
+\subsection*{Nivel B: Contexto Contable y Financiero (Intermedio)}
+\begin{enumerate}[label=\textbf{\arabic*.}, start=5]
+    \item Una firma de auditoría posee una cartera de 10 clientes importantes y solo tiene capacidad para enviar equipos a auditar simultáneamente a 3 de ellos esta semana. ¿Cuántos grupos diferentes de clientes pueden ser seleccionados?
+    \item El gerente financiero debe presentar el balance general, el estado de resultados y el estado de flujos de efectivo. Si puede presentar los tres informes en cualquier orden ante la junta, ¿cuántas secuencias de presentación son posibles?
+    \item En la oficina de tesorería laboran 7 analistas. Se requiere seleccionar a un Jefe de Tesorería y a un Subjefe. ¿De cuántas formas se pueden asignar estos dos puestos jerárquicos?
+    \item El departamento de recursos humanos quiere armar un equipo de evaluación de nóminas compuesto por 2 auditores de un grupo de 5 y 2 administradores de un grupo de 4. Determine la cantidad de equipos mixtos que se pueden constituir.
+\end{enumerate}
+
+\subsection*{Nivel C: Desafío de Interpretación (Avanzado)}
+\begin{enumerate}[label=\textbf{\arabic*.}, start=9]
+    \item En una reunión para negociar las condiciones de un crédito sindicado, 8 representantes de bancos se sentarán en una mesa redonda. ¿De cuántas formas se pueden distribuir? Interprete por qué es distinto a una mesa rectangular.
+    \item Una clave de acceso al servidor de la base de datos de impuestos consta de 3 letras distintas seguidas de 2 números impares distintos. ¿Cuántas claves diferentes existen bajo estas restricciones?
+    \item De un lote de 20 pólizas de seguro, se sabe que 4 presentan errores de cálculo. Si un auditor extrae una muestra de 5 pólizas, ¿de cuántas formas puede obtener una muestra que contenga exactamente 2 pólizas con errores y 3 pólizas correctas?
+    \item Un gerente tiene la opción de aprobar hasta 3 proyectos de una lista de 5 proyectos de alto riesgo. Él puede aprobar 1, 2 o 3 proyectos. Calcule el total de escenarios de aprobación que el gerente podría generar. (Pista: Utilice la Ley de la Adición entre las combinaciones).
+\end{enumerate}
+
+% --- AUTOEVALUACIÓN ---
+\section{Autoevaluación}
+
+Seleccione la respuesta correcta para cada enunciado. La justificación técnica se encuentra al final de la página.
+
+\begin{enumerate}[label=\textbf{Pregunta \arabic*:}]
+    \item En un proceso de arqueo de caja se deben elegir 4 cajeros de un total de 10 sin importar el orden de selección. ¿Qué técnica combinatoria se debe utilizar?
+    \begin{enumerate}[label=\alph*)]
+        \item Permutación con repetición
+        \item Permutación simple
+        \item Combinación
+        \item Principio Aditivo
+    \end{enumerate}
+    
+    \item El valor de $0!$ (cero factorial) es matemáticamente igual a:
+    \begin{enumerate}[label=\alph*)]
+        \item 0
+        \item 1
+        \item Indeterminado
+        \item Depende del contexto de la muestra
+    \end{enumerate}
+    
+    \item Al calcular la cantidad de formas de otorgar el 1er, 2do y 3er lugar en un concurso de contabilidad entre 8 estudiantes, la operación matemática correcta es:
+    \begin{enumerate}[label=\alph*)]
+        \item $\frac{8!}{(8-3)!}$
+        \item $\frac{8!}{3!(8-3)!}$
+        \item $8 \times 3$
+        \item $8!$
+    \end{enumerate}
+    
+    \item ¿Qué diferencia estructural existe entre una permutación y una combinación?
+    \begin{enumerate}[label=\alph*)]
+        \item Las combinaciones siempre generan números mayores que las permutaciones.
+        \item En la permutación el orden de los elementos determina un resultado diferente; en la combinación el orden interno no importa.
+        \item Las permutaciones solo se aplican en matemáticas financieras.
+        \item No existe diferencia, ambas arrojan el mismo cálculo.
+    \end{enumerate}
+    
+    \item En la oficina tributaria hay 4 impresoras y 3 fotocopiadoras. Si un asistente necesita usar obligatoriamente una impresora y luego una fotocopiadora para entregar un informe, ¿cuántas opciones de equipos tiene?
+    \begin{enumerate}[label=\alph*)]
+        \item 7
+        \item 12
+        \item 64
+        \item 81
+    \end{enumerate}
+\end{enumerate}
+
+\vspace{1cm}
+\begin{formulaclave}
+\textbf{Soluciones y Justificaciones:} \\
+\textbf{1: c)} Al no existir jerarquía o secuencia, se trata de formar subgrupos (Combinación). \\
+\textbf{2: b)} Por definición y propiedad de los factoriales, $0! = 1$. \\
+\textbf{3: a)} Al existir lugares con posiciones distintas, el orden importa. Es una permutación $P_{3}^{8} = \frac{8!}{(8-3)!}$. \\
+\textbf{4: b)} La característica fundamental es la relevancia del orden posicional. \\
+\textbf{5: b)} Se trata de dos eventos sucesivos e independientes, por tanto aplica la Ley de la Multiplicación ($4 \times 3 = 12$).
+\end{formulaclave}
+
+\backmatter
+
+\end{document}

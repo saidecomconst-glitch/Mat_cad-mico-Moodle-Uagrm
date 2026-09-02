@@ -1,0 +1,195 @@
+PROMPT PARA GENERAR PRESENTACIONES LATEX BEAMER - ESTADÍSTICA APLICADA
+Universidad Autónoma Gabriel René Moreno (UAGRM)
+Facultad de Ciencias Contables, Auditoría, Sistemas de Control de Gestión y Finanzas
+Carrera de Contaduría Pública
+Docente: MSc. Anselmo Salguero Arano
+================================================================================
+
+## 1. CONFIGURACIÓN DE COMPILACIÓN OBLIGATORIA
+
+- Usar \documentclass[10pt]{beamer}
+- Compilar obligatoriamente con XeLaTeX o LuaLaTeX (NO pdfLaTeX)
+- En Overleaf: Menú → Compilador → XeLaTeX
+- En VS Code: configurar latex-workshop.latex.recipe.default para xelatex
+- La fuente Verdana requiere fontspec, que solo funciona con XeLaTeX/LuaLaTeX
+
+## 2. PAQUETES REQUERIDOS (EN ESTE ORDEN EXACTO)
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, shadows, calc, backgrounds}
+\usepackage{fontspec}
+\setmainfont{Verdana}
+\setsansfont{Verdana}
+\setmonofont{Verdana}
+
+## 3. PALETA DE COLORES EXACTA (DEFINIR CON \definecolor)
+
+| Nombre del color | RGB | Uso |
+|------------------|-----|-----|
+| deepseekblue | RGB{37, 99, 235} | Azul eléctrico institucional. Frames, bloques, pie izquierdo |
+| darkblue | RGB{0, 51, 102} | Azul marino. Centro del pie de página, texto institucional |
+| caterpillaryellow | RGB{255, 199, 44} | Amarillo Caterpillar. Número de página en pie derecho |
+| lightblue | RGB{232, 244, 250} | Fondo de cajas de teoría (fondo muy suave) |
+| boxborder | RGB{0, 102, 153} | Borde de cajas de teoría |
+| checkgreen | RGB{40, 167, 69} | Verde para bloques de ejemplo (exampleblock) |
+| checkred | RGB{220, 53, 69} | Rojo para alertas y bloques de alerta |
+| softgray | RGB{248, 249, 250} | Fondo alternativo para tablas (filas pares) |
+| vinotinto | RGB{128, 0, 32} | Vino tinto. ÚNICAMENTE para "UNIDAD N° X" en portada |
+
+## 4. CONFIGURACIÓN DEL TEMA BEAMER
+
+\usetheme{Madrid}
+\usecolortheme{default}
+
+- palette primary, secondary, tertiary: bg=deepseekblue, fg=white
+- frametitle: bg=deepseekblue, fg=white
+- title, subtitle, author, institute, date: fg=deepseekblue
+- block title: bg=deepseekblue, fg=white
+- block body: bg=lightblue, fg=black
+- block title alerted: bg=checkred, fg=white
+- block body alerted: bg=red!5, fg=black
+- block title example: bg=checkgreen, fg=white
+- block body example: bg=green!5, fg=black
+- alerted text: fg=checkred
+
+## 5. VIÑETAS PERSONALIZADAS
+
+\setbeamertemplate{itemize item}{\color{deepseekblue}\scriptsize$\blacksquare$}
+\setbeamertemplate{itemize subitem}{\color{darkblue}\tiny$\blacktriangleright$}
+\setbeamertemplate{itemize subsubitem}{\color{boxborder}\tiny$\circ$}
+
+## 6. PIE DE PÁGINA PERSONALIZADO (TRES COLORES)
+
+Formato: [Autor | Título | Número de página]
+
+- Izquierda (autor): bg=deepseekblue, fg=white, wd=.333333\paperwidth, center
+- Centro (título): bg=darkblue, fg=white, wd=.333333\paperwidth, center
+- Derecha (número): bg=caterpillaryellow, fg=darkblue, wd=.333333\paperwidth, right
+- ht=2.5ex, dp=1ex
+- Eliminar símbolos de navegación: \setbeamertemplate{navigation symbols}{}
+
+## 7. COMANDOS Y ENTORNOS PERSONALIZADOS
+
+### 7.1 Cajas laterales (teoría, tips, notas)
+\newenvironment{lateralbox}[1]{%
+    \begin{beamercolorbox}[rounded=true,shadow=true,wd=.95\linewidth]{block body}
+    \begin{center}\textbf{\color{boxborder}#1}\end{center}
+    \vspace{0.1cm}
+    \small\color{darkblue}
+}{%
+    \end{beamercolorbox}
+}
+
+### 7.2 Cajas de fórmulas destacadas
+\newcommand{\formulabox}[1]{%
+  \begin{center}
+  \begin{tikzpicture}
+    \node[fill=lightblue, draw=boxborder, rounded corners=5pt, inner sep=8pt, text width=0.9\textwidth, align=center] {#1};
+  \end{tikzpicture}
+  \end{center}
+}
+
+## 8. ESTRUCTURA DE LA PORTADA (FRAME PLAIN)
+
+- \begin{frame}[plain]
+- \centering
+- \vspace*{-0.3cm} (logos ligeramente arriba)
+- Dos logos lado a lado en minipage: Logouagrm.png y Logocont.png
+  - width=0.5\linewidth cada uno
+  - minipage width=0.35\textwidth cada uno
+  - \hspace{0.5cm} entre ellos
+- Texto de la universidad: \large \color{black} \textbf{UNIVERSIDAD AUTÓNOMA GABRIEL RENÉ MORENO}
+- Facultad: \normalsize \color{black} (tres líneas)
+- Carrera: \normalsize \color{black} \textbf{CONTADURÍA PÚBLICA}
+- UNIDAD N° X: \Large \color{vinotinto} \textbf{UNIDAD N° X} (ÚNICO ELEMENTO EN VINO TINTO)
+- Subtítulo distribuciones: \large \color{black} \textbf{DISTRIBUCIONES DE PROBABILIDAD...}
+- Tema específico: \Large \color{black} \textbf{[Nombre del tema]}
+- Autor: \large \color{darkblue} \textbf{MSc. Anselmo Salguero Arano}
+- REGLA DE ORO EN PORTADA: TODO NEGRO excepto UNIDAD N° X en vinotinto y el nombre del autor en darkblue
+
+## 9. ESTRUCTURA DE DIAPOSITIVAS DE CONTENIDO
+
+### 9.1 Diapositivas de teoría
+- Título del frame: tema en cuestión
+- Texto con \justifying para justificación completa
+- Listas con viñetas personalizadas (cuadrado, triángulo, círculo)
+- Cajas de teoría con entorno lateralbox o beamercolorbox
+- Fórmulas importantes dentro de \formulabox{}
+- Usar columns[ T] para dos columnas cuando sea necesario
+
+### 9.2 Diapositivas de ejercicios resueltos
+- SIN cajas recuadradas en la resolución (texto libre, bien distribuido)
+- Texto legible, tamaño apropiado (no texto excesivamente pequeño)
+- Optimizar el área de la diapositiva, evitar espacio vacío excesivo
+- Estructura: Enunciado → Datos → Resolución paso a paso → Interpretación
+- Fórmulas matemáticas en modo display ($$...$$) centradas
+- Si el ejercicio es largo, dividir en múltiples frames consecutivos
+- Numeración: Ejercicio Resuelto N: [Tema]
+
+### 9.3 Diapositivas de cierre
+- \begin{frame}{} (título vacío)
+- \centering
+- \Huge \color{deepseekblue} \textbf{¡Gracias por su atención!}
+- Nombre del docente en \large \color{darkblue}
+- Institución en \normalsize \color{boxborder}
+
+## 10. INFORMACIÓN DE LA PRESENTACIÓN (\title, \author, etc.)
+
+\title[ShortTitle]{Título completo de la presentación}
+\subtitle{Unidad N° X: [Tema principal]}
+\author{MSc. Anselmo Salguero Arano}
+\institute[UAGRM]{Universidad Autónoma Gabriel René Moreno \ Facultad de Ciencias Contables, Auditoría, \ Sistemas de Control de Gestión y Finanzas \ Carrera de Contaduría Pública}
+\date{}
+
+## 11. REGLAS DE ESTILO Y FORMATO
+
+- Tildes: mantener acentos naturales (á, é, í, ó, ú, ñ). Funcionan correctamente con XeLaTeX + babel[spanish]
+- No usar \color{green} ni \color{checkgreen} en la portada
+- No usar \color{purple} en la portada (usar vinotinto para unidad)
+- Los bloques exampleblock (verde) y alertblock (rojo) se usan SOLO en contenido interno, nunca en portada
+- Las tablas usan booktabs (\toprule, \midrule, \bottomrule) con \rowcolor{softgray} para filas alternas
+- Las fórmulas en display mode deben estar centradas y con espacio adecuado
+- Evitar texto amontonado; usar \vspace{0.15cm} o \vspace{0.2cm} para separar secciones
+
+## 12. ESTRUCTURA SUGERIDA DE LA PRESENTACIÓN
+
+1. Portada [plain]
+2. Variables aleatorias continuas (introducción)
+3. Distribución Normal: definición y características
+4. Distribución Normal: propiedades
+5. Distribución Normal estándar
+6. Ejercicios resueltos de Normal (1, 2, 3... según sea necesario)
+7. Distribución Exponencial: definición y características
+8. Distribución Exponencial: propiedades
+9. Ejercicios resueltos de Exponencial (1, 2... según sea necesario)
+10. Tabla comparativa / Resumen
+11. Cierre [plain]
+
+## 13. NOTAS PARA GRÁFICOS
+
+- Los gráficos se generan por separado (Python, GeoGebra, etc.) y se insertan con \includegraphics
+- No generar gráficos dentro del código LaTeX (pgfplots solo para fórmulas y esquemas simples)
+- Guardar imágenes como .png en la misma carpeta del proyecto
+- Usar width=\linewidth o width=0.9\linewidth para ajustar
+
+================================================================================
+EJEMPLO DE SOLICITUD AL ASISTENTE:
+================================================================================
+
+"Genera código LaTeX Beamer para una presentación de Estadística II, Unidad N° 5, 
+tema: Distribución Uniforme Continua y Distribución t-Student. Incluir: portada 
+sobria con todo en negro excepto UNIDAD N° 5 en vino tinto, teoría de ambas 
+distribuciones con fórmulas en cajas destacadas, 2 ejercicios resueltos paso a 
+paso para cada distribución, tabla comparativa y cierre. Fuente Verdana, pie de 
+página tricolor (deepseekblue, darkblue, caterpillaryellow), compilar con XeLaTeX."
+
+================================================================================

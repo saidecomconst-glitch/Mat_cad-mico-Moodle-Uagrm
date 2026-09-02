@@ -1,0 +1,2506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <!-- ========================================================================= -->
+  <!-- BANCO DE PREGUNTAS: UNIDAD 1 - ANÁLISIS COMBINATORIO Y MÉTODOS DE CONTEO   -->
+  <!-- Materia: Estadística II (MAT-260) - UAGRM                                -->
+  <!-- Docente: MSc. Anselmo Salguero Arano                                     -->
+  <!-- ========================================================================= -->
+
+  <!-- ==================== CATEGORÍA ==================== -->
+  <question type="category">
+    <category>
+      <text>$course$/Unidad_01_Analisis_Combinatorio/Leccion_1_1_Principios_Conteo_Factoriales</text>
+    </category>
+  </question>
+
+  <!-- Pregunta de Emparejamiento (Matching) -->
+  <question type="matching">
+    <name>
+      <text>U1_L1_MATCH_01_Propiedades_Factorial</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Relacione cada expresión factorial con su resultado numérico exacto:</strong></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación general: Verifique la correspondencia analítica exacta de cada par aplicando las definiciones formales del Análisis Combinatorio.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <shuffleanswers>true</shuffleanswers>
+    <subquestion format="html">
+      <text><![CDATA[\(0!\)]]></text>
+      <answer>
+        <text>1</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[\(4!\)]]></text>
+      <answer>
+        <text>24</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[\(5!\)]]></text>
+      <answer>
+        <text>120</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[\(6! / 4!\)]]></text>
+      <answer>
+        <text>30</text>
+      </answer>
+    </subquestion>
+  </question>
+
+  <!-- Pregunta de Emparejamiento (Matching) -->
+  <question type="matching">
+    <name>
+      <text>U1_L1_MATCH_02_Principio_Multiplicativo</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Asocie cada experimento compuesto con el número total de resultados posibles en su espacio muestral:</strong></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación general: Verifique la correspondencia analítica exacta de cada par aplicando las definiciones formales del Análisis Combinatorio.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <shuffleanswers>true</shuffleanswers>
+    <subquestion format="html">
+      <text><![CDATA[Lanzar 2 monedas consecutivas (\(2 \times 2\))]]></text>
+      <answer>
+        <text>4 resultados</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Lanzar 1 dado de 6 caras y 1 moneda (\(6 \times 2\))]]></text>
+      <answer>
+        <text>12 resultados</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Lanzar 2 dados de 6 caras (\(6 \times 6\))]]></text>
+      <answer>
+        <text>36 resultados</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Lanzar 3 monedas simultáneas (\(2^3\))]]></text>
+      <answer>
+        <text>8 resultados</text>
+      </answer>
+    </subquestion>
+  </question>
+
+  <!-- Pregunta de Emparejamiento (Matching) -->
+  <question type="matching">
+    <name>
+      <text>U1_L1_MATCH_03_Simplificacion_Factoriales</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Relacione la fracción algebraica con su valor numérico simplificado:</strong></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación general: Verifique la correspondencia analítica exacta de cada par aplicando las definiciones formales del Análisis Combinatorio.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <shuffleanswers>true</shuffleanswers>
+    <subquestion format="html">
+      <text><![CDATA[\(\frac{8!}{7!}\)]]></text>
+      <answer>
+        <text>8</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[\(\frac{7!}{5!}\)]]></text>
+      <answer>
+        <text>42</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[\(\frac{6!}{3! \times 3!}\)]]></text>
+      <answer>
+        <text>20</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[\(\frac{9!}{8! \times 0!}\)]]></text>
+      <answer>
+        <text>9</text>
+      </answer>
+    </subquestion>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L1_MC_01_Claves_Acceso_ERP</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Una empresa diseña códigos de seguridad para transferencias interbancarias. Cada clave consta de 3 letras mayúsculas distintas elegidas de un conjunto de 5 (A, B, C, D, E) seguidas de 2 dígitos distintos (del 1 al 9). ¿Cuántos códigos de seguridad diferentes pueden crearse?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(4.320\) códigos]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! Por el principio multiplicativo sin repetición: (5 × 4 × 3) × (9 × 8) = 60 × 72 = 4.320 códigos únicos.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(8.100\) códigos]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Ese valor resulta de permitir repetición. El enunciado especifica elementos distintos.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(1.440\) códigos]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique el producto de letras (60) y dígitos (72).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(2.160\) códigos]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Revise el producto de ambas fases: 60 × 72.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L1_MC_02_Itinerario_Viaje_Auditoria</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Un equipo de fiscalización debe viajar de Santa Cruz a Sucre. Puede trasladarse por vía aérea (2 aerolíneas con 3 vuelos diarios cada una) O por vía terrestre (3 empresas de transporte con 4 salidas diarias cada una). ¿De cuántas maneras diferentes puede programar su viaje de ida?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(18\) maneras distintas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Excelente! Vía aérea: 2 × 3 = 6. Vía terrestre: 3 × 4 = 12. Como son excluyentes (aire O tierra): 6 + 12 = 18 maneras.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(72\) maneras distintas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Ha multiplicado 6 × 12. El viaje es por aire O por tierra (Principio Aditivo).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(12\) maneras distintas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 12 corresponde únicamente a los viajes terrestres.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(24\) maneras distintas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Revise el cálculo de las opciones independientes de cada medio.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L1_MC_03_Ecuacion_Factorial</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En la calibración de un modelo probabilístico se requiere resolver la ecuación factorial: \(\frac{(n+1)!}{(n-1)!} = 30\). ¿Cuál es el valor entero positivo de \(n\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(n = 5\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! Descomponiendo: (n+1)n = 30 → n² + n - 30 = 0 → (n+6)(n-5) = 0 → n = 5.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(n = 6\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Si n = 6, tendríamos (7)(6) = 42 ≠ 30.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(n = 4\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Si n = 4, tendríamos (5)(4) = 20 ≠ 30.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(n = 3\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Si n = 3, tendríamos (4)(3) = 12 ≠ 30.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L1_MC_04_Placas_Vehiculos</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>El sistema municipal de registro emite placas de vehículos formadas por 4 dígitos (del 0 al 9) seguidos de 3 letras (de 26). Si el primer dígito no puede ser cero (0) y las letras no pueden repetirse, ¿cuántas placas se pueden emitir?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(140.400.000\) placas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Exacto! Dígitos: 9 × 10 × 10 × 10 = 9.000. Letras sin repetición: 26 × 25 × 24 = 15.600. Total = 9.000 × 15.600 = 140.400.000.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(156.000.000\) placas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Asume que el primer dígito puede ser cero (10.000 × 15.600).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(158.184.000\) placas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Permite repetición en las letras (9.000 × 26³).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(112.320.000\) placas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique el producto de dígitos (9.000) y letras (15.600).</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L1_MC_05_Fraccion_Combinatoria</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Calcular el valor numérico exacto de la expresión factorial: \(M = \frac{12! \times 3!}{10! \times 5!}\).</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(6.6\) (o \(\frac{33}{5}\))]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! 12!/10! = 132. 3!/5! = 1/20. M = 132 / 20 = 33/5 = 6.6.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(13.2\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique la división por 5! = 120 (3!/5! = 1/20).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(3.3\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Recuerde multiplicar 12 × 11 = 132 antes de dividir entre 20.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(8.0\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Revise la simplificación paso a paso.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L1_MC_06_Menu_Restaurante</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Un restaurante empresarial ofrece un almuerzo ejecutivo que consta de: 1 entrada (entre 4 opciones), 1 plato fuerte (entre 5 opciones), 1 postre (entre 3 opciones) y 1 bebida (entre 2 opciones). ¿Cuántos menús diferentes puede armar un comensal?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(120\) menús]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! Principio Multiplicativo: 4 × 5 × 3 × 2 = 120 menús diferentes.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(14\) menús]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Ha sumado las opciones (4 + 5 + 3 + 2 = 14) en lugar de multiplicarlas.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(60\) menús]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Olvidó incluir las 2 opciones de bebida (4 × 5 × 3 = 60).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(240\) menús]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique el producto de los 4 factores.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L1_MC_07_Examen_Opcion_Multiple</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Un cuestionario diagnóstico consta de 6 preguntas de opción múltiple, cada una con 4 alternativas de respuesta y solo una correcta. ¿De cuántas formas distintas puede un estudiante responder todo el cuestionario?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(4.096\) formas (\(4^6\))]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! En cada una de las 6 preguntas hay 4 opciones independientes: 4 × 4 × 4 × 4 × 4 × 4 = 4⁶ = 4.096 formas.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(24\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 24 es 6 × 4. Cada pregunta duplica exponencialmente las ramas del árbol de decisión (4⁶).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(1.296\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 1.296 es 6⁴ (preguntas y opciones invertidas).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(720\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 720 es 6! (permutación de 6 elementos).</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L1_MC_08_Factorial_Cero</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>¿Cuál es la justificación matemática y combinatoria por la cual se define universalmente que \(0! = 1\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Porque existe exactamente 1 manera de ordenar un conjunto vacío (no hacer nada), y para mantener la coherencia de la fórmula recursiva \(n! = n \times (n-1)!\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Excelente! Si n=1, 1! = 1 × 0!, obligando a que 0! = 1. Combinatoriamente, hay 1 solo arreglo del conjunto vacío.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Porque todo número multiplicado por cero da uno]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. La multiplicación ordinaria por cero da cero; el factorial de 0 es una convención formal.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Porque el cero no se puede dividir entre ningún número]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Cero dividido entre cualquier número no nulo es cero.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Es un axioma empírico sin fundamento algebraico]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Está plenamente fundamentado en la propiedad recursiva de la función factorial.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L1_MC_09_Eventos_Excluyentes_vs_NoExcluyentes</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En el marco teórico de Lind y Anderson, ¿cuál de los siguientes pares de eventos en una empresa corresponde a <strong>Eventos Mutuamente Excluyentes</strong>?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Un ejercicio fiscal que cierra con Utilidad Neta frente a un ejercicio que cierra con Pérdida Neta]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! Una empresa no puede tener simultáneamente utilidad neta y pérdida neta en el mismo periodo contable.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Un profesional que es Auditor y al mismo tiempo ejerce como Docente universitario]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Estos eventos tienen intersección (son no excluyentes).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Una empresa con deudas fiscales y deudas bancarias al mismo tiempo]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Son eventos que pueden coexistir perfectamente.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Un cliente que compra al contado y además adquiere un seguro comercial]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Son decisiones conjuntas independientes.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L1_MC_10_Arbol_Decisiones_Inversion</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Un analista financiero evalúa 3 proyectos de inversión consecutivos. Para cada proyecto hay 3 posibles dictámenes técnicos (Favorable, Neutro o Desfavorable). ¿Cuántas trayectorias o ramas completas tiene el árbol de decisiones?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(27\) ramas (\(3^3\))]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! Por el principio multiplicativo: 3 × 3 × 3 = 3³ = 27 trayectorias posibles.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(9\) ramas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 9 es 3 × 3 (evaluar 2 proyectos en lugar de 3).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(6\) ramas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 6 es 3! (permutación de 3 elementos).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(81\) ramas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 81 es 3⁴ (evaluar 4 proyectos).</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L1_MC_11_Simplificacion_Cuadratica_Factorial</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Simplifique la expresión algebraica: \(E = \frac{n!}{(n-2)!}\).</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(n(n-1) = n^2 - n\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! n! = n(n-1)(n-2)!. Al dividir entre (n-2)!, se cancela el término común y queda n(n-1) = n² - n.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(n^2\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Falta restar el término lineal -n.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(n-1\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Olvidó el factor multiplicativo inicial n.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(\frac{n}{n-2}\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. No se pueden simplificar factores individuales dentro de un factorial.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L1_MC_12_Rutas_Suma_y_Producto</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Para viajar de la ciudad A a la ciudad C pasando obligatoriamente por B hay: 3 líneas de tren de A a B y 2 buses de B a C. Alternativamente, existe 1 vuelo directo de A a C sin escalas. ¿De cuántas formas totales puede realizarse el viaje de A a C?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(7\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Exacto! Vía intermedia B: 3 × 2 = 6. Vía directa: 1. Como son excluyentes: 6 + 1 = 7 formas de viaje.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(6\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 6 omite la opción del vuelo directo sin escalas.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(12\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Ha multiplicado 6 × 2 o similar. La alternativa directa se suma.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(5\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique el producto inicial de 3 × 2 antes de sumar el vuelo directo.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L1_MC_13_Suma_Factoriales_Consecutivos</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>¿A qué expresión simplificada equivale la suma de factoriales consecutivos: \(S = n! + (n+1)!\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(n!(n+2)\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! Factorizando: n! + (n+1)n! = n![1 + (n+1)] = n!(n+2).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\((2n+1)!\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Los factoriales no son distributivos con respecto a la suma.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\((n+1)!(n)\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Revise el factor común n! extraído de la expresión.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(2n!\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Solo sería 2n! si ambos términos fueran n!.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- ==================== CATEGORÍA ==================== -->
+  <question type="category">
+    <category>
+      <text>$course$/Unidad_01_Analisis_Combinatorio/Leccion_1_2_Permutaciones_Simples_Circulares</text>
+    </category>
+  </question>
+
+  <!-- Pregunta de Emparejamiento (Matching) -->
+  <question type="matching">
+    <name>
+      <text>U1_L2_MATCH_01_Formulas_Permutaciones</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Relacione el tipo de permutación con su fórmula matemática correspondiente:</strong></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación general: Verifique la correspondencia analítica exacta de cada par aplicando las definiciones formales del Análisis Combinatorio.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <shuffleanswers>true</shuffleanswers>
+    <subquestion format="html">
+      <text><![CDATA[Permutación simple de \(n\) objetos]]></text>
+      <answer>
+        <text>P_n = n!</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Permutaciones de \(n\) tomados de \(r\) a la vez (\(nPr\))]]></text>
+      <answer>
+        <text>n! / (n-r)!</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Permutaciones circulares de \(n\) personas]]></text>
+      <answer>
+        <text>P'_n = (n-1)!</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Permutación de 1 objeto]]></text>
+      <answer>
+        <text>1</text>
+      </answer>
+    </subquestion>
+  </question>
+
+  <!-- Pregunta de Emparejamiento (Matching) -->
+  <question type="matching">
+    <name>
+      <text>U1_L2_MATCH_02_Calculo_nPr</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Asocie cada expresión \(nPr\) con su valor numérico exacto:</strong></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación general: Verifique la correspondencia analítica exacta de cada par aplicando las definiciones formales del Análisis Combinatorio.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <shuffleanswers>true</shuffleanswers>
+    <subquestion format="html">
+      <text><![CDATA[\({_5 P_2}\)]]></text>
+      <answer>
+        <text>20</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[\({_6 P_3}\)]]></text>
+      <answer>
+        <text>120</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[\({_7 P_2}\)]]></text>
+      <answer>
+        <text>42</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[\({_4 P_4}\)]]></text>
+      <answer>
+        <text>24</text>
+      </answer>
+    </subquestion>
+  </question>
+
+  <!-- Pregunta de Emparejamiento (Matching) -->
+  <question type="matching">
+    <name>
+      <text>U1_L2_MATCH_03_Permutaciones_Circulares</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Relacione el número de personas sentadas en una mesa redonda con sus arreglos circulares:</strong></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación general: Verifique la correspondencia analítica exacta de cada par aplicando las definiciones formales del Análisis Combinatorio.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <shuffleanswers>true</shuffleanswers>
+    <subquestion format="html">
+      <text><![CDATA[4 personas en mesa redonda (\((4-1)!\))]]></text>
+      <answer>
+        <text>6 formas</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[5 personas en mesa redonda (\((5-1)!\))]]></text>
+      <answer>
+        <text>24 formas</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[6 personas en mesa redonda (\((6-1)!\))]]></text>
+      <answer>
+        <text>120 formas</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[7 personas en mesa redonda (\((7-1)!\))]]></text>
+      <answer>
+        <text>720 formas</text>
+      </answer>
+    </subquestion>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L2_MC_01_Asientos_Pares_Impares</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Se deben sentar 5 hombres y 4 mujeres en una fila de 9 asientos de tal manera que las mujeres ocupen siempre los lugares pares (posiciones 2, 4, 6 y 8). ¿De cuántas maneras diferentes pueden sentarse?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(2.880\) maneras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! Mujeres en pares: 4! = 24. Hombres en impares: 5! = 120. Total = 24 × 120 = 2.880 maneras.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(362.880\) maneras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 362.880 corresponde a 9! (fila libre sin restricción).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(1.440\) maneras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique el producto de 4! = 24 y 5! = 120.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(5.760\) maneras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Los lugares pares están predeterminados.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L2_MC_02_Mesa_Redonda_Trio_Fijo</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Un Director Financiero y 6 gerentes de área (7 personas en total) se reúnen en una mesa circular. Si el Director Financiero debe sentarse siempre entre el Gerente de Operaciones y el Gerente de Marketing, ¿cuántas disposiciones de asiento son posibles?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(48\) disposiciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Exacto! El trío forma 1 bloque con 2 ordenamientos. Con los otros 4 gerentes son 5 elementos en círculo: P'₅ × 2! = (5-1)! × 2 = 24 × 2 = 48.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(120\) disposiciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 120 corresponde a (6-1)! sin considerar la restricción del trío.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(720\) disposiciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 720 corresponde a P'₇ = 6! = 720.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(24\) disposiciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Olvidó multiplicar por las 2 formas en que pueden ubicarse los gerentes laterales.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L2_MC_03_Palabra_Contable_Extremos_Fijos</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Con todas las letras de la palabra CONTABLE (8 letras distintas), ¿cuántas palabras de 8 letras se pueden formar que comiencen con la letra 'C' y terminen con la letra 'E'?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(720\) palabras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! Fijando 'C' y 'E' en los extremos, se permutan las 6 letras intermedias: P₆ = 6! = 720 palabras.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(40.320\) palabras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 40.320 es 8! (permutación de todas las letras sin fijar extremos).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(5.040\) palabras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 5.040 es 7! (fijar solo una de las letras).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(1.440\) palabras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Permute únicamente las 6 letras libres intermedias (6!).</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L2_MC_04_Asignacion_Ciudades_Auditoria</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>De un grupo de 9 auditores seniors, se deben asignar 4 de ellos a 4 proyectos distintos en diferentes ciudades (La Paz, Cochabamba, Sucre y Tarija). ¿De cuántas formas se puede realizar la asignación?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(3.024\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Excelente! El orden importa: ₉P₄ = 9! / (9-4)! = 9! / 5! = 9 × 8 × 7 × 6 = 3.024 formas.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(126\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 126 es ₉C₄ (combinación sin importar la ciudad asignada).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(15.120\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique el producto de los 4 factores: 9 × 8 × 7 × 6.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(504\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 504 corresponde a ₉P₃ (asignar a 3 ciudades en lugar de 4).</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L2_MC_05_Fila_Ninos_Juntos</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Una fila de 6 niños está formada frente a un aula. Si 2 niños específicos (Mateo y Sofía) insisten en estar siempre juntos, ¿de cuántas maneras diferentes puede formarse toda la fila?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(240\) maneras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! El bloque [Mateo, Sofía] es 1 elemento. Con los otros 4 niños son 5 elementos (5! = 120). Por permutación interna (2! = 2): 120 × 2 = 240 maneras.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(720\) maneras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 720 es 6! (fila libre sin restricción).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(120\) maneras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 120 omite la permutación interna entre Mateo y Sofía.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(480\) maneras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique: P₅ × 2! = 120 × 2 = 240.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L2_MC_06_Podio_Carrera_Empresarial</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En una maratón corporativa participan 12 empresas. ¿De cuántas formas distintas pueden definirse las posiciones de 1° lugar (Oro), 2° lugar (Plata) y 3° lugar (Bronce)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(1.320\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! Variaciones de 12 en 3: ₁₂P₃ = 12 × 11 × 10 = 1.320 formas.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(220\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 220 es ₁₂C₃ (combinación donde las medallas no tienen jerarquía).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(1.728\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 1.728 es 12³ (permitir que una misma empresa gane las tres medallas).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(792\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique: 12 × 11 × 10 = 1.320.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L2_MC_07_Estante_Libros_Colores</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En un estante se deben ordenar 5 libros de Estadística y 3 libros de Auditoría (los 8 libros son de títulos distintos). Si todos los libros de Estadística deben estar juntos y todos los libros de Auditoría también juntos, ¿cuántas ordenaciones existen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(1.440\) ordenaciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Excelente! Hay 2 bloques [Estadística] y [Auditoría] que se permutan de 2! = 2 formas. Internas: 5! = 120 y 3! = 6. Total = 2 × 120 × 6 = 1.440 ordenaciones.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(720\) ordenaciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Olvidó multiplicar por las 2 formas en que pueden alternarse los dos bloques.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(40.320\) ordenaciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 40.320 es 8! (ordenación libre sin respetar los bloques temáticos).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(2.880\) ordenaciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique el producto: 2 × 120 × 6 = 1.440.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L2_MC_08_Mesa_Redonda_Libre</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Una junta de accionistas de 8 personas se sienta en una mesa circular para debatir el plan operativo. ¿De cuántas maneras diferentes pueden disponerse sus asientos?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(5.040\) maneras (\((8-1)! = 7!\))]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! En una mesa circular: P'₈ = (8-1)! = 7! = 5.040 maneras.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(40.320\) maneras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 40.320 es 8! (permutación lineal). En círculo se descuenta una posición de referencia.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(720\) maneras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 720 es 6! (para 7 personas en lugar de 8).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(2.520\) maneras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique: 7! = 7 × 6 × 5 × 4 × 3 × 2 × 1 = 5.040.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L2_MC_09_Arreglo_Letras_ABCD</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>A partir del conjunto de 4 letras {A, B, C, D}, ¿cuántos arreglos ordenados de 2 letras distintas se pueden formar?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(12\) arreglos (\({_4 P_2}\))]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! ₄P₂ = 4! / (4-2)! = 4 × 3 = 12 arreglos (AB, BA, AC, CA, AD, DA, BC, CB, BD, DB, CD, DC).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(6\) arreglos]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 6 es ₄C₂ (combinación sin importar el orden, donde AB = BA).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(16\) arreglos]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 16 es 4² (permite repetición como AA, BB).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(24\) arreglos]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 24 es 4! (arreglos de las 4 letras simultáneas).</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L2_MC_10_Turnos_Guardia_Nocturna</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En una empresa de seguridad hay 7 supervisores disponibles. Se deben programar 3 turnos distintos (Primer turno, Segundo turno y Tercer turno). ¿De cuántas formas puede estructurarse el rol de turnos?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(210\) formas (\({_7 P_3}\))]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Exacto! Como los turnos son horarios diferenciados, el orden es determinante: ₇P₃ = 7 × 6 × 5 = 210 formas.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(35\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 35 es ₇C₃ (selección sin asignar qué turno cumple cada supervisor).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(343\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 343 es 7³ (asume que un mismo supervisor puede cubrir los 3 turnos a la vez).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(42\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique: 7 × 6 × 5 = 210.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L2_MC_11_Permutacion_Total_Nueve</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>¿De cuántas maneras pueden alinearse 9 ejecutivos de una corporación frente a una cámara para la fotografía institucional anual?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(362.880\) maneras (\(9!\))]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! P₉ = 9! = 362.880 maneras de alineación lineal.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(40.320\) maneras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 40.320 es 8! (para 8 personas).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(720\) maneras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 720 es 6!.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(181.440\) maneras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique el cálculo: 9 × 8 × 7 × 6 × 5 × 4 × 3 × 2 × 1.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L2_MC_12_Mesa_Redonda_Pareja_Enfrente</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En una mesa redonda de 6 asientos se sientan 6 directores. Si 2 directores clave deben sentarse exactamente uno enfrente del otro, ¿cuántas distribuciones de asiento son posibles?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(24\) distribuciones (\(4!\))]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! Fijando la posición relativa de los dos directores opuestos como eje, los 4 asientos restantes se permutan linealmente: 4! = 24 distribuciones.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(120\) distribuciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 120 es (6-1)! (distribución circular sin la restricción de estar enfrente).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(48\) distribuciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Al fijar el eje de simetría diametral no se duplica por rotación circular.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(12\) distribuciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique: 4! = 4 × 3 × 2 × 1 = 24.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L2_MC_13_Permutacion_n_Objetos_n_a_la_Vez</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Demuestre que la fórmula general \(nPr = \frac{n!}{(n-r)!}\) coincide exactamente con la permutación simple \(P_n = n!\) cuando se toman todos los elementos (\(r = n\)):</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Al evaluar \(r = n\), se obtiene \(nPn = \frac{n!}{(n-n)!} = \frac{n!}{0!} = \frac{n!}{1} = n! = P_n\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Excelente demostración! Gracias a la convención formal 0! = 1, la fórmula nPr es universalmente consistente para cualquier r ≤ n.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Coincide porque (n-n)! = 0 y al dividir entre 0 se anula el denominador]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. La división entre cero es una indeterminación; la razón es que 0! = 1.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Solo coincide para números pares de elementos]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. La propiedad es válida para cualquier número natural n.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Es una aproximación asintótica para muestras grandes]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Es una identidad algebraica exacta.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- ==================== CATEGORÍA ==================== -->
+  <question type="category">
+    <category>
+      <text>$course$/Unidad_01_Analisis_Combinatorio/Leccion_1_3_Permutaciones_Con_Repeticion</text>
+    </category>
+  </question>
+
+  <!-- Pregunta de Emparejamiento (Matching) -->
+  <question type="matching">
+    <name>
+      <text>U1_L3_MATCH_01_Anagramas_Repetidos</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Relacione cada palabra con la cantidad de anagramas distintos que se pueden formar con todas sus letras:</strong></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación general: Verifique la correspondencia analítica exacta de cada par aplicando las definiciones formales del Análisis Combinatorio.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <shuffleanswers>true</shuffleanswers>
+    <subquestion format="html">
+      <text><![CDATA[Palabra 'MAMA' (\(4! / (2! \times 2!)\))]]></text>
+      <answer>
+        <text>6 palabras</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Palabra 'BANANA' (\(6! / (3! \times 2!)\))]]></text>
+      <answer>
+        <text>60 palabras</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Palabra 'ESTADISTICA' (11 letras: S(2), T(2), A(2), I(2))]]></text>
+      <answer>
+        <text>2.494.800 palabras</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Palabra 'AUDITOR' (7 letras distintas)]]></text>
+      <answer>
+        <text>5.040 palabras</text>
+      </answer>
+    </subquestion>
+  </question>
+
+  <!-- Pregunta de Emparejamiento (Matching) -->
+  <question type="matching">
+    <name>
+      <text>U1_L3_MATCH_02_Senales_Banderas</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Asocie la composición de banderas con las señales visuales posibles en un mástil:</strong></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación general: Verifique la correspondencia analítica exacta de cada par aplicando las definiciones formales del Análisis Combinatorio.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <shuffleanswers>true</shuffleanswers>
+    <subquestion format="html">
+      <text><![CDATA[3 rojas y 2 blancas (\(5! / (3! \times 2!)\))]]></text>
+      <answer>
+        <text>10 señales</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[4 azules y 2 amarillas (\(6! / (4! \times 2!)\))]]></text>
+      <answer>
+        <text>15 señales</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[2 rojas, 2 verdes y 2 azules (\(6! / (2! \times 2! \times 2!)\))]]></text>
+      <answer>
+        <text>90 señales</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[5 banderas de colores todos distintos]]></text>
+      <answer>
+        <text>120 señales</text>
+      </answer>
+    </subquestion>
+  </question>
+
+  <!-- Pregunta de Emparejamiento (Matching) -->
+  <question type="matching">
+    <name>
+      <text>U1_L3_MATCH_03_Metodo_Complemento_Filas</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Relacione las condiciones de separación en fila con sus formas de alineación:</strong></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación general: Verifique la correspondencia analítica exacta de cada par aplicando las definiciones formales del Análisis Combinatorio.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <shuffleanswers>true</shuffleanswers>
+    <subquestion format="html">
+      <text><![CDATA[5 personas con 2 separadas (\(120 - 48\))]]></text>
+      <answer>
+        <text>72 maneras</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[6 personas con 2 separadas (\(720 - 240\))]]></text>
+      <answer>
+        <text>480 maneras</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[7 personas con 2 separadas (\(5.040 - 1.440\))]]></text>
+      <answer>
+        <text>3.600 maneras</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[4 personas con 2 separadas (\(24 - 12\))]]></text>
+      <answer>
+        <text>12 maneras</text>
+      </answer>
+    </subquestion>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L3_MC_01_Anagramas_Contabilidad</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>La palabra CONTABILIDAD cuenta con 12 letras en total, con las siguientes repeticiones: C(1), O(1), N(1), T(1), A(2), B(1), I(2), L(1), D(2). ¿Cuántas palabras distintas de 12 letras se pueden formar?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(59.875.200\) palabras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Exacto! PR₁₂^(2, 2, 2) = 12! / (2! × 2! × 2!) = 479.001.600 / 8 = 59.875.200 palabras.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(479.001.600\) palabras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 479.001.600 es 12! sin descontar las repeticiones de A, I y D.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(119.750.400\) palabras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique la división entre (2! × 2! × 2!) = 8.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(29.937.600\) palabras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Ha dividido por un factor excesivo (16 en lugar de 8).</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L3_MC_02_Multiples_Bloques_Especialidad</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En una fila de 9 asientos se ubican: 4 auditores financieros, 3 tributarios y 2 de sistemas. Si los miembros de cada especialidad deben sentarse siempre juntos entre sí, ¿cuántas distribuciones diferentes existen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(1.728\) distribuciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Excelente! Permutación de los 3 bloques = 3! = 6. Permutaciones internas: Financieros (4! = 24), Tributarios (3! = 6), Sistemas (2! = 2). Total = 6 × (24 × 6 × 2) = 6 × 288 = 1.728.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(288\) distribuciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 288 omite permutar los 3 bloques entre sí (3! = 6).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(362.880\) distribuciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 362.880 es 9! (permutación libre sin restricción).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(864\) distribuciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique el producto total: 6 × 24 × 6 × 2.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L3_MC_03_Rutas_Distribucion_Cuadricula</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Un camión de reparto debe trasladarse desde el almacén central hasta una sucursal ubicada a 4 cuadras al Este y 3 cuadras al Norte. Si en cada esquina solo puede avanzar hacia el Este o hacia el Norte, ¿cuántas rutas mínimas de 7 cuadras existen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(35\) rutas mínimas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! PR₇^(4, 3) = 7! / (4! × 3!) = (7 × 6 × 5) / 6 = 35 rutas.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(21\) rutas mínimas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Revise el cálculo de 7! / (4! × 3!) = 5.040 / (24 × 6) = 35.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(120\) rutas mínimas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique la simplificación de factoriales.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(70\) rutas mínimas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 70 corresponde a duplicar el valor correcto.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L3_MC_04_Fila_Tres_Docentes_Juntos</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En un acto académico se sientan en fila 8 personas: 3 docentes universitarios y 5 estudiantes. Si los 3 docentes deben ubicarse siempre juntos, ¿de cuántas formas pueden alinearse?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(4.320\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Exacto! El bloque de docentes cuenta como 1 elemento. Con los 5 estudiantes son 6 elementos en fila (6! = 720). Permutación interna de los 3 docentes (3! = 6). Total = 720 × 6 = 4.320 formas.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(720\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 720 omite permutar a los 3 docentes entre sí dentro de su bloque (3! = 6).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(40.320\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 40.320 es 8! (fila libre sin restricción).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(2.160\) formas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique: 6! × 3! = 720 × 6 = 4.320.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L3_MC_05_Codigos_Binarios_Bits</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Un sistema de control de acceso emite fichas magnéticas codificadas mediante una secuencia de 8 bits compuesta exactamente por 5 unos ('1') y 3 ceros ('0'). ¿Cuántos códigos de acceso distintos se pueden generar?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(56\) códigos]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! PR₈^(5, 3) = 8! / (5! × 3!) = (8 × 7 × 6) / 6 = 56 códigos de acceso únicos.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(256\) códigos]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 256 es 2⁸ (todos los códigos de 8 bits sin restricción de unos y ceros).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(28\) códigos]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 28 corresponde a 8! / (6! × 2!). En este caso hay 5 unos y 3 ceros.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(120\) códigos]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Revise la simplificación de 8! / (5! × 3!).</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L3_MC_06_Estante_Carpetas_Colores</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En el archivo central se ordenan 8 carpetas: 4 rojas de auditoría, 2 verdes tributarias y 2 amarillas de presupuestos (las carpetas del mismo color son indistinguibles). ¿Cuántas secuencias visuales de archivo se pueden presentar?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(420\) secuencias]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! PR₈^(4, 2, 2) = 8! / (4! × 2! × 2!) = 40.320 / (24 × 2 × 2) = 40.320 / 96 = 420 secuencias.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(840\) secuencias]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique la división entre 2! × 2! = 4.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(1.680\) secuencias]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 1.680 omite la división de uno de los grupos de 2 carpetas.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(5.040\) secuencias]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 5.040 es 8! / 4! sin descontar las repeticiones verde y amarilla.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L3_MC_07_Fila_Auditores_Separados</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En una fila de 7 profesionales contables, dos auditores específicos (Mario y Laura) no pueden sentarse juntos bajo ninguna circunstancia. ¿Cuántas disposiciones de asiento cumplen esta condición?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(3.600\) disposiciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Excelente! Total libre = 7! = 5.040. Estando juntos = 6! × 2! = 1.440. Por complemento: 5.040 - 1.440 = 3.600 disposiciones.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(1.440\) disposiciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 1.440 es la cantidad de formas donde están juntos (el evento opuesto).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(2.520\) disposiciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique la resta complementaria: 5.040 - 1.440.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(4.320\) disposiciones]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Revise el cálculo del bloque estando juntos (6! × 2 = 1.440).</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L3_MC_08_Palabra_MATEMATICA_Anagramas</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Calcule el número total de anagramas distintos que pueden formarse con todas las letras de la palabra MATEMATICA (10 letras: M(2), A(3), T(2), E(1), I(1), C(1)):</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(151.200\) palabras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! PR₁₀^(2, 3, 2, 1, 1, 1) = 10! / (2! × 3! × 2!) = 3.628.800 / (2 × 6 × 2) = 3.628.800 / 24 = 151.200 palabras.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(302.400\) palabras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Olvidó dividir entre 2! de las letras 'T'.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(604.800\) palabras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 604.800 es 10! / 3! sin descontar las repeticiones de 'M' y 'T'.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(75.600\) palabras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique la división entre 24.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L3_MC_09_Secuencia_Inspeccion_Calidad</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En un lote de control de calidad se evalúan 10 artículos, de los cuales 7 son de Primera Calidad (A), 2 de Segunda Calidad (B) y 1 es Defectuoso (C). ¿Cuántas secuencias de inspección distintas se pueden registrar?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(360\) secuencias]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Exacto! PR₁₀^(7, 2, 1) = 10! / (7! × 2! × 1!) = (10 × 9 × 8) / 2 = 720 / 2 = 360 secuencias.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(720\) secuencias]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 720 es 10! / 7! sin dividir entre 2! de los artículos de tipo B.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(180\) secuencias]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique: (10 × 9 × 8) / 2 = 360.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(90\) secuencias]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Revise el desarrollo de la simplificación.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L3_MC_10_Fila_Extremos_Fijos_Repeticion</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Con 2 fichas rojas (R), 3 fichas verdes (V) y 2 fichas azules (A), ¿cuántas filas de 7 fichas pueden formarse tales que la primera ficha sea Roja (R) y la última sea Azul (A)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(20\) filas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! Al fijar una R al inicio y una A al final, quedan 5 fichas intermedias: 1 Roja, 3 Verdes y 1 Azul. PR₅^(1, 3, 1) = 5! / (1! × 3! × 1!) = 120 / 6 = 20 filas.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(210\) filas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 210 es 7! / (2! × 3! × 2!) (fila libre sin fijar los extremos).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(60\) filas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique la cantidad de fichas restantes en las posiciones intermedias (5 fichas).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(10\) filas]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 5! / 3! = 120 / 6 = 20.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- ==================== CATEGORÍA ==================== -->
+  <question type="category">
+    <category>
+      <text>$course$/Unidad_01_Analisis_Combinatorio/Leccion_1_4_Combinaciones_y_Diferenciacion</text>
+    </category>
+  </question>
+
+  <!-- Pregunta de Emparejamiento (Matching) -->
+  <question type="matching">
+    <name>
+      <text>U1_L4_MATCH_01_Calculo_nCr</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Asocie cada expresión binomial con su valor numérico exacto:</strong></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación general: Verifique la correspondencia analítica exacta de cada par aplicando las definiciones formales del Análisis Combinatorio.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <shuffleanswers>true</shuffleanswers>
+    <subquestion format="html">
+      <text><![CDATA[\(\binom{6}{2}\)]]></text>
+      <answer>
+        <text>15</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[\(\binom{8}{3}\)]]></text>
+      <answer>
+        <text>56</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[\(\binom{10}{2}\)]]></text>
+      <answer>
+        <text>45</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[\(\binom{7}{0}\)]]></text>
+      <answer>
+        <text>1</text>
+      </answer>
+    </subquestion>
+  </question>
+
+  <!-- Pregunta de Emparejamiento (Matching) -->
+  <question type="matching">
+    <name>
+      <text>U1_L4_MATCH_02_Simetria_Binomial</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Relacione cada combinación con su combinación complementaria idéntica por propiedad de simetría:</strong></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación general: Verifique la correspondencia analítica exacta de cada par aplicando las definiciones formales del Análisis Combinatorio.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <shuffleanswers>true</shuffleanswers>
+    <subquestion format="html">
+      <text><![CDATA[\(\binom{12}{10}\)]]></text>
+      <answer>
+        <text>Combinación (12, 2) = 66</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[\(\binom{15}{14}\)]]></text>
+      <answer>
+        <text>Combinación (15, 1) = 15</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[\(\binom{9}{7}\)]]></text>
+      <answer>
+        <text>Combinación (9, 2) = 36</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[\(\binom{20}{19}\)]]></text>
+      <answer>
+        <text>Combinación (20, 1) = 20</text>
+      </answer>
+    </subquestion>
+  </question>
+
+  <!-- Pregunta de Emparejamiento (Matching) -->
+  <question type="matching">
+    <name>
+      <text>U1_L4_MATCH_03_Matriz_Decision</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Identifique el modelo matemático aplicable para cada situación práctica:</strong></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación general: Verifique la correspondencia analítica exacta de cada par aplicando las definiciones formales del Análisis Combinatorio.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <shuffleanswers>true</shuffleanswers>
+    <subquestion format="html">
+      <text><![CDATA[Elegir Presidente, Secretario y Tesorero de 10 personas]]></text>
+      <answer>
+        <text>Permutación (10P3)</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Elegir una comisión fiscalizadora de 3 miembros de 10 personas]]></text>
+      <answer>
+        <text>Combinación (10C3)</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Crear un código PIN secreto de 4 dígitos]]></text>
+      <answer>
+        <text>Principio Multiplicativo</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Ordenar 7 libros de colores en un estante]]></text>
+      <answer>
+        <text>Permutación Simple (P7)</text>
+      </answer>
+    </subquestion>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L4_MC_01_Muestreo_Al_Menos_Uno</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Un auditor fiscaliza un lote de 10 declaraciones juradas, de las cuales 3 presentan observaciones y 7 están conformes. Si extrae una muestra aleatoria de 3 declaraciones, ¿cuántas muestras contienen al menos una declaración con observaciones?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(85\) muestras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Excelente! Muestras totales = ₁₀C₃ = 120. Muestras sin ninguna observación (solo conformes) = ₇C₃ = 35. Por complemento: 120 - 35 = 85 muestras contienen al menos una con error.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(120\) muestras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 120 es el total de muestras posibles sin exigir que tengan observaciones.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(35\) muestras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 35 es la cantidad de muestras limpias sin ninguna observación.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(63\) muestras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Aplique el método del complemento: Total - Sin Observaciones = 120 - 35 = 85.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L4_MC_02_Comite_Cuota_Genero</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En una corporación hay 8 ejecutivos varones y 6 ejecutivas mujeres. Se debe conformar un comité asesor de 5 miembros integrado por 3 varones y 2 mujeres. ¿De cuántas maneras diferentes se puede constituir el comité?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(840\) comités]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! Selección de varones: ₈C₃ = 56. Selección de mujeres: ₆C₂ = 15. Por principio multiplicativo: 56 × 15 = 840 comités posibles.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(2.002\) comités]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 2.002 es ₁₄C₅ (seleccionar 5 personas de las 14 sin respetar la cuota de género).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(71\) comités]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Ha sumado 56 + 15 en lugar de multiplicarlos (la selección es conjunta: varones Y mujeres).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(420\) comités]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique el producto: 56 × 15 = 840.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L4_MC_03_Baraja_Tres_Ases</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>De una baraja estándar de 52 cartas, ¿cuántas manos no ordenadas de 5 cartas se pueden recibir que contengan exactamente 3 Ases (de los 4 existentes en la baraja) y 2 cartas que no sean Ases?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(4.512\) manos]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Exacto! Selección de Ases: ₄C₃ = 4. Selección de no-Ases (de las 48 restantes): ₄₈C₂ = (48 × 47) / 2 = 1.128. Total = 4 × 1.128 = 4.512 manos.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(2.598.960\) manos]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 2.598.960 es ₅₂C₅ (total absoluto de manos de 5 cartas).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(1.128\) manos]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 1.128 corresponde solo a la combinación de las cartas que no son Ases.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(9.024\) manos]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique el producto de ₄C₃ = 4 y ₄₈C₂ = 1.128.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L4_MC_04_Diagonales_Poligono</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En geometría y análisis de redes de comunicación, el número de segmentos que unen n vértices es \(\binom{n}{2}\). Si se restan los n lados, se obtienen las diagonales. ¿Cuántas diagonales tiene un polígono regular de 10 lados (decágono)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(35\) diagonales]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! Total de segmentos entre 10 vértices = ₁₀C₂ = (10 × 9)/2 = 45. Restando los 10 lados del perímetro: 45 - 10 = 35 diagonales.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(45\) diagonales]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 45 es el número total de segmentos, incluyendo los 10 lados del contorno.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(25\) diagonales]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Revise la fórmula: D = n(n-3)/2 = 10(7)/2 = 35.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(90\) diagonales]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. El segmento entre A y B es el mismo que entre B y A (combinación).</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L4_MC_05_Proyectos_Inversion</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Una junta directiva tiene 7 proyectos de inversión preseleccionados. Si el presupuesto disponible permite financiar un máximo de 2 proyectos (pudiendo financiar 0, 1 o 2 proyectos), ¿de cuántas maneras puede decidirse la asignación de recursos?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(29\) maneras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Excelente! Financiar 0 proyectos: ₇C₀ = 1. Financiar 1 proyecto: ₇C₁ = 7. Financiar 2 proyectos: ₇C₂ = 21. Total = 1 + 7 + 21 = 29 maneras.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(21\) maneras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 21 considera únicamente financiar exactamente 2 proyectos.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(28\) maneras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Olvidó incluir la opción de no financiar ningún proyecto (₇C₀ = 1).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(42\) maneras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. El orden de elección de los proyectos no altera el paquete aprobado.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L4_MC_06_Muestreo_Cuentas_Cobrar</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Para una auditoría externa de cuentas por cobrar, se deben seleccionar 5 clientes al azar de una cartera de 12 clientes significativos. ¿Cuántas muestras de auditoría diferentes es posible constituir?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(792\) muestras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! Combinación de 12 en 5: ₁₂C₅ = 12! / (5! × 7!) = (12 × 11 × 10 × 9 × 8) / (5 × 4 × 3 × 2 × 1) = 95.040 / 120 = 792 muestras.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(95.040\) muestras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 95.040 es ₁₂P₅ (asume que el orden de extracción de los clientes importa).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(330\) muestras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 330 es ₁₁C₄. Verifique el cálculo de ₁₂C₅.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(1.584\) muestras]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique la división entre 5! = 120.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L4_MC_07_Tribunal_Defensa_Grado</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En una carrera universitaria hay 10 docentes disponibles. Para una defensa de grado se debe conformar un tribunal examinador de 3 docentes (donde todos tienen el mismo rango y voto deliberativo). ¿De cuántas formas puede designarse el tribunal?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(120\) tribunales]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Excelente! Como todos los miembros tienen igual rango, no importa el orden: ₁₀C₃ = (10 × 9 × 8) / (3 × 2 × 1) = 720 / 6 = 120 tribunales.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(720\) tribunales]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 720 es ₁₀P₃ (asume cargos jerárquicos diferenciados como Presidente, Secretario y Vocal).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(30\) tribunales]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 30 es 10 × 3. Aplique la fórmula combinatoria ₁₀C₃.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(240\) tribunales]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique: 720 / 6 = 120.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L4_MC_08_Comisiones_Con_Exclusion_Mutua</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>De un grupo de 8 profesionales, dos de ellos (Pedro y Juan) se niegan a trabajar juntos en el mismo comité. Si se debe elegir un comité de 4 personas, ¿cuántos comités son posibles?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(55\) comités]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! Total libre: ₈C₄ = 70. Comités donde ambos están juntos: ₆C₂ = 15. Resta complementaria: 70 - 15 = 55 comités donde no coinciden.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(70\) comités]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 70 es ₈C₄ (comités libres sin respetar la exclusión mutua).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(15\) comités]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 15 es la cantidad de comités donde ambos están juntos (el evento no deseado).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(35\) comités]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Verifique la resta: 70 - 15 = 55.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L4_MC_09_Subconjuntos_Conjunto_Potencia</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>En teoría de conjuntos y muestreo aleatorio, la suma de todas las combinaciones posibles de un conjunto de n elementos es \(\sum_{r=0}^n \binom{n}{r} = 2^n\). Si un portafolio contiene 6 activos financieros, ¿cuántos subportafolios no vacíos se pueden conformar?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(63\) subportafolios (\(2^6 - 1\))]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Exacto! El conjunto potencia tiene 2⁶ = 64 subconjuntos. Descontando el conjunto vacío (financiar 0 activos): 64 - 1 = 63 subportafolios activos.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(64\) subportafolios]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 64 incluye el conjunto vacío (0 activos). El enunciado solicita subportafolios no vacíos.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(32\) subportafolios]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 32 es 2⁵.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(36\) subportafolios]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. 36 es 6².</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple (Multichoice) -->
+  <question type="multichoice">
+    <name>
+      <text>U1_L4_MC_10_Simetria_Identidad_Pascal</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Aplicando la propiedad de simetría binomial \(\binom{n}{r} = \binom{n}{n-r}\), ¿a qué valor es idéntico \(\binom{18}{16}\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Retroalimentación: Revise el planteamiento del modelo combinatorio y el procedimiento algebraico de resolución.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[\(\binom{18}{2} = 153\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>¡Correcto! ₁₈C₁₆ = ₁₈C₍₁₈₋₁₆₎ = ₁₈C₂ = (18 × 17) / 2 = 153.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(\binom{18}{1} = 18\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. n - r = 18 - 16 = 2, no 1.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(306\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Olvidó dividir entre 2! = 2 (18 × 17 = 306 → 306/2 = 153).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[\(288\)]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Incorrecto. Revise el cálculo: (18 × 17) / 2 = 153.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

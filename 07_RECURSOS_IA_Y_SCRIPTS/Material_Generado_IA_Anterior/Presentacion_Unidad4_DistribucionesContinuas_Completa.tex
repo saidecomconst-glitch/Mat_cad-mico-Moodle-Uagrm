@@ -1,0 +1,1436 @@
+
+\documentclass[10pt]{beamer}
+
+% ============================================
+% CODIFICACIÓN Y IDIOMA
+% ============================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+
+% ============================================
+% PAQUETES MATEMÁTICOS
+% ============================================
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{mathtools}
+
+% ============================================
+% GRÁFICOS Y COLORES
+% ============================================
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{shapes,arrows,positioning,calc,patterns,decorations.pathmorphing}
+
+% ============================================
+% TABLAS
+% ============================================
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{colortbl}
+
+% ============================================
+% COLORES PERSONALIZADOS (PALETA PASTEL)
+% ============================================
+\usepackage{xcolor}
+\definecolor{celeste}{RGB}{135, 206, 235}
+\definecolor{celesteBorde}{RGB}{100, 180, 220}
+\definecolor{celesteClaro}{RGB}{230, 245, 255}
+\definecolor{verdePastel}{RGB}{144, 238, 144}
+\definecolor{naranjaPastel}{RGB}{255, 179, 71}
+\definecolor{fucsiaPastel}{RGB}{255, 119, 188}
+\definecolor{amarilloCaterpillar}{RGB}{255, 200, 50}
+\definecolor{grisOscuro}{RGB}{60, 60, 60}
+\definecolor{purpuraElectrico}{RGB}{138, 43, 226}
+\definecolor{rojoDistintivo}{RGB}{220, 20, 60}
+
+% ============================================
+% TEMA BEAMER
+% ============================================
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}
+
+% Colores del tema adaptados a paleta pastel
+\setbeamercolor{frametitle}{bg=celeste,fg=grisOscuro}
+\setbeamercolor{title}{fg=grisOscuro}
+\setbeamercolor{subtitle}{fg=grisOscuro}
+\setbeamercolor{author}{fg=grisOscuro}
+\setbeamercolor{date}{fg=grisOscuro}
+\setbeamercolor{institute}{fg=grisOscuro}
+\setbeamercolor{block title}{bg=celeste,fg=grisOscuro}
+\setbeamercolor{block body}{bg=celesteClaro,fg=grisOscuro}
+\setbeamercolor{block title example}{bg=verdePastel,fg=grisOscuro}
+\setbeamercolor{block body example}{bg=verdePastel!20,fg=grisOscuro}
+\setbeamercolor{block title alerted}{bg=naranjaPastel,fg=grisOscuro}
+\setbeamercolor{block body alerted}{bg=naranjaPastel!20,fg=grisOscuro}
+\setbeamercolor{item}{fg=celesteBorde}
+\setbeamercolor{footline}{bg=celeste,fg=grisOscuro}
+
+% ============================================
+% PIE DE PÁGINA PERSONALIZADO
+% ============================================
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}
+    \colorbox{amarilloCaterpillar}{\textcolor{grisOscuro}{\insertframenumber{} / \inserttotalframenumber}}\hspace*{2ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+% ============================================
+% COMANDOS PERSONALIZADOS
+% ============================================
+\newcommand{\cmark}[1]{\textcolor{#1}{\textcircled{\checkmark}}}
+\newcommand{\lateralbox}[1]{%
+  \fcolorbox{celesteBorde}{celesteClaro}{%
+    \parbox{0.9\linewidth}{\small #1}%
+  }%
+}
+
+% ============================================
+% INFORMACIÓN DEL DOCUMENTO
+% ============================================
+\title[Unidad 4: Distribución Normal]{Unidad 4}
+\subtitle{Distribución de Probabilidades\\para Variable Aleatoria Continua}
+\author[MSc. Anselmo Salguero Arano]{MSc. Anselmo Salguero Arano}
+\institute[UAGRM - Contaduría Pública]{%
+  Universidad Autónoma Gabriel René Moreno\\
+  Facultad de Ciencias Contables, Auditoría, Sistemas de Control de Gestión y Finanzas\\
+  Carrera de Contaduría Pública\\
+  Estadística II -- MAT-260
+}
+\date{2025}
+
+% ============================================
+% INICIO DEL DOCUMENTO
+% ============================================
+\begin{document}
+
+% ============================================
+% PORTADA
+% ============================================
+\begin{frame}[plain]
+\begin{center}
+\vspace{0.5cm}
+% Logos (ajustar rutas según tu carpeta)
+\includegraphics[width=0.35\linewidth]{Logouagrm.png}
+\hspace{0.5cm}
+\includegraphics[width=0.35\linewidth]{Logocont.png}
+
+\vspace{0.8cm}
+{\Huge\textcolor{celeste}{\textbf{Estadística II}}}
+
+\vspace{0.3cm}
+{\LARGE\textcolor{grisOscuro}{Unidad 4}}
+
+\vspace{0.2cm}
+{\Large\textcolor{grisOscuro}{Distribución de Probabilidades\\para Variable Aleatoria Continua}}
+
+\vspace{0.8cm}
+{\large\textcolor{grisOscuro}{MSc. Anselmo Salguero Arano}}
+
+\vspace{0.2cm}
+{\normalsize\textcolor{grisOscuro}{Docente -- Estadística II}}
+
+\vspace{0.5cm}
+{\footnotesize\textcolor{grisOscuro}{Universidad Autónoma Gabriel René Moreno\\
+Facultad de Ciencias Contables, Auditoría, Sistemas de Control de Gestión y Finanzas\\
+Carrera de Contaduría Pública}}
+
+\vspace{0.3cm}
+{\footnotesize\textcolor{celesteBorde}{Santa Cruz -- Bolivia}}
+\end{center}
+\end{frame}
+
+% ============================================
+% CONTENIDO DE LA UNIDAD
+% ============================================
+\begin{frame}{Contenido de la Unidad 4}
+\begin{block}{Temas a desarrollar}
+\begin{enumerate}
+  \item \textbf{Variable Aleatoria Continua:} Definición y propiedades
+  \item \textbf{Función de Densidad de Probabilidad:} $f(x)$
+  \item \textbf{Función de Distribución Acumulada:} $F(x)$
+  \item \textbf{Distribución Normal:} Campana de Gauss
+  \item \textbf{Estandarización:} $Z = \dfrac{X - \mu}{\sigma}$
+  \item \textbf{Uso de Tablas:} Tabla Z (Lind, p. 782)
+  \item \textbf{Ejercicios Resueltos:} Paso a paso
+\end{enumerate}
+\end{block}
+
+\begin{exampleblock}{Referencias}
+\begin{itemize}
+  \item Texto: MSc. Anselmo Salguero Arano -- Unidad 4
+  \item Lind, Marchal, Wathen. \textit{Estadística Aplicada a los Negocios y la Economía}. 15ª Ed. McGraw-Hill.
+  \item Capítulo 7: Distribuciones de Probabilidad Continua (pp. 222--264)
+  \item Apéndice B: Tablas (p. 782)
+\end{itemize}
+\end{exampleblock}
+\end{frame}
+
+% ============================================
+% VARIABLE ALEATORIA CONTINUA
+% ============================================
+\begin{frame}{Variable Aleatoria Continua}
+\begin{block}{Definición}
+Una \textbf{variable aleatoria continua} puede tomar \textbf{cualquier valor} dentro de un intervalo específico. A diferencia de las variables discretas, no existen ``vacíos'' entre los valores posibles.
+\end{block}
+
+\vspace{0.3cm}
+\begin{exampleblock}{Ejemplos de Variables Continuas}
+\begin{itemize}
+  \item Peso de un estudiante
+  \item Monto del impuesto sobre la renta
+  \item Precipitación anual
+  \item Tiempo de espera en una fila
+  \item Temperatura ambiente
+\end{itemize}
+\end{exampleblock}
+
+\vspace{0.3cm}
+\begin{alertblock}{Nota importante}
+Para variables continuas, la probabilidad de que $X$ tome un \textbf{valor exacto} es \textbf{cero}:
+$$P(X = x) = 0$$
+La probabilidad se calcula para \textbf{intervalos}: $P(a \leq X \leq b)$
+\end{alertblock}
+\end{frame}
+
+% ============================================
+% DISTRIBUCIONES CONTINUAS
+% ============================================
+\begin{frame}{Distribuciones Continuas de Probabilidad}
+\begin{center}
+\begin{tikzpicture}[
+  nivel1/.style={rectangle, draw=celesteBorde, fill=celesteClaro, rounded corners, 
+    minimum width=3cm, minimum height=0.8cm, align=center, font=\small},
+  nivel2/.style={rectangle, draw=celesteBorde, fill=celeste!30, rounded corners,
+    minimum width=2.5cm, minimum height=0.7cm, align=center, font=\footnotesize},
+  arrow/.style={->, thick, celesteBorde}
+]
+\node[nivel1] (va) at (0,0) {Variable Aleatoria};
+\node[nivel2] (disc) at (-3,-1.5) {Discreta};
+\node[nivel2] (cont) at (3,-1.5) {Continua};
+
+\node[nivel2, fill=verdePastel!40] (norm) at (0,-3) {Normal o Estándar};
+\node[nivel2, fill=fucsiaPastel!40] (exp) at (2.5,-3) {Exponencial};
+\node[nivel2, fill=naranjaPastel!40] (tstud) at (5,-3) {t de Student};
+\node[nivel2, fill=purpuraElectrico!30] (chi) at (7.5,-3) {Ji-Cuadrado};
+\node[nivel2, fill=amarilloCaterpillar!50] (gamma) at (10,-3) {Gamma};
+
+\draw[arrow] (va) -- (disc);
+\draw[arrow] (va) -- (cont);
+\draw[arrow] (cont) -- (norm);
+\draw[arrow] (cont) -- (exp);
+\draw[arrow] (cont) -- (tstud);
+\draw[arrow] (cont) -- (chi);
+\draw[arrow] (cont) -- (gamma);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.3cm}
+\begin{block}{Importante}
+Existen \textbf{tablas de probabilidad} para estas distribuciones estándar, haciendo que resulte \textbf{innecesario} el método de la integración para determinar las áreas bajo la curva.
+\end{block}
+\end{frame}
+
+% ============================================
+% FUNCIÓN DE DENSIDAD
+% ============================================
+\begin{frame}{Función de Densidad de Probabilidad}
+\begin{block}{Definición}
+La \textbf{función de densidad de probabilidad} $f(x)$ describe la forma de la distribución continua. El área bajo la curva entre dos valores $a$ y $b$ da la probabilidad:
+\end{block}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+\begin{axis}[
+  axis lines*=bottom,
+  xlabel={$x$},
+  ylabel={$f(x)$},
+  xmin=0, xmax=10,
+  ymin=0, ymax=0.5,
+  width=10cm,
+  height=5cm,
+  ticks=none,
+  xlabel style={at={(axis description cs:1,0)},anchor=north},
+  ylabel style={at={(axis description cs:0,1)},anchor=south,rotate=-90},
+]
+\addplot[domain=0:10, samples=100, thick, celesteBorde] 
+  {0.4*exp(-(x-5)^2/4)};
+
+% Área sombreada
+\addplot[domain=3:6, samples=50, fill=celeste!50, opacity=0.5] 
+  {0.4*exp(-(x-5)^2/4)} \closedcycle;
+
+% Líneas verticales
+\draw[dashed, grisOscuro] (axis cs:3,0) -- (axis cs:3,0.35);
+\draw[dashed, grisOscuro] (axis cs:6,0) -- (axis cs:6,0.28);
+
+% Etiquetas
+\node[below] at (axis cs:3,0) {$a$};
+\node[below] at (axis cs:6,0) {$b$};
+\node[above] at (axis cs:4.5,0.15) {$P(a \leq X \leq b)$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{alertblock}{Propiedad fundamental}
+$$P(a \leq X \leq b) = \int_a^b f(x)\,dx = \text{Área bajo la curva entre } a \text{ y } b$$
+\vspace{0.2cm}
+El \textbf{área total} bajo la curva siempre es igual a \textbf{1}:
+$$\int_{-\infty}^{+\infty} f(x)\,dx = 1$$
+\end{alertblock}
+\end{frame}
+
+% ============================================
+% DISTRIBUCIÓN NORMAL - DEFINICIÓN
+% ============================================
+\begin{frame}{Distribución Normal o Estándar}
+\begin{block}{Definición (Texto Anselmo Salguero)}
+La gráfica de una distribución normal es una \textbf{curva en forma de campana} que se extiende \textbf{indefinidamente} en ambos sentidos.
+\end{block}
+
+\vspace{0.3cm}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+\begin{axis}[
+  axis lines*=bottom,
+  xlabel={$x$},
+  ylabel={$f(x)$},
+  xmin=-4, xmax=4,
+  ymin=0, ymax=0.45,
+  width=11cm,
+  height=6cm,
+  xtick={-3,-2,-1,0,1,2,3},
+  xticklabels={$\mu-3\sigma$,$\mu-2\sigma$,$\mu-\sigma$,$\mu$,$\mu+\sigma$,$\mu+2\sigma$,$\mu+3\sigma$},
+  ytick=\empty,
+  every axis x label/.style={at={(current axis.right of origin)},anchor=west},
+]
+\addplot[domain=-4:4, samples=100, very thick, celesteBorde] 
+  {1/(sqrt(2*pi))*exp(-x^2/2)};
+
+% Línea vertical en la media
+\draw[dashed, grisOscuro, thick] (axis cs:0,0) -- (axis cs:0,0.4);
+\node[above] at (axis cs:0,0.4) {$\mu$};
+
+% Puntos de inflexión
+\fill[purpuraElectrico] (axis cs:-1,0.24) circle (3pt);
+\fill[purpuraElectrico] (axis cs:1,0.24) circle (3pt);
+\node[above right, font=\footnotesize] at (axis cs:1,0.24) {Puntos de inflexión};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{exampleblock}{Notación}
+Si $X$ sigue una distribución normal con media $\mu$ y desviación estándar $\sigma$:
+$$X \sim N(\mu, \sigma)$$
+\end{exampleblock}
+\end{frame}
+
+% ============================================
+% IMPORTANCIA DE LA NORMAL
+% ============================================
+\begin{frame}{Importancia de la Distribución Normal}
+\begin{block}{¿Por qué es tan importante?}
+\begin{enumerate}
+  \item \textbf{Procesos naturales:} Muchas mediciones en procesos aleatorios siguen esta distribución.
+
+  \item \textbf{Aproximación:} Las probabilidades normales pueden aproximar otras distribuciones:
+  \begin{itemize}
+    \item Distribución Binomial
+    \item Distribución de Poisson
+  \end{itemize}
+
+  \item \textbf{Teorema Central del Límite:} Las distribuciones de la media muestral y la proporción muestral tienen distribución normal cuando el tamaño de la muestra es grande ($n \geq 30$), sin importar la forma de la distribución de la población de origen.
+\end{enumerate}
+\end{block}
+
+\vspace{0.3cm}
+\begin{exampleblock}{Aplicaciones en Contaduría}
+\begin{itemize}
+  \item Análisis de rendimientos de inversiones
+  \item Control de calidad en procesos de producción
+  \item Predicción de flujos de caja
+  \item Evaluación de riesgos financieros
+\end{itemize}
+\end{exampleblock}
+\end{frame}
+
+% ============================================
+% FÓRMULA DE LA NORMAL
+% ============================================
+\begin{frame}{Función de Densidad Normal}
+\begin{block}{Fórmula de la Distribución Normal}
+\begin{center}
+\Large
+$$f(x) = \frac{1}{\sigma\sqrt{2\pi}} \cdot e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}$$
+\end{center}
+\end{block}
+
+\vspace{0.3cm}
+\begin{exampleblock}{Donde:}
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Símbolo} & \textbf{Significado} \\
+\midrule
+$e$ & $2,7183$ (base de logaritmos naturales) \\
+$\pi$ & $3,1416$ \\
+$\mu$ & Media de la distribución \\
+$\sigma$ & Desviación Estándar \\
+$x$ & Valores asignados \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{exampleblock}
+
+\vspace{0.2cm}
+\begin{alertblock}{Nota}
+Esta fórmula genera la \textbf{campana de Gauss}. La dificultad para integrarla analíticamente hace necesario el uso de \textbf{tablas} o \textbf{estandarización}.
+\end{alertblock}
+\end{frame}
+
+% ============================================
+% ESTANDARIZACIÓN
+% ============================================
+\begin{frame}{Estandarización: Variable Z}
+\begin{block}{Problema}
+Cada distribución normal tiene su propia $\mu$ y $\sigma$. ¿Cómo calcular probabilidades sin integrar la fórmula cada vez?
+\end{block}
+
+\vspace{0.3cm}
+\begin{exampleblock}{Solución: Estandarización}
+Transformar cualquier $X \sim N(\mu, \sigma)$ en una variable \textbf{Normal Estándar} $Z \sim N(0, 1)$:
+\begin{center}
+\Huge
+$$\boxed{Z = \frac{X - \mu}{\sigma}}$$
+\end{center}
+\end{exampleblock}
+
+\vspace{0.3cm}
+\begin{block}{Propiedades de $Z$}
+\begin{itemize}
+  \item Media: $\mu_Z = 0$
+  \item Desviación estándar: $\sigma_Z = 1$
+  \item La fórmula se simplifica a: $\displaystyle f(z) = \frac{1}{\sqrt{2\pi}} \cdot e^{-\frac{z^2}{2}}$
+\end{itemize}
+\end{block}
+\end{frame}
+
+% ============================================
+% GRÁFICA DE ESTANDARIZACIÓN
+% ============================================
+\begin{frame}{Visualización de la Estandarización}
+\begin{center}
+\begin{tikzpicture}[scale=0.75]
+% Distribución original
+\begin{axis}[
+  at={(0,0)},
+  axis lines*=bottom,
+  xlabel={$X$},
+  ylabel={$f(x)$},
+  xmin=40, xmax=100,
+  ymin=0, ymax=0.06,
+  width=6.5cm,
+  height=4.5cm,
+  title={$X \sim N(70, 10)$},
+  title style={font=\small, color=grisOscuro},
+  xtick={50,60,70,80,90},
+  ytick=\empty,
+]
+\addplot[domain=40:100, samples=80, thick, celesteBorde] 
+  {1/(10*sqrt(2*pi))*exp(-(x-70)^2/(2*100))};
+\draw[dashed, rojoDistintivo] (axis cs:70,0) -- (axis cs:70,0.04);
+\node[above, font=\footnotesize] at (axis cs:70,0.04) {$\mu=70$};
+\end{axis}
+
+% Flecha de transformación
+\node at (3.8,2.5) {\Large $\xrightarrow{Z = \frac{X-\mu}{\sigma}}$};
+
+% Distribución estándar
+\begin{axis}[
+  at={(5.2,0)},
+  axis lines*=bottom,
+  xlabel={$Z$},
+  ylabel={$\phi(z)$},
+  xmin=-3, xmax=3,
+  ymin=0, ymax=0.45,
+  width=6.5cm,
+  height=4.5cm,
+  title={$Z \sim N(0, 1)$},
+  title style={font=\small, color=grisOscuro},
+  xtick={-2,-1,0,1,2},
+  ytick=\empty,
+]
+\addplot[domain=-3:3, samples=80, thick, purpuraElectrico] 
+  {1/(sqrt(2*pi))*exp(-x^2/2)};
+\draw[dashed, rojoDistintivo] (axis cs:0,0) -- (axis cs:0,0.4);
+\node[above, font=\footnotesize] at (axis cs:0,0.4) {$\mu=0$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.2cm}
+\begin{exampleblock}{Ejemplo numérico}
+Si $X = 85$, $\mu = 70$, $\sigma = 10$:
+$$Z = \frac{85 - 70}{10} = \frac{15}{10} = 1.5$$
+\end{exampleblock}
+\end{frame}
+
+% ============================================
+% USO DE TABLAS Z
+% ============================================
+\begin{frame}{Uso de Tablas de Distribución Normal}
+\begin{block}{Tabla Z (Lind, p. 782)}
+La tabla proporciona el \textbf{área bajo la curva} desde $-\infty$ hasta un valor $Z$ dado:
+$$P(Z \leq z) = \text{Área acumulada a la izquierda de } z$$
+\end{block}
+
+\vspace{0.3cm}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+\begin{axis}[
+  axis lines*=bottom,
+  xlabel={$Z$},
+  ylabel={$\phi(z)$},
+  xmin=-3, xmax=3,
+  ymin=0, ymax=0.45,
+  width=11cm,
+  height=5cm,
+  xtick={-2,-1,0,1,2},
+  xticklabels={-2,-1,0,1,2},
+  ytick=\empty,
+]
+\addplot[domain=-3:3, samples=100, thick, celesteBorde] 
+  {1/(sqrt(2*pi))*exp(-x^2/2)};
+
+% Área sombreada hasta z=1.5
+\addplot[domain=-3:1.5, samples=50, fill=celeste!50, opacity=0.6] 
+  {1/(sqrt(2*pi))*exp(-x^2/2)} \closedcycle;
+
+% Línea vertical en z=1.5
+\draw[dashed, rojoDistintivo, thick] (axis cs:1.5,0) -- (axis cs:1.5,0.13);
+\node[below] at (axis cs:1.5,0) {$z = 1.5$};
+\node[above, font=\footnotesize] at (axis cs:0,0.2) {$P(Z \leq 1.5) = 0.9332$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{alertblock}{Estructura de la tabla (Lind, p. 782)}
+\begin{itemize}
+  \item \textbf{Columna Z:} Valores de $Z$ (hasta 1 decimal)
+  \item \textbf{Filas 0.00 a 0.09:} Segundo decimal de $Z$
+  \item \textbf{Valor en celda:} Probabilidad acumulada $P(Z \leq z)$
+\end{itemize}
+\end{alertblock}
+\end{frame}
+
+% ============================================
+% EJEMPLO DE TABLA Z
+% ============================================
+\begin{frame}{Ejemplo: Lectura de Tabla Z}
+\begin{exampleblock}{Ejemplo 1: Encontrar $P(Z \leq 1.96)$}
+\textbf{Paso 1:} Buscar $Z = 1.9$ en la columna izquierda\\
+\textbf{Paso 2:} Buscar $0.06$ en la fila superior\\
+\textbf{Paso 3:} Intersección: $\boxed{P(Z \leq 1.96) = 0.9750}$
+\end{exampleblock}
+
+\vspace{0.3cm}
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+\begin{axis}[
+  axis lines*=bottom,
+  xlabel={$Z$},
+  ymin=0, ymax=0.45,
+  width=10cm,
+  height=4.5cm,
+  xtick={-2,-1,0,1,1.96,2},
+  xticklabels={-2,-1,0,1,1.96,2},
+  ytick=\empty,
+]
+\addplot[domain=-3:3, samples=100, thick, celesteBorde] 
+  {1/(sqrt(2*pi))*exp(-x^2/2)};
+
+% Área sombreada
+\addplot[domain=-3:1.96, samples=50, fill=verdePastel!60, opacity=0.6] 
+  {1/(sqrt(2*pi))*exp(-x^2/2)} \closedcycle;
+
+% Área de la cola
+\addplot[domain=1.96:3, samples=30, fill=naranjaPastel!60, opacity=0.6] 
+  {1/(sqrt(2*pi))*exp(-x^2/2)} \closedcycle;
+
+\draw[dashed, rojoDistintivo, thick] (axis cs:1.96,0) -- (axis cs:1.96,0.06);
+\node[below] at (axis cs:1.96,0) {$1.96$};
+\node[above, font=\footnotesize] at (axis cs:0.5,0.18) {$0.9750$};
+\node[above, font=\footnotesize] at (axis cs:2.4,0.03) {$0.0250$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{block}{Interpretación}
+El 97.5\% de los valores están por debajo de $Z = 1.96$, y el 2.5\% está por encima.
+\end{block}
+\end{frame}
+
+% ============================================
+% REGLA EMPÍRICA
+% ============================================
+\begin{frame}{Regla Empírica (68-95-99.7)}
+\begin{block}{Para distribuciones normales:}
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+\begin{axis}[
+  axis lines*=bottom,
+  xlabel={$X$},
+  ylabel={$f(x)$},
+  xmin=-4, xmax=4,
+  ymin=0, ymax=0.45,
+  width=12cm,
+  height=5.5cm,
+  xtick={-3,-2,-1,0,1,2,3},
+  xticklabels={$\mu-3\sigma$,$\mu-2\sigma$,$\mu-\sigma$,$\mu$,$\mu+\sigma$,$\mu+2\sigma$,$\mu+3\sigma$},
+  ytick=\empty,
+]
+\addplot[domain=-4:4, samples=100, very thick, celesteBorde] 
+  {1/(sqrt(2*pi))*exp(-x^2/2)};
+
+% Áreas
+\addplot[domain=-1:1, samples=30, fill=verdePastel!70, opacity=0.7] 
+  {1/(sqrt(2*pi))*exp(-x^2/2)} \closedcycle;
+\addplot[domain=-2:-1, samples=20, fill=celeste!50, opacity=0.5] 
+  {1/(sqrt(2*pi))*exp(-x^2/2)} \closedcycle;
+\addplot[domain=1:2, samples=20, fill=celeste!50, opacity=0.5] 
+  {1/(sqrt(2*pi))*exp(-x^2/2)} \closedcycle;
+\addplot[domain=-3:-2, samples=15, fill=amarilloCaterpillar!50, opacity=0.5] 
+  {1/(sqrt(2*pi))*exp(-x^2/2)} \closedcycle;
+\addplot[domain=2:3, samples=15, fill=amarilloCaterpillar!50, opacity=0.5] 
+  {1/(sqrt(2*pi))*exp(-x^2/2)} \closedcycle;
+
+% Etiquetas de porcentajes
+\node[above, font=\footnotesize\bfseries, verdePastel!80!black] at (axis cs:0,0.2) {68\%};
+\node[above, font=\footnotesize, celesteBorde] at (axis cs:-1.5,0.12) {13.5\%};
+\node[above, font=\footnotesize, celesteBorde] at (axis cs:1.5,0.12) {13.5\%};
+\node[above, font=\footnotesize, grisOscuro] at (axis cs:-2.5,0.04) {2.35\%};
+\node[above, font=\footnotesize, grisOscuro] at (axis cs:2.5,0.04) {2.35\%};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\end{block}
+
+\begin{exampleblock}{Resumen}
+\begin{itemize}
+  \item $\mu \pm 1\sigma$: Aproximadamente \textbf{68\%} de los datos
+  \item $\mu \pm 2\sigma$: Aproximadamente \textbf{95\%} de los datos
+  \item $\mu \pm 3\sigma$: Aproximadamente \textbf{99.7\%} de los datos
+\end{itemize}
+\end{exampleblock}
+\end{frame}
+
+% ============================================
+% EJERCICIO RESUELTO 1
+% ============================================
+\begin{frame}{Ejercicio Resuelto 1: Probabilidad Normal}
+\begin{exampleblock}{Problema (Lind, p. 233)}
+El peso de los paquetes de café sigue una distribución normal con $\mu = 500$ g y $\sigma = 20$ g. ¿Cuál es la probabilidad de que un paquete pese menos de 530 g?
+\end{exampleblock}
+
+\vspace{0.2cm}
+\begin{block}{\textbf{Paso 1:} Identificar datos}
+\begin{itemize}
+  \item $X = 530$ g (valor de interés)
+  \item $\mu = 500$ g (media)
+  \item $\sigma = 20$ g (desviación estándar)
+\end{itemize}
+\end{block}
+
+\begin{block}{\textbf{Paso 2:} Estandarizar}
+$$Z = \frac{X - \mu}{\sigma} = \frac{530 - 500}{20} = \frac{30}{20} = 1.5$$
+\end{block}
+
+\begin{block}{\textbf{Paso 3:} Buscar en tabla Z (Lind, p. 782)}
+$$P(Z \leq 1.50) = 0.9332$$
+\end{block}
+
+\begin{exampleblock}{\textbf{Respuesta:}}
+$$\boxed{P(X \leq 530) = 0.9332 \text{ o } 93.32\%}$$
+\end{exampleblock}
+\end{frame}
+
+% ============================================
+% GRÁFICA EJERCICIO 1
+% ============================================
+\begin{frame}{Visualización del Ejercicio 1}
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+\begin{axis}[
+  axis lines*=bottom,
+  xlabel={Peso (g)},
+  ylabel={$f(x)$},
+  xmin=440, xmax=560,
+  ymin=0, ymax=0.025,
+  width=12cm,
+  height=6cm,
+  xtick={440,460,480,500,520,530,540,560},
+  ytick=\empty,
+]
+\addplot[domain=440:560, samples=100, thick, celesteBorde] 
+  {1/(20*sqrt(2*pi))*exp(-(x-500)^2/(2*400))};
+
+% Área sombreada hasta 530
+\addplot[domain=440:530, samples=50, fill=verdePastel!60, opacity=0.6] 
+  {1/(20*sqrt(2*pi))*exp(-(x-500)^2/(2*400))} \closedcycle;
+
+% Líneas verticales
+\draw[dashed, rojoDistintivo, thick] (axis cs:500,0) -- (axis cs:500,0.02);
+\draw[dashed, purpuraElectrico, thick] (axis cs:530,0) -- (axis cs:530,0.015);
+
+% Etiquetas
+\node[below] at (axis cs:500,0) {$\mu=500$};
+\node[below] at (axis cs:530,0) {$530$};
+\node[above, font=\footnotesize] at (axis cs:515,0.008) {$Z=1.5$};
+\node[above, font=\footnotesize\bfseries] at (axis cs:470,0.005) {$93.32\%$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.2cm}
+\begin{alertblock}{Interpretación}
+Aproximadamente el \textbf{93.32\%} de los paquetes de café pesan menos de 530 g.
+\end{alertblock}
+\end{frame}
+
+% ============================================
+% EJERCICIO RESUELTO 2
+% ============================================
+\begin{frame}{Ejercicio Resuelto 2: Probabilidad entre dos valores}
+\begin{exampleblock}{Problema}
+Los salarios iniciales de contadores públicos siguen $N(3500, 400)$ en Bs. ¿Qué porcentaje gana entre 3100 y 3900 Bs?
+\end{exampleblock}
+
+\vspace{0.2cm}
+\begin{block}{\textbf{Paso 1:} Estandarizar ambos valores}
+$$Z_1 = \frac{3100 - 3500}{400} = \frac{-400}{400} = -1.0$$
+$$Z_2 = \frac{3900 - 3500}{400} = \frac{400}{400} = 1.0$$
+\end{block}
+
+\begin{block}{\textbf{Paso 2:} Buscar en tabla Z}
+$$P(Z \leq 1.00) = 0.8413$$
+$$P(Z \leq -1.00) = 0.1587$$
+\end{block}
+
+\begin{block}{\textbf{Paso 3:} Calcular probabilidad del intervalo}
+$$P(3100 \leq X \leq 3900) = P(-1 \leq Z \leq 1) = 0.8413 - 0.1587 = 0.6826$$
+\end{block}
+
+\begin{exampleblock}{\textbf{Respuesta:}}
+$$\boxed{P(3100 \leq X \leq 3900) = 0.6826 \text{ o } 68.26\%}$$
+\end{exampleblock}
+\end{frame}
+
+% ============================================
+% GRÁFICA EJERCICIO 2
+% ============================================
+\begin{frame}{Visualización del Ejercicio 2}
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+\begin{axis}[
+  axis lines*=bottom,
+  xlabel={Salario (Bs)},
+  ylabel={$f(x)$},
+  xmin=2300, xmax=4700,
+  ymin=0, ymax=0.0012,
+  width=12cm,
+  height=6cm,
+  xtick={2300,2700,3100,3500,3900,4300,4700},
+  ytick=\empty,
+]
+\addplot[domain=2300:4700, samples=100, thick, celesteBorde] 
+  {1/(400*sqrt(2*pi))*exp(-(x-3500)^2/(2*160000))};
+
+% Área sombreada entre 3100 y 3900
+\addplot[domain=3100:3900, samples=50, fill=verdePastel!60, opacity=0.6] 
+  {1/(400*sqrt(2*pi))*exp(-(x-3500)^2/(2*160000))} \closedcycle;
+
+% Líneas verticales
+\draw[dashed, purpuraElectrico, thick] (axis cs:3100,0) -- (axis cs:3100,0.0006);
+\draw[dashed, rojoDistintivo, thick] (axis cs:3500,0) -- (axis cs:3500,0.001);
+\draw[dashed, purpuraElectrico, thick] (axis cs:3900,0) -- (axis cs:3900,0.0006);
+
+% Etiquetas
+\node[below] at (axis cs:3100,0) {$3100$};
+\node[below] at (axis cs:3500,0) {$\mu=3500$};
+\node[below] at (axis cs:3900,0) {$3900$};
+\node[above, font=\footnotesize] at (axis cs:3300,0.0005) {$Z=-1$};
+\node[above, font=\footnotesize] at (axis cs:3700,0.0005) {$Z=1$};
+\node[above, font=\footnotesize\bfseries] at (axis cs:3500,0.0008) {$68.26\%$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.2cm}
+\begin{alertblock}{Observación}
+Este resultado coincide con la \textbf{Regla Empírica}: $\mu \pm 1\sigma$ contiene aproximadamente 68\% de los datos.
+\end{alertblock}
+\end{frame}
+
+% ============================================
+% EJERCICIO RESUELTO 3
+% ============================================
+\begin{frame}{Ejercicio Resuelto 3: Cola derecha}
+\begin{exampleblock}{Problema}
+El tiempo de servicio en un banco sigue $N(8, 2)$ minutos. ¿Cuál es la probabilidad de que el tiempo exceda 11 minutos?
+\end{exampleblock}
+
+\vspace{0.2cm}
+\begin{block}{\textbf{Paso 1:} Estandarizar}
+$$Z = \frac{11 - 8}{2} = \frac{3}{2} = 1.5$$
+\end{block}
+
+\begin{block}{\textbf{Paso 2:} Buscar en tabla Z}
+$$P(Z \leq 1.50) = 0.9332$$
+\end{block}
+
+\begin{block}{\textbf{Paso 3:} Calcular cola derecha}
+$$P(X > 11) = P(Z > 1.5) = 1 - P(Z \leq 1.5) = 1 - 0.9332 = 0.0668$$
+\end{block}
+
+\begin{exampleblock}{\textbf{Respuesta:}}
+$$\boxed{P(X > 11) = 0.0668 \text{ o } 6.68\%}$$
+\end{exampleblock}
+\end{frame}
+
+% ============================================
+% GRÁFICA EJERCICIO 3
+% ============================================
+\begin{frame}{Visualización del Ejercicio 3}
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+\begin{axis}[
+  axis lines*=bottom,
+  xlabel={Tiempo (min)},
+  ylabel={$f(x)$},
+  xmin=2, xmax=14,
+  ymin=0, ymax=0.25,
+  width=12cm,
+  height=6cm,
+  xtick={2,4,6,8,10,11,12,14},
+  ytick=\empty,
+]
+\addplot[domain=2:14, samples=100, thick, celesteBorde] 
+  {1/(2*sqrt(2*pi))*exp(-(x-8)^2/(2*4))};
+
+% Área sombreada (cola derecha)
+\addplot[domain=11:14, samples=30, fill=naranjaPastel!70, opacity=0.6] 
+  {1/(2*sqrt(2*pi))*exp(-(x-8)^2/(2*4))} \closedcycle;
+
+% Líneas verticales
+\draw[dashed, rojoDistintivo, thick] (axis cs:8,0) -- (axis cs:8,0.2);
+\draw[dashed, purpuraElectrico, very thick] (axis cs:11,0) -- (axis cs:11,0.06);
+
+% Etiquetas
+\node[below] at (axis cs:8,0) {$\mu=8$};
+\node[below] at (axis cs:11,0) {$11$};
+\node[above, font=\footnotesize] at (axis cs:9.5,0.1) {$Z=1.5$};
+\node[above, font=\footnotesize\bfseries, naranjaPastel!80!black] at (axis cs:12.5,0.03) {$6.68\%$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.2cm}
+\begin{alertblock}{Fórmula general para cola derecha}
+$$P(X > x) = 1 - P(Z \leq z) = 1 - \text{(valor de tabla)}$$
+\end{alertblock}
+\end{frame}
+
+% ============================================
+% RESUMEN DE FÓRMULAS
+% ============================================
+\begin{frame}{Resumen de Fórmulas Clave}
+\begin{block}{Fórmulas Fundamentales}
+\begin{center}
+\begin{tabular}{>{\columncolor{celesteClaro}}l >{\columncolor{celesteClaro}}l}
+\toprule
+\textbf{Concepto} & \textbf{Fórmula} \\
+\midrule
+Función de densidad normal & $f(x) = \dfrac{1}{\sigma\sqrt{2\pi}} \cdot e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}$ \\[0.4cm]
+Estandarización & $Z = \dfrac{X - \mu}{\sigma}$ \\[0.4cm]
+Probabilidad acumulada & $P(X \leq x) = P(Z \leq z)$ \\[0.3cm]
+Probabilidad intervalo & $P(a \leq X \leq b) = P(Z_a \leq Z \leq Z_b)$ \\[0.3cm]
+Cola derecha & $P(X > x) = 1 - P(Z \leq z)$ \\[0.3cm]
+Cola izquierda & $P(X < x) = P(Z \leq z)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{block}
+\end{frame}
+
+% ============================================
+% TABLA Z RESUMEN
+% ============================================
+\begin{frame}{Tabla Z: Extracto (Lind, p. 782)}
+\begin{block}{Cómo usar la tabla}
+\begin{enumerate}
+  \item Calcular $Z$ con la fórmula de estandarización
+  \item Buscar fila con primer decimal de $Z$
+  \item Buscar columna con segundo decimal
+  \item Leer probabilidad acumulada
+\end{enumerate}
+\end{block}
+
+\vspace{0.2cm}
+\begin{center}
+\footnotesize
+\begin{tabular}{c|cccccc}
+\toprule
+\rowcolor{celeste}
+$Z$ & 0.00 & 0.01 & 0.02 & 0.03 & 0.04 & 0.05 \\
+\midrule
+0.0 & 0.5000 & 0.5040 & 0.5080 & 0.5120 & 0.5160 & 0.5199 \\
+0.1 & 0.5398 & 0.5438 & 0.5478 & 0.5517 & 0.5557 & 0.5596 \\
+0.2 & 0.5793 & 0.5832 & 0.5871 & 0.5910 & 0.5948 & 0.5987 \\
+\rowcolor{verdePastel!30}
+\textbf{1.0} & \textbf{0.8413} & 0.8438 & 0.8461 & 0.8485 & 0.8508 & 0.8531 \\
+\rowcolor{verdePastel!30}
+\textbf{1.5} & \textbf{0.9332} & 0.9345 & 0.9357 & 0.9370 & 0.9382 & 0.9394 \\
+\rowcolor{verdePastel!30}
+\textbf{1.96} & \textbf{0.9750} & 0.9756 & 0.9761 & 0.9767 & 0.9772 & 0.9778 \\
+\rowcolor{verdePastel!30}
+\textbf{2.0} & \textbf{0.9772} & 0.9778 & 0.9783 & 0.9788 & 0.9793 & 0.9798 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.2cm}
+\begin{exampleblock}{Valores clave a memorizar}
+$Z = 1.96 \Rightarrow P = 0.9750$ \quad (95\% de confianza)\\
+$Z = 2.00 \Rightarrow P = 0.9772$ \quad (97.72\% de confianza)
+\end{exampleblock}
+\end{frame}
+
+% ============================================
+% CIERRE
+% ============================================
+\begin{frame}{Resumen de la Unidad 4}
+\begin{block}{Puntos clave}
+\begin{enumerate}
+  \item Las variables continuas toman cualquier valor en un intervalo
+  \item La \textbf{distribución normal} es la más importante en estadística
+  \item La \textbf{estandarización} convierte cualquier normal en $Z \sim N(0,1)$
+  \item Las \textbf{tablas Z} proporcionan probabilidades acumuladas
+  \item La \textbf{regla empírica} permite estimaciones rápidas (68-95-99.7)
+\end{enumerate}
+\end{block}
+
+\vspace{0.3cm}
+\begin{exampleblock}{Referencias bibliográficas}
+\begin{itemize}
+  \item \textbf{Texto del curso:} MSc. Anselmo Salguero Arano. Unidad 4: Distribución de Probabilidades para Variable Aleatoria Continua.
+  \item \textbf{Lind, Marchal, Wathen.} \textit{Estadística Aplicada a los Negocios y la Economía}. 15ª Ed. McGraw-Hill, 2012.
+  \begin{itemize}
+    \item Capítulo 7: Distribuciones de Probabilidad Continua (pp. 222--264)
+    \item Apéndice B: Tablas de Probabilidad (p. 782)
+  \end{itemize}
+\end{itemize}
+\end{exampleblock}
+\end{frame}
+
+% ============================================
+% PREGUNTAS
+% ============================================
+\begin{frame}[plain]
+\begin{center}
+\vspace{2cm}
+{\Huge\textcolor{celeste}{\textbf{¡Gracias!}}}
+
+\vspace{1cm}
+{\Large\textcolor{grisOscuro}{¿Preguntas?}}
+
+\vspace{2cm}
+\begin{tikzpicture}
+\draw[celesteBorde, thick, rounded corners] (0,0) rectangle (8,2);
+\node at (4,1) {\large\textcolor{grisOscuro}{MSc. Anselmo Salguero Arano}};
+\end{tikzpicture}
+
+\vspace{0.5cm}
+{\footnotesize\textcolor{grisOscuro}{Estadística II -- MAT-260\\
+Universidad Autónoma Gabriel René Moreno}}
+\end{center}
+\end{frame}
+
+
+\item \textbf{Tiempo entre fallas} de una máquina
+  \item \textbf{Tiempo de servicio} en atención al cliente
+\end{enumerate}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{exampleblock}{Caso real: Call Center}
+\footnotesize
+Un call center recibe llamadas a razón de $\lambda = 4$ llamadas/hora.
+
+\textbf{Pregunta:} ¿Probabilidad de esperar más de 30 minutos entre llamadas?
+
+$$P(X > 0.5) = e^{-4 \times 0.5} = e^{-2} = 0.1353$$
+
+\textbf{Respuesta:} 13.53\% de probabilidad
+\end{exampleblock}
+\end{column}
+\end{columns}
+
+\vspace{0.3cm}
+\begin{alertblock}{Fórmula clave (sin tabla necesaria)}
+$$P(X > x) = e^{-\lambda x} \qquad P(X \leq x) = 1 - e^{-\lambda x}$$
+\end{alertblock}
+\end{frame}
+
+% ============================================
+% EJERCICIO EXPONENCIAL
+% ============================================
+\begin{frame}{Ejercicio: Distribución Exponencial}
+\begin{exampleblock}{Problema}
+La vida útil de un fusible sigue una distribución exponencial con media de 1000 horas. ¿Cuál es la probabilidad de que dure más de 1200 horas?
+\end{exampleblock}
+
+\begin{block}{\textbf{Paso 1:} Identificar parámetros}
+Media = 1000 h $\Rightarrow$ $\lambda = \frac{1}{1000} = 0.001$
+\end{block}
+
+\begin{block}{\textbf{Paso 2:} Aplicar fórmula}
+$$P(X > 1200) = e^{-\lambda x} = e^{-0.001 \times 1200} = e^{-1.2}$$
+\end{block}
+
+\begin{block}{\textbf{Paso 3:} Calcular}
+$$e^{-1.2} = 0.3012$$
+\end{block}
+
+\begin{exampleblock}{\textbf{Respuesta:}}
+$$\boxed{P(X > 1200) = 0.3012 \approx 30.12\%}$$
+\end{exampleblock}
+\end{frame}
+
+% ============================================
+% DISTRIBUCIÓN t-STUDENT
+% ============================================
+\begin{frame}{Distribución t de Student}
+\begin{block}{Definición}
+Similar a la Normal, pero con \textbf{colas más gruesas}. Se usa cuando:
+\begin{itemize}
+  \item La muestra es pequeña ($n < 30$)
+  \item La desviación estándar poblacional \textbf{se desconocida}
+\end{itemize}
+\end{block}
+
+\begin{exampleblock}{Función de Densidad}
+\begin{center}
+\Large
+$$f(t) = \frac{\Gamma\left(\frac{gl+1}{2}\right)}{\sqrt{gl\pi}\,\Gamma\left(\frac{gl}{2}\right)} \left(1 + \frac{t^2}{gl}\right)^{-\frac{gl+1}{2}}$$
+\end{center}
+\end{exampleblock}
+
+\begin{center}
+\begin{tabular}{>{\columncolor{lavanda!30}}c >{\columncolor{lavanda!30}}l}
+\toprule
+\textbf{Parámetro} & \textbf{Significado} \\
+\midrule
+$gl$ (o $df$) & Grados de libertad = $n - 1$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{frame}
+
+% ============================================
+% GRÁFICA t-STUDENT
+% ============================================
+\begin{frame}{Gráfica: t-Student vs Normal}
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+\begin{axis}[
+  axis lines*=bottom,
+  xlabel={$t$},
+  ylabel={$f(t)$},
+  xmin=-4, xmax=4,
+  ymin=0, ymax=0.45,
+  width=12cm,
+  height=6cm,
+  xtick={-3,-2,-1,0,1,2,3},
+  legend style={at={(0.65,0.95)}, anchor=north west},
+]
+% Normal estándar
+\addplot[domain=-4:4, samples=100, very thick, celesteBorde] 
+  {1/(sqrt(2*pi))*exp(-x^2/2)};
+% t-Student con gl=5
+\addplot[domain=-4:4, samples=100, very thick, lavanda, dashed] 
+  {0.3796*(1+x^2/5)^(-3)};
+% t-Student con gl=2
+\addplot[domain=-4:4, samples=100, very thick, purpuraNeon, dashdotted] 
+  {0.3536*(1+x^2/2)^(-1.5)};
+\legend{Normal $N(0,1)$, $t$-Student $gl=5$, $t$-Student $gl=2$}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{alertblock}{Observación}
+A mayor $gl$, más se parece a la Normal. Cuando $gl \geq 30$, son prácticamente idénticas.
+\end{alertblock}
+\end{frame}
+
+% ============================================
+% CASOS REALES t-STUDENT
+% ============================================
+\begin{frame}{Casos Reales: t-Student}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{block}{¿Cuándo usar t-Student?}
+\begin{enumerate}
+  \item \textbf{Muestras pequeñas:} $n < 30$
+  \item \textbf{Desv. std desconocida:} Usar $s$ (muestral)
+  \item \textbf{Intervalos de confianza} para la media
+  \item \textbf{Pruebas de hipótesis} con muestras pequeñas
+\end{enumerate}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{exampleblock}{Caso real: Auditoría}
+\footnotesize
+Un auditor revisa 15 facturas. La media de errores es $\bar{x} = 2.3$\% con $s = 0.8$\%.
+
+Para construir un intervalo de confianza al 95\%:
+$$\bar{x} \pm t_{0.025, 14} \times \frac{s}{\sqrt{n}}$$
+
+De tabla t: $t_{0.025, 14} = 2.145$
+\end{exampleblock}
+\end{column}
+\end{columns}
+
+\vspace{0.3cm}
+\begin{alertblock}{Diferencia clave con Normal}
+La t-Student tiene valores \textbf{más grandes} que Z para el mismo nivel de confianza, compensando la incertidumbre de $s$.
+\end{alertblock}
+\end{frame}
+
+% ============================================
+% EJERCICIO t-STUDENT
+% ============================================
+\begin{frame}{Ejercicio: t-Student}
+\begin{exampleblock}{Problema}
+Una muestra de 20 estudiantes tiene nota media $\bar{x} = 72$ con $s = 8$. Construya un intervalo de confianza al 95\% para la media poblacional.
+\end{exampleblock}
+
+\begin{block}{\textbf{Paso 1:} Identificar}
+$n = 20$, $gl = 19$, confianza = 95\%, $\alpha/2 = 0.025$
+\end{block}
+
+\begin{block}{\textbf{Paso 2:} Buscar $t$ en tabla}
+De tabla t-Student: $t_{0.025, 19} = 2.093$
+\end{block}
+
+\begin{block}{\textbf{Paso 3:} Calcular margen de error}
+$$ME = t \times \frac{s}{\sqrt{n}} = 2.093 \times \frac{8}{\sqrt{20}} = 2.093 \times 1.789 = 3.74$$
+\end{block}
+
+\begin{exampleblock}{\textbf{Respuesta:}}
+$$\boxed{IC_{95\%} = 72 \pm 3.74 = (68.26,\, 75.74)}$$
+\end{exampleblock}
+\end{frame}
+
+% ============================================
+% DISTRIBUCIÓN CHI-CUADRADO
+% ============================================
+\begin{frame}{Distribución Chi-cuadrado ($\chi^2$)}
+\begin{block}{Definición}
+Surge de la suma de cuadrados de variables normales estándar. Tiene forma \textbf{asimétrica positiva}.
+\end{block}
+
+\begin{exampleblock}{Función de Densidad}
+\begin{center}
+\Large
+$$f(x) = \frac{1}{2^{gl/2}\Gamma(gl/2)} x^{\frac{gl}{2}-1} e^{-x/2} \quad \text{para } x > 0$$
+\end{center}
+\end{exampleblock}
+
+\begin{center}
+\begin{tabular}{>{\columncolor{melocoton!50}}c >{\columncolor{melocoton!50}}l}
+\toprule
+\textbf{Parámetro} & \textbf{Significado} \\
+\midrule
+$gl$ (grados de libertad) & $gl = n - 1$ para varianzas \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{frame}
+
+% ============================================
+% GRÁFICA CHI-CUADRADO
+% ============================================
+\begin{frame}{Gráfica: Distribución Chi-cuadrado}
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+\begin{axis}[
+  axis lines*=bottom,
+  xlabel={$\chi^2$},
+  ylabel={$f(\chi^2)$},
+  xmin=0, xmax=20,
+  ymin=0, ymax=0.25,
+  width=12cm,
+  height=6cm,
+  xtick={0,5,10,15,20},
+  legend style={at={(0.65,0.95)}, anchor=north west},
+]
+% gl=2
+\addplot[domain=0.1:20, samples=100, very thick, melocoton] 
+  {0.5*exp(-x/2)};
+% gl=5
+\addplot[domain=0.1:20, samples=100, very thick, coral, dashed] 
+  {(x^(1.5)*exp(-x/2))/(2^2.5*1.3293)};
+% gl=10
+\addplot[domain=0.1:20, samples=100, very thick, rojoDistintivo, dashdotted] 
+  {(x^4*exp(-x/2))/(2^5*24)};
+\legend{$gl=2$, $gl=5$, $gl=10$}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{alertblock}{Características}
+\begin{itemize}
+  \item Siempre \textbf{positiva} ($x > 0$)
+  \item Forma \textbf{asimétrica} (cola a la derecha)
+  \item A mayor $gl$, más se parece a una Normal
+\end{itemize}
+\end{alertblock}
+\end{frame}
+
+% ============================================
+% CASOS REALES CHI-CUADRADO
+% ============================================
+\begin{frame}{Casos Reales: Chi-cuadrado}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{block}{¿Cuándo usar $\chi^2$?}
+\begin{enumerate}
+  \item \textbf{Intervalos de confianza} para varianzas
+  \item \textbf{Pruebas de hipótesis} sobre varianzas
+  \item \textbf{Bondad de ajuste:} ¿Los datos siguen una distribución teórica?
+  \item \textbf{Tablas de contingencia:} ¿Dos variables son independientes?
+\end{enumerate}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{exampleblock}{Caso real: Control de calidad}
+\footnotesize
+Una fábrica de baterías garantiza $\sigma \leq 50$ horas. Una muestra de 25 baterías da $s = 60$ horas.
+
+¿La varianza excede lo garantizado?
+
+Estadístico de prueba:
+$$\chi^2 = \frac{(n-1)s^2}{\sigma_0^2} = \frac{24 \times 3600}{2500} = 34.56$$
+
+Comparar con $\chi^2_{0.05, 24} = 36.42$
+\end{exampleblock}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================
+% EJERCICIO CHI-CUADRADO
+% ============================================
+\begin{frame}{Ejercicio: Chi-cuadrado}
+\begin{exampleblock}{Problema}
+Una muestra de 16 transacciones bancarias tiene desviación estándar $s = 12$ Bs. La institución exige $\sigma \leq 10$ Bs. ¿Hay evidencia de que la variabilidad excede el límite al 5\%?
+\end{exampleblock}
+
+\begin{block}{\textbf{Paso 1:} Hipótesis}
+$H_0: \sigma^2 \leq 100$ \quad vs \quad $H_1: \sigma^2 > 100$
+\end{block}
+
+\begin{block}{\textbf{Paso 2:} Calcular estadístico}
+$$\chi^2 = \frac{(n-1)s^2}{\sigma_0^2} = \frac{15 \times 144}{100} = \frac{2160}{100} = 21.6$$
+\end{block}
+
+\begin{block}{\textbf{Paso 3:} Valor crítico}
+De tabla $\chi^2$: $\chi^2_{0.05, 15} = 24.996$
+\end{block}
+
+\begin{exampleblock}{\textbf{Decisión:}}
+$21.6 < 24.996$ $\Rightarrow$ No rechazar $H_0$. \textbf{No hay evidencia} de que la variabilidad exceda el límite.
+\end{exampleblock}
+\end{frame}
+
+% ============================================
+% COMPARATIVO DE DISTRIBUCIONES
+% ============================================
+\begin{frame}{Comparativo: ¿Cuándo usar cada distribución?}
+\begin{center}
+\footnotesize
+\begin{tabular}{>{\columncolor{celesteClaro}}p{2.5cm} >{\columncolor{verdePastel!20}}p{3.5cm} >{\columncolor{turquesa!20}}p{3.5cm} >{\columncolor{lavanda!20}}p{3.5cm}}
+\toprule
+\textbf{Distribución} & \textbf{Normal} & \textbf{Exponencial} & \textbf{t / $\chi^2$} \\
+\midrule
+\textbf{Variable} & Continua & Continua (tiempo) & Continua \\
+\textbf{Parámetros} & $\mu$, $\sigma$ & $\lambda$ & $gl$ \\
+\textbf{Forma} & Simétrica, campana & Asimétrica, decaimiento & Asimétrica o simétrica \\
+\textbf{Uso principal} & Prob. generales, aproximaciones & Tiempos de espera, vida útil & Inferencia (muestras pequeñas) \\
+\textbf{Tablas} & Z (p. 782 Lind) & No necesita & t y $\chi^2$ (p. 782) \\
+\textbf{Ejemplo real} & Alturas, calificaciones & Fallas de equipo, servicios & Auditorías, control de calidad \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{frame}
+
+% ============================================
+% CASOS REALES INTEGRADOS
+% ============================================
+\begin{frame}{Casos Reales Integrados}
+\begin{exampleblock}{Caso 1: Banco (Normal)}
+\footnotesize
+El tiempo de atención al cliente sigue $N(8, 2)$ minutos. Si el banco tiene 200 clientes/día, ¿cuántos esperan más de 12 minutos?
+
+$Z = (12-8)/2 = 2$ \quad $P(Z > 2) = 1 - 0.9772 = 0.0228$
+
+\textbf{Respuesta:} $200 \times 0.0228 \approx 5$ clientes/día
+\end{exampleblock}
+
+\begin{exampleblock}{Caso 2: Seguros (Exponencial)}
+\footnotesize
+Una aseguradora sabe que reclamos ocurren cada 30 días en promedio ($\lambda = 1/30$). ¿Probabilidad de pasar 60 días sin reclamos?
+
+$P(X > 60) = e^{-(1/30) \times 60} = e^{-2} = 0.1353$
+
+\textbf{Respuesta:} 13.53\% de probabilidad
+\end{exampleblock}
+\end{frame}
+
+% ============================================
+% MÁS CASOS REALES
+% ============================================
+\begin{frame}{Más Casos Reales}
+\begin{exampleblock}{Caso 3: Farmacéutica (t-Student)}
+\footnotesize
+Un nuevo medicamento se prueba en 25 pacientes. La reducción media de presión es 15 mmHg con $s = 8$. Intervalo de confianza al 99\%:
+
+$gl = 24$, $t_{0.005, 24} = 2.797$
+
+$IC = 15 \pm 2.797 \times \frac{8}{\sqrt{25}} = 15 \pm 4.47 = (10.53, 19.47)$ mmHg
+\end{exampleblock}
+
+\begin{exampleblock}{Caso 4: Manufactura ($\chi^2$)}
+\footnotesize
+Una línea de producción debe mantener $\sigma < 0.5$ mm en diámetros de tornillos. Muestra de 30 tornillos: $s = 0.6$ mm. ¿La línea cumple al 1\%?
+
+$\chi^2 = \frac{29 \times 0.36}{0.25} = 41.76$ \quad Valor crítico: $\chi^2_{0.01, 29} = 49.59$
+
+$41.76 < 49.59$ \quad \textbf{Sí cumple} (no rechazar $H_0$)
+\end{exampleblock}
+\end{frame}
+
+% ============================================
+% TABLA Z RESUMEN
+% ============================================
+\begin{frame}{Extracto Tabla Z: Valores Clave (Lind, p. 782)}
+\begin{center}
+\footnotesize
+\begin{tabular}{c|cccccc}
+\toprule
+\rowcolor{celeste}
+$Z$ & 0.00 & 0.01 & 0.02 & 0.03 & 0.04 & 0.05 \\
+\midrule
+0.0 & 0.5000 & 0.5040 & 0.5080 & 0.5120 & 0.5160 & 0.5199 \\
+0.5 & 0.6915 & 0.6950 & 0.6985 & 0.7019 & 0.7054 & 0.7088 \\
+\rowcolor{verdePastel!30}
+\textbf{1.0} & \textbf{0.8413} & 0.8438 & 0.8461 & 0.8485 & 0.8508 & 0.8531 \\
+\rowcolor{verdePastel!30}
+\textbf{1.5} & \textbf{0.9332} & 0.9345 & 0.9357 & 0.9370 & 0.9382 & 0.9394 \\
+\rowcolor{rosaFuerte!30}
+\textbf{1.645} & \textbf{0.9500} & --- & --- & --- & --- & --- \\
+\rowcolor{rosaFuerte!30}
+\textbf{1.96} & \textbf{0.9750} & 0.9756 & 0.9761 & 0.9767 & 0.9772 & 0.9778 \\
+\rowcolor{verdePastel!30}
+\textbf{2.0} & \textbf{0.9772} & 0.9778 & 0.9783 & 0.9788 & 0.9793 & 0.9798 \\
+\rowcolor{verdePastel!30}
+\textbf{2.5} & \textbf{0.9938} & 0.9940 & 0.9941 & 0.9943 & 0.9945 & 0.9946 \\
+\rowcolor{rosaFuerte!30}
+\textbf{2.576} & \textbf{0.9950} & --- & --- & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.2cm}
+\begin{exampleblock}{Valores a memorizar}
+$Z = 1.645 \Rightarrow 90\%$ \quad $Z = 1.96 \Rightarrow 95\%$ \quad $Z = 2.576 \Rightarrow 99\%
+\end{exampleblock}
+\end{frame}
+
+% ============================================
+% RESUMEN FINAL
+% ============================================
+\begin{frame}{Resumen de la Unidad 4}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{block}{Distribuciones continuas}
+\begin{enumerate}
+  \item \textbf{Normal:} Campana de Gauss, estandarización Z
+  \item \textbf{Exponencial:} Tiempos de espera, decaimiento
+  \item \textbf{t-Student:} Muestras pequeñas, inferencia
+  \item \textbf{Chi-cuadrado:} Varianzas, bondad de ajuste
+\end{enumerate}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{exampleblock}{Herramientas clave}
+\begin{itemize}
+  \item Estandarización: $Z = \frac{X-\mu}{\sigma}$
+  \item Tabla Z (Lind, p. 782)
+  \item Regla empírica: 68-95-99.7
+  \item Software: Excel, calculadoras
+\end{itemize}
+\end{exampleblock}
+\end{column}
+\end{columns}
+
+\vspace{0.3cm}
+\begin{alertblock}{Referencias bibliográficas}
+\begin{itemize}
+  \item \textbf{Texto del curso:} MSc. Anselmo Salguero Arano. Unidad 4.
+  \item \textbf{Lind, Marchal, Wathen.} \textit{Estadística Aplicada}. 15ª Ed. McGraw-Hill, 2012.
+  \begin{itemize}
+    \item Cap. 7: Distribuciones Continuas (pp. 222--264)
+    \item Apéndice B: Tablas (p. 782)
+  \end{itemize}
+\end{itemize}
+\end{alertblock}
+\end{frame}
+
+% ============================================
+% CIERRE
+% ============================================
+\begin{frame}[plain]
+\begin{center}
+\vspace{2cm}
+{\Huge\textcolor{celeste}{\textbf{¡Gracias!}}}
+
+\vspace{1cm}
+{\Large\textcolor{grisOscuro}{¿Preguntas?}}
+
+\vspace{2cm}
+\begin{tikzpicture}
+\draw[celesteBorde, thick, rounded corners=10pt, fill=celesteClaro] (0,0) rectangle (8,2);
+\node at (4,1) {\large\textcolor{grisOscuro}{MSc. Anselmo Salguero Arano}};
+\end{tikzpicture}
+
+\vspace{0.5cm}
+{\footnotesize\textcolor{grisOscuro}{Estadística II -- MAT-260\\
+Universidad Autónoma Gabriel René Moreno}}
+\end{center}
+\end{frame}
+
+\end{document}

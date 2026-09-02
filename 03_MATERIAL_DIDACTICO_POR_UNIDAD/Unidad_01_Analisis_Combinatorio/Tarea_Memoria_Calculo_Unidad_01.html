@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea: Memoria de Cálculo Unidad 1 | Estadística II (MAT-260)</title>
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --uagrm-blue: #002b49;
+            --uagrm-accent: #0284c7;
+            --uagrm-red: #b22222;
+            --uagrm-green: #047857;
+            --uagrm-gold: #d97706;
+            --uagrm-bg: #f8fafc;
+            --uagrm-card: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--uagrm-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .task-container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: var(--uagrm-card);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 43, 73, 0.08);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        /* HEADER */
+        .task-header {
+            background: linear-gradient(135deg, var(--uagrm-blue) 0%, #004b7a 100%);
+            color: #ffffff;
+            padding: 30px;
+            border-bottom: 4px solid var(--uagrm-red);
+            position: relative;
+        }
+
+        .task-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 4px 14px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .task-header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .task-header h2 {
+            font-size: 15px;
+            color: #bae6fd;
+            font-weight: 400;
+        }
+
+        .task-weight-badge {
+            position: absolute;
+            right: 30px;
+            top: 30px;
+            background: var(--uagrm-red);
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        /* BODY */
+        .task-body {
+            padding: 30px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--uagrm-blue);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--border-light);
+            padding-bottom: 6px;
+        }
+
+        .intro-box {
+            background: #f0f9ff;
+            border-left: 5px solid var(--uagrm-accent);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 25px;
+            font-size: 14.5px;
+            color: #0369a1;
+        }
+
+        /* DIRECTRICES */
+        .guidelines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .guide-card {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .guide-card h4 {
+            color: var(--uagrm-blue);
+            font-size: 14.5px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .guide-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* RUBRIC TABLE */
+        .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 30px 0;
+            font-size: 13.5px;
+        }
+
+        .rubric-table th {
+            background: var(--uagrm-blue);
+            color: #ffffff;
+            text-align: left;
+            padding: 12px 14px;
+            font-weight: 600;
+        }
+
+        .rubric-table td {
+            padding: 12px 14px;
+            border: 1px solid var(--border-light);
+            vertical-align: top;
+        }
+
+        .criterion-col {
+            width: 25%;
+            background: #f8fafc;
+            font-weight: 600;
+            color: var(--uagrm-blue);
+        }
+
+        .level-cell {
+            width: 18.75%;
+            background: #ffffff;
+            transition: background 0.2s;
+        }
+
+        .level-cell:hover {
+            background: #f0fdf4;
+        }
+
+        .level-title {
+            font-weight: 700;
+            font-size: 12.5px;
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .level-pts {
+            color: var(--uagrm-accent);
+        }
+
+        .level-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* FOOTER */
+        .task-footer {
+            background: #f1f5f9;
+            padding: 20px 30px;
+            text-align: center;
+            border-top: 1px solid var(--border-light);
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+<div class="task-container">
+    <!-- HEADER -->
+    <header class="task-header">
+        <div class="task-badge">EVALUACIÓN SUMATIVA OFICIAL • MAT-260</div>
+        <h1>Tarea: Envío de Memoria de Cálculo Manuscrita en PDF</h1>
+        <h2>Unidad N° 1: Análisis Combinatorio y Métodos de Conteo • Docente: <strong>MSc. Anselmo Salguero Arano</strong></h2>
+        <div class="task-weight-badge">Ponderación: 30 Pts (30%)</div>
+    </header>
+
+    <div class="task-body">
+        <!-- INTRODUCCIÓN -->
+        <div class="intro-box">
+            <strong>Estimado(a) Estudiante:</strong> Como parte fundamental del desarrollo del rigor analítico y cuantitativo, debe presentar el respaldo manuscrito y detallado de los ejercicios asignados en el <strong>Práctico Evaluativo N° 1</strong>. Esta actividad evalúa la coherencia procedimental, la correcta formulación algebraica y la pulcritud de sus cálculos matemáticos.
+        </div>
+
+        <!-- DIRECTRICES -->
+        <h3 class="section-title">📌 Directrices Obligatorias de Elaboración y Envío</h3>
+        <div class="guidelines-grid">
+            <div class="guide-card">
+                <h4>📝 1. Membrete Oficial</h4>
+                <p>La primera página debe encabezarse obligatoriamente a mano con los datos oficiales: Universidad (UAGRM), Facultad, Materia (MAT-260), Grupo, Nombre Completo y N° de Registro.</p>
+            </div>
+            <div class="guide-card">
+                <h4>📐 2. Estructura por Ejercicio</h4>
+                <p>Cada ejercicio debe contener: Número de pregunta, Identificación de variables (\(n, r\)), Fórmula algebraica literal, Reemplazo numérico y Resultado final resaltado en recuadro.</p>
+            </div>
+            <div class="guide-card">
+                <h4>📱 3. Digitalización y Archivo</h4>
+                <p>Escanear en un <strong>único archivo PDF</strong>, nítido, con orientación vertical y buena iluminación (< 20 MB). Nombrar el archivo como: <code>EST2_U1_Apellido_Nombre_Registro.pdf</code>.</p>
+            </div>
+        </div>
+
+        <!-- RÚBRICA ANALÍTICA -->
+        <h3 class="section-title">📊 Rúbrica Analítica de Evaluación (Total: 30.0 Puntos)</h3>
+        <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 15px;">
+            Su trabajo será evaluado mediante la siguiente matriz de desempeño interactiva en Moodle:
+        </p>
+
+        <table class="rubric-table">
+            <thead>
+                <tr>
+                    <th>Criterio de Evaluación</th>
+                    <th>Excelente</th>
+                    <th>Bueno</th>
+                    <th>Suficiente</th>
+                    <th>Insuficiente</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- CRITERIO 1 -->
+                <tr>
+                    <td class="criterion-col">
+                        <strong>1. Planteamiento Teórico y Modelo Analítico</strong><br>
+                        <span style="font-size: 12px; color: var(--text-muted); font-weight: 400;">Ponderación: 40% (12.0 pts)</span>
+                    </td>
+                    <td class="level-cell">
+                        <div class="level-title"><span>Excelente</span> <span class="level-pts">12.0 pts</span></div>
+                        <div class="level-desc">Identifica con precisión matemática el principio de conteo aplicable (\(nPr, PR_n, P'_n, nCr\)); define formalmente \(n\) y \(r\); formula las ecuaciones algebraicas literales completas antes de reemplazar valores.</div>
+                    </td>
+                    <td class="level-cell">
+                        <div class="level-title"><span>Bueno</span> <span class="level-pts">9.5 pts</span></div>
+                        <div class="level-desc">Plantea correctamente los modelos de conteo; desarrollo algebraico claro con omisión de justificaciones menores en pasos intermedios.</div>
+                    </td>
+                    <td class="level-cell">
+                        <div class="level-title"><span>Suficiente</span> <span class="level-pts">6.5 pts</span></div>
+                        <div class="level-desc">Planteamiento incompleto; confunde permutaciones con combinaciones en algunos casos; reemplaza valores numéricos sin fórmulas de respaldo.</div>
+                    </td>
+                    <td class="level-cell">
+                        <div class="level-title"><span>Insuficiente</span> <span class="level-pts">0.0 pts</span></div>
+                        <div class="level-desc">Sin justificación teórica ni lógica matemática demostrable; modelos totalmente erróneos.</div>
+                    </td>
+                </tr>
+
+                <!-- CRITERIO 2 -->
+                <tr>
+                    <td class="criterion-col">
+                        <strong>2. Precisión de Cálculos y Álgebra de Factoriales</strong><br>
+                        <span style="font-size: 12px; color: var(--text-muted); font-weight: 400;">Ponderación: 35% (10.5 pts)</span>
+                    </td>
+                    <td class="level-cell">
+                        <div class="level-title"><span>Excelente</span> <span class="level-pts">10.5 pts</span></div>
+                        <div class="level-desc">Desarrolla el álgebra de factoriales simplificando factores comunes; resultados numéricos 100% exactos destacados en recuadros con sus unidades contextuales.</div>
+                    </td>
+                    <td class="level-cell">
+                        <div class="level-title"><span>Bueno</span> <span class="level-pts">8.0 pts</span></div>
+                        <div class="level-desc">Cálculos correctos en su gran mayoría con errores aritméticos menores; respuestas identificadas.</div>
+                    </td>
+                    <td class="level-cell">
+                        <div class="level-title"><span>Suficiente</span> <span class="level-pts">5.5 pts</span></div>
+                        <div class="level-desc">Errores en la simplificación de factoriales o en operaciones aritméticas; omite unidades contextuales.</div>
+                    </td>
+                    <td class="level-cell">
+                        <div class="level-title"><span>Insuficiente</span> <span class="level-pts">0.0 pts</span></div>
+                        <div class="level-desc">Cálculos totalmente erróneos o resultados numéricos aislados sin desarrollo procedimental.</div>
+                    </td>
+                </tr>
+
+                <!-- CRITERIO 3 -->
+                <tr>
+                    <td class="criterion-col">
+                        <strong>3. Formato Institucional, Membrete y PDF</strong><br>
+                        <span style="font-size: 12px; color: var(--text-muted); font-weight: 400;">Ponderación: 25% (7.5 pts)</span>
+                    </td>
+                    <td class="level-cell">
+                        <div class="level-title"><span>Excelente</span> <span class="level-pts">7.5 pts</span></div>
+                        <div class="level-desc">Membrete manuscrito oficial completo en la 1ra página; archivo único PDF nítido, vertical, iluminado y nombrado según la norma institucional.</div>
+                    </td>
+                    <td class="level-cell">
+                        <div class="level-title"><span>Bueno</span> <span class="level-pts">6.0 pts</span></div>
+                        <div class="level-desc">Membrete con datos completos; PDF único con buena legibilidad y orientación adecuada.</div>
+                    </td>
+                    <td class="level-cell">
+                        <div class="level-title"><span>Suficiente</span> <span class="level-pts">4.0 pts</span></div>
+                        <div class="level-desc">Membrete incompleto; escaneo con sombras o páginas desorientadas; nombre de archivo no estándar.</div>
+                    </td>
+                    <td class="level-cell">
+                        <div class="level-title"><span>Insuficiente</span> <span class="level-pts">0.0 pts</span></div>
+                        <div class="level-desc">Sin membrete; documento ilegible o presentado en formatos no autorizados.</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="task-footer">
+        <strong>Universidad Autónoma Gabriel René Moreno (UAGRM)</strong> • Facultad de Ciencias Contables<br>
+        Docente Titular: <strong>MSc. Anselmo Salguero Arano</strong> • Tarea y Rúbrica de Evaluación Sumativa
+    </footer>
+</div>
+
+</body>
+</html>

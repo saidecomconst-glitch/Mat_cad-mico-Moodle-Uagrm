@@ -1,0 +1,52 @@
+# LaTeX temporary files
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+*.fdb_latexmk
+*.fls
+*.vrb
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# MS Office / Temporary files
+~$*
+*.tmp
+~WRL*.tmp
+
+# VS Code / OS files
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Heavy media & video files (Excluded from GitHub repository)
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.mbz
+*.zip
+*.rar
+*.7z
+*.pptx
+*.ppt
+
+# Heavy historic archives & courses
+05_BIBLIOTECA_DIGITAL_REFERENCIA/
+05_Copias_Seguridad_Cursos_MBZ/
+06_HISTORICO_SEMESTRES/
+Capacitación vicedecanato/
+material digital estadística/
+Material Estadistica u lomas de zamora buenos aires 2019/
+Sem I 202*/
+Sem II 2021/
+Sem II 2022/
+Sem II 2023/
+Sem II 2024/
+Sem II 2025/

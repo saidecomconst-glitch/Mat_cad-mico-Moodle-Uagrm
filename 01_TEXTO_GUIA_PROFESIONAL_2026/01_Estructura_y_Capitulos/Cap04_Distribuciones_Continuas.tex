@@ -1,0 +1,273 @@
+\chapter{Distribuciones de Probabilidad para Variables Aleatorias Continuas}
+\label{cap:distribuciones_continuas}
+
+\section*{Objetivos de Aprendizaje de la Unidad}
+Al finalizar el estudio de esta unidad, el estudiante será capaz de:
+\begin{enumerate}
+    \item Comprender la naturaleza de las variables aleatorias continuas y la interpretación del área bajo la \textbf{función de densidad de probabilidad} $f(x)$.
+    \item Dominar la \textbf{Distribución Normal} y el proceso de estandarización con la variable $Z$.
+    \item Calcular probabilidades directas e inversas (percentiles y valores críticos) en problemas de costos, salarios y finanzas corporativas.
+    \item Aplicar la \textbf{Distribución Exponencial} para modelar tiempos de espera y liquidación de trámites.
+    \item Realizar la \textbf{aproximación Normal a la distribución Binomial} utilizando adecuadamente el factor de corrección por continuidad.
+\end{enumerate}
+
+\section{Variables Aleatorias Continuas y Funciones de Densidad}
+
+\begin{definicion}{Variable Aleatoria Continua y Función de Densidad}
+Una variable aleatoria $X$ es \textbf{continua} si puede tomar cualquier valor numérico dentro de un intervalo continuo de la recta real (ej. ingresos mensuales, costos de producción, tiempo de auditoría, volumen de ventas). Su comportamiento probabilístico se describe mediante una \textbf{Función de Densidad de Probabilidad (FDP)} $f(x)$ que cumple:
+\begin{enumerate}
+    \item $f(x) \ge 0$ para todo $x \in \mathbb{R}$.
+    \item $\int_{-\infty}^{\infty} f(x) \, dx = 1$ (el área total bajo la curva es igual a 1).
+    \item La probabilidad de que $X$ se encuentre en el intervalo $[a, b]$ es el área bajo la curva entre $a$ y $b$:
+    \begin{equation}
+        P(a \le X \le b) = \int_a^b f(x) \, dx
+    \end{equation}
+\end{enumerate}
+\end{definicion}
+
+\begin{alerta}
+Para cualquier variable aleatoria continua, la probabilidad de que tome un valor puntual exacto es siempre \textbf{cero}:
+\[
+P(X = c) = 0 \quad \text{para cualquier constante } c.
+\]
+En consecuencia, las desigualdades estrictas y no estrictas son equivalentes:
+\[
+P(a \le X \le b) = P(a < X \le b) = P(a \le X < b) = P(a < X < b)
+\]
+\end{alerta}
+
+\section{La Distribución Normal o Gaussiana}
+La distribución normal es la más importante y utilizada en estadística teórica y aplicada. Fue descrita por Carl Friedrich Gauss y modela una inmensa cantidad de fenómenos económicos, financieros y naturales.
+
+\begin{definicion}{Función de Densidad Normal}
+Una variable aleatoria continua $X$ con media $\mu$ ($-\infty < \mu < \infty$) y desviación estándar $\sigma$ ($\sigma > 0$) tiene una \textbf{Distribución Normal} ($X \sim N(\mu, \sigma^2)$) si su función de densidad es:
+\begin{equation}
+    f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2}, \quad -\infty < x < \infty
+\end{equation}
+donde $\pi \approx 3.14159$ y $e \approx 2.71828$.
+\end{definicion}
+
+\subsection{Propiedades Geométricas y Estadísticas de la Campana Normal}
+\begin{enumerate}
+    \item \textbf{Forma Acampanada y Simétrica:} La curva es perfectamente simétrica respecto a la media $\mu$. La media, la mediana y la moda coinciden exactamente en el centro ($\mu = \text{Mediana} = \text{Moda}$).
+    \item \textbf{Asíntotas Horizontales:} Los extremos de la curva se extienden indefinidamente hacia $-\infty$ y $+\infty$ acercándose asintóticamente al eje horizontal sin llegar a tocarlo jamás.
+    \item \textbf{Regla Empírica de Probabilidad:}
+    \begin{itemize}
+        \item $\mu \pm 1\sigma$ contiene aproximadamente el \textbf{68.26\%} del área total.
+        \item $\mu \pm 2\sigma$ contiene aproximadamente el \textbf{95.44\%} del área total.
+        \item $\mu \pm 3\sigma$ contiene aproximadamente el \textbf{99.74\%} del área total.
+    \end{itemize}
+\end{enumerate}
+
+\section{La Distribución Normal Estándar ($Z$)}
+Dado que existen infinitas distribuciones normales (según los valores de $\mu$ y $\sigma$), para calcular probabilidades se realiza una transformación algebraica lineal que estandariza cualquier variable normal $X$ a una variable \textbf{Normal Estándar $Z$} con media $\mu_Z = 0$ y desviación estándar $\sigma_Z = 1$ ($Z \sim N(0, 1)$).
+
+\begin{definicion}{Estandarización $Z$}
+El valor $Z$ (puntuación estándar) mide el número de desviaciones estándar que un valor particular $x$ se aleja de la media poblacional $\mu$:
+\begin{equation}
+    Z = \frac{X - \mu}{\sigma}
+\end{equation}
+\end{definicion}
+
+\subsection{Cálculo de Probabilidades Directas}
+\begin{ejemplo}{Análisis de Salarios en Empresas de Servicios (Basado en Anderson)}
+En un estudio sobre el mercado laboral contable en Santa Cruz, se determinó que los salarios mensuales de los contadores junior tienen una distribución aproximadamente normal con una media de $\mu = 5{,}200$ Bs y una desviación estándar de $\sigma = 600$ Bs. Si se selecciona un contador junior al azar:
+\begin{enumerate}[label=\alph*)]
+    \item ¿Cuál es la probabilidad de que su salario mensual sea menor a $4{,}600$ Bs?
+    \item ¿Cuál es la probabilidad de que su salario se encuentre entre $4{,}900$ Bs y $6{,}100$ Bs?
+    \item ¿Cuál es la probabilidad de que su salario sea superior a $6{,}400$ Bs?
+\end{enumerate}
+
+\tcbline
+\textbf{Solución Paso a Paso:}
+Datos: $\mu = 5{,}200$, $\sigma = 600$.
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Salario menor a $4{,}600$ Bs ($P(X < 4{,}600)$):}
+    Estandarizamos el valor $x = 4{,}600$:
+    \[
+    Z = \frac{4{,}600 - 5{,}200}{600} = \frac{-600}{600} = -1.00
+    \]
+    Buscando en la tabla de la normal estándar: $P(Z < -1.00) = 0.1587 \implies 15.87\%$.
+    
+    \item \textbf{Salario entre $4{,}900$ Bs y $6{,}100$ Bs ($P(4{,}900 < X < 6{,}100)$):}
+    Estandarizamos ambos límites:
+    \[
+    Z_1 = \frac{4{,}900 - 5{,}200}{600} = \frac{-300}{600} = -0.50, \qquad Z_2 = \frac{6{,}100 - 5{,}200}{600} = \frac{900}{600} = 1.50
+    \]
+    Calculamos el área intermedia:
+    \begin{align*}
+        P(-0.50 < Z < 1.50) &= P(Z < 1.50) - P(Z < -0.50) \\
+        &= 0.9332 - 0.3085 = 0.6247 \implies 62.47\%
+    \end{align*}
+    
+    \item \textbf{Salario superior a $6{,}400$ Bs ($P(X > 6{,}400)$):}
+    \[
+    Z = \frac{6{,}400 - 5{,}200}{600} = \frac{1{,}200}{600} = 2.00
+    \]
+    \[
+    P(Z > 2.00) = 1 - P(Z \le 2.00) = 1 - 0.9772 = 0.0228 \implies 2.28\%
+    \]
+\end{enumerate}
+\end{ejemplo}
+
+\subsection{Cálculo de Problemas Inversos (Percentiles y Puntos de Corte)}
+En muchas decisiones financieras y de control de calidad se conoce la probabilidad acumulada requerida y se necesita encontrar el valor umbral $x$ correspondiente. Despejando $x$ de la fórmula de estandarización:
+\begin{equation}
+    x = \mu + Z \cdot \sigma
+\end{equation}
+
+\begin{ejemplo}{Fijación de Política de Bonos de Desempeño (Basado en Lind)}
+La gerencia general de una corporación financiera decide otorgar un bono especial de productividad al $10\%$ superior de sus ejecutivos de cobranzas con mayor volumen recuperado al mes. Si el monto mensual recuperado sigue una distribución normal con $\mu = 85{,}000$ USD y $\sigma = 12{,}000$ USD, ¿cuál es el monto mínimo de recuperación que debe alcanzar un ejecutivo para ser acreedor al bono?
+
+\tcbline
+\textbf{Solución:}
+El $10\%$ superior equivale a decir que el $90\%$ ($0.90$) de los ejecutivos recupera un monto inferior a dicho umbral ($P(X \le x) = 0.90$).
+\begin{enumerate}
+    \item Buscamos en la tabla $Z$ el valor que deja un área acumulada de $0.9000$:
+    \[
+    Z_{0.90} \approx 1.28
+    \]
+    \item Despejamos el valor $x$:
+    \[
+    x = \mu + Z \cdot \sigma = 85{,}000 + (1.28)(12{,}000) = 85{,}000 + 15{,}360 = 100{,}360 \text{ USD.}
+    \]
+\end{enumerate}
+\textbf{Interpretación Financiera:} Para acceder al bono de productividad, el ejecutivo debe recuperar como mínimo \textbf{100,360 USD} en el mes.
+\end{ejemplo}
+
+\section{Aproximación Normal a la Distribución Binomial}
+Cuando el número de ensayos $n$ en un experimento binomial es grande, el cálculo combinatorio se vuelve laborioso. El Teorema de De Moivre-Laplace establece que si se cumplen las condiciones:
+\begin{equation}
+    n \cdot p \ge 5 \quad \text{y} \quad n \cdot q \ge 5
+\end{equation}
+la variable binomial discreta $X$ puede aproximarse mediante una distribución normal continua con:
+\begin{equation}
+    \mu = n \cdot p, \qquad \sigma = \sqrt{n \cdot p \cdot q}
+\end{equation}
+
+\subsection{Factor de Corrección por Continuidad ($\pm 0.5$)}
+Dado que se está aproximando una distribución discreta (escalonada) mediante una curva continua y suave, cada valor entero $x$ discreto se representa en el continuo como el intervalo $[x - 0.5, x + 0.5]$.
+\begin{itemize}
+    \item $P(X = k) \approx P(k - 0.5 \le X \le k + 0.5)$
+    \item $P(X \le k) \approx P(X \le k + 0.5)$
+    \item $P(X \ge k) \approx P(X \ge k - 0.5)$
+    \item $P(a \le X \le b) \approx P(a - 0.5 \le X \le b + 0.5)$
+\end{itemize}
+
+\begin{ejemplo}{Auditoría Masiva de Cuentas por Cobrar (Basado en Anderson)}
+Una tienda de departamentos tiene $n = 400$ cuentas de crédito activas. Históricamente se sabe que el $20\%$ ($p = 0.20$) de las cuentas caen en mora. Calcule la probabilidad de que entre 70 y 95 cuentas (ambas inclusive) se encuentren en mora.
+
+\tcbline
+\textbf{Solución:}
+\begin{enumerate}
+    \item \textbf{Verificación de supuestos:}
+    \[
+    np = 400(0.20) = 80 \ge 5, \qquad nq = 400(0.80) = 320 \ge 5
+    \]
+    \item \textbf{Parámetros de la Normal:}
+    \[
+    \mu = 80, \qquad \sigma = \sqrt{npq} = \sqrt{400(0.20)(0.80)} = \sqrt{64} = 8.0
+    \]
+    \item \textbf{Aplicación de la corrección por continuidad:}
+    \[
+    P(70 \le X \le 95) \approx P(69.5 \le X_{\text{normal}} \le 95.5)
+    \]
+    \item \textbf{Estandarización $Z$:}
+    \[
+    Z_1 = \frac{69.5 - 80}{8} = \frac{-10.5}{8} = -1.31, \qquad Z_2 = \frac{95.5 - 80}{8} = \frac{15.5}{8} = 1.94
+    \]
+    \[
+    P(-1.31 \le Z \le 1.94) = P(Z \le 1.94) - P(Z \le -1.31) = 0.9738 - 0.0951 = 0.8787 \implies 87.87\%
+    \]
+\end{enumerate}
+\end{ejemplo}
+
+\section{La Distribución Exponencial}
+\begin{definicion}{Distribución Exponencial}
+Se utiliza frecuentemente para modelar el tiempo transcurrido hasta que ocurre un determinado suceso (ej. tiempo de atención a un contribuyente, vida útil de un equipo contable). Su función de densidad es:
+\begin{equation}
+    f(x) = \lambda e^{-\lambda x}, \quad \text{para } x \ge 0
+\end{equation}
+donde $\lambda > 0$ es la tasa media de ocurrencias por unidad de tiempo.
+\end{definicion}
+
+\subsection{Probabilidades Acumuladas y Parámetros}
+\begin{itemize}
+    \item \textbf{Probabilidad acumulada:} $P(X \le x) = 1 - e^{-\lambda x}$
+    \item \textbf{Probabilidad de cola derecha:} $P(X > x) = e^{-\lambda x}$
+    \item \textbf{Media y Desviación Estándar:} $\mu = \dfrac{1}{\lambda}, \quad \sigma = \dfrac{1}{\lambda}$
+\end{itemize}
+
+\begin{ejemplo}{Tiempo de Atención en Plataforma Tributaria}
+El tiempo que tarda un funcionario del Servicio de Impuestos Nacionales en revisar un trámite de facturación sigue una distribución exponencial con un promedio de 15 minutos por trámite ($\mu = 15 \implies \lambda = 1/15 \approx 0.0667$ trámites por minuto).
+\begin{enumerate}[label=\alph*)]
+    \item ¿Cuál es la probabilidad de que un trámite tarde menos de 10 minutos?
+    \item ¿Cuál es la probabilidad de que tarde más de 20 minutos?
+\end{enumerate}
+
+\tcbline
+\textbf{Solución:}
+\begin{enumerate}[label=\alph*)]
+    \item $P(X \le 10) = 1 - e^{-(1/15)(10)} = 1 - e^{-0.6667} = 1 - 0.5134 = 0.4866 \implies 48.66\%$.
+    \item $P(X > 20) = e^{-(1/15)(20)} = e^{-1.3333} \approx 0.2636 \implies 26.36\%$.
+\end{enumerate}
+\end{ejemplo}
+
+\section{Formulario Resumen del Capítulo 4}
+\begin{formulario}[Resumen de Fórmulas — Distribuciones Continuas]
+\begin{itemize}
+    \item \textbf{Estandarización Normal:} $Z = \dfrac{X - \mu}{\sigma}, \quad X = \mu + Z \cdot \sigma$
+    \item \textbf{Aprox. Normal a Binomial:} $\mu = np, \quad \sigma = \sqrt{npq}$ (con corrección $\pm 0.5$)
+    \item \textbf{Distribución Exponencial:} $P(X \le x) = 1 - e^{-\lambda x}, \quad P(X > x) = e^{-\lambda x}, \quad \mu = \dfrac{1}{\lambda}$
+\end{itemize}
+\end{formulario}
+
+\section{Ejercicios Propuestos de la Unidad}
+
+\subsection*{Nivel 1: Manejo de la Tabla Normal y Estandarización}
+\begin{enumerate}
+    \item Para una variable aleatoria normal estándar $Z \sim N(0, 1)$, utilice la tabla de distribución para calcular las siguientes probabilidades:
+    \begin{enumerate}[label=\alph*)]
+        \item $P(Z \le 1.65)$
+        \item $P(Z > 2.10)$
+        \item $P(-1.25 \le Z \le 1.85)$
+        \item Encuentre el valor crítico $z_0$ tal que $P(Z \le z_0) = 0.95$.
+        \item Encuentre el valor crítico $z_0$ tal que $P(-z_0 \le Z \le z_0) = 0.99$.
+    \end{enumerate}
+    \item Una variable aleatoria continua $X$ sigue una distribución Normal con media $\mu = 500$ y desviación estándar $\sigma = 50$. Calcule:
+    \begin{enumerate}[label=\alph*)]
+        \item $P(X \le 580)$
+        \item $P(X > 430)$
+        \item $P(460 \le X \le 540)$
+        \item El percentil 90 ($P_{90}$).
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Nivel 2: Aplicaciones Económicas y Financieras}
+\begin{enumerate}[resume]
+    \item Los costos de honorarios por auditoría externa para pequeñas y medianas empresas en Santa Cruz tienen una distribución normal con media $\mu = 12{,}500$ Bs y desviación estándar $\sigma = 1{,}800$ Bs. Calcule la probabilidad de que una auditoría seleccionada al azar cueste:
+    \begin{enumerate}[label=\alph*)]
+        \item Menos de $10{,}000$ Bs.
+        \item Más de $15{,}000$ Bs.
+        \item Entre $11{,}000$ Bs y $14{,}000$ Bs.
+        \item ¿Cuál es el costo máximo que pagará el 10\% de las empresas con auditorías más económicas (percentil 10)?
+    \end{enumerate}
+    \item El tiempo de atención por ventanilla a clientes corporativos en una entidad bancaria sigue una distribución exponencial con media de 12 minutos ($\lambda = 1/12 \approx 0.0833$ clientes por minuto).
+    \begin{enumerate}[label=\alph*)]
+        \item Calcule la probabilidad de que un cliente sea atendido en menos de 8 minutos.
+        \item Calcule la probabilidad de que un cliente deba esperar más de 20 minutos.
+        \item Calcule la probabilidad de que la atención dure entre 10 y 15 minutos.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Nivel 3: Aproximación Normal a la Binomial y Casos de Auditoría}
+\begin{enumerate}[resume]
+    \item En una compañía de seguros, el 15\% de las pólizas de vehículos sufren siniestros en un año. Para una cartera de $n = 200$ asegurados independientes:
+    \begin{enumerate}[label=\alph*)]
+        \item Verifique si se cumplen los supuestos para aproximar la distribución Binomial mediante la Normal ($np \ge 5$ y $nq \ge 5$).
+        \item Calcule la media $\mu$ y la desviación estándar $\sigma$ de la distribución normal aproximada.
+        \item Utilizando el factor de corrección por continuidad, calcule la probabilidad de que ocurran exactamente 35 siniestros ($P(34.5 \le X \le 35.5)$).
+        \item Calcule la probabilidad de que se presenten a lo sumo 25 siniestros.
+    \end{enumerate}
+    \item Un fondo mutuo de inversión en Bolivia reporta que los rendimientos anuales de sus instrumentos de renta fija se distribuyen normalmente con media $\mu = 7.5\%$ y desviación estándar $\sigma = 1.8\%$. Si un inversionista institucional coloca 1 millón de bolivianos en el fondo, ¿cuál es la probabilidad de que el rendimiento anual sea inferior al 4.0\% (pérdida en términos reales considerando la inflación)?
+\end{enumerate}

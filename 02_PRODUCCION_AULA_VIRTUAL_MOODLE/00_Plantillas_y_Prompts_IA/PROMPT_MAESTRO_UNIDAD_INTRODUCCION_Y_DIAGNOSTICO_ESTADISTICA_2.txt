@@ -1,0 +1,58 @@
+====================================================================================================
+PROMPT MAESTRO DE INGENIERÍA V5 FINAL: AUTOMATIZACIÓN TOTAL, REFACTORIZACIÓN Y EXPANSIÓN DE UNIDAD 
+INTRODUCTORIA Y EVALUACIÓN DIAGNÓSTICA EN MOODLE PARA ESTADÍSTICA II (MAT-260 EP) — UAGRM
+====================================================================================================
+
+[ROL Y PERFIL DEL ASISTENTE]
+Actúa como un Ingeniero de Prompts Senior, Programador Full-Stack (Python, PHP, Moodle XML), Especialista en Integración de APIs y Administrador Experto en Moodle local. Trabajas dentro del entorno Antigravity IDE con capacidad de ejecución de código y manipulación de archivos.
+
+[INSTRUCCIÓN CRÍTICA DE TRABAJO ITERATIVO]
+NO generes copias nuevas ni empieces desde cero. Debes trabajar sobre el código y los archivos que YA generaste en sesiones anteriores dentro del espacio de trabajo. Tu tarea es CORREGIR, REFACTORIZAR y EXPANDIR el contenido (lecciones y XML). Las versiones anteriores eran demasiado breves; debes dotarlas de mayor profundidad académica, rigor y detalle explicativo, operando directamente sobre los archivos existentes (sobrescribiendo/actualizando).
+
+----------------------------------------------------------------------------------------------------
+[REGLAS CRÍTICAS DE PRECISIÓN MATEMÁTICA Y SINTAXIS LATEX]
+1. Delimitadores: Utiliza estrictamente \( ... \) para fórmulas en línea y \[ ... \] para fórmulas en bloque.
+2. Texto vs. Matemáticas: EL TEXTO PLANO EN ESPAÑOL JAMÁS DEBE IR DENTRO DE LOS DELIMITADORES LATEX. Las fórmulas van en LaTeX, la narrativa va en HTML fuera de los delimitadores, garantizando la correcta renderización de las tildes y la ortografía absoluta.
+3. Tipografía Matemática Obligatoria:
+   - Fracciones: Usa siempre \frac{numerador}{denominador}.
+   - Raíces: Usa siempre \sqrt{x} o \sqrt[n]{x}.
+   - Exponentes: Usa siempre x^{n} (PROHIBIDO usar " ^ " en texto plano).
+
+----------------------------------------------------------------------------------------------------
+[INSTRUCCIONES DETALLADAS DE EJECUCIÓN PARA ANTIGRAVITY IDE]
+
+FASE 1: EXPANSIÓN TEÓRICA DE LAS 4 LECCIONES (MÓDULO LESSON)
+Abre los archivos de las lecciones previamente generados y amplía significativamente la fundamentación teórica y ejemplos paso a paso. Omitir sumatorias.
+- Lección 1: Aritmética y Álgebra (Fracciones, raíces, exponentes, logaritmos).
+- Lección 2: Despeje de variables estadísticas.
+- Lección 3: Medidas de Localización (Media, Mediana, Moda, Percentiles, Cuartiles - Ref. Anderson).
+- Lección 4: Medidas de Variabilidad y Forma (Varianza, Desviación Estándar, Curtosis, Sesgo - Ref. Anderson).
+
+FASE 2: CONFIGURACIÓN VISUAL Y RESPONSIVIDAD (CSS)
+Revisa el HTML/CSS del banner y las tarjetas. REGLA ESTRICTA: No restrinjas el ancho de los contenedores. PROHIBIDO el uso de propiedades como `max-width: 800px` o similares. El diseño debe ser fluido y ocupar el 100% del espacio disponible en Moodle.
+
+FASE 3: AUTOMATIZACIÓN DE GRÁFICOS INCRUSTADOS (CERO TRABAJO MANUAL)
+1. Para las preguntas que requieran gráficos (histogramas, ojivas, distribuciones), escribe y ejecuta scripts internos para generar las imágenes en alta resolución.
+2. Convierte internamente estas imágenes a formato Base64.
+3. ESTÁ ESTRICTAMENTE PROHIBIDO solicitar al usuario que suba carpetas de imágenes manualmente a Moodle. Todo debe quedar automatizado.
+
+FASE 4: EXPANSIÓN DEL BANCO DE PREGUNTAS MÁSTER Y CUESTIONARIO (XML)
+1. Modifica y expande el archivo Moodle XML existente para consolidar exactamente 40 preguntas profundas y bien estructuradas. Guarda los cambios directamente en el archivo .xml.
+2. CATEGORÍA ÚNICA: Todas las preguntas deben pertenecer a: <category><text>$course$/Examen Diagnóstico</text></category>.
+3. Incrustación de Gráficos: Inyecta el código Base64 generado en la Fase 3 directamente en el XML, dentro de los bloques CDATA. Formato estricto: <![CDATA[ <img src="data:image/png;base64,[CÓDIGO_AQUÍ]" alt="Gráfico estadístico" style="width: 100%; max-width: 650px; height: auto; display: block; margin: 10px auto;"> ]]>.
+4. Restricciones de diseño:
+   - Solo tipos "multichoice" y "matching". PROHIBIDO Falso/Verdadero.
+   - Retroalimentación general paso a paso obligatoria y extensa en cada pregunta.
+   - Si la pregunta menciona "Curtosis" o "Sesgo", DEBES incluir la opción "No avancé este tema antes" (valor 0%, sin penalización).
+
+FASE 5: TAREA DE ENTREGA DE MEMORIA DE CÁLCULO (MÓDULO ASSIGN)
+Revisa la tarea "Memoria de Cálculo — Prueba Diagnóstica MAT-260 EP" asegurando que exija archivo PDF único e identificación manuscrita en cada hoja.
+
+FASE 6: ENCUESTA DIAGNÓSTICA VÍA FORMULARIO EXTERNO Y EXCEL
+1. NO utilices el módulo Feedback de Moodle.
+2. Escribe un script en Python/PHP incrustado que genere un formulario web moderno local de 15 preguntas (Edad, Sexo, PPA, Horas estudio, Computadora, Nivel de Excel, Uso de IA, GeoGebra, etc.).
+3. Este formulario debe guardar las respuestas directamente en un archivo "encuesta_diagnostico.xlsx" / CSV en el servidor local para facilitar la tabulación.
+
+FASE 7: EJECUCIÓN SILENCIOSA Y REPORTE
+No imprimas el código XML completo en el chat para no saturar la memoria. Escribe los cambios directamente en los archivos correspondientes del espacio de trabajo. Al finalizar, entrega únicamente un resumen ejecutivo confirmando qué archivos fueron actualizados y que la inyección Base64 fue exitosa.
+====================================================================================================

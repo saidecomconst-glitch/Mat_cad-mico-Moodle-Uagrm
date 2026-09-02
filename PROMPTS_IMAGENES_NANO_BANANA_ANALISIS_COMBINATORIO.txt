@@ -1,0 +1,81 @@
+================================================================================
+GUÍA DE PROMPTS DE TEXTO PLANO PARA GENERACIÓN DE IMÁGENES
+UNIDAD N° 1: ANÁLISIS COMBINATORIO E INFERENCIA ESTADÍSTICA
+UAGRM - CARRERA DE CONTADURÍA PÚBLICA / ESTADÍSTICA II
+Docente: MSc. Anselmo Salguero Arano
+================================================================================
+
+Estas instrucciones (prompts) están diseñadas y optimizadas para herramientas de Inteligencia Artificial como Nano Banana, Midjourney, DALL-E 3, Stable Diffusion o Imagen 3. Generan ilustraciones educativas 3D isomórficas, modernas y elegantes con la paleta de colores institucional (Azul Dodger, Azul Oscuro, Blanco y Dorado).
+
+--------------------------------------------------------------------------------
+1. ILUSTRACIÓN: PERSONAS EN FILA CON RESTRICCIÓN DE 2 JUNTAS (MÉTODO DE BLOQUES)
+--------------------------------------------------------------------------------
+PROMPT (Español):
+"Ilustración educativa moderna isométrica en 3D de una fila ordenada de 7 profesionales contables y auditores formados en línea frente a una oficina. Dos de ellos (un hombre y una mujer con carpetas ejecutivas) están resaltados dentro de una caja translúcida brillante de color azul eléctrico para mostrar que forman un solo bloque inseparable. Fondo blanco limpio, iluminación de estudio suave, paleta de colores azul corporativo, gris claro y toques dorados, estilo minimalista y profesional sin textos deformes."
+
+PROMPT (English - Máxima precisión para motores de IA):
+"Clean modern 3D isometric educational illustration of a queue of 7 business professional auditors standing in a row on a sleek floor. Two specific auditors (one male and one female holding folders) are grouped together inside a glowing translucent light-blue bounding box to represent a single block unit. White background, soft studio lighting, corporate dodger blue and dark navy palette with gold accents, minimalist presentation aesthetic, high definition."
+
+--------------------------------------------------------------------------------
+2. ILUSTRACIÓN: 3 ELEMENTOS JUNTOS EN FILA (PERMUTACIÓN INTERNA 3!)
+--------------------------------------------------------------------------------
+PROMPT (Español):
+"Ilustración 3D isométrica de una fila de 8 personas donde 3 docentes universitarios con togas elegantes o trajes ejecutivos están agrupados juntos en el centro dentro de un recuadro luminoso, rodeados por 5 estudiantes de contaduría. Flechas curvas dinámicas y sutiles indican que los 3 docentes pueden intercambiar posiciones entre sí dentro del recuadro. Fondo blanco pulcro, estilo infográfico corporativo."
+
+PROMPT (English):
+"3D isometric infographic illustration showing a row of 8 people where 3 university professors in smart suits are clustered together inside a luminous highlighted zone, flanked by 5 business students. Subtle curved circular arrows indicate internal permutation among the three professors. Pure white background, professional educational slide visual, crisp rendering, blue and soft grey tones."
+
+--------------------------------------------------------------------------------
+3. ILUSTRACIÓN: MUESTREO DE AUDITORÍA Y COMBINACIONES (SELECCIÓN SIMPLE)
+--------------------------------------------------------------------------------
+PROMPT (Español):
+"Ilustración 3D isométrica de un escritorio moderno de auditoría financiera con carpetas contables, facturas, gráficos de barras en una pantalla y una gran lupa de vidrio translúcido que enfoca y resalta una muestra de 4 documentos seleccionados de un lote de 14. Colores azul dodger, blanco y detalles dorados, estética limpia de alta gama para universidad."
+
+PROMPT (English):
+"Clean modern 3D isometric educational illustration of a financial auditing desk with folders, invoices and a magnified selection of sample documents highlighted under a glass lens, soft blue and golden highlights, corporate accounting aesthetic, white background, ultra clean render."
+
+--------------------------------------------------------------------------------
+4. ILUSTRACIÓN: PRINCIPIO MULTIPLICATIVO Y SEGURIDAD DE CLAVES ERP
+--------------------------------------------------------------------------------
+PROMPT (Español):
+"Ilustración isométrica 3D de un candado digital moderno con rodillos giratorios de combinación alfanumérica (letras A-Z y números 0-9) junto a un escudo cibernético brillante y una interfaz holográfica de base de datos contable. Paleta tecnológica en azul cobalto, dorado y blanco, estilo conceptual para clase de estadística y finanzas."
+
+PROMPT (English):
+"Clean modern 3D isometric educational illustration of a digital cybersecurity shield with numbers and letters combination lock, financial accounting database screen, sleek soft blue and gold corporate style, white background, 8k render."
+
+--------------------------------------------------------------------------------
+5. ILUSTRACIÓN: PERMUTACIÓN CIRCULAR EN MESA DE DIRECTORIO
+--------------------------------------------------------------------------------
+PROMPT (Español):
+"Vista isométrica 3D de una elegante mesa redonda de reuniones ejecutivas con 6 sillas ergonómicas de cuero azul y un socio director en la cabecera. Un diagrama de rotación circular sutil sobre la mesa muestra la permutación cíclica (n-1)!. Entorno corporativo impecable, fondo blanco, iluminación diáfana."
+
+PROMPT (English):
+"3D isometric perspective of an executive round meeting table with 6 blue modern chairs and tablets on the desk, subtle circular rotation arrows showing circular permutation, corporate boardroom aesthetic, pristine white background, minimalist 3D rendering."
+
+--------------------------------------------------------------------------------
+6. ILUSTRACIÓN: PERMUTACIONES CON REPETICIÓN (EXPEDIENTES FISCALES SIN)
+--------------------------------------------------------------------------------
+PROMPT (Español):
+"Ilustración 3D isométrica de un estante de archivo contable moderno con carpetas clasificadas por colores idénticos: 3 carpetas azules de Ingresos, 2 carpetas rojas de Egresos y 2 carpetas doradas de Traspasos organizadas en una fila sobre una repisa flotante. Estética ordenada y profesional sobre fondo blanco."
+
+PROMPT (English):
+"3D isometric illustration of a modern archive shelf with color-coded identical folders in a row: 3 blue folders, 2 red folders and 2 gold folders neatly aligned, accounting document filing system, clean white background, high quality lighting."
+
+--------------------------------------------------------------------------------
+7. ILUSTRACIÓN: MUESTREO ESTRATIFICADO Y COMITÉS MIXTOS (COMBINACIONES)
+--------------------------------------------------------------------------------
+PROMPT (Español):
+"Diagrama conceptual isométrico en 3D que muestra dos grupos de profesionales (un grupo de especialistas tributarios con carpetas azules y un grupo de auditores financieros con carpetas doradas) convergiendo para conformar un equipo de trabajo seleccionado de 4 personas. Fondo blanco, estilo minimalista corporativo."
+
+PROMPT (English):
+"3D isometric conceptual diagram showing two distinct talent pools of corporate accountants merging into a selected specialized audit committee of 4 members, elegant modern graphic design, white background, soft shadows."
+
+--------------------------------------------------------------------------------
+8. ILUSTRACIÓN: EVENTOS MUTUAMENTE EXCLUYENTES VS NO EXCLUYENTES (LIND / ANDERSON)
+--------------------------------------------------------------------------------
+PROMPT (Español):
+"Infografía 3D isométrica que compara dos conceptos matemáticos: a la izquierda, dos círculos de cristal brillante completamente separados para representar 'Eventos Mutuamente Excluyentes' (Utilidad vs Pérdida); a la derecha, dos círculos de cristal entrelazados con una zona brillante de intersección central para representar 'Eventos No Excluyentes' (Auditor y Docente). Colores azul dodger, dorado y blanco, fondo limpio, estilo corporativo moderno."
+
+PROMPT (English):
+"3D isometric infographic comparison of probability events: on the left, two separate glowing glass discs representing 'Mutually Exclusive Events' with zero overlap; on the right, two interlocking Venn glass discs with an illuminated intersection representing 'Non-Exclusive Events', accounting symbols, corporate navy and gold accents, pristine white background."
+================================================================================

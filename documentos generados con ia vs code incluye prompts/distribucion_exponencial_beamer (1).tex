@@ -1,0 +1,868 @@
+\documentclass[10pt]{beamer}
+% ============================================
+% COMPILACION: usar XeLaTeX o LuaLaTeX (necesario para fuente Verdana)
+% En Overleaf: Menu -> Compilador -> XeLaTeX
+% En VS Code: configurar latex-workshop.latex.recipe.default para xelatex
+% ============================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, shadows, calc, backgrounds}
+
+% ============================================
+% FUENTE VERDANA (requiere XeLaTeX o LuaLaTeX)
+% ============================================
+\usepackage{fontspec}
+\setmainfont{Verdana}
+\setsansfont{Verdana}
+\setmonofont{Verdana}
+
+% ============================================
+% COLORES EXACTOS SOLICITADOS
+% ============================================
+\definecolor{deepseekblue}{RGB}{37, 99, 235}   % Azul electrico DeepSeek
+\definecolor{darkblue}{RGB}{0, 51, 102}         % Azul marino (centro pie)
+\definecolor{caterpillaryellow}{RGB}{255, 199, 44} % Amarillo Caterpillar
+\definecolor{lightblue}{RGB}{232, 244, 250}     % Fondo cajas azules claro
+\definecolor{boxborder}{RGB}{0, 102, 153}       % Borde cajas azules
+\definecolor{checkgreen}{RGB}{40, 167, 69}      % Check verde
+\definecolor{checkred}{RGB}{220, 53, 69}        % Check rojo
+\definecolor{softgray}{RGB}{248, 249, 250}      % Fondo alternativo suave
+
+% ============================================
+% TEMA BASE Y CONFIGURACION DE COLORES
+% ============================================
+\usetheme{Madrid}
+\usecolortheme{default}
+
+% Colores principales (DeepSeek como color institucional)
+\setbeamercolor{palette primary}{bg=deepseekblue,fg=white}
+\setbeamercolor{palette secondary}{bg=deepseekblue,fg=white}
+\setbeamercolor{palette tertiary}{bg=deepseekblue,fg=white}
+\setbeamercolor{frametitle}{bg=deepseekblue,fg=white}
+\setbeamercolor{title}{fg=deepseekblue}
+\setbeamercolor{subtitle}{fg=deepseekblue}
+\setbeamercolor{author}{fg=deepseekblue}
+\setbeamercolor{institute}{fg=deepseekblue}
+\setbeamercolor{date}{fg=deepseekblue}
+
+% Bloques de teoria (cajas con fondo azul claro)
+\setbeamercolor{block title}{bg=deepseekblue,fg=white}
+\setbeamercolor{block body}{bg=lightblue,fg=black}
+
+% Bloque de alerta (rojo)
+\setbeamercolor{block title alerted}{bg=checkred,fg=white}
+\setbeamercolor{block body alerted}{bg=red!5,fg=black}
+
+% Bloque de ejemplo (verde)
+\setbeamercolor{block title example}{bg=checkgreen,fg=white}
+\setbeamercolor{block body example}{bg=green!5,fg=black}
+
+% Alerta
+\setbeamercolor{alerted text}{fg=checkred}
+
+% Vinetas personalizadas para listas
+\setbeamertemplate{itemize item}{\color{deepseekblue}\scriptsize$\blacksquare$}
+\setbeamertemplate{itemize subitem}{\color{darkblue}\tiny$\blacktriangleright$}
+\setbeamertemplate{itemize subsubitem}{\color{boxborder}\tiny$\circ$}
+
+% ============================================
+% PIE DE PAGINA PERSONALIZADO
+% ============================================
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\textcolor{white}{\insertshortauthor}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.5ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\textcolor{white}{\insertshorttitle}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.5ex,dp=1ex,right]{page number in head/foot}%
+    \usebeamerfont{page number in head/foot}\textcolor{darkblue}{\insertframenumber{}/\inserttotalframenumber\hspace*{2ex}}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\setbeamercolor{author in head/foot}{bg=deepseekblue,fg=white}
+\setbeamercolor{title in head/foot}{bg=darkblue,fg=white}
+\setbeamercolor{page number in head/foot}{bg=caterpillaryellow,fg=darkblue}
+
+% Eliminar simbolos de navegacion
+\setbeamertemplate{navigation symbols}{}
+
+% ============================================
+% ENTORNO PARA CAJAS LATERALES (Teoria)
+% ============================================
+\newenvironment{lateralbox}[1]{%
+    \begin{beamercolorbox}[rounded=true,shadow=true,wd=.95\linewidth]{block body}
+    \begin{center}\textbf{\color{boxborder}#1}\end{center}
+    \vspace{0.1cm}
+    \small\color{darkblue}
+}{%
+    \end{beamercolorbox}
+}
+
+% ============================================
+% COMANDO PARA DESTACAR FORMULAS IMPORTANTES
+% ============================================
+\newcommand{\formulabox}[1]{%
+  \begin{center}
+  \begin{tikzpicture}
+    \node[fill=lightblue, draw=boxborder, rounded corners=5pt, inner sep=8pt, text width=0.9\textwidth, align=center] {#1};
+  \end{tikzpicture}
+  \end{center}
+}
+
+% ============================================
+% INFORMACION DE LA PRESENTACION
+% ============================================
+\title[Distribucion Exponencial]{Distribucion Exponencial para Variables Aleatorias Continuas}
+\subtitle{Unidad N 4: Distribucion Exponencial}
+\author{MSc. Anselmo Salguero Arano}
+\institute[UAGRM]{Universidad Autonoma Gabriel Rene Moreno \\ Facultad de Ciencias Contables, Auditoria, \\ Sistemas de Control de Gestion y Finanzas \\ Carrera de Contaduria Publica}
+\date{}
+
+\begin{document}
+
+% ============================================
+% PORTADA
+% ============================================
+\begin{frame}[plain]
+    \centering
+    \vspace*{-0.3cm}
+
+    \begin{figure}
+        \centering
+        \begin{minipage}{0.35\textwidth}
+            \centering
+            \includegraphics[width=0.5\linewidth]{Logouagrm.png}
+        \end{minipage}
+        \hspace{0.5cm}
+        \begin{minipage}{0.35\textwidth}
+            \centering
+            \includegraphics[width=0.5\linewidth]{Logocont.png}
+        \end{minipage}
+    \end{figure}
+
+    \vspace{-0.1cm}
+    {\large \color{black} \textbf{UNIVERSIDAD AUTONOMA GABRIEL RENE MORENO}} \\
+    \vspace{0.15cm}
+    {\normalsize \color{black} FACULTAD DE CIENCIAS CONTABLES, AUDITORIA,} \\
+    {\normalsize \color{black} SISTEMAS DE CONTROL DE GESTION Y FINANZAS} \\
+    {\normalsize \color{black} CARRERA DE \textbf{CONTADURIA PUBLICA}}
+
+    \vspace{0.2cm}
+    {\Large \color{deepseekblue} \textbf{UNIDAD N 4}}
+
+    \vspace{0.15cm}
+    {\large \color{black} \textbf{DISTRIBUCIONES DE PROBABILIDAD}} \\
+    {\large \color{black} \textbf{PARA VARIABLES ALEATORIAS CONTINUAS}}
+
+    \vspace{0.2cm}
+    {\Large \color{black} \textbf{Distribucion Exponencial}}
+
+    \vspace{0.15cm}
+    {\large \color{darkblue} \textbf{MSc. Anselmo Salguero Arano}}
+\end{frame}
+
+
+% ============================================
+% INTRODUCCION A LA DISTRIBUCION EXPONENCIAL
+% ============================================
+\begin{frame}{Distribucion Exponencial: Introduccion}
+\justifying
+La \textbf{distribucion Exponencial} modela el \textbf{tiempo entre eventos} en un proceso de Poisson, o el \textbf{tiempo de espera} hasta que ocurre un evento. Es fundamental para modelar tiempos de vida, duraciones y tiempos de servicio.
+
+\vspace{0.2cm}
+\textbf{Caracteristicas fundamentales:}
+\begin{itemize}
+    \item Es una distribucion \textbf{continua} definida solo para $x \geq 0$.
+    \item Tiene un solo parametro: la tasa $\lambda > 0$ (o la media $\mu = 1/\lambda$).
+    \item Es la \textbf{unica} distribucion continua con la propiedad de \textbf{falta de memoria}.
+    \item La probabilidad de que ocurra un evento es \textbf{constante} en el tiempo.
+\end{itemize}
+
+\vspace{0.2cm}
+\begin{exampleblock}{Ejemplos de aplicacion}
+\begin{itemize}
+    \item Tiempo de duracion de una bateria hasta su falla.
+    \item Tiempo entre llegadas de clientes a una cola.
+    \item Tiempo de reparacion de una maquina.
+    \item Vida util de componentes electronicos.
+\end{itemize}
+\end{exampleblock}
+\end{frame}
+
+% ============================================
+% DEFINICION Y FORMULAS
+% ============================================
+\begin{frame}{Distribucion Exponencial: Definicion y Formulas}
+\justifying
+\textbf{Funcion de densidad de probabilidad:}
+\formulabox{%
+$$f(x) = \begin{cases} \lambda e^{-\lambda x} & \text{si } x \geq 0 \\ 0 & \text{si } x < 0 \end{cases}$$
+}
+
+\vspace{0.1cm}
+\textbf{Funcion de distribucion acumulada (FDA):}
+\formulabox{%
+$$F(x) = P(X \leq x) = 1 - e^{-\lambda x}, \quad x \geq 0$$
+}
+
+\vspace{0.1cm}
+\begin{columns}[T]
+\begin{column}{0.55\textwidth}
+    \textbf{Parametros y medidas:}
+    \begin{itemize}
+        \item Parametro de tasa: $\lambda > 0$
+        \item Media: $\mu = E(X) = \dfrac{1}{\lambda}$
+        \item Varianza: $\sigma^2 = V(X) = \dfrac{1}{\lambda^2}$
+        \item Desviacion estandar: $\sigma = \dfrac{1}{\lambda}$
+    \end{itemize}
+\end{column}
+\begin{column}{0.43\textwidth}
+    \begin{lateralbox}{Notacion}
+        Si $X$ sigue una distribucion Exponencial, se denota:
+        $$X \sim \text{Exp}(\lambda)$$
+        o bien, con la media:
+        $$X \sim \text{Exp}(\beta) \text{ donde } \beta = \frac{1}{\lambda}$$
+    \end{lateralbox}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================
+% PROPIEDAD DE FALTA DE MEMORIA
+% ============================================
+\begin{frame}{Propiedad: Falta de Memoria}
+\justifying
+La distribucion Exponencial es la \textbf{unica} distribucion continua que satisface la propiedad de \textbf{falta de memoria}:
+
+\vspace{0.2cm}
+\formulabox{%
+$$P(X > s + t \mid X > s) = P(X > t) \quad \text{para } s, t \geq 0$$
+}
+
+\vspace{0.2cm}
+\textbf{Interpretacion:} La probabilidad de que un componente dure $t$ unidades adicionales \textbf{no depende} de cuanto tiempo ha estado funcionando.
+
+\vspace{0.2cm}
+\begin{exampleblock}{Ejemplo intuitivo}
+Una lampara con vida util exponencial que lleva \textbf{50 horas} encendida tiene la \textbf{misma probabilidad} de durar 30 horas mas que una lampara \textbf{nueva}. El componente "olvida" su edad.
+\end{exampleblock}
+
+\vspace{0.1cm}
+\begin{alertblock}{Importante}
+Esta propiedad es \textbf{unica} de la Exponencial. No se cumple en la Normal, Uniforme, ni otras distribuciones continuas.
+\end{alertblock}
+\end{frame}
+
+% ============================================
+% GRAFICAS DE LA DISTRIBUCION EXPONENCIAL
+% ============================================
+\begin{frame}{Graficas de la Distribucion Exponencial}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+    \centering
+    \textbf{Funcion de Densidad $f(x)$}
+    \begin{tikzpicture}[scale=0.7]
+        \begin{axis}[
+            width=7cm, height=5cm,
+            axis lines=left,
+            xlabel={$x$}, ylabel={$f(x)$},
+            xmin=0, xmax=6, ymin=0, ymax=1.2,
+            domain=0:6, samples=50,
+            tick label style={font=\tiny},
+            legend style={font=\tiny, at={(0.97,0.97)}, anchor=north east}
+        ]
+        \addplot[deepseekblue, very thick] {1.0*exp(-1.0*x)};
+        \addplot[boxborder, thick, dashed] {0.5*exp(-0.5*x)};
+        \addplot[checkred, thick, dotted] {0.2*exp(-0.2*x)};
+        \legend{$\lambda=1.0$, $\lambda=0.5$, $\lambda=0.2$}
+        \end{axis}
+    \end{tikzpicture}
+\end{column}
+\begin{column}{0.48\textwidth}
+    \centering
+    \textbf{Funcion de Distribucion $F(x)$}
+    \begin{tikzpicture}[scale=0.7]
+        \begin{axis}[
+            width=7cm, height=5cm,
+            axis lines=left,
+            xlabel={$x$}, ylabel={$F(x)$},
+            xmin=0, xmax=6, ymin=0, ymax=1.1,
+            domain=0:6, samples=50,
+            tick label style={font=\tiny},
+            legend style={font=\tiny, at={(0.97,0.03)}, anchor=south east}
+        ]
+        \addplot[deepseekblue, very thick] {1-exp(-1.0*x)};
+        \addplot[boxborder, thick, dashed] {1-exp(-0.5*x)};
+        \addplot[checkred, thick, dotted] {1-exp(-0.2*x)};
+        \legend{$\lambda=1.0$, $\lambda=0.5$, $\lambda=0.2$}
+        \end{axis}
+    \end{tikzpicture}
+\end{column}
+\end{columns}
+
+\vspace{0.3cm}
+\begin{beamercolorbox}[rounded=true,shadow=true,wd=\linewidth]{block body}
+\centering
+\small\color{darkblue}
+\textbf{A mayor $\lambda$, menor media y mayor concentracion cerca del origen.}\\
+A menor $\lambda$, la curva se extiende mas hacia la derecha.
+\end{beamercolorbox}
+\end{frame}
+
+
+% ============================================
+% EJERCICIO 1: ENUNCIADO
+% ============================================
+\begin{frame}{Ejercicio 1 | Tiempo de Reparacion de una Maquina}
+\begin{block}{Enunciado}
+\justifying
+El tiempo de reparacion de una maquina sigue una \textbf{distribucion exponencial} con una media de \textbf{22 minutos}.
+\end{block}
+
+\vspace{0.2cm}
+\textbf{Preguntas a resolver:}
+\begin{enumerate}
+    \item Cual es la probabilidad de que el tiempo de reparacion sea \textbf{menor que 10 minutos}?
+    \item Si el costo de reparacion es de \textbf{\$200} por cada media hora o fraccion de trabajo, cual es la probabilidad de que una reparacion cueste \textbf{\$400}?
+    \item Cual es el tiempo que deberia asignarse a cada reparacion para que la probabilidad de que el tiempo de reparacion sea \textbf{mayor} que dicho valor sea \textbf{0.1}?
+\end{enumerate}
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[scale=0.6]
+    \begin{axis}[
+        width=10cm, height=3.5cm,
+        axis lines=left,
+        xlabel={$t$ (minutos)}, ylabel={$f(t)$},
+        xmin=0, xmax=80, ymin=0, ymax=0.06,
+        domain=0:80, samples=50,
+        tick label style={font=\tiny}
+    ]
+    \addplot[deepseekblue, very thick] {(1/22)*exp(-x/22)};
+    \draw[caterpillaryellow, dashed, thick] (axis cs:10,0) -- (axis cs:10,0.06);
+    \node[font=\tiny, above] at (axis cs:10,0.06) {$t=10$};
+    \draw[checkred, dashed, thick] (axis cs:22,0) -- (axis cs:22,0.06);
+    \node[font=\tiny, above] at (axis cs:22,0.06) {$\mu=22$};
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+% ============================================
+% EJERCICIO 1: INCISO A
+% ============================================
+\begin{frame}{Ejercicio 1 | Inciso (a)}
+\begin{exampleblock}{Pregunta}
+Cual es la probabilidad de que el tiempo de reparacion sea menor que 10 minutos?
+\end{exampleblock}
+
+\vspace{0.2cm}
+\textbf{Paso 1: Identificar la variable y parametro}
+\begin{itemize}
+    \item $T$: tiempo de reparacion (en minutos)
+    \item Media: $\mu = 22$ minutos $\Rightarrow$ Parametro: $\lambda = \dfrac{1}{22}$
+\end{itemize}
+
+\vspace{0.1cm}
+\textbf{Paso 2: Plantear la probabilidad}
+\[
+P(T < 10) = F(10) = 1 - e^{-\lambda \cdot 10} = 1 - e^{-\frac{10}{22}}
+\]
+
+\vspace{0.1cm}
+\textbf{Paso 3: Calcular}
+\[
+P(T < 10) = 1 - e^{-0.4545} = 1 - 0.6348 = \boxed{0.3652}
+\]
+
+\vspace{0.2cm}
+\begin{beamercolorbox}[rounded=true,shadow=true,wd=\linewidth]{block body}
+\centering
+\textbf{Resultado:} $P(T < 10) \approx 0.3652$ (36.52\% de las reparaciones duran menos de 10 min)
+\end{beamercolorbox}
+\end{frame}
+
+% ============================================
+% EJERCICIO 1: INCISO B
+% ============================================
+\begin{frame}{Ejercicio 1 | Inciso (b)}
+\begin{exampleblock}{Pregunta}
+Si el costo es \$200 por cada media hora o fraccion, cual es la probabilidad de que cueste \$400?
+\end{exampleblock}
+
+\vspace{0.2cm}
+\textbf{Paso 1: Interpretar el costo}
+\begin{itemize}
+    \item Costo: \$200 por cada 30 min o fraccion
+    \item Para que cueste \$400, debe durar \textbf{mas de 30 min} y \textbf{maximo 60 min}
+\end{itemize}
+
+\vspace{0.1cm}
+\textbf{Paso 2: Plantear la probabilidad}
+\[
+P(30 < T \leq 60) = F(60) - F(30) = \left(1 - e^{-\frac{60}{22}}\right) - \left(1 - e^{-\frac{30}{22}}\right)
+\]
+
+\vspace{0.1cm}
+\textbf{Paso 3: Calcular}
+\[
+= e^{-\frac{30}{22}} - e^{-\frac{60}{22}} = e^{-1.3636} - e^{-2.7273} = 0.2557 - 0.0654 = \boxed{0.1903}
+\]
+
+\vspace{0.2cm}
+\begin{beamercolorbox}[rounded=true,shadow=true,wd=\linewidth]{block body}
+\centering
+\textbf{Resultado:} $P(\text{Costo} = \$400) \approx 0.1903$ (19.03\%)
+\end{beamercolorbox}
+\end{frame}
+
+% ============================================
+% EJERCICIO 1: INCISO C
+% ============================================
+\begin{frame}{Ejercicio 1 | Inciso (c)}
+\begin{exampleblock}{Pregunta}
+Cual es el tiempo a asignar para que la probabilidad de que sea mayor sea 0.1?
+\end{exampleblock}
+
+\vspace{0.2cm}
+\textbf{Paso 1: Plantear la ecuacion}
+\[
+P(T > t_0) = 0.1 \quad \Rightarrow \quad P(T \leq t_0) = 0.9
+\]
+
+\vspace{0.1cm}
+\textbf{Paso 2: Usar la FDA}
+\[
+F(t_0) = 1 - e^{-\frac{t_0}{22}} = 0.9 \quad \Rightarrow \quad e^{-\frac{t_0}{22}} = 0.1
+\]
+
+\vspace{0.1cm}
+\textbf{Paso 3: Despejar $t_0$}
+\[
+-\frac{t_0}{22} = \ln(0.1) = -2.3026 \quad \Rightarrow \quad t_0 = 22 \times 2.3026 = \boxed{50.66 \text{ min}}
+\]
+
+\vspace{0.2cm}
+\begin{beamercolorbox}[rounded=true,shadow=true,wd=\linewidth]{block body}
+\centering
+\textbf{Resultado:} Se debe asignar aproximadamente \textbf{51 minutos} para que solo el 10\% exceda ese tiempo.
+\end{beamercolorbox}
+\end{frame}
+
+
+% ============================================
+% EJERCICIO 2: ENUNCIADO
+% ============================================
+\begin{frame}{Ejercicio 2 | Vida Util de Lamparas Especiales}
+\begin{block}{Enunciado}
+\justifying
+El tiempo de vida de una lampara especial sigue una \textbf{distribucion exponencial} con una media de \textbf{100 horas}.
+\end{block}
+
+\vspace{0.2cm}
+\textbf{Preguntas a resolver:}
+\begin{enumerate}
+    \item Cual es la probabilidad de que una lampara dure \textbf{por lo menos 30 horas}?
+    \item Si una lampara ya lleva \textbf{50 horas} de uso, cual es la probabilidad de que dure \textbf{mas de 80 horas} en total?
+    \item Se seleccionan \textbf{cinco lamparas}, cual es el numero esperado de lamparas que duran por lo menos 30 horas?
+\end{enumerate}
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[scale=0.6]
+    \begin{axis}[
+        width=10cm, height=3.5cm,
+        axis lines=left,
+        xlabel={$x$ (horas)}, ylabel={$f(x)$},
+        xmin=0, xmax=300, ymin=0, ymax=0.012,
+        domain=0:300, samples=50,
+        tick label style={font=\tiny}
+    ]
+    \addplot[deepseekblue, very thick] {0.01*exp(-0.01*x)};
+    \draw[caterpillaryellow, dashed, thick] (axis cs:30,0) -- (axis cs:30,0.012);
+    \node[font=\tiny, above] at (axis cs:30,0.012) {$30$};
+    \draw[checkred, dashed, thick] (axis cs:100,0) -- (axis cs:100,0.012);
+    \node[font=\tiny, above] at (axis cs:100,0.012) {$\mu=100$};
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+% ============================================
+% EJERCICIO 2: INCISO A
+% ============================================
+\begin{frame}{Ejercicio 2 | Inciso (a)}
+\begin{exampleblock}{Pregunta}
+Cual es la probabilidad de que una lampara dure por lo menos 30 horas?
+\end{exampleblock}
+
+\vspace{0.2cm}
+\textbf{Paso 1: Identificar parametros}
+\begin{itemize}
+    \item $X$: tiempo de vida (en horas)
+    \item Media: $\mu = 100$ horas $\Rightarrow$ Parametro: $\lambda = 0.01$
+\end{itemize}
+
+\vspace{0.1cm}
+\textbf{Paso 2: Plantear la probabilidad}
+\[
+P(X \geq 30) = 1 - P(X < 30) = 1 - F(30) = 1 - \left(1 - e^{-0.01 \times 30}\right) = e^{-0.3}
+\]
+
+\vspace{0.1cm}
+\textbf{Paso 3: Calcular}
+\[
+P(X \geq 30) = e^{-0.3} = \boxed{0.7408}
+\]
+
+\vspace{0.2cm}
+\begin{beamercolorbox}[rounded=true,shadow=true,wd=\linewidth]{block body}
+\centering
+\textbf{Resultado:} $P(X \geq 30) \approx 0.7408$ (74.08\% de las lamparas duran al menos 30 h)
+\end{beamercolorbox}
+\end{frame}
+
+% ============================================
+% EJERCICIO 2: INCISO B (FALTA DE MEMORIA)
+% ============================================
+\begin{frame}{Ejercicio 2 | Inciso (b) -- Falta de Memoria}
+\begin{exampleblock}{Pregunta}
+Si una lampara ya lleva 50 horas de uso, cual es la probabilidad de que dure mas de 80 horas en total?
+\end{exampleblock}
+
+\vspace{0.2cm}
+\textbf{Paso 1: Plantear la probabilidad condicional}
+\[
+P(X > 80 \mid X > 50)
+\]
+
+\vspace{0.1cm}
+\textbf{Paso 2: Aplicar la propiedad de falta de memoria}
+\[
+P(X > 80 \mid X > 50) = P(X > 80 - 50) = P(X > 30)
+\]
+
+\vspace{0.1cm}
+\textbf{Paso 3: Calcular (ya resuelto en inciso a)}
+\[
+P(X > 30) = e^{-0.01 \times 30} = e^{-0.3} = \boxed{0.7408}
+\]
+
+\vspace{0.2cm}
+\begin{alertblock}{Observacion importante}
+La probabilidad es \textbf{igual} a la del inciso (a), porque la distribucion exponencial \textbf{no tiene memoria} del tiempo transcurrido. La lampara "olvida" que ya lleva 50 horas.
+\end{alertblock}
+\end{frame}
+
+% ============================================
+% EJERCICIO 2: INCISO C
+% ============================================
+\begin{frame}{Ejercicio 2 | Inciso (c)}
+\begin{exampleblock}{Pregunta}
+Se seleccionan cinco lamparas, cual es el numero esperado que duran por lo menos 30 horas?
+\end{exampleblock}
+
+\vspace{0.2cm}
+\textbf{Paso 1: Definir la nueva variable}
+\begin{itemize}
+    \item $Y$: numero de lamparas (de 5) que duran $\geq 30$ h
+    \item $Y \sim \text{Binomial}(n=5, p=0.7408)$
+\end{itemize}
+
+\vspace{0.1cm}
+\textbf{Paso 2: Aplicar la formula de esperanza}
+\[
+E(Y) = n \cdot p = 5 \times 0.7408 = \boxed{3.704}
+\]
+
+\vspace{0.2cm}
+\begin{beamercolorbox}[rounded=true,shadow=true,wd=\linewidth]{block body}
+\centering
+\textbf{Resultado:} Se espera que aproximadamente \textbf{3.7} lamparas (entre 3 y 4) duren al menos 30 horas.
+\end{beamercolorbox}
+\end{frame}
+
+
+% ============================================
+% EJERCICIO 3: ENUNCIADO
+% ============================================
+\begin{frame}{Ejercicio 3 | Duracion de Baterias}
+\begin{block}{Enunciado}
+\justifying
+La duracion de un cierto modelo de bateria tiene una \textbf{distribucion exponencial}. Se sabe que la media es de \textbf{5000 horas}.
+\end{block}
+
+\vspace{0.2cm}
+\begin{exampleblock}{Pregunta}
+El fabricante de las baterias debe informar cual es la duracion de esas baterias. Que duracion debe informar si quiere que la probabilidad de que una bateria concreta viva \textbf{mas} que esa duracion informada sea del \textbf{90\%}?
+\end{exampleblock}
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[scale=0.6]
+    \begin{axis}[
+        width=10cm, height=3.5cm,
+        axis lines=left,
+        xlabel={$t$ (horas)}, ylabel={$f(t)$},
+        xmin=0, xmax=15000, ymin=0, ymax=0.00025,
+        domain=0:15000, samples=50,
+        tick label style={font=\tiny}
+    ]
+    \addplot[deepseekblue, very thick] {(1/5000)*exp(-x/5000)};
+    \draw[checkred, dashed, thick] (axis cs:5000,0) -- (axis cs:5000,0.00025);
+    \node[font=\tiny, above] at (axis cs:5000,0.00025) {$\mu=5000$};
+    \draw[caterpillaryellow, dashed, thick] (axis cs:526.8,0) -- (axis cs:526.8,0.00025);
+    \node[font=\tiny, above] at (axis cs:526.8,0.00025) {$t_0$};
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+% ============================================
+% EJERCICIO 3: RESOLUCION
+% ============================================
+\begin{frame}{Ejercicio 3 | Resolucion Paso a Paso}
+\textbf{Paso 1: Identificar parametros}
+\begin{itemize}
+    \item $T$: duracion de la bateria (en horas)
+    \item Media: $\mu = 5000$ horas $\Rightarrow$ Parametro: $\lambda = \dfrac{1}{5000}$
+\end{itemize}
+
+\vspace{0.1cm}
+\textbf{Paso 2: Plantear la condicion}
+\[
+P(T > t_0) = 0.90 \quad \Rightarrow \quad P(T \leq t_0) = 0.10
+\]
+
+\vspace{0.1cm}
+\textbf{Paso 3: Usar la FDA}
+\[
+F(t_0) = 1 - e^{-\frac{t_0}{5000}} = 0.10 \quad \Rightarrow \quad e^{-\frac{t_0}{5000}} = 0.90
+\]
+
+\vspace{0.1cm}
+\textbf{Paso 4: Despejar $t_0$}
+\[
+-\frac{t_0}{5000} = \ln(0.90) = -0.1054 \quad \Rightarrow \quad t_0 = 5000 \times 0.1054 = \boxed{526.8 \text{ horas}}
+\]
+
+\vspace{0.2cm}
+\begin{beamercolorbox}[rounded=true,shadow=true,wd=\linewidth]{block body}
+\centering
+\textbf{Resultado:} El fabricante debe informar \textbf{527 horas} (aprox. 22 dias) para que el 90\% de las baterias superen esa duracion.
+\end{beamercolorbox}
+\end{frame}
+
+% ============================================
+% EJERCICIO 4: ENUNCIADO
+% ============================================
+\begin{frame}{Ejercicio 4 | Tiempo entre Llegadas a un Servicio}
+\begin{block}{Enunciado}
+\justifying
+En un mostrador de servicio, el \textbf{tiempo entre llegadas} de clientes sigue una distribucion exponencial. El promedio de tiempo entre llegadas es de \textbf{5 minutos}.
+\end{block}
+
+\vspace{0.2cm}
+\textbf{Preguntas a resolver:}
+\begin{enumerate}
+    \item Cual es la probabilidad de que el tiempo entre dos llegadas consecutivas sea \textbf{menor a 3 minutos}?
+    \item Cual es la probabilidad de que \textbf{no llegue ningun cliente} en los proximos 10 minutos?
+    \item Cual es el tiempo maximo entre llegadas que se espera con una probabilidad del \textbf{95\%}?
+\end{enumerate}
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[scale=0.6]
+    \begin{axis}[
+        width=10cm, height=3.5cm,
+        axis lines=left,
+        xlabel={$t$ (minutos)}, ylabel={$f(t)$},
+        xmin=0, xmax=20, ymin=0, ymax=0.25,
+        domain=0:20, samples=50,
+        tick label style={font=\tiny}
+    ]
+    \addplot[deepseekblue, very thick] {0.2*exp(-0.2*x)};
+    \draw[checkred, dashed, thick] (axis cs:5,0) -- (axis cs:5,0.25);
+    \node[font=\tiny, above] at (axis cs:5,0.25) {$\mu=5$};
+    \draw[caterpillaryellow, dashed, thick] (axis cs:3,0) -- (axis cs:3,0.25);
+    \node[font=\tiny, above] at (axis cs:3,0.25) {$3$};
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+% ============================================
+% EJERCICIO 4: INCISO A
+% ============================================
+\begin{frame}{Ejercicio 4 | Inciso (a)}
+\begin{exampleblock}{Pregunta}
+Cual es la probabilidad de que el tiempo entre dos llegadas consecutivas sea menor a 3 minutos?
+\end{exampleblock}
+
+\vspace{0.2cm}
+\textbf{Paso 1: Identificar parametros}
+\begin{itemize}
+    \item $T$: tiempo entre llegadas (en minutos)
+    \item Media: $\mu = 5$ minutos $\Rightarrow$ Parametro: $\lambda = \dfrac{1}{5} = 0.2$
+\end{itemize}
+
+\vspace{0.1cm}
+\textbf{Paso 2: Plantear y calcular}
+\[
+P(T < 3) = F(3) = 1 - e^{-0.2 \times 3} = 1 - e^{-0.6} = 1 - 0.5488 = \boxed{0.4512}
+\]
+
+\vspace{0.2cm}
+\begin{beamercolorbox}[rounded=true,shadow=true,wd=\linewidth]{block body}
+\centering
+\textbf{Resultado:} $P(T < 3) \approx 0.4512$ (45.12\% de los intervalos son menores a 3 min)
+\end{beamercolorbox}
+\end{frame}
+
+% ============================================
+% EJERCICIO 4: INCISO B
+% ============================================
+\begin{frame}{Ejercicio 4 | Inciso (b)}
+\begin{exampleblock}{Pregunta}
+Cual es la probabilidad de que no llegue ningun cliente en los proximos 10 minutos?
+\end{exampleblock}
+
+\vspace{0.2cm}
+\textbf{Paso 1: Interpretar}
+\begin{itemize}
+    \item "No llegue ningun cliente en 10 min" equivale a que el tiempo entre llegadas sea \textbf{mayor a 10 min}
+\end{itemize}
+
+\vspace{0.1cm}
+\textbf{Paso 2: Plantear y calcular}
+\[
+P(T > 10) = 1 - P(T \leq 10) = 1 - F(10) = 1 - \left(1 - e^{-0.2 \times 10}\right) = e^{-2} = \boxed{0.1353}
+\]
+
+\vspace{0.2cm}
+\begin{beamercolorbox}[rounded=true,shadow=true,wd=\linewidth]{block body}
+\centering
+\textbf{Resultado:} $P(T > 10) \approx 0.1353$ (solo 13.53\% de los intervalos superan los 10 min)
+\end{beamercolorbox}
+\end{frame}
+
+% ============================================
+% EJERCICIO 4: INCISO C
+% ============================================
+\begin{frame}{Ejercicio 4 | Inciso (c)}
+\begin{exampleblock}{Pregunta}
+Cual es el tiempo maximo entre llegadas que se espera con una probabilidad del 95\%?
+\end{exampleblock}
+
+\vspace{0.2cm}
+\textbf{Paso 1: Plantear la condicion}
+\[
+P(T \leq t_{0.95}) = 0.95
+\]
+
+\vspace{0.1cm}
+\textbf{Paso 2: Usar la FDA}
+\[
+F(t_{0.95}) = 1 - e^{-0.2 \cdot t_{0.95}} = 0.95 \quad \Rightarrow \quad e^{-0.2 \cdot t_{0.95}} = 0.05
+\]
+
+\vspace{0.1cm}
+\textbf{Paso 3: Despejar $t_{0.95}$}
+\[
+-0.2 \cdot t_{0.95} = \ln(0.05) = -2.9957 \quad \Rightarrow \quad t_{0.95} = \frac{2.9957}{0.2} = \boxed{14.98 \text{ min}}
+\]
+
+\vspace{0.2cm}
+\begin{beamercolorbox}[rounded=true,shadow=true,wd=\linewidth]{block body}
+\centering
+\textbf{Resultado:} El 95\% de los intervalos entre llegadas son \textbf{menores a 15 minutos}.
+\end{beamercolorbox}
+\end{frame}
+
+
+% ============================================
+% RESUMEN DE FORMULAS CLAVE
+% ============================================
+\begin{frame}{Resumen: Formulas Clave de la Distribucion Exponencial}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+    \begin{block}{Funciones Basicas}
+        \textbf{Densidad:}
+        \[
+        f(x) = \lambda e^{-\lambda x}, \quad x \geq 0
+        \]
+        \textbf{FDA:}
+        \[
+        F(x) = 1 - e^{-\lambda x}, \quad x \geq 0
+        \]
+        \textbf{Parametro:}
+        \[
+        \lambda = \frac{1}{\mu}
+        \]
+    \end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+    \begin{exampleblock}{Medidas y Probabilidades}
+        \textbf{Media:} $\mu = \dfrac{1}{\lambda}$
+
+        \textbf{Varianza:} $\sigma^2 = \dfrac{1}{\lambda^2}$
+
+        \textbf{Desviacion:} $\sigma = \dfrac{1}{\lambda}$
+
+        \vspace{0.2cm}
+        \textbf{Probabilidades:}
+        \[
+        P(X \leq x) = 1 - e^{-\lambda x}
+        \]
+        \[
+        P(X > x) = e^{-\lambda x}
+        \]
+    \end{exampleblock}
+\end{column}
+\end{columns}
+
+\vspace{0.2cm}
+\begin{alertblock}{Propiedad de Falta de Memoria}
+\[
+P(X > s + t \mid X > s) = P(X > t)
+\]
+\centering
+\small La distribucion Exponencial es la \textbf{unica} continua con esta propiedad.
+\end{alertblock}
+\end{frame}
+
+% ============================================
+% CIERRE
+% ============================================
+\begin{frame}[plain]
+    \centering
+    \vspace{1cm}
+
+    {\Huge \color{deepseekblue} \textbf{Gracias!}}\\[0.5cm]
+    {\Large \color{darkblue} Distribucion Exponencial}\\[0.3cm]
+    {\normalsize \color{black} Unidad 4 -- Variables Aleatorias Continuas}\\[1cm]
+
+    \begin{tikzpicture}
+        \node[fill=lightblue, draw=boxborder, rounded corners=10pt, inner sep=15pt, text width=0.5\textwidth, align=center] {
+            \color{darkblue}
+            {\large \textbf{Preguntas?}}\\[0.3cm]
+            {\normalsize MSc. Anselmo Salguero Arano}\\
+            {\small asalguero@uagrm.edu.bo}
+        };
+    \end{tikzpicture}
+\end{frame}
+
+\end{document}

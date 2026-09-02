@@ -1,0 +1,286 @@
+\chapter{Teoría y Fundamentos de Probabilidad}
+\label{cap:probabilidades}
+
+\section*{Objetivos de Aprendizaje de la Unidad}
+Al finalizar el estudio de esta unidad, el estudiante será capaz de:
+\begin{enumerate}
+    \item Comprender los fundamentos de la incertidumbre en los negocios y diferenciar entre los enfoques \textbf{clásico}, de \textbf{frecuencia relativa} y \textbf{subjetivo} de probabilidad.
+    \item Aplicar con exactitud los axiomas de probabilidad y las reglas de la \textbf{adición} y de la \textbf{multiplicación} para eventos dependientes e independientes.
+    \item Construir e interpretar \textbf{tablas de contingencia bidimensionales} para calcular probabilidades conjuntas, marginales y condicionales en análisis de mercado y auditoría.
+    \item Dominar y aplicar el \textbf{Teorema de Bayes} para actualizar probabilidades a priori con nueva información en análisis de riesgo crediticio, fraude contable y toma de decisiones gerenciales.
+\end{enumerate}
+
+\section{Introducción a la Probabilidad en el Entorno Contable-Empresarial}
+En el mundo de los negocios, la contabilidad y las finanzas, casi ninguna decisión directiva se toma bajo condiciones de certeza absoluta. Un auditor no revisa el 100\% de las transacciones de una empresa, sino una muestra; un oficial de crédito no puede predecir con certeza si un prestatario pagará a tiempo; y un analista financiero debe evaluar proyectos con flujos de caja sujetos a riesgo de mercado.
+
+La \textbf{Probabilidad} es el lenguaje matemático que permite medir y modelar cuantitativamente la incertidumbre, permitiendo transformar corazonadas subjetivas en decisiones fundamentadas.
+
+\section{Conceptos Fundamentales}
+
+\begin{definicion}{Experimento, Espacio Muestral y Eventos}
+\begin{itemize}
+    \item \textbf{Experimento Aleatorio:} Proceso mediante el cual se genera una observación o medición, cuyo resultado exacto no se puede predecir con certeza de antemano (ej. auditar una factura para ver si tiene o no error tributario).
+    \item \textbf{Espacio Muestral ($S$):} Conjunto de todos los resultados elementales posibles de un experimento aleatorio.
+    \item \textbf{Punto Muestral ($e_i$):} Cada uno de los resultados elementales e indivisibles que conforman el espacio muestral.
+    \item \textbf{Evento o Suceso ($A$):} Cualquier subconjunto del espacio muestral ($A \subseteq S$).
+\end{itemize}
+\end{definicion}
+
+\section{Enfoques Conceptuales de la Probabilidad}
+
+\subsection{1. Enfoque Clásico o \textit{A Priori} (Laplace)}
+Se aplica cuando todos los resultados elementales del espacio muestral son \textbf{equiprobables} (tienen la misma posibilidad de ocurrir).
+\begin{equation}
+    P(A) = \frac{N(A)}{N(S)} = \frac{\text{Número de resultados favorables al evento } A}{\text{Número total de resultados posibles en } S}
+\end{equation}
+
+\subsection{2. Enfoque de Frecuencia Relativa o Empírico}
+Se basa en la observación histórica de la proporción de veces que ocurre un evento al repetir el experimento un número grande $n$ de veces bajo condiciones similares:
+\begin{equation}
+    P(A) \approx \frac{n(A)}{n} = \frac{\text{Número de veces que ocurrió } A}{\text{Número total de ensayos realizados}}
+\end{equation}
+Por la \textbf{Ley de los Grandes Números}, a medida que el número de ensayos $n$ tiende a infinito, la frecuencia relativa converge a la verdadera probabilidad teórica.
+
+\subsection{3. Enfoque Subjetivo o Personalista}
+Se utiliza cuando no se dispone de datos históricos repetitivos ni de resultados equiprobables. Representa el \textbf{grado de creencia o confianza} que un decisor u experto asigna a la ocurrencia de un evento, con base en su experiencia, información cualitativa y juicio profesional.
+
+\section{Axiomas de Kolmogorov y Propiedades Fundamentales}
+Para cualquier evento $A$ definido en un espacio muestral $S$:
+\begin{enumerate}
+    \item \textbf{Axioma de No Negatividad:} $0 \le P(A) \le 1$ para todo evento $A$.
+    \item \textbf{Axioma del Suceso Seguro:} $P(S) = 1$.
+    \item \textbf{Suceso Imposible:} $P(\emptyset) = 0$.
+    \item \textbf{Regla del Complemento:} La suma de la probabilidad de que ocurra $A$ más la de que no ocurra ($A'$) es igual a 1:
+    \begin{equation}
+        P(A) + P(A') = 1 \implies P(A') = 1 - P(A)
+    \end{equation}
+\end{enumerate}
+
+\section{Reglas de la Adición de Probabilidades}
+
+\subsection{Regla Especial de la Adición (Eventos Mutuamente Excluyentes)}
+Dos eventos $A$ y $B$ son \textbf{mutuamente excluyentes} (o disjuntos) si no pueden ocurrir simultáneamente ($A \cap B = \emptyset$).
+\begin{equation}
+    P(A \cup B) = P(A) + P(B)
+\end{equation}
+
+\subsection{Regla General de la Adición (Eventos No Excluyentes)}
+Si los eventos $A$ y $B$ pueden ocurrir juntos ($A \cap B \neq \emptyset$):
+\begin{equation}
+    P(A \cup B) = P(A) + P(B) - P(A \cap B)
+\end{equation}
+donde $P(A \cap B)$ representa la probabilidad conjunta de que ocurran ambos eventos.
+
+\begin{ejemplo}{Auditoría de Cumplimiento Tributario (Basado en Anderson)}
+Una firma auditora en Santa Cruz revisa los registros fiscales de 200 medianas empresas. Se encontró que:
+\begin{itemize}
+    \item El $40\%$ de las empresas presenta inconsistencias en el Libro de Compras IVA (Evento $A$).
+    \item El $25\%$ presenta inconsistencias en el Impuesto a las Utilidades IUE (Evento $B$).
+    \item El $15\%$ presenta inconsistencias en \textbf{ambos} tributos ($A \cap B$).
+\end{itemize}
+Si se selecciona una empresa al azar, ¿cuál es la probabilidad de que tenga problemas tributarios en el IVA o en el IUE (o en ambos)?
+
+\tcbline
+\textbf{Solución:}
+Identificamos las probabilidades dadas:
+\[
+P(A) = 0.40, \quad P(B) = 0.25, \quad P(A \cap B) = 0.15
+\]
+Aplicando la Regla General de la Adición:
+\[
+P(A \cup B) = P(A) + P(B) - P(A \cap B) = 0.40 + 0.25 - 0.15 = 0.50 \implies 50\%
+\]
+\textbf{Interpretación:} La probabilidad de que una empresa presente al menos una observación fiscal en IVA o IUE es del 50\%.
+\end{ejemplo}
+
+\section{Probabilidad Condicional e Independencia}
+
+\subsection{Definición de Probabilidad Condicional}
+\begin{definicion}{Probabilidad Condicional}
+La probabilidad condicional del evento $A$, dado que se sabe con certeza que ya ocurrió el evento $B$ (con $P(B) > 0$), se define formalmente como:
+\begin{equation}
+    P(A|B) = \frac{P(A \cap B)}{P(B)}
+\end{equation}
+De manera análoga, la probabilidad de $B$ dado $A$ es:
+\begin{equation}
+    P(B|A) = \frac{P(A \cap B)}{P(A)}, \quad \text{con } P(A) > 0
+\end{equation}
+\end{definicion}
+
+\subsection{Independencia Estadística de Eventos}
+\begin{definicion}{Eventos Independientes}
+Dos eventos $A$ y $B$ son estadísticamente independientes si la ocurrencia de uno no afecta en absoluto la probabilidad de ocurrencia del otro:
+\begin{equation}
+    P(A|B) = P(A) \quad \text{o equivalentemente} \quad P(B|A) = P(B)
+\end{equation}
+Si esta igualdad no se cumple, se dice que los eventos son \textbf{dependientes}.
+\end{definicion}
+
+\section{Reglas de la Multiplicación}
+
+\subsection{Regla Especial de la Multiplicación (Eventos Independientes)}
+Si $A$ y $B$ son independientes:
+\begin{equation}
+    P(A \cap B) = P(A) \cdot P(B)
+\end{equation}
+
+\subsection{Regla General de la Multiplicación (Eventos Dependientes)}
+Para cualquier par de eventos:
+\begin{equation}
+    P(A \cap B) = P(A) \cdot P(B|A) = P(B) \cdot P(A|B)
+\end{equation}
+
+\section{Tablas de Contingencia y Probabilidad Conjunta}
+Una tabla de contingencia clasifica una muestra o población respecto a dos variables categóricas simultáneas.
+
+\begin{ejemplo}{Riesgo Crediticio y Tamaño de Empresa (Basado en Lind)}
+El departamento de riesgo crediticio de un banco comercial analizó el historial de 500 créditos corporativos otorgados durante el último año, arrojando los siguientes datos:
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Categoría de Crédito} & \textbf{Microempresa ($M$)} & \textbf{Gran Empresa ($G$)} & \textbf{Total} \\
+\midrule
+Al Día / Cumplido ($C$) & 260 & 190 & \textbf{450} \\
+En Mora / Incumplido ($D$) & 40 & 10 & \textbf{50} \\
+\midrule
+\textbf{Total} & \textbf{300} & \textbf{200} & \textbf{500} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Si se elige un crédito al azar, determine:
+\begin{enumerate}[label=\alph*)]
+    \item La probabilidad de que el crédito corresponda a una Microempresa: $P(M)$.
+    \item La probabilidad conjunta de que sea de una Microempresa y esté en Mora: $P(M \cap D)$.
+    \item La probabilidad de que esté en Mora, dado que es de una Microempresa: $P(D|M)$.
+    \item La probabilidad de que esté en Mora, dado que es de una Gran Empresa: $P(D|G)$.
+    \item ¿Es el estado del crédito independiente del tamaño de la empresa?
+\end{enumerate}
+
+\tcbline
+\textbf{Solución:}
+\begin{enumerate}[label=\alph*)]
+    \item $P(M) = \frac{300}{500} = 0.60 \implies 60\%$.
+    \item $P(M \cap D) = \frac{40}{500} = 0.08 \implies 8\%$.
+    \item $P(D|M) = \frac{P(M \cap D)}{P(M)} = \frac{40/500}{300/500} = \frac{40}{300} = 0.1333 \implies 13.33\%$.
+    \item $P(D|G) = \frac{P(G \cap D)}{P(G)} = \frac{10/500}{200/500} = \frac{10}{200} = 0.0500 \implies 5.00\%$.
+    \item \textbf{Evaluación de Independencia:}
+    La probabilidad global de mora es $P(D) = \frac{50}{500} = 0.10$ ($10\%$).\\
+    Dado que $P(D|M) = 13.33\% \neq P(D) = 10\%$, el tamaño de la empresa y la condición de mora \textbf{son eventos dependientes}. Las microempresas presentan una tasa de mora significativamente superior a la de las grandes corporaciones.
+\end{enumerate}
+\end{ejemplo}
+
+\section{Teorema de la Probabilidad Total y Teorema de Bayes}
+
+\subsection{Teorema de la Probabilidad Total}
+Si los eventos $A_1, A_2, \dots, A_k$ forman una \textbf{partición} del espacio muestral $S$ (son mutuamente excluyentes dos a dos y su unión conforma todo $S$, con $P(A_i) > 0$), entonces para cualquier evento arbitrario $B \subseteq S$:
+\begin{equation}
+    P(B) = \sum_{i=1}^k P(A_i) \cdot P(B|A_i) = P(A_1)P(B|A_1) + P(A_2)P(B|A_2) + \dots + P(A_k)P(B|A_k)
+\end{equation}
+
+\subsection{Teorema de Bayes}
+\begin{definicion}{Teorema de Bayes}
+Bajo las mismas condiciones de partición, la probabilidad condicional \textit{a posteriori} de un evento causante $A_j$, dado que ya se ha observado la evidencia $B$, está dada por:
+\begin{equation}
+    P(A_j|B) = \frac{P(A_j) \cdot P(B|A_j)}{\sum_{i=1}^k P(A_i) \cdot P(B|A_i)}
+\end{equation}
+\end{definicion}
+
+\begin{ejemplo}{Detección de Fraude en Transacciones Electrónicas (Basado en Anderson)}
+Un sistema contable centralizado procesa órdenes de pago de tres departamentos: Ventas ($A_1$), Adquisiciones ($A_2$) y Logística ($A_3$).
+\begin{itemize}
+    \item Ventas genera el $50\%$ de las órdenes ($P(A_1) = 0.50$).
+    \item Adquisiciones genera el $30\%$ ($P(A_2) = 0.30$).
+    \item Logística genera el $20\%$ ($P(A_3) = 0.20$).
+\end{itemize}
+La auditoría interna ha detectado que la probabilidad de que una transacción presente irregularidades contables o sospecha de fraude (Evento $F$) según su departamento de origen es:
+\[
+P(F|A_1) = 0.01 \quad (1\%), \qquad P(F|A_2) = 0.04 \quad (4\%), \qquad P(F|A_3) = 0.02 \quad (2\%)
+\]
+Durante un control de rutina, el sistema de alertas tempranas detecta una transacción con irregularidades graves. ¿Cuál es la probabilidad de que dicha transacción fraudulenta provenga del departamento de Adquisiciones ($A_2$)?
+
+\tcbline
+\textbf{Solución Paso a Paso:}
+\begin{enumerate}
+    \item \textbf{Cálculo de la probabilidad global de irregularidad $P(F)$ (Probabilidad Total):}
+    \begin{align*}
+        P(F) &= P(A_1)P(F|A_1) + P(A_2)P(F|A_2) + P(A_3)P(F|A_3) \\
+        &= (0.50)(0.01) + (0.30)(0.04) + (0.20)(0.02) \\
+        &= 0.005 + 0.012 + 0.004 = 0.021 \quad (2.1\%)
+    \end{align*}
+    \item \textbf{Aplicación del Teorema de Bayes para calcular $P(A_2|F)$:}
+    \[
+    P(A_2|F) = \frac{P(A_2)P(F|A_2)}{P(F)} = \frac{(0.30)(0.04)}{0.021} = \frac{0.012}{0.021} \approx 0.5714 \implies 57.14\%
+    \]
+\end{enumerate}
+\textbf{Interpretación Contable:} Aunque el departamento de Adquisiciones solo origina el 30\% del volumen total de transacciones (probabilidad a priori), si se detecta una irregularidad, la probabilidad de que provenga de Adquisiciones se eleva drásticamente al \textbf{57.14\%} (probabilidad a posteriori). La auditoría forense debe priorizar la revisión en dicha área.
+\end{ejemplo}
+
+\section{Formulario Resumen del Capítulo 2}
+\begin{formulario}[Resumen de Fórmulas — Teoría de Probabilidades]
+\begin{itemize}
+    \item \textbf{Probabilidad Clásica:} $P(A) = \dfrac{N(A)}{N(S)}$
+    \item \textbf{Regla del Complemento:} $P(A') = 1 - P(A)$
+    \item \textbf{Regla General de la Adición:} $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+    \item \textbf{Probabilidad Condicional:} $P(A|B) = \dfrac{P(A \cap B)}{P(B)}$
+    \item \textbf{Regla de Multiplicación (General):} $P(A \cap B) = P(A) \cdot P(B|A)$
+    \item \textbf{Regla de Multiplicación (Independientes):} $P(A \cap B) = P(A) \cdot P(B)$
+    \item \textbf{Teorema de Bayes:} $P(A_j|B) = \dfrac{P(A_j) \cdot P(B|A_j)}{\sum_{i=1}^k P(A_i) \cdot P(B|A_i)}$
+\end{itemize}
+\end{formulario}
+
+\section{Ejercicios Propuestos de la Unidad}
+
+\subsection*{Nivel 1: Conceptos y Reglas de Probabilidad}
+\begin{enumerate}
+    \item Enuncie los tres axiomas fundamentales de probabilidad de Kolmogorov y explique su significado en términos de certeza e imposibilidad.
+    \item Sean $A$ y $B$ dos eventos asociados a un experimento aleatorio tales que $P(A) = 0.50$, $P(B) = 0.30$ y $P(A \cap B) = 0.15$.
+    \begin{enumerate}[label=\alph*)]
+        \item Calcule la probabilidad de la unión $P(A \cup B)$.
+        \item Calcule la probabilidad condicional $P(A|B)$.
+        \item Determine si los eventos $A$ y $B$ son estadísticamente independientes. Justifique formalmente.
+    \end{enumerate}
+    \item Si $P(E_1) = 0.40$, $P(E_2) = 0.35$ y $E_1$ y $E_2$ son mutuamente excluyentes, calcule:
+    \begin{enumerate}[label=\alph*)]
+        \item $P(E_1 \cup E_2)$
+        \item $P(E_1 \cap E_2)$
+        \item $P(E_1|E_2)$
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Nivel 2: Tablas de Contingencia y Probabilidad Condicional}
+\begin{enumerate}[resume]
+    \item Una firma de auditoría clasificó una muestra de 200 empresas según su tamaño (Pequeña, Mediana, Grande) y su cumplimiento en la presentación de estados financieros a tiempo (A tiempo, Con retraso):
+    \begin{center}
+    \small
+    \begin{tabular}{l|cc|c}
+    \toprule
+    \textbf{Tamaño de Empresa} & \textbf{A Tiempo ($T$)} & \textbf{Con Retraso ($R$)} & \textbf{Total} \\
+    \midrule
+    Pequeña ($P$) & 60 & 40 & 100 \\
+    Mediana ($M$) & 45 & 15 & 60 \\
+    Grande ($G$) & 35 & 5 & 40 \\
+    \midrule
+    \textbf{Total} & \textbf{140} & \textbf{60} & \textbf{200} \\
+    \bottomrule
+    \end{tabular}
+    \end{center}
+    Si se selecciona una empresa al azar:
+    \begin{enumerate}[label=\alph*)]
+        \item Calcule la probabilidad de que haya presentado sus estados financieros con retraso.
+        \item Calcule la probabilidad condicional de que presente con retraso dado que es una empresa pequeña: $P(R|P)$.
+        \item Calcule la probabilidad condicional de que sea una empresa grande dado que presentó a tiempo: $P(G|T)$.
+        \item ¿Es el cumplimiento tributario independiente del tamaño de la empresa? Justifique.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Nivel 3: Teorema de Bayes y Toma de Decisiones}
+\begin{enumerate}[resume]
+    \item En una compañía comercializadora de granos en Montero, el 70\% de los clientes paga con transferencia bancaria electrónica y el 30\% con cheque. De los pagos efectuados con cheque, el 10\% son rechazados por falta de fondos o firmas disconformes. De los pagos por transferencia, solo el 1\% presenta inconsistencias operativas. Si el departamento de cobranzas detecta un pago con problemas:
+    \begin{enumerate}[label=\alph*)]
+        \item ¿Cuál es la probabilidad global de que un pago elegido al azar tenga problemas?
+        \item ¿Cuál es la probabilidad de que el pago observado haya sido efectuado mediante cheque?
+    \end{enumerate}
+    \item Una entidad bancaria clasifica a sus solicitantes de crédito hipotecario en tres categorías de riesgo: Bajo ($60\%$), Medio ($30\%$) y Alto ($10\%$). La probabilidad histórica de entrar en mora prolongada es del 1\% para la categoría de riesgo bajo, 5\% para riesgo medio y 20\% para riesgo alto. Si un cliente incurre en mora prolongada, determine la probabilidad a posteriori de que pertenezca a la categoría de riesgo alto.
+\end{enumerate}

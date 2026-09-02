@@ -1,0 +1,238 @@
+\chapter{Distribuciones Muestrales e Intervalos de Confianza para la Media}
+\label{cap:muestreo_intervalos}
+
+\section*{Objetivos de Aprendizaje de la Unidad}
+Al finalizar el estudio de esta unidad, el estudiante será capaz de:
+\begin{enumerate}
+    \item Comprender la fundamentación teórica del \textbf{muestreo probabilístico} en auditoría de estados financieros y control de gestión.
+    \item Aplicar el \textbf{Teorema del Límite Central (TLC)} para determinar la distribución probabilística de la media muestral $\bar{X}$.
+    \item Construir e interpretar \textbf{intervalos de confianza} para la media poblacional $\mu$ utilizando la distribución Normal ($Z$) y la distribución $t$ de Student.
+    \item Calcular con rigor técnico el \textbf{tamaño óptimo de muestra ($n$)} requerido para auditorías y estudios económicos, controlando el error muestral y el nivel de confianza.
+\end{enumerate}
+
+\section{Fundamentos de la Inferencia Estadística en Auditoría}
+En la práctica profesional de la contaduría pública y la auditoría, examinar la totalidad de los comprobantes contables de una entidad económica (censo) suele ser inviable debido a restricciones de tiempo, costo y operatividad. Las \textbf{Normas Internacionales de Auditoría (NIA 530 - Muestreo de Auditoría)} exigen que el auditor aplique procedimientos estadísticos rigurosos para extraer conclusiones válidas sobre la población total a partir de una muestra representativa.
+
+\begin{definicion}{Parámetros vs. Estadísticos}
+\begin{itemize}
+    \item \textbf{Población ($N$):} Conjunto completo de todos los elementos, facturas, transacciones o cuentas que son objeto de estudio.
+    \item \textbf{Muestra ($n$):} Subconjunto representativo seleccionado de la población ($n < N$).
+    \item \textbf{Parámetro (Letras Griegas):} Medida cuantitativa que describe a toda la población: Media $\mu$, Desviación Estándar $\sigma$, Proporción $\pi$. Son valores fijos pero generalmente desconocidos.
+    \item \textbf{Estadístico o Estimador (Letras Latinas):} Medida cuantitativa calculada a partir de los datos de la muestra: Media muestral $\bar{X}$, Desviación estándar muestral $S$, Proporción muestral $p$. Son variables aleatorias cuyo valor varía de una muestra a otra.
+\end{itemize}
+\end{definicion}
+
+\section{Distribución Muestral de la Media ($\bar{X}$)}
+Si a partir de una población se extraen todas las muestras posibles de tamaño $n$, cada muestra generará un promedio $\bar{X}$ particular. La distribución de probabilidad formada por todos estos promedios posibles se denomina \textbf{Distribución Muestral de la Media}.
+
+\subsection{Propiedades de la Distribución Muestral}
+\begin{enumerate}
+    \item \textbf{Insesgadez de la Media Muestral:}
+    El valor esperado de todos los promedios muestrales posibles es exactamente igual a la media poblacional $\mu$:
+    \begin{equation}
+        E(\bar{X}) = \mu_{\bar{X}} = \mu
+    \end{equation}
+    
+    \item \textbf{Error Estándar de la Media ($\sigma_{\bar{X}}$):}
+    Mide la dispersión o variabilidad de los promedios muestrales respecto a la media verdadera:
+    \begin{itemize}
+        \item \textbf{Población Infinita o Muestreo con Reemplazo:}
+        \begin{equation}
+            \sigma_{\bar{X}} = \frac{\sigma}{\sqrt{n}}
+        \end{equation}
+        \item \textbf{Población Finita Sin Reemplazo (cuando $n/N > 0.05$):}
+        \begin{equation}
+            \sigma_{\bar{X}} = \frac{\sigma}{\sqrt{n}} \sqrt{\frac{N - n}{N - 1}}
+        \end{equation}
+        donde $\sqrt{\frac{N-n}{N-1}}$ es el \textbf{Factor de Corrección por Población Finita (FCPF)}.
+    \end{itemize}
+\end{enumerate}
+
+\section{El Teorema del Límite Central (TLC)}
+\begin{definicion}{Teorema del Límite Central}
+Al seleccionar muestras aleatorias simples de tamaño $n$ de cualquier población (sin importar si la distribución de origen es simétrica, asimétrica, uniforme o desconocida), a medida que el tamaño de la muestra $n$ aumenta, la distribución muestral de la media $\bar{X}$ se aproxima a una \textbf{Distribución Normal} con media $\mu$ y varianza $\sigma^2 / n$:
+\begin{equation}
+    \bar{X} \xrightarrow{d} N\left( \mu, \, \frac{\sigma^2}{n} \right)
+\end{equation}
+Para propósitos prácticos en administración y contaduría, la aproximación normal es excelente si:
+\begin{equation}
+    n \ge 30
+\end{equation}
+\end{definicion}
+
+\section{Intervalos de Confianza para la Media Poblacional ($\mu$)}
+Una \textbf{estimación puntual} proporciona un único valor numérico para estimar $\mu$, pero no indica el grado de error o precisión. Un \textbf{Intervalo de Confianza} establece un rango numérico $[\text{Límite Inferior}, \text{Límite Superior}]$ dentro del cual se espera encontrar el verdadero parámetro poblacional con un nivel de confianza estipulado $(1 - \alpha)$, donde $\alpha$ es el nivel de significancia o riesgo de error.
+
+\subsection{Niveles de Confianza Comunes y Valores Críticos $Z_{\alpha/2}$}
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+\textbf{Nivel de Confianza ($1 - \alpha$)} & \textbf{Significancia ($\alpha$)} & \textbf{Área en dos colas ($\alpha/2$)} & \textbf{Valor Crítico $Z_{\alpha/2}$} \\
+\midrule
+$90\%$ & $0.10$ & $0.050$ & $1.645$ \\
+$95\%$ & $0.05$ & $0.025$ & $1.960$ \\
+$99\%$ & $0.01$ & $0.005$ & $2.576$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Caso 1: Varianza Poblacional Conocida ($\sigma$) o Muestra Grande ($n \ge 30$)}
+La fórmula general del intervalo de confianza al $(1 - \alpha)\%$ es:
+\begin{equation}
+    \bar{X} \pm Z_{\alpha/2} \cdot \sigma_{\bar{X}} \iff \left[ \bar{X} - Z_{\alpha/2} \frac{\sigma}{\sqrt{n}}, \quad \bar{X} + Z_{\alpha/2} \frac{\sigma}{\sqrt{n}} \right]
+\end{equation}
+Si $\sigma$ es desconocida pero la muestra es grande ($n \ge 30$), por el TLC se sustituye $\sigma$ por la desviación estándar muestral $S$:
+\begin{equation}
+    \bar{X} \pm Z_{\alpha/2} \frac{S}{\sqrt{n}}
+\end{equation}
+
+\begin{ejemplo}{Auditoría de Saldos de Cuentas por Cobrar (Basado en Anderson)}
+Una firma auditora en Santa Cruz revisa los saldos deudores de una empresa comercializadora. A partir de una muestra aleatoria de $n = 64$ cuentas por cobrar, se obtuvo un saldo promedio muestral de $\bar{X} = 3{,}850$ Bs con una desviación estándar muestral de $S = 480$ Bs.
+\begin{enumerate}[label=\alph*)]
+    \item Construya un intervalo de confianza del $95\%$ para el saldo promedio verdadero de todas las cuentas por cobrar de la empresa.
+    \item Construya un intervalo de confianza del $99\%$ para la media poblacional.
+    \item Interprete los resultados desde la perspectiva de auditoría financiera.
+\end{enumerate}
+
+\tcbline
+\textbf{Solución Paso a Paso:}
+Datos: $n = 64 \ge 30$, $\bar{X} = 3{,}850$, $S = 480$.
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Intervalo al $95\%$ de confianza ($Z_{0.025} = 1.96$):}
+    Calculamos el margen de error $E$:
+    \[
+    E = Z_{\alpha/2} \frac{S}{\sqrt{n}} = (1.96) \frac{480}{\sqrt{64}} = 1.96 \cdot \frac{480}{8} = 1.96 \cdot 60 = 117.60 \text{ Bs.}
+    \]
+    Construimos los límites:
+    \[
+    \text{IC}_{95\%} = 3{,}850 \pm 117.60 \implies [3{,}732.40 \text{ Bs}, \quad 3{,}967.60 \text{ Bs}]
+    \]
+    
+    \item \textbf{Intervalo al $99\%$ de confianza ($Z_{0.005} = 2.576$):}
+    \[
+    E = (2.576)(60) = 154.56 \text{ Bs.}
+    \]
+    \[
+    \text{IC}_{99\%} = 3{,}850 \pm 154.56 \implies [3{,}695.44 \text{ Bs}, \quad 4{,}004.56 \text{ Bs}]
+    \]
+    
+    \item \textbf{Interpretación Contable:} Con un 95\% de confianza estadística, el saldo promedio real adeudado por los clientes de la empresa se encuentra entre \textbf{3,732.40 Bs} y \textbf{3,967.60 Bs}. Si la administración reportó en su balance un saldo medio de 3,800 Bs, la auditoría valida que dicha cifra es plenamente razonable y no presenta evidencia de sobreestimación.
+\end{enumerate}
+\end{ejemplo}
+
+\subsection{Caso 2: Varianza Desconocida ($\sigma$) y Muestra Pequeña ($n < 30$)}
+Cuando la población de origen es normal, la desviación estándar poblacional $\sigma$ es desconocida y la muestra es pequeña ($n < 30$), la variable estandarizada no sigue una normal sino una \textbf{Distribución $t$ de Student} con $\nu = n - 1$ grados de libertad:
+\begin{equation}
+    \bar{X} \pm t_{\alpha/2, \, n-1} \frac{S}{\sqrt{n}}
+\end{equation}
+
+\begin{ejemplo}{Auditoría de Costos de Transporte con Muestra Pequeña (Basado en Lind)}
+El auditor de costos de una empresa logística toma una muestra aleatoria de $n = 16$ viajes de transporte de carga pesada hacia la Chiquitanía, obteniendo un costo de combustible promedio de $\bar{X} = 1{,}420$ Bs con $S = 180$ Bs. Suponiendo que los costos tienen distribución normal, construya un intervalo de confianza del $95\%$ para el costo medio poblacional por viaje.
+
+\tcbline
+\textbf{Solución:}
+\begin{enumerate}
+    \item \textbf{Grados de libertad:} $\nu = n - 1 = 16 - 1 = 15$.
+    \item \textbf{Valor crítico $t$:} En la tabla $t$ para $\alpha/2 = 0.025$ y $15$ gl: $t_{0.025, 15} = 2.131$.
+    \item \textbf{Margen de error $E$:}
+    \[
+    E = t_{\alpha/2, n-1} \frac{S}{\sqrt{n}} = (2.131) \frac{180}{\sqrt{16}} = 2.131 \cdot \frac{180}{4} = 2.131 \cdot 45 = 95.90 \text{ Bs.}
+    \]
+    \item \textbf{Intervalo de Confianza:}
+    \[
+    \text{IC}_{95\%} = 1{,}420 \pm 95.90 \implies [1{,}324.10 \text{ Bs}, \quad 1{,}515.90 \text{ Bs}]
+    \]
+\end{enumerate}
+\end{ejemplo}
+
+\section{Determinación del Tamaño de Muestra Necesario ($n$)}
+Uno de los problemas más críticos en la planificación de una auditoría es decidir cuántos elementos deben seleccionarse para garantizar que el margen de error muestral no exceda un límite tolerable $E$ a un nivel de confianza fijado $(1-\alpha)$.
+
+\subsection{Fórmula para Población Infinita o Muy Grande}
+Despejando $n$ de la ecuación del margen de error $E = Z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$:
+\begin{equation}
+    n = \left( \frac{Z_{\alpha/2} \cdot \sigma}{E} \right)^2 = \frac{Z_{\alpha/2}^2 \cdot \sigma^2}{E^2}
+\end{equation}
+
+\subsection{Fórmula para Población Finita ($N$ Conocida)}
+Cuando se conoce el tamaño total de la población $N$:
+\begin{equation}
+    n = \frac{N \cdot Z_{\alpha/2}^2 \cdot \sigma^2}{(N - 1) E^2 + Z_{\alpha/2}^2 \cdot \sigma^2}
+\end{equation}
+
+\begin{ejemplo}{Cálculo de Muestra para Auditoría Fiscal de Inventarios (Basado en Anderson)}
+El socio director de una firma auditora debe planificar la revisión de inventarios de una ferretería industrial que almacena $N = 3{,}500$ ítems distintos. Estudios previos indican que la desviación estándar del valor por ítem es de $\sigma = 250$ Bs. La firma desea estimar el valor medio del inventario con un margen de error máximo admisible de $E = \pm 20$ Bs y un nivel de confianza del $95\%$ ($Z = 1.96$). ¿Cuántos ítems deben auditarse?
+
+\tcbline
+\textbf{Solución:}
+Datos: $N = 3{,}500$, $\sigma = 250$, $E = 20$, $Z = 1.96$.
+\begin{align*}
+    n &= \frac{3{,}500 \cdot (1.96)^2 \cdot (250)^2}{(3{,}500 - 1)(20)^2 + (1.96)^2 (250)^2} \\
+    &= \frac{3{,}500 \cdot 3.8416 \cdot 62{,}500}{3{,}499 \cdot 400 + 3.8416 \cdot 62{,}500} \\
+    &= \frac{840{,}350{,}000}{1{,}399{,}600 + 240{,}100} = \frac{840{,}350{,}000}{1{,}639{,}700} \approx 512.50 \implies \mathbf{513 \text{ ítems.}}
+\end{align*}
+\textbf{Regla Práctica:} En el cálculo de tamaño de muestra, el resultado fraccionario siempre se redondea al entero superior inmediato para garantizar el nivel de confianza exigido.
+\end{ejemplo}
+
+\section{Guía y Resumen de Decisiones Metodológicas}
+\begin{center}
+\begin{tabularx}{\textwidth}{lcccc}
+\toprule
+\textbf{Distribución Poblacional} & \textbf{Tamaño Muestra} & \textbf{Varianza $\sigma^2$} & \textbf{Estadístico} & \textbf{Fórmula del Intervalo} \\
+\midrule
+Cualquiera & Grande ($n \ge 30$) & Conocida & $Z$ & $\bar{X} \pm Z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$ \\
+Cualquiera & Grande ($n \ge 30$) & Desconocida & $Z$ & $\bar{X} \pm Z_{\alpha/2} \frac{S}{\sqrt{n}}$ \\
+Normal & Pequeña ($n < 30$) & Conocida & $Z$ & $\bar{X} \pm Z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$ \\
+Normal & Pequeña ($n < 30$) & Desconocida & $t$ & $\bar{X} \pm t_{\alpha/2, n-1} \frac{S}{\sqrt{n}}$ \\
+No Normal & Pequeña ($n < 30$) & Desconocida & -- & Métodos No Paramétricos \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Formulario Resumen del Capítulo 5}
+\begin{formulario}[Resumen de Fórmulas — Muestreo e Intervalos de Confianza]
+\begin{itemize}
+    \item \textbf{Error Estándar:} $\sigma_{\bar{X}} = \dfrac{\sigma}{\sqrt{n}}$ \quad (con FCPF: $\sigma_{\bar{X}} = \dfrac{\sigma}{\sqrt{n}} \sqrt{\dfrac{N-n}{N-1}}$)
+    \item \textbf{IC con Normal ($Z$):} $\bar{X} \pm Z_{\alpha/2} \dfrac{S}{\sqrt{n}}$
+    \item \textbf{IC con $t$ de Student:} $\bar{X} \pm t_{\alpha/2, n-1} \dfrac{S}{\sqrt{n}}$
+    \item \textbf{Tamaño de Muestra (Infinita):} $n = \left( \dfrac{Z_{\alpha/2} \cdot \sigma}{E} \right)^2$
+    \item \textbf{Tamaño de Muestra (Finita):} $n = \dfrac{N \cdot Z_{\alpha/2}^2 \cdot \sigma^2}{(N-1)E^2 + Z_{\alpha/2}^2 \cdot \sigma^2}$
+\end{itemize}
+\end{formulario}
+
+\section{Ejercicios Propuestos de la Unidad}
+
+\subsection*{Nivel 1: Conceptos Básicos y Distribución Muestral}
+\begin{enumerate}
+    \item Explique la importancia del Teorema del Límite Central en la inferencia estadística aplicada a la auditoría y cuándo no es necesario que la población original sea normal.
+    \item Una población de cuentas por cobrar tiene una media de $\mu = 4{,}200$ Bs y una desviación estándar $\sigma = 800$ Bs. Si se extrae una muestra aleatoria simple de $n = 64$ cuentas:
+    \begin{enumerate}[label=\alph*)]
+        \item Calcule el error estándar de la media muestral $\sigma_{\bar{X}}$.
+        \item ¿Cuál es la probabilidad de que la media muestral esté entre $4{,}000$ Bs y $4{,}400$ Bs?
+        \item ¿Cuál es la probabilidad de que la media muestral supere los $4{,}350$ Bs?
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Nivel 2: Intervalos de Confianza para la Media}
+\begin{enumerate}[resume]
+    \item Una muestra aleatoria de $n = 50$ facturas comerciales en una empresa importadora arrojó un importe medio de $\bar{X} = 820$ Bs con una desviación estándar muestral $S = 140$ Bs.
+    \begin{enumerate}[label=\alph*)]
+        \item Construya e interprete un intervalo de confianza del 95\% para el importe medio de todas las facturas de la empresa.
+        \item Construya un intervalo de confianza del 99\% para la misma media. Compare la amplitud de ambos intervalos y explique la relación entre nivel de confianza y precisión.
+    \end{enumerate}
+    \item Un auditor fiscal desea estimar el tiempo medio que toma la liquidación de trámites aduaneros en la frontera. Selecciona una muestra pequeña de $n = 16$ trámites y obtiene una media muestral $\bar{X} = 32.5$ horas con una desviación estándar muestral $S = 6.4$ horas. Asumiendo que los tiempos se distribuyen normalmente:
+    \begin{enumerate}[label=\alph*)]
+        \item Identifique la distribución apropiada y los grados de libertad.
+        \item Calcule el intervalo de confianza del 95\% para el tiempo medio poblacional.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Nivel 3: Determinación del Tamaño Óptimo de Muestra}
+\begin{enumerate}[resume]
+    \item La gerencia de operaciones de una entidad bancaria desea estimar el tiempo medio de permanencia de los clientes en plataforma de atención con un margen de error máximo admisible de $E = 1.5$ minutos y un nivel de confianza del 99\% ($Z = 2.576$). Si estudios preliminares indican una desviación estándar de $\sigma = 6$ minutos:
+    \begin{enumerate}[label=\alph*)]
+        \item ¿Cuántos clientes deben incluirse en la muestra si la población se considera infinita?
+        \item Si la sucursal atiende a un total conocido de $N = 800$ clientes por día, ¿cuál será el tamaño de muestra ajustado por población finita?
+    \end{enumerate}
+    \item En una auditoría de existencias sobre un inventario de $N = 2{,}500$ repuestos automotrices, se requiere estimar el valor promedio por ítem con un error de estimación no mayor a $\pm 15$ Bs con un 95\% de confianza. La desviación estándar estimada del valor unitario es $\sigma = 120$ Bs. Determine el tamaño de muestra requerido aplicando el Factor de Corrección para Poblaciones Finitas (FCPF).
+\end{enumerate}

@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visor de Auditoría: Banco de Preguntas Unidad 1 | Estadística II (MAT-260)</title>
+    <!-- MathJax 3.0 -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --uagrm-blue: #002b49;
+            --uagrm-accent: #0284c7;
+            --uagrm-red: #b22222;
+            --uagrm-green: #047857;
+            --uagrm-gold: #d97706;
+            --uagrm-bg: #f8fafc;
+            --uagrm-card: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--uagrm-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .visor-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--uagrm-card);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 43, 73, 0.08);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        /* HEADER */
+        .visor-header {
+            background: linear-gradient(135deg, var(--uagrm-blue) 0%, #004b7a 100%);
+            color: #ffffff;
+            padding: 30px;
+            border-bottom: 4px solid var(--uagrm-red);
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 4px 14px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .visor-header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .visor-header h2 {
+            font-size: 15px;
+            color: #bae6fd;
+            font-weight: 400;
+        }
+
+        /* STATS PANEL */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            padding: 20px 30px;
+            background: #f1f5f9;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .stat-card {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 14px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .stat-num {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--uagrm-blue);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* CONTROLS BAR */
+        .controls-bar {
+            padding: 18px 30px;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .filters-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 13.5px;
+            background: #f8fafc;
+            color: var(--text-dark);
+            outline: none;
+        }
+
+        .filter-select:focus {
+            border-color: var(--uagrm-accent);
+        }
+
+        .btn-toggle {
+            background: var(--uagrm-accent);
+            color: #ffffff;
+            border: none;
+            padding: 9px 18px;
+            border-radius: 6px;
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+
+        .btn-toggle:hover {
+            background: #0369a1;
+        }
+
+        /* QUESTIONS LIST */
+        .questions-list {
+            padding: 30px;
+        }
+
+        .q-card {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            padding: 22px;
+            margin-bottom: 22px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            transition: border-color 0.2s;
+        }
+
+        .q-card:hover {
+            border-color: var(--uagrm-accent);
+        }
+
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 10px;
+        }
+
+        .q-badge-type {
+            background: #e0f2fe;
+            color: var(--uagrm-accent);
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 12px;
+            text-transform: uppercase;
+        }
+
+        .q-badge-type.matching {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .q-cat-tag {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .q-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--uagrm-blue);
+            margin-bottom: 10px;
+        }
+
+        .q-text {
+            font-size: 14.5px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        /* MATCHING GRID */
+        .matching-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            background: #f8fafc;
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+            margin-bottom: 15px;
+            font-size: 13.5px;
+        }
+
+        .matching-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .matching-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--uagrm-accent);
+        }
+
+        /* OPTIONS LIST */
+        .opts-grid {
+            list-style: none;
+            margin: 12px 0 16px 0;
+        }
+
+        .opt-row {
+            padding: 8px 12px;
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            margin-bottom: 6px;
+            font-size: 13.5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .opt-row.is-correct {
+            background: #ecfdf5;
+            border-color: #a7f3d0;
+            color: #065f46;
+            font-weight: 600;
+        }
+
+        /* FEEDBACK CARD */
+        .fb-card {
+            display: none;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-left: 4px solid var(--uagrm-green);
+            padding: 12px 16px;
+            border-radius: 0 6px 6px 0;
+            font-size: 13px;
+            color: #166534;
+            margin-top: 12px;
+        }
+
+        .fb-card.show {
+            display: block;
+        }
+
+        /* FOOTER */
+        .visor-footer {
+            background: #f1f5f9;
+            padding: 20px 30px;
+            text-align: center;
+            border-top: 1px solid var(--border-light);
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+<div class="visor-container">
+    <!-- HEADER -->
+    <header class="visor-header">
+        <div class="header-badge">HERRAMIENTA DE AUDITORÍA DOCENTE • UAGRM</div>
+        <h1>Visor del Banco de Preguntas: Unidad 1 - Análisis Combinatorio</h1>
+        <h2>Estadística II (MAT-260) • Docente Titular: <strong>MSc. Anselmo Salguero Arano</strong></h2>
+    </header>
+
+    <!-- STATS -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-num" id="statTotal">54</div>
+            <div class="stat-label">Total Preguntas</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">4</div>
+            <div class="stat-label">Lecciones / Categorías</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">12</div>
+            <div class="stat-label">Emparejamiento (Matching)</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">42</div>
+            <div class="stat-label">Selección Múltiple</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num" style="color: var(--uagrm-green);">100%</div>
+            <div class="stat-label">Validadas MathJax</div>
+        </div>
+    </div>
+
+    <!-- CONTROLS -->
+    <div class="controls-bar">
+        <div class="filters-group">
+            <select class="filter-select" id="filterCategory" onchange="applyFilters()">
+                <option value="all">Todas las Categorías</option>
+                <option value="Leccion_1_1">Lección 1.1: Principios Conteo y Factoriales</option>
+                <option value="Leccion_1_2">Lección 1.2: Permutaciones Simples y Circulares</option>
+                <option value="Leccion_1_3">Lección 1.3: Permutaciones con Repetición</option>
+                <option value="Leccion_1_4">Lección 1.4: Combinaciones y Decisión</option>
+            </select>
+
+            <select class="filter-select" id="filterType" onchange="applyFilters()">
+                <option value="all">Todos los Tipos</option>
+                <option value="matching">Emparejamiento (Matching)</option>
+                <option value="multichoice">Selección Múltiple</option>
+            </select>
+        </div>
+
+        <button class="btn-toggle" id="btnToggleAll" onclick="toggleAllAnswers()">
+            👁️ Mostrar Soluciones y Retroalimentaciones
+        </button>
+    </div>
+
+    <!-- QUESTIONS LIST -->
+    <div class="questions-list" id="questionsContainer">
+
+        <div class="q-card" data-category="Leccion_1_1_Principios_Conteo_Factoriales" data-type="matching">
+            <div class="q-header">
+                <span class="q-badge-type matching">#1 • Emparejamiento</span>
+                <span class="q-cat-tag">📂 Leccion_1_1_Principios_Conteo_Factoriales</span>
+            </div>
+            <div class="q-title">U1_L1_MATCH_01_Propiedades_Factorial</div>
+            <div class="q-text"><p><strong>Relacione cada expresión factorial con su resultado numérico exacto:</strong></p></div>
+            <div class="matching-grid">
+                <div class="matching-item"><span class="matching-dot"></span> <strong>\(0!\)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">1</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>\(4!\)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">24</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>\(5!\)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">120</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>\(6! / 4!\)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">30</span></div>
+            </div>
+            <div class="fb-card"><p><strong>💡 Retroalimentación Formativa:</strong> Cada relación se fundamenta en las identidades algebraicas y principios de conteo formal de la unidad.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_1_Principios_Conteo_Factoriales" data-type="matching">
+            <div class="q-header">
+                <span class="q-badge-type matching">#2 • Emparejamiento</span>
+                <span class="q-cat-tag">📂 Leccion_1_1_Principios_Conteo_Factoriales</span>
+            </div>
+            <div class="q-title">U1_L1_MATCH_02_Principio_Multiplicativo</div>
+            <div class="q-text"><p><strong>Asocie cada experimento compuesto con el número total de resultados posibles en su espacio muestral:</strong></p></div>
+            <div class="matching-grid">
+                <div class="matching-item"><span class="matching-dot"></span> <strong>Lanzar 2 monedas consecutivas (\(2 \times 2\))</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">4 resultados</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>Lanzar 1 dado de 6 caras y 1 moneda (\(6 \times 2\))</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">12 resultados</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>Lanzar 2 dados de 6 caras (\(6 \times 6\))</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">36 resultados</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>Lanzar 3 monedas simultáneas (\(2^3\))</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">8 resultados</span></div>
+            </div>
+            <div class="fb-card"><p><strong>💡 Retroalimentación Formativa:</strong> Cada relación se fundamenta en las identidades algebraicas y principios de conteo formal de la unidad.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_1_Principios_Conteo_Factoriales" data-type="matching">
+            <div class="q-header">
+                <span class="q-badge-type matching">#3 • Emparejamiento</span>
+                <span class="q-cat-tag">📂 Leccion_1_1_Principios_Conteo_Factoriales</span>
+            </div>
+            <div class="q-title">U1_L1_MATCH_03_Simplificacion_Factoriales</div>
+            <div class="q-text"><p><strong>Relacione la fracción algebraica con su valor numérico simplificado:</strong></p></div>
+            <div class="matching-grid">
+                <div class="matching-item"><span class="matching-dot"></span> <strong>\(\frac{8!}{7!}\)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">8</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>\(\frac{7!}{5!}\)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">42</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>\(\frac{6!}{3! \times 3!}\)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">20</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>\(\frac{9!}{8! \times 0!}\)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">9</span></div>
+            </div>
+            <div class="fb-card"><p><strong>💡 Retroalimentación Formativa:</strong> Cada relación se fundamenta en las identidades algebraicas y principios de conteo formal de la unidad.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_1_Principios_Conteo_Factoriales" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#4 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_1_Principios_Conteo_Factoriales</span>
+            </div>
+            <div class="q-title">U1_L1_MC_01_Claves_Acceso_ERP</div>
+            <div class="q-text"><p>Una empresa diseña códigos de seguridad para transferencias interbancarias. Cada clave consta de 3 letras mayúsculas distintas elegidas de un conjunto de 5 (A, B, C, D, E) seguidas de 2 dígitos distintos (del 1 al 9). ¿Cuántos códigos de seguridad diferentes pueden crearse?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(4.320\) códigos</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(8.100\) códigos</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(1.440\) códigos</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(2.160\) códigos</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! Por el principio multiplicativo sin repetición: (5 × 4 × 3) × (9 × 8) = 60 × 72 = 4.320 códigos únicos.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_1_Principios_Conteo_Factoriales" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#5 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_1_Principios_Conteo_Factoriales</span>
+            </div>
+            <div class="q-title">U1_L1_MC_02_Itinerario_Viaje_Auditoria</div>
+            <div class="q-text"><p>Un equipo de fiscalización debe viajar de Santa Cruz a Sucre. Puede trasladarse por vía aérea (2 aerolíneas con 3 vuelos diarios cada una) O por vía terrestre (3 empresas de transporte con 4 salidas diarias cada una). ¿De cuántas maneras diferentes puede programar su viaje de ida?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(18\) maneras distintas</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(72\) maneras distintas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(12\) maneras distintas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(24\) maneras distintas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Excelente! Vía aérea: 2 × 3 = 6. Vía terrestre: 3 × 4 = 12. Como son excluyentes (aire O tierra): 6 + 12 = 18 maneras.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_1_Principios_Conteo_Factoriales" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#6 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_1_Principios_Conteo_Factoriales</span>
+            </div>
+            <div class="q-title">U1_L1_MC_03_Ecuacion_Factorial</div>
+            <div class="q-text"><p>En la calibración de un modelo probabilístico se requiere resolver la ecuación factorial: \(\frac{(n+1)!}{(n-1)!} = 30\). ¿Cuál es el valor entero positivo de \(n\)?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(n = 5\)</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(n = 6\)</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(n = 4\)</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(n = 3\)</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! Descomponiendo: (n+1)n = 30 → n² + n - 30 = 0 → (n+6)(n-5) = 0 → n = 5.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_1_Principios_Conteo_Factoriales" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#7 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_1_Principios_Conteo_Factoriales</span>
+            </div>
+            <div class="q-title">U1_L1_MC_04_Placas_Vehiculos</div>
+            <div class="q-text"><p>El sistema municipal de registro emite placas de vehículos formadas por 4 dígitos (del 0 al 9) seguidos de 3 letras (de 26). Si el primer dígito no puede ser cero (0) y las letras no pueden repetirse, ¿cuántas placas se pueden emitir?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(140.400.000\) placas</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(156.000.000\) placas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(158.184.000\) placas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(112.320.000\) placas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Exacto! Dígitos: 9 × 10 × 10 × 10 = 9.000. Letras sin repetición: 26 × 25 × 24 = 15.600. Total = 9.000 × 15.600 = 140.400.000.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_1_Principios_Conteo_Factoriales" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#8 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_1_Principios_Conteo_Factoriales</span>
+            </div>
+            <div class="q-title">U1_L1_MC_05_Fraccion_Combinatoria</div>
+            <div class="q-text"><p>Calcular el valor numérico exacto de la expresión factorial: \(M = \frac{12! \times 3!}{10! \times 5!}\).</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(6.6\) (o \(\frac{33}{5}\))</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(13.2\)</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(3.3\)</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(8.0\)</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! 12!/10! = 132. 3!/5! = 1/20. M = 132 / 20 = 33/5 = 6.6.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_1_Principios_Conteo_Factoriales" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#9 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_1_Principios_Conteo_Factoriales</span>
+            </div>
+            <div class="q-title">U1_L1_MC_06_Menu_Restaurante</div>
+            <div class="q-text"><p>Un restaurante empresarial ofrece un almuerzo ejecutivo que consta de: 1 entrada (entre 4 opciones), 1 plato fuerte (entre 5 opciones), 1 postre (entre 3 opciones) y 1 bebida (entre 2 opciones). ¿Cuántos menús diferentes puede armar un comensal?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(120\) menús</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(14\) menús</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(60\) menús</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(240\) menús</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! Principio Multiplicativo: 4 × 5 × 3 × 2 = 120 menús diferentes.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_1_Principios_Conteo_Factoriales" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#10 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_1_Principios_Conteo_Factoriales</span>
+            </div>
+            <div class="q-title">U1_L1_MC_07_Examen_Opcion_Multiple</div>
+            <div class="q-text"><p>Un cuestionario diagnóstico consta de 6 preguntas de opción múltiple, cada una con 4 alternativas de respuesta y solo una correcta. ¿De cuántas formas distintas puede un estudiante responder todo el cuestionario?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(4.096\) formas (\(4^6\))</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(24\) formas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(1.296\) formas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(720\) formas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! En cada una de las 6 preguntas hay 4 opciones independientes: 4 × 4 × 4 × 4 × 4 × 4 = 4⁶ = 4.096 formas.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_1_Principios_Conteo_Factoriales" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#11 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_1_Principios_Conteo_Factoriales</span>
+            </div>
+            <div class="q-title">U1_L1_MC_08_Factorial_Cero</div>
+            <div class="q-text"><p>¿Cuál es la justificación matemática y combinatoria por la cual se define universalmente que \(0! = 1\)?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> Porque existe exactamente 1 manera de ordenar un conjunto vacío (no hacer nada), y para mantener la coherencia de la fórmula recursiva \(n! = n \times (n-1)!\)</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> Porque todo número multiplicado por cero da uno</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> Porque el cero no se puede dividir entre ningún número</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> Es un axioma empírico sin fundamento algebraico</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Excelente! Si n=1, 1! = 1 × 0!, obligando a que 0! = 1. Combinatoriamente, hay 1 solo arreglo del conjunto vacío.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_1_Principios_Conteo_Factoriales" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#12 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_1_Principios_Conteo_Factoriales</span>
+            </div>
+            <div class="q-title">U1_L1_MC_09_Eventos_Excluyentes_vs_NoExcluyentes</div>
+            <div class="q-text"><p>En el marco teórico de Lind y Anderson, ¿cuál de los siguientes pares de eventos en una empresa corresponde a <strong>Eventos Mutuamente Excluyentes</strong>?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> Un ejercicio fiscal que cierra con Utilidad Neta frente a un ejercicio que cierra con Pérdida Neta</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> Un profesional que es Auditor y al mismo tiempo ejerce como Docente universitario</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> Una empresa con deudas fiscales y deudas bancarias al mismo tiempo</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> Un cliente que compra al contado y además adquiere un seguro comercial</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! Una empresa no puede tener simultáneamente utilidad neta y pérdida neta en el mismo periodo contable.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_1_Principios_Conteo_Factoriales" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#13 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_1_Principios_Conteo_Factoriales</span>
+            </div>
+            <div class="q-title">U1_L1_MC_10_Arbol_Decisiones_Inversion</div>
+            <div class="q-text"><p>Un analista financiero evalúa 3 proyectos de inversión consecutivos. Para cada proyecto hay 3 posibles dictámenes técnicos (Favorable, Neutro o Desfavorable). ¿Cuántas trayectorias o ramas completas tiene el árbol de decisiones?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(27\) ramas (\(3^3\))</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(9\) ramas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(6\) ramas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(81\) ramas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! Por el principio multiplicativo: 3 × 3 × 3 = 3³ = 27 trayectorias posibles.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_1_Principios_Conteo_Factoriales" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#14 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_1_Principios_Conteo_Factoriales</span>
+            </div>
+            <div class="q-title">U1_L1_MC_11_Simplificacion_Cuadratica_Factorial</div>
+            <div class="q-text"><p>Simplifique la expresión algebraica: \(E = \frac{n!}{(n-2)!}\).</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(n(n-1) = n^2 - n\)</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(n^2\)</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(n-1\)</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(\frac{n}{n-2}\)</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! n! = n(n-1)(n-2)!. Al dividir entre (n-2)!, se cancela el término común y queda n(n-1) = n² - n.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_1_Principios_Conteo_Factoriales" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#15 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_1_Principios_Conteo_Factoriales</span>
+            </div>
+            <div class="q-title">U1_L1_MC_12_Rutas_Suma_y_Producto</div>
+            <div class="q-text"><p>Para viajar de la ciudad A a la ciudad C pasando obligatoriamente por B hay: 3 líneas de tren de A a B y 2 buses de B a C. Alternativamente, existe 1 vuelo directo de A a C sin escalas. ¿De cuántas formas totales puede realizarse el viaje de A a C?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(7\) formas</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(6\) formas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(12\) formas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(5\) formas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Exacto! Vía intermedia B: 3 × 2 = 6. Vía directa: 1. Como son excluyentes: 6 + 1 = 7 formas de viaje.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_1_Principios_Conteo_Factoriales" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#16 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_1_Principios_Conteo_Factoriales</span>
+            </div>
+            <div class="q-title">U1_L1_MC_13_Suma_Factoriales_Consecutivos</div>
+            <div class="q-text"><p>¿A qué expresión simplificada equivale la suma de factoriales consecutivos: \(S = n! + (n+1)!\)?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(n!(n+2)\)</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \((2n+1)!\)</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \((n+1)!(n)\)</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(2n!\)</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! Factorizando: n! + (n+1)n! = n![1 + (n+1)] = n!(n+2).</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_2_Permutaciones_Simples_Circulares" data-type="matching">
+            <div class="q-header">
+                <span class="q-badge-type matching">#17 • Emparejamiento</span>
+                <span class="q-cat-tag">📂 Leccion_1_2_Permutaciones_Simples_Circulares</span>
+            </div>
+            <div class="q-title">U1_L2_MATCH_01_Formulas_Permutaciones</div>
+            <div class="q-text"><p><strong>Relacione el tipo de permutación con su fórmula matemática correspondiente:</strong></p></div>
+            <div class="matching-grid">
+                <div class="matching-item"><span class="matching-dot"></span> <strong>Permutación simple de \(n\) objetos</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">P_n = n!</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>Permutaciones de \(n\) tomados de \(r\) a la vez (\(nPr\))</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">n! / (n-r)!</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>Permutaciones circulares de \(n\) personas</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">P'_n = (n-1)!</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>Permutación de 1 objeto</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">1</span></div>
+            </div>
+            <div class="fb-card"><p><strong>💡 Retroalimentación Formativa:</strong> Cada relación se fundamenta en las identidades algebraicas y principios de conteo formal de la unidad.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_2_Permutaciones_Simples_Circulares" data-type="matching">
+            <div class="q-header">
+                <span class="q-badge-type matching">#18 • Emparejamiento</span>
+                <span class="q-cat-tag">📂 Leccion_1_2_Permutaciones_Simples_Circulares</span>
+            </div>
+            <div class="q-title">U1_L2_MATCH_02_Calculo_nPr</div>
+            <div class="q-text"><p><strong>Asocie cada expresión \(nPr\) con su valor numérico exacto:</strong></p></div>
+            <div class="matching-grid">
+                <div class="matching-item"><span class="matching-dot"></span> <strong>\({_5 P_2}\)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">20</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>\({_6 P_3}\)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">120</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>\({_7 P_2}\)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">42</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>\({_4 P_4}\)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">24</span></div>
+            </div>
+            <div class="fb-card"><p><strong>💡 Retroalimentación Formativa:</strong> Cada relación se fundamenta en las identidades algebraicas y principios de conteo formal de la unidad.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_2_Permutaciones_Simples_Circulares" data-type="matching">
+            <div class="q-header">
+                <span class="q-badge-type matching">#19 • Emparejamiento</span>
+                <span class="q-cat-tag">📂 Leccion_1_2_Permutaciones_Simples_Circulares</span>
+            </div>
+            <div class="q-title">U1_L2_MATCH_03_Permutaciones_Circulares</div>
+            <div class="q-text"><p><strong>Relacione el número de personas sentadas en una mesa redonda con sus arreglos circulares:</strong></p></div>
+            <div class="matching-grid">
+                <div class="matching-item"><span class="matching-dot"></span> <strong>4 personas en mesa redonda (\((4-1)!\))</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">6 formas</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>5 personas en mesa redonda (\((5-1)!\))</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">24 formas</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>6 personas en mesa redonda (\((6-1)!\))</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">120 formas</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>7 personas en mesa redonda (\((7-1)!\))</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">720 formas</span></div>
+            </div>
+            <div class="fb-card"><p><strong>💡 Retroalimentación Formativa:</strong> Cada relación se fundamenta en las identidades algebraicas y principios de conteo formal de la unidad.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_2_Permutaciones_Simples_Circulares" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#20 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_2_Permutaciones_Simples_Circulares</span>
+            </div>
+            <div class="q-title">U1_L2_MC_01_Asientos_Pares_Impares</div>
+            <div class="q-text"><p>Se deben sentar 5 hombres y 4 mujeres en una fila de 9 asientos de tal manera que las mujeres ocupen siempre los lugares pares (posiciones 2, 4, 6 y 8). ¿De cuántas maneras diferentes pueden sentarse?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(2.880\) maneras</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(362.880\) maneras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(1.440\) maneras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(5.760\) maneras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! Mujeres en pares: 4! = 24. Hombres en impares: 5! = 120. Total = 24 × 120 = 2.880 maneras.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_2_Permutaciones_Simples_Circulares" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#21 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_2_Permutaciones_Simples_Circulares</span>
+            </div>
+            <div class="q-title">U1_L2_MC_02_Mesa_Redonda_Trio_Fijo</div>
+            <div class="q-text"><p>Un Director Financiero y 6 gerentes de área (7 personas en total) se reúnen en una mesa circular. Si el Director Financiero debe sentarse siempre entre el Gerente de Operaciones y el Gerente de Marketing, ¿cuántas disposiciones de asiento son posibles?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(48\) disposiciones</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(120\) disposiciones</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(720\) disposiciones</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(24\) disposiciones</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Exacto! El trío forma 1 bloque con 2 ordenamientos. Con los otros 4 gerentes son 5 elementos en círculo: P'₅ × 2! = (5-1)! × 2 = 24 × 2 = 48.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_2_Permutaciones_Simples_Circulares" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#22 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_2_Permutaciones_Simples_Circulares</span>
+            </div>
+            <div class="q-title">U1_L2_MC_03_Palabra_Contable_Extremos_Fijos</div>
+            <div class="q-text"><p>Con todas las letras de la palabra CONTABLE (8 letras distintas), ¿cuántas palabras de 8 letras se pueden formar que comiencen con la letra 'C' y terminen con la letra 'E'?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(720\) palabras</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(40.320\) palabras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(5.040\) palabras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(1.440\) palabras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! Fijando 'C' y 'E' en los extremos, se permutan las 6 letras intermedias: P₆ = 6! = 720 palabras.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_2_Permutaciones_Simples_Circulares" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#23 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_2_Permutaciones_Simples_Circulares</span>
+            </div>
+            <div class="q-title">U1_L2_MC_04_Asignacion_Ciudades_Auditoria</div>
+            <div class="q-text"><p>De un grupo de 9 auditores seniors, se deben asignar 4 de ellos a 4 proyectos distintos en diferentes ciudades (La Paz, Cochabamba, Sucre y Tarija). ¿De cuántas formas se puede realizar la asignación?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(3.024\) formas</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(126\) formas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(15.120\) formas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(504\) formas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Excelente! El orden importa: ₉P₄ = 9! / (9-4)! = 9! / 5! = 9 × 8 × 7 × 6 = 3.024 formas.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_2_Permutaciones_Simples_Circulares" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#24 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_2_Permutaciones_Simples_Circulares</span>
+            </div>
+            <div class="q-title">U1_L2_MC_05_Fila_Ninos_Juntos</div>
+            <div class="q-text"><p>Una fila de 6 niños está formada frente a un aula. Si 2 niños específicos (Mateo y Sofía) insisten en estar siempre juntos, ¿de cuántas maneras diferentes puede formarse toda la fila?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(240\) maneras</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(720\) maneras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(120\) maneras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(480\) maneras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! El bloque [Mateo, Sofía] es 1 elemento. Con los otros 4 niños son 5 elementos (5! = 120). Por permutación interna (2! = 2): 120 × 2 = 240 maneras.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_2_Permutaciones_Simples_Circulares" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#25 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_2_Permutaciones_Simples_Circulares</span>
+            </div>
+            <div class="q-title">U1_L2_MC_06_Podio_Carrera_Empresarial</div>
+            <div class="q-text"><p>En una maratón corporativa participan 12 empresas. ¿De cuántas formas distintas pueden definirse las posiciones de 1° lugar (Oro), 2° lugar (Plata) y 3° lugar (Bronce)?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(1.320\) formas</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(220\) formas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(1.728\) formas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(792\) formas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! Variaciones de 12 en 3: ₁₂P₃ = 12 × 11 × 10 = 1.320 formas.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_2_Permutaciones_Simples_Circulares" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#26 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_2_Permutaciones_Simples_Circulares</span>
+            </div>
+            <div class="q-title">U1_L2_MC_07_Estante_Libros_Colores</div>
+            <div class="q-text"><p>En un estante se deben ordenar 5 libros de Estadística y 3 libros de Auditoría (los 8 libros son de títulos distintos). Si todos los libros de Estadística deben estar juntos y todos los libros de Auditoría también juntos, ¿cuántas ordenaciones existen?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(1.440\) ordenaciones</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(720\) ordenaciones</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(40.320\) ordenaciones</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(2.880\) ordenaciones</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Excelente! Hay 2 bloques [Estadística] y [Auditoría] que se permutan de 2! = 2 formas. Internas: 5! = 120 y 3! = 6. Total = 2 × 120 × 6 = 1.440 ordenaciones.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_2_Permutaciones_Simples_Circulares" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#27 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_2_Permutaciones_Simples_Circulares</span>
+            </div>
+            <div class="q-title">U1_L2_MC_08_Mesa_Redonda_Libre</div>
+            <div class="q-text"><p>Una junta de accionistas de 8 personas se sienta en una mesa circular para debatir el plan operativo. ¿De cuántas maneras diferentes pueden disponerse sus asientos?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(5.040\) maneras (\((8-1)! = 7!\))</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(40.320\) maneras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(720\) maneras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(2.520\) maneras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! En una mesa circular: P'₈ = (8-1)! = 7! = 5.040 maneras.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_2_Permutaciones_Simples_Circulares" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#28 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_2_Permutaciones_Simples_Circulares</span>
+            </div>
+            <div class="q-title">U1_L2_MC_09_Arreglo_Letras_ABCD</div>
+            <div class="q-text"><p>A partir del conjunto de 4 letras {A, B, C, D}, ¿cuántos arreglos ordenados de 2 letras distintas se pueden formar?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(12\) arreglos (\({_4 P_2}\))</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(6\) arreglos</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(16\) arreglos</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(24\) arreglos</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! ₄P₂ = 4! / (4-2)! = 4 × 3 = 12 arreglos (AB, BA, AC, CA, AD, DA, BC, CB, BD, DB, CD, DC).</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_2_Permutaciones_Simples_Circulares" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#29 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_2_Permutaciones_Simples_Circulares</span>
+            </div>
+            <div class="q-title">U1_L2_MC_10_Turnos_Guardia_Nocturna</div>
+            <div class="q-text"><p>En una empresa de seguridad hay 7 supervisores disponibles. Se deben programar 3 turnos distintos (Primer turno, Segundo turno y Tercer turno). ¿De cuántas formas puede estructurarse el rol de turnos?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(210\) formas (\({_7 P_3}\))</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(35\) formas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(343\) formas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(42\) formas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Exacto! Como los turnos son horarios diferenciados, el orden es determinante: ₇P₃ = 7 × 6 × 5 = 210 formas.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_2_Permutaciones_Simples_Circulares" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#30 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_2_Permutaciones_Simples_Circulares</span>
+            </div>
+            <div class="q-title">U1_L2_MC_11_Permutacion_Total_Nueve</div>
+            <div class="q-text"><p>¿De cuántas maneras pueden alinearse 9 ejecutivos de una corporación frente a una cámara para la fotografía institucional anual?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(362.880\) maneras (\(9!\))</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(40.320\) maneras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(720\) maneras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(181.440\) maneras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! P₉ = 9! = 362.880 maneras de alineación lineal.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_2_Permutaciones_Simples_Circulares" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#31 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_2_Permutaciones_Simples_Circulares</span>
+            </div>
+            <div class="q-title">U1_L2_MC_12_Mesa_Redonda_Pareja_Enfrente</div>
+            <div class="q-text"><p>En una mesa redonda de 6 asientos se sientan 6 directores. Si 2 directores clave deben sentarse exactamente uno enfrente del otro, ¿cuántas distribuciones de asiento son posibles?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(24\) distribuciones (\(4!\))</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(120\) distribuciones</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(48\) distribuciones</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(12\) distribuciones</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! Fijando la posición relativa de los dos directores opuestos como eje, los 4 asientos restantes se permutan linealmente: 4! = 24 distribuciones.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_2_Permutaciones_Simples_Circulares" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#32 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_2_Permutaciones_Simples_Circulares</span>
+            </div>
+            <div class="q-title">U1_L2_MC_13_Permutacion_n_Objetos_n_a_la_Vez</div>
+            <div class="q-text"><p>Demuestre que la fórmula general \(nPr = \frac{n!}{(n-r)!}\) coincide exactamente con la permutación simple \(P_n = n!\) cuando se toman todos los elementos (\(r = n\)):</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> Al evaluar \(r = n\), se obtiene \(nPn = \frac{n!}{(n-n)!} = \frac{n!}{0!} = \frac{n!}{1} = n! = P_n\)</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> Coincide porque (n-n)! = 0 y al dividir entre 0 se anula el denominador</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> Solo coincide para números pares de elementos</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> Es una aproximación asintótica para muestras grandes</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Excelente demostración! Gracias a la convención formal 0! = 1, la fórmula nPr es universalmente consistente para cualquier r ≤ n.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_3_Permutaciones_Con_Repeticion" data-type="matching">
+            <div class="q-header">
+                <span class="q-badge-type matching">#33 • Emparejamiento</span>
+                <span class="q-cat-tag">📂 Leccion_1_3_Permutaciones_Con_Repeticion</span>
+            </div>
+            <div class="q-title">U1_L3_MATCH_01_Anagramas_Repetidos</div>
+            <div class="q-text"><p><strong>Relacione cada palabra con la cantidad de anagramas distintos que se pueden formar con todas sus letras:</strong></p></div>
+            <div class="matching-grid">
+                <div class="matching-item"><span class="matching-dot"></span> <strong>Palabra 'MAMA' (\(4! / (2! \times 2!)\))</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">6 palabras</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>Palabra 'BANANA' (\(6! / (3! \times 2!)\))</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">60 palabras</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>Palabra 'ESTADISTICA' (11 letras: S(2), T(2), A(2), I(2))</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">2.494.800 palabras</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>Palabra 'AUDITOR' (7 letras distintas)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">5.040 palabras</span></div>
+            </div>
+            <div class="fb-card"><p><strong>💡 Retroalimentación Formativa:</strong> Cada relación se fundamenta en las identidades algebraicas y principios de conteo formal de la unidad.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_3_Permutaciones_Con_Repeticion" data-type="matching">
+            <div class="q-header">
+                <span class="q-badge-type matching">#34 • Emparejamiento</span>
+                <span class="q-cat-tag">📂 Leccion_1_3_Permutaciones_Con_Repeticion</span>
+            </div>
+            <div class="q-title">U1_L3_MATCH_02_Senales_Banderas</div>
+            <div class="q-text"><p><strong>Asocie la composición de banderas con las señales visuales posibles en un mástil:</strong></p></div>
+            <div class="matching-grid">
+                <div class="matching-item"><span class="matching-dot"></span> <strong>3 rojas y 2 blancas (\(5! / (3! \times 2!)\))</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">10 señales</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>4 azules y 2 amarillas (\(6! / (4! \times 2!)\))</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">15 señales</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>2 rojas, 2 verdes y 2 azules (\(6! / (2! \times 2! \times 2!)\))</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">90 señales</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>5 banderas de colores todos distintos</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">120 señales</span></div>
+            </div>
+            <div class="fb-card"><p><strong>💡 Retroalimentación Formativa:</strong> Cada relación se fundamenta en las identidades algebraicas y principios de conteo formal de la unidad.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_3_Permutaciones_Con_Repeticion" data-type="matching">
+            <div class="q-header">
+                <span class="q-badge-type matching">#35 • Emparejamiento</span>
+                <span class="q-cat-tag">📂 Leccion_1_3_Permutaciones_Con_Repeticion</span>
+            </div>
+            <div class="q-title">U1_L3_MATCH_03_Metodo_Complemento_Filas</div>
+            <div class="q-text"><p><strong>Relacione las condiciones de separación en fila con sus formas de alineación:</strong></p></div>
+            <div class="matching-grid">
+                <div class="matching-item"><span class="matching-dot"></span> <strong>5 personas con 2 separadas (\(120 - 48\))</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">72 maneras</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>6 personas con 2 separadas (\(720 - 240\))</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">480 maneras</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>7 personas con 2 separadas (\(5.040 - 1.440\))</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">3.600 maneras</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>4 personas con 2 separadas (\(24 - 12\))</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">12 maneras</span></div>
+            </div>
+            <div class="fb-card"><p><strong>💡 Retroalimentación Formativa:</strong> Cada relación se fundamenta en las identidades algebraicas y principios de conteo formal de la unidad.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_3_Permutaciones_Con_Repeticion" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#36 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_3_Permutaciones_Con_Repeticion</span>
+            </div>
+            <div class="q-title">U1_L3_MC_01_Anagramas_Contabilidad</div>
+            <div class="q-text"><p>La palabra CONTABILIDAD cuenta con 12 letras en total, con las siguientes repeticiones: C(1), O(1), N(1), T(1), A(2), B(1), I(2), L(1), D(2). ¿Cuántas palabras distintas de 12 letras se pueden formar?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(59.875.200\) palabras</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(479.001.600\) palabras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(119.750.400\) palabras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(29.937.600\) palabras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Exacto! PR₁₂^(2, 2, 2) = 12! / (2! × 2! × 2!) = 479.001.600 / 8 = 59.875.200 palabras.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_3_Permutaciones_Con_Repeticion" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#37 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_3_Permutaciones_Con_Repeticion</span>
+            </div>
+            <div class="q-title">U1_L3_MC_02_Multiples_Bloques_Especialidad</div>
+            <div class="q-text"><p>En una fila de 9 asientos se ubican: 4 auditores financieros, 3 tributarios y 2 de sistemas. Si los miembros de cada especialidad deben sentarse siempre juntos entre sí, ¿cuántas distribuciones diferentes existen?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(1.728\) distribuciones</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(288\) distribuciones</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(362.880\) distribuciones</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(864\) distribuciones</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Excelente! Permutación de los 3 bloques = 3! = 6. Permutaciones internas: Financieros (4! = 24), Tributarios (3! = 6), Sistemas (2! = 2). Total = 6 × (24 × 6 × 2) = 6 × 288 = 1.728.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_3_Permutaciones_Con_Repeticion" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#38 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_3_Permutaciones_Con_Repeticion</span>
+            </div>
+            <div class="q-title">U1_L3_MC_03_Rutas_Distribucion_Cuadricula</div>
+            <div class="q-text"><p>Un camión de reparto debe trasladarse desde el almacén central hasta una sucursal ubicada a 4 cuadras al Este y 3 cuadras al Norte. Si en cada esquina solo puede avanzar hacia el Este o hacia el Norte, ¿cuántas rutas mínimas de 7 cuadras existen?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(35\) rutas mínimas</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(21\) rutas mínimas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(120\) rutas mínimas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(70\) rutas mínimas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! PR₇^(4, 3) = 7! / (4! × 3!) = (7 × 6 × 5) / 6 = 35 rutas.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_3_Permutaciones_Con_Repeticion" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#39 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_3_Permutaciones_Con_Repeticion</span>
+            </div>
+            <div class="q-title">U1_L3_MC_04_Fila_Tres_Docentes_Juntos</div>
+            <div class="q-text"><p>En un acto académico se sientan en fila 8 personas: 3 docentes universitarios y 5 estudiantes. Si los 3 docentes deben ubicarse siempre juntos, ¿de cuántas formas pueden alinearse?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(4.320\) formas</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(720\) formas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(40.320\) formas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(2.160\) formas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Exacto! El bloque de docentes cuenta como 1 elemento. Con los 5 estudiantes son 6 elementos en fila (6! = 720). Permutación interna de los 3 docentes (3! = 6). Total = 720 × 6 = 4.320 formas.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_3_Permutaciones_Con_Repeticion" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#40 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_3_Permutaciones_Con_Repeticion</span>
+            </div>
+            <div class="q-title">U1_L3_MC_05_Codigos_Binarios_Bits</div>
+            <div class="q-text"><p>Un sistema de control de acceso emite fichas magnéticas codificadas mediante una secuencia de 8 bits compuesta exactamente por 5 unos ('1') y 3 ceros ('0'). ¿Cuántos códigos de acceso distintos se pueden generar?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(56\) códigos</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(256\) códigos</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(28\) códigos</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(120\) códigos</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! PR₈^(5, 3) = 8! / (5! × 3!) = (8 × 7 × 6) / 6 = 56 códigos de acceso únicos.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_3_Permutaciones_Con_Repeticion" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#41 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_3_Permutaciones_Con_Repeticion</span>
+            </div>
+            <div class="q-title">U1_L3_MC_06_Estante_Carpetas_Colores</div>
+            <div class="q-text"><p>En el archivo central se ordenan 8 carpetas: 4 rojas de auditoría, 2 verdes tributarias y 2 amarillas de presupuestos (las carpetas del mismo color son indistinguibles). ¿Cuántas secuencias visuales de archivo se pueden presentar?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(420\) secuencias</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(840\) secuencias</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(1.680\) secuencias</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(5.040\) secuencias</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! PR₈^(4, 2, 2) = 8! / (4! × 2! × 2!) = 40.320 / (24 × 2 × 2) = 40.320 / 96 = 420 secuencias.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_3_Permutaciones_Con_Repeticion" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#42 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_3_Permutaciones_Con_Repeticion</span>
+            </div>
+            <div class="q-title">U1_L3_MC_07_Fila_Auditores_Separados</div>
+            <div class="q-text"><p>En una fila de 7 profesionales contables, dos auditores específicos (Mario y Laura) no pueden sentarse juntos bajo ninguna circunstancia. ¿Cuántas disposiciones de asiento cumplen esta condición?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(3.600\) disposiciones</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(1.440\) disposiciones</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(2.520\) disposiciones</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(4.320\) disposiciones</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Excelente! Total libre = 7! = 5.040. Estando juntos = 6! × 2! = 1.440. Por complemento: 5.040 - 1.440 = 3.600 disposiciones.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_3_Permutaciones_Con_Repeticion" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#43 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_3_Permutaciones_Con_Repeticion</span>
+            </div>
+            <div class="q-title">U1_L3_MC_08_Palabra_MATEMATICA_Anagramas</div>
+            <div class="q-text"><p>Calcule el número total de anagramas distintos que pueden formarse con todas las letras de la palabra MATEMATICA (10 letras: M(2), A(3), T(2), E(1), I(1), C(1)):</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(151.200\) palabras</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(302.400\) palabras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(604.800\) palabras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(75.600\) palabras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! PR₁₀^(2, 3, 2, 1, 1, 1) = 10! / (2! × 3! × 2!) = 3.628.800 / (2 × 6 × 2) = 3.628.800 / 24 = 151.200 palabras.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_3_Permutaciones_Con_Repeticion" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#44 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_3_Permutaciones_Con_Repeticion</span>
+            </div>
+            <div class="q-title">U1_L3_MC_09_Secuencia_Inspeccion_Calidad</div>
+            <div class="q-text"><p>En un lote de control de calidad se evalúan 10 artículos, de los cuales 7 son de Primera Calidad (A), 2 de Segunda Calidad (B) y 1 es Defectuoso (C). ¿Cuántas secuencias de inspección distintas se pueden registrar?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(360\) secuencias</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(720\) secuencias</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(180\) secuencias</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(90\) secuencias</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Exacto! PR₁₀^(7, 2, 1) = 10! / (7! × 2! × 1!) = (10 × 9 × 8) / 2 = 720 / 2 = 360 secuencias.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_3_Permutaciones_Con_Repeticion" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#45 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_3_Permutaciones_Con_Repeticion</span>
+            </div>
+            <div class="q-title">U1_L3_MC_10_Fila_Extremos_Fijos_Repeticion</div>
+            <div class="q-text"><p>Con 2 fichas rojas (R), 3 fichas verdes (V) y 2 fichas azules (A), ¿cuántas filas de 7 fichas pueden formarse tales que la primera ficha sea Roja (R) y la última sea Azul (A)?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(20\) filas</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(210\) filas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(60\) filas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(10\) filas</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! Al fijar una R al inicio y una A al final, quedan 5 fichas intermedias: 1 Roja, 3 Verdes y 1 Azul. PR₅^(1, 3, 1) = 5! / (1! × 3! × 1!) = 120 / 6 = 20 filas.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_4_Combinaciones_y_Diferenciacion" data-type="matching">
+            <div class="q-header">
+                <span class="q-badge-type matching">#46 • Emparejamiento</span>
+                <span class="q-cat-tag">📂 Leccion_1_4_Combinaciones_y_Diferenciacion</span>
+            </div>
+            <div class="q-title">U1_L4_MATCH_01_Calculo_nCr</div>
+            <div class="q-text"><p><strong>Asocie cada expresión binomial con su valor numérico exacto:</strong></p></div>
+            <div class="matching-grid">
+                <div class="matching-item"><span class="matching-dot"></span> <strong>\(\binom{6}{2}\)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">15</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>\(\binom{8}{3}\)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">56</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>\(\binom{10}{2}\)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">45</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>\(\binom{7}{0}\)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">1</span></div>
+            </div>
+            <div class="fb-card"><p><strong>💡 Retroalimentación Formativa:</strong> Cada relación se fundamenta en las identidades algebraicas y principios de conteo formal de la unidad.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_4_Combinaciones_y_Diferenciacion" data-type="matching">
+            <div class="q-header">
+                <span class="q-badge-type matching">#47 • Emparejamiento</span>
+                <span class="q-cat-tag">📂 Leccion_1_4_Combinaciones_y_Diferenciacion</span>
+            </div>
+            <div class="q-title">U1_L4_MATCH_02_Simetria_Binomial</div>
+            <div class="q-text"><p><strong>Relacione cada combinación con su combinación complementaria idéntica por propiedad de simetría:</strong></p></div>
+            <div class="matching-grid">
+                <div class="matching-item"><span class="matching-dot"></span> <strong>\(\binom{12}{10}\)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">Combinación (12, 2) = 66</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>\(\binom{15}{14}\)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">Combinación (15, 1) = 15</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>\(\binom{9}{7}\)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">Combinación (9, 2) = 36</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>\(\binom{20}{19}\)</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">Combinación (20, 1) = 20</span></div>
+            </div>
+            <div class="fb-card"><p><strong>💡 Retroalimentación Formativa:</strong> Cada relación se fundamenta en las identidades algebraicas y principios de conteo formal de la unidad.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_4_Combinaciones_y_Diferenciacion" data-type="matching">
+            <div class="q-header">
+                <span class="q-badge-type matching">#48 • Emparejamiento</span>
+                <span class="q-cat-tag">📂 Leccion_1_4_Combinaciones_y_Diferenciacion</span>
+            </div>
+            <div class="q-title">U1_L4_MATCH_03_Matriz_Decision</div>
+            <div class="q-text"><p><strong>Identifique el modelo matemático aplicable para cada situación práctica:</strong></p></div>
+            <div class="matching-grid">
+                <div class="matching-item"><span class="matching-dot"></span> <strong>Elegir Presidente, Secretario y Tesorero de 10 personas</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">Permutación (10P3)</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>Elegir una comisión fiscalizadora de 3 miembros de 10 personas</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">Combinación (10C3)</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>Crear un código PIN secreto de 4 dígitos</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">Principio Multiplicativo</span></div>
+                <div class="matching-item"><span class="matching-dot"></span> <strong>Ordenar 7 libros de colores en un estante</strong> ➔ <span style="color: var(--uagrm-accent); font-weight: 600;">Permutación Simple (P7)</span></div>
+            </div>
+            <div class="fb-card"><p><strong>💡 Retroalimentación Formativa:</strong> Cada relación se fundamenta en las identidades algebraicas y principios de conteo formal de la unidad.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_4_Combinaciones_y_Diferenciacion" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#49 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_4_Combinaciones_y_Diferenciacion</span>
+            </div>
+            <div class="q-title">U1_L4_MC_01_Muestreo_Al_Menos_Uno</div>
+            <div class="q-text"><p>Un auditor fiscaliza un lote de 10 declaraciones juradas, de las cuales 3 presentan observaciones y 7 están conformes. Si extrae una muestra aleatoria de 3 declaraciones, ¿cuántas muestras contienen al menos una declaración con observaciones?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(85\) muestras</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(120\) muestras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(35\) muestras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(63\) muestras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Excelente! Muestras totales = ₁₀C₃ = 120. Muestras sin ninguna observación (solo conformes) = ₇C₃ = 35. Por complemento: 120 - 35 = 85 muestras contienen al menos una con error.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_4_Combinaciones_y_Diferenciacion" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#50 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_4_Combinaciones_y_Diferenciacion</span>
+            </div>
+            <div class="q-title">U1_L4_MC_02_Comite_Cuota_Genero</div>
+            <div class="q-text"><p>En una corporación hay 8 ejecutivos varones y 6 ejecutivas mujeres. Se debe conformar un comité asesor de 5 miembros integrado por 3 varones y 2 mujeres. ¿De cuántas maneras diferentes se puede constituir el comité?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(840\) comités</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(2.002\) comités</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(71\) comités</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(420\) comités</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! Selección de varones: ₈C₃ = 56. Selección de mujeres: ₆C₂ = 15. Por principio multiplicativo: 56 × 15 = 840 comités posibles.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_4_Combinaciones_y_Diferenciacion" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#51 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_4_Combinaciones_y_Diferenciacion</span>
+            </div>
+            <div class="q-title">U1_L4_MC_03_Baraja_Tres_Ases</div>
+            <div class="q-text"><p>De una baraja estándar de 52 cartas, ¿cuántas manos no ordenadas de 5 cartas se pueden recibir que contengan exactamente 3 Ases (de los 4 existentes en la baraja) y 2 cartas que no sean Ases?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(4.512\) manos</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(2.598.960\) manos</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(1.128\) manos</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(9.024\) manos</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Exacto! Selección de Ases: ₄C₃ = 4. Selección de no-Ases (de las 48 restantes): ₄₈C₂ = (48 × 47) / 2 = 1.128. Total = 4 × 1.128 = 4.512 manos.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_4_Combinaciones_y_Diferenciacion" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#52 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_4_Combinaciones_y_Diferenciacion</span>
+            </div>
+            <div class="q-title">U1_L4_MC_04_Diagonales_Poligono</div>
+            <div class="q-text"><p>En geometría y análisis de redes de comunicación, el número de segmentos que unen n vértices es \(\binom{n}{2}\). Si se restan los n lados, se obtienen las diagonales. ¿Cuántas diagonales tiene un polígono regular de 10 lados (decágono)?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(35\) diagonales</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(45\) diagonales</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(25\) diagonales</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(90\) diagonales</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! Total de segmentos entre 10 vértices = ₁₀C₂ = (10 × 9)/2 = 45. Restando los 10 lados del perímetro: 45 - 10 = 35 diagonales.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_4_Combinaciones_y_Diferenciacion" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#53 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_4_Combinaciones_y_Diferenciacion</span>
+            </div>
+            <div class="q-title">U1_L4_MC_05_Proyectos_Inversion</div>
+            <div class="q-text"><p>Una junta directiva tiene 7 proyectos de inversión preseleccionados. Si el presupuesto disponible permite financiar un máximo de 2 proyectos (pudiendo financiar 0, 1 o 2 proyectos), ¿de cuántas maneras puede decidirse la asignación de recursos?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(29\) maneras</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(21\) maneras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(28\) maneras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(42\) maneras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Excelente! Financiar 0 proyectos: ₇C₀ = 1. Financiar 1 proyecto: ₇C₁ = 7. Financiar 2 proyectos: ₇C₂ = 21. Total = 1 + 7 + 21 = 29 maneras.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_4_Combinaciones_y_Diferenciacion" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#54 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_4_Combinaciones_y_Diferenciacion</span>
+            </div>
+            <div class="q-title">U1_L4_MC_06_Muestreo_Cuentas_Cobrar</div>
+            <div class="q-text"><p>Para una auditoría externa de cuentas por cobrar, se deben seleccionar 5 clientes al azar de una cartera de 12 clientes significativos. ¿Cuántas muestras de auditoría diferentes es posible constituir?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(792\) muestras</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(95.040\) muestras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(330\) muestras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(1.584\) muestras</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! Combinación de 12 en 5: ₁₂C₅ = 12! / (5! × 7!) = (12 × 11 × 10 × 9 × 8) / (5 × 4 × 3 × 2 × 1) = 95.040 / 120 = 792 muestras.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_4_Combinaciones_y_Diferenciacion" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#55 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_4_Combinaciones_y_Diferenciacion</span>
+            </div>
+            <div class="q-title">U1_L4_MC_07_Tribunal_Defensa_Grado</div>
+            <div class="q-text"><p>En una carrera universitaria hay 10 docentes disponibles. Para una defensa de grado se debe conformar un tribunal examinador de 3 docentes (donde todos tienen el mismo rango y voto deliberativo). ¿De cuántas formas puede designarse el tribunal?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(120\) tribunales</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(720\) tribunales</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(30\) tribunales</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(240\) tribunales</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Excelente! Como todos los miembros tienen igual rango, no importa el orden: ₁₀C₃ = (10 × 9 × 8) / (3 × 2 × 1) = 720 / 6 = 120 tribunales.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_4_Combinaciones_y_Diferenciacion" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#56 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_4_Combinaciones_y_Diferenciacion</span>
+            </div>
+            <div class="q-title">U1_L4_MC_08_Comisiones_Con_Exclusion_Mutua</div>
+            <div class="q-text"><p>De un grupo de 8 profesionales, dos de ellos (Pedro y Juan) se niegan a trabajar juntos en el mismo comité. Si se debe elegir un comité de 4 personas, ¿cuántos comités son posibles?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(55\) comités</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(70\) comités</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(15\) comités</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(35\) comités</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! Total libre: ₈C₄ = 70. Comités donde ambos están juntos: ₆C₂ = 15. Resta complementaria: 70 - 15 = 55 comités donde no coinciden.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_4_Combinaciones_y_Diferenciacion" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#57 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_4_Combinaciones_y_Diferenciacion</span>
+            </div>
+            <div class="q-title">U1_L4_MC_09_Subconjuntos_Conjunto_Potencia</div>
+            <div class="q-text"><p>En teoría de conjuntos y muestreo aleatorio, la suma de todas las combinaciones posibles de un conjunto de n elementos es \(\sum_{r=0}^n \binom{n}{r} = 2^n\). Si un portafolio contiene 6 activos financieros, ¿cuántos subportafolios no vacíos se pueden conformar?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(63\) subportafolios (\(2^6 - 1\))</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(64\) subportafolios</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(32\) subportafolios</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(36\) subportafolios</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Exacto! El conjunto potencia tiene 2⁶ = 64 subconjuntos. Descontando el conjunto vacío (financiar 0 activos): 64 - 1 = 63 subportafolios activos.</p></div>
+        </div>
+
+        <div class="q-card" data-category="Leccion_1_4_Combinaciones_y_Diferenciacion" data-type="multichoice">
+            <div class="q-header">
+                <span class="q-badge-type multichoice">#58 • Selección Múltiple</span>
+                <span class="q-cat-tag">📂 Leccion_1_4_Combinaciones_y_Diferenciacion</span>
+            </div>
+            <div class="q-title">U1_L4_MC_10_Simetria_Identidad_Pascal</div>
+            <div class="q-text"><p>Aplicando la propiedad de simetría binomial \(\binom{n}{r} = \binom{n}{n-r}\), ¿a qué valor es idéntico \(\binom{18}{16}\)?</p></div>
+            <ul class="opts-grid">
+                <li class="opt-row is-correct"><span><strong>A)</strong> \(\binom{18}{2} = 153\)</span> <span style="font-size: 12px; font-weight: 600;">✅ (Correcta)</span></li>
+                <li class="opt-row "><span><strong>B)</strong> \(\binom{18}{1} = 18\)</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>C)</strong> \(306\)</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+                <li class="opt-row "><span><strong>D)</strong> \(288\)</span> <span style="font-size: 12px; font-weight: 600;">❌</span></li>
+            </ul>
+            <div class="fb-card"><p><strong>💡 Justificación y Retroalimentación:</strong> ¡Correcto! ₁₈C₁₆ = ₁₈C₍₁₈₋₁₆₎ = ₁₈C₂ = (18 × 17) / 2 = 153.</p></div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="visor-footer">
+        <strong>Universidad Autónoma Gabriel René Moreno (UAGRM)</strong> • Facultad de Ciencias Contables<br>
+        Docente Titular: <strong>MSc. Anselmo Salguero Arano</strong> • Herramienta de Auditoría de Bancos XML
+    </footer>
+</div>
+
+<script>
+    let showAnswers = false;
+
+    function toggleAllAnswers() {
+        showAnswers = !showAnswers;
+        const fbCards = document.querySelectorAll('.fb-card');
+        fbCards.forEach(fb => {
+            if (showAnswers) {
+                fb.classList.add('show');
+            } else {
+                fb.classList.remove('show');
+            }
+        });
+
+        const btn = document.getElementById('btnToggleAll');
+        if (showAnswers) {
+            btn.innerText = '🙈 Ocultar Soluciones y Retroalimentaciones';
+            btn.style.background = '#047857';
+        } else {
+            btn.innerText = '👁️ Mostrar Soluciones y Retroalimentaciones';
+            btn.style.background = 'var(--uagrm-accent)';
+        }
+    }
+
+    function applyFilters() {
+        const catFilter = document.getElementById('filterCategory').value;
+        const typeFilter = document.getElementById('filterType').value;
+        const cards = document.querySelectorAll('.q-card');
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+            const cat = card.getAttribute('data-category');
+            const type = card.getAttribute('data-type');
+
+            const matchCat = (catFilter === 'all') || (cat.includes(catFilter));
+            const matchType = (typeFilter === 'all') || (type === typeFilter);
+
+            if (matchCat && matchType) {
+                card.style.display = 'block';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        document.getElementById('statTotal').innerText = visibleCount;
+        if (window.MathJax) {
+            MathJax.typesetPromise();
+        }
+    }
+</script>
+
+</body>
+</html>

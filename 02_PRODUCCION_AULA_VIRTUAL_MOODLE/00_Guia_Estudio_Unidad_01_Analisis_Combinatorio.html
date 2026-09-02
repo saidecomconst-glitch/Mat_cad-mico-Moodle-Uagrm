@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Estudio: Unidad 1 - Análisis Combinatorio | Estadística II</title>
+    <!-- MathJax para renderizado matemático -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --uagrm-blue: #002b49;
+            --uagrm-accent: #0284c7;
+            --uagrm-red: #b22222;
+            --uagrm-green: #047857;
+            --uagrm-gold: #d97706;
+            --uagrm-bg: #f8fafc;
+            --uagrm-card: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--uagrm-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--uagrm-card);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 43, 73, 0.08);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        /* HEADER INSTITUCIONAL */
+        .header-banner {
+            background: linear-gradient(135deg, var(--uagrm-blue) 0%, #004b7a 100%);
+            color: #ffffff;
+            padding: 35px 30px;
+            text-align: center;
+            position: relative;
+            border-bottom: 5px solid var(--uagrm-red);
+        }
+
+        .header-banner h1 {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .header-banner h2 {
+            font-size: 18px;
+            font-weight: 400;
+            color: #e0f2fe;
+            margin-bottom: 12px;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .docente-tag {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #bae6fd;
+            font-weight: 500;
+        }
+
+        /* CONTENIDO */
+        .content {
+            padding: 35px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--uagrm-blue);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--border-light);
+            padding-bottom: 8px;
+        }
+
+        .section-title span {
+            background: var(--uagrm-accent);
+            color: #ffffff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .intro-box {
+            background: #f0f9ff;
+            border-left: 5px solid var(--uagrm-accent);
+            padding: 18px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 30px;
+            font-size: 15px;
+            color: #0369a1;
+        }
+
+        /* COMPETENCIAS */
+        .grid-competencias {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+            margin-bottom: 35px;
+        }
+
+        .comp-card {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .comp-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            border-color: var(--uagrm-accent);
+        }
+
+        .comp-card h4 {
+            color: var(--uagrm-blue);
+            font-size: 15px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .comp-card p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+        }
+
+        /* RUTA SECUENCIAL */
+        .timeline {
+            position: relative;
+            margin: 25px 0 35px 20px;
+            padding-left: 25px;
+            border-left: 3px solid #cbd5e1;
+        }
+
+        .timeline-step {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .timeline-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -34px;
+            top: 2px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--uagrm-accent);
+            border: 3px solid #ffffff;
+            box-shadow: 0 0 0 2px var(--uagrm-accent);
+        }
+
+        .timeline-dot.eval {
+            background: var(--uagrm-red);
+            box-shadow: 0 0 0 2px var(--uagrm-red);
+        }
+
+        .timeline-content {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 14px 18px;
+        }
+
+        .timeline-content h5 {
+            font-size: 15px;
+            color: var(--uagrm-blue);
+            margin-bottom: 4px;
+        }
+
+        .timeline-content p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .tag-formativo {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0284c7;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .tag-sumativo {
+            display: inline-block;
+            background: #fee2e2;
+            color: #b91c1c;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        /* TABLA DE EVALUACIÓN */
+        .eval-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 35px 0;
+            font-size: 14px;
+        }
+
+        .eval-table th {
+            background: var(--uagrm-blue);
+            color: #ffffff;
+            text-align: left;
+            padding: 12px 16px;
+            font-weight: 600;
+        }
+
+        .eval-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .eval-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .badge-pct {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .badge-70 {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .badge-30 {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .badge-0 {
+            background: #e0f2fe;
+            color: #0369a1;
+        }
+
+        /* DIRECTRICES IMPORTANTES */
+        .alert-card {
+            background: #fffbeb;
+            border: 1px solid #fef3c7;
+            border-left: 5px solid var(--uagrm-gold);
+            padding: 18px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #92400e;
+        }
+
+        .alert-card ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .alert-card li {
+            margin-bottom: 6px;
+        }
+
+        /* FOOTER */
+        .footer-card {
+            background: #f1f5f9;
+            padding: 20px 30px;
+            text-align: center;
+            border-top: 1px solid var(--border-light);
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer-card strong {
+            color: var(--uagrm-blue);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- HEADER -->
+    <header class="header-banner">
+        <div class="header-badge">ESTADÍSTICA II (MAT-260) • UAGRM</div>
+        <h1 style="margin-top: 12px;">Unidad N° 1: Análisis Combinatorio y Métodos de Conteo</h1>
+        <h2>Fundamento Cuantitativo de la Teoría de Probabilidades y la Inferencia Estadística</h2>
+        <div class="docente-tag">Docente: <strong>MSc. Anselmo Salguero Arano</strong></div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="content">
+        <!-- INTRODUCCIÓN -->
+        <div class="intro-box">
+            <strong>Bienvenido(a) a la Unidad 1:</strong> El análisis combinatorio es la disciplina matemática encargada de estudiar los diversos arreglos, agrupaciones y ordenamientos posibles dentro de conjuntos de elementos. Constituye el pilar indispensable para cuantificar el espacio muestral y calcular probabilidades exactas aplicadas a la toma de decisiones empresariales, auditoría, sistemas de control y finanzas.
+        </div>
+
+        <!-- COMPETENCIAS ESPECÍFICAS -->
+        <h3 class="section-title"><span>1</span> Competencias de Aprendizaje a Desarrollar</h3>
+        <div class="grid-competencias">
+            <div class="comp-card">
+                <h4>📐 1. Principios Fundamentales</h4>
+                <p>Identificar y aplicar correctamente las reglas de la multiplicación (eventos secuenciales) y de la adición (eventos mutuamente excluyentes) en problemas organizacionales.</p>
+            </div>
+            <div class="comp-card">
+                <h4>🔢 2. Álgebra de Factoriales</h4>
+                <p>Dominar la función factorial \(n!\), su convención \(0! = 1\) y simplificar expresiones analíticas de cálculo combinatorio sin desbordamiento aritmético.</p>
+            </div>
+            <div class="comp-card">
+                <h4>🔄 3. Permutaciones y Variaciones</h4>
+                <p>Diferenciar y resolver problemas donde el orden es determinante: permutaciones lineales \(P_n\), variaciones \(nPr\), elementos con repetición y permutaciones circulares \(P'_n\).</p>
+            </div>
+            <div class="comp-card">
+                <h4>🎯 4. Combinaciones y Muestreo</h4>
+                <p>Calcular combinaciones simples \(nCr\), aplicar propiedades binomiales de simetría y seleccionar muestras aleatorias para comités de fiscalización y auditoría.</p>
+            </div>
+        </div>
+
+        <!-- RUTA DE APRENDIZAJE SECUENCIAL -->
+        <h3 class="section-title"><span>2</span> Ruta de Aprendizaje y Restricciones Secuenciales</h3>
+        <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">
+            Para garantizar un aprendizaje progresivo y libre de lagunas conceptuales, las actividades de esta unidad están enlazadas mediante una <strong>cadena de acceso secuencial obligatorio</strong>:
+        </p>
+
+        <div class="timeline">
+            <div class="timeline-step">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h5>0.0 Guía de Estudio de la Unidad 1 (Este recurso)</h5>
+                    <p>Lectura del marco general, competencias y reglas del módulo. <em>Condición: Ver para completar.</em></p>
+                    <span class="tag-formativo">Formativo • Requisito Inicial</span>
+                </div>
+            </div>
+
+            <div class="timeline-step">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h5>Lección 1.1: Principios Fundamentales de Conteo y Factoriales</h5>
+                    <p>Multiplicación, adición, factorial y simplificación. 13 páginas interactivas (10 ejercicios de avance).</p>
+                    <span class="tag-formativo">Formativo • 13 Páginas (3 intentos)</span>
+                </div>
+            </div>
+
+            <div class="timeline-step">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h5>Lección 1.2: Permutaciones Simples, Variaciones (\(nPr\)) y Circulares</h5>
+                    <p>Ordenamientos lineales, subgrupos \(nPr\) y mesas de directorio circulares \(P'_n = (n-1)!\).</p>
+                    <span class="tag-formativo">Formativo • 13 Páginas (3 intentos)</span>
+                </div>
+            </div>
+
+            <div class="timeline-step">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h5>Lección 1.3: Permutaciones con Elementos Repetidos e Indistinguibles</h5>
+                    <p>Fórmulas de repetición \(PR_n\), filas con restricciones y método de bloques indivisibles.</p>
+                    <span class="tag-formativo">Formativo • 13 Páginas (3 intentos)</span>
+                </div>
+            </div>
+
+            <div class="timeline-step">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h5>Lección 1.4: Combinaciones (\(nCr\)), Propiedades y Criterios de Decisión</h5>
+                    <p>Muestreo sin importar el orden, regla de la simetría y matriz de decisión <em>¿Importa el orden?</em>.</p>
+                    <span class="tag-formativo">Formativo • 13 Páginas (3 intentos)</span>
+                </div>
+            </div>
+
+            <div class="timeline-step">
+                <div class="timeline-dot eval"></div>
+                <div class="timeline-content" style="border-color: #fecaca; background: #fffafb;">
+                    <h5 style="color: var(--uagrm-red);">Práctico Evaluativo Online Unidad 1 (Cuestionario Moodle)</h5>
+                    <p>Evaluación cuantitativa aleatoria del banco de preguntas. <strong>2 intentos permitidos</strong> con retroalimentación.</p>
+                    <span class="tag-sumativo">Sumativo • 70% de la Unidad</span>
+                </div>
+            </div>
+
+            <div class="timeline-step">
+                <div class="timeline-dot eval"></div>
+                <div class="timeline-content" style="border-color: #fecaca; background: #fffafb;">
+                    <h5 style="color: var(--uagrm-red);">Envío de Memoria de Cálculo Manuscrita en PDF</h5>
+                    <p>Desarrollo a mano en hojas membretadas con justificación analítica completa, evaluado con Rúbrica Analítica.</p>
+                    <span class="tag-sumativo">Sumativo • 30% de la Unidad</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ESQUEMA DE CALIFICACIÓN -->
+        <h3 class="section-title"><span>3</span> Estructura y Ponderación del Libro de Calificaciones</h3>
+        <table class="eval-table">
+            <thead>
+                <tr>
+                    <th>Actividad / Componente</th>
+                    <th>Tipo en Moodle</th>
+                    <th>Intentos / Acceso</th>
+                    <th>Puntaje</th>
+                    <th>Ponderación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Lecciones Interactivas 1.1, 1.2, 1.3 y 1.4</strong></td>
+                    <td><code>mod_lesson</code></td>
+                    <td>Hasta 3 intentos por pregunta</td>
+                    <td>0.0 pts</td>
+                    <td><span class="badge-pct badge-0">Formativo</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Práctico Evaluativo Unidad 1 (Online)</strong></td>
+                    <td><code>mod_quiz</code></td>
+                    <td>2 intentos con revisión</td>
+                    <td>70.0 pts</td>
+                    <td><span class="badge-pct badge-70">70%</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Envío de Memoria de Cálculo Manuscrita (PDF)</strong></td>
+                    <td><code>mod_assign</code></td>
+                    <td>1 envío único calificado con Rúbrica</td>
+                    <td>30.0 pts</td>
+                    <td><span class="badge-pct badge-30">30%</span></td>
+                </tr>
+                <tr style="background: #f1f5f9; font-weight: 700;">
+                    <td colspan="3"><strong>TOTAL UNIDAD N° 1 (Ponderada al 20% del Semestre)</strong></td>
+                    <td><strong>100.0 pts</strong></td>
+                    <td><strong>100%</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- DIRECTRICES DE PRESENTACIÓN -->
+        <div class="alert-card">
+            <strong>📋 Directrices Obligatorias para la Memoria de Cálculo en PDF:</strong>
+            <ul>
+                <li><strong>Membrete Oficial:</strong> Primera página manuscrita con datos institucionales (UAGRM, Facultad, MAT-260, Grupo, Nombre Completo y N° de Registro).</li>
+                <li><strong>Rigor Metodológico:</strong> Escribir siempre la fórmula algebraica literal antes del reemplazo numérico y destacar la respuesta final en un recuadro.</li>
+                <li><strong>Digitalización Nítida:</strong> Un único archivo PDF vertical, iluminado y nombrado: <code>EST2_U1_Apellido_Nombre_Registro.pdf</code>.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer-card">
+        <strong>Universidad Autónoma Gabriel René Moreno (UAGRM)</strong><br>
+        Facultad de Ciencias Contables, Auditoría, Sistemas de Control de Gestión y Finanzas<br>
+        Docente: <strong>MSc. Anselmo Salguero Arano</strong> • Semestre Académico 2026
+    </footer>
+</div>
+
+</body>
+</html>

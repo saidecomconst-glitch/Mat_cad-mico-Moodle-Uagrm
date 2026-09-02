@@ -1,0 +1,294 @@
+\chapter{Análisis Combinatorio y Métodos de Conteo}
+\label{cap:analisis_combinatorio}
+
+\section*{Objetivos de Aprendizaje de la Unidad}
+Al finalizar el estudio de esta unidad, el estudiante de Contaduría Pública será capaz de:
+\begin{enumerate}
+    \item Identificar y aplicar correctamente el \textbf{Principio Fundamental del Conteo} (reglas de la multiplicación y de la adición) en problemas de decisión empresarial.
+    \item Diferenciar con claridad cuándo un problema requiere el cálculo de \textbf{Permutaciones} (donde el orden de asignación es determinante) o de \textbf{Combinaciones} (donde únicamente interesa la conformación del grupo).
+    \item Resolver problemas complejos de muestreo para auditoría, asignación de puestos directivos, codificación de cuentas contables y seguridad informática.
+    \item Manejar con destreza el álgebra de factoriales para simplificar expresiones analíticas.
+\end{enumerate}
+
+\section{Introducción e Importancia en las Ciencias Contables y Económicas}
+El análisis combinatorio es la rama de las matemáticas que estudia las diversas formas en que se pueden agrupar, ordenar y seleccionar los elementos de uno o varios conjuntos. En la administración de empresas, la auditoría y las finanzas modernas, el proceso de conteo sistemático es la piedra angular sobre la cual se construye la \textbf{Teoría de Probabilidades}.
+
+Cuando un auditor financiero necesita determinar cuántas muestras distintas de facturas puede extraer de un lote de 5,000 comprobantes, o cuando un departamento de sistemas debe estimar la robustez de las claves de acceso al sistema contable institucional, el conteo directo uno a uno resulta impráctico e ineficiente. El análisis combinatorio provee las herramientas analíticas para cuantificar todas las posibilidades de manera exacta y rápida.
+
+\section{Principios Fundamentales del Conteo}
+
+\subsection{Principio de la Multiplicación (Regla del Producto)}
+\begin{definicion}{Principio Fundamental de la Multiplicación}
+Si un experimento, procedimiento o proceso de decisión consta de $k$ etapas sucesivas, donde la primera etapa puede realizarse de $n_1$ maneras diferentes, la segunda etapa puede realizarse de $n_2$ maneras diferentes (independientemente de cómo se haya realizado la primera), y así sucesivamente hasta la $k$-ésima etapa con $n_k$ maneras, entonces el número total de formas posibles en que puede ejecutarse todo el procedimiento conjunto es:
+\begin{equation}
+    N = n_1 \cdot n_2 \cdot n_3 \dotsm n_k
+\end{equation}
+\end{definicion}
+
+\begin{ejemplo}{Diseño de Códigos de Cuentas Contables (Basado en Anderson)}
+El departamento de contabilidad de una corporación comercial en Santa Cruz está estructurando un nuevo catálogo de cuentas contables para sus activos fijos. La codificación interna consta de tres partes consecutivas:
+\begin{itemize}
+    \item \textbf{Parte 1 (Categoría):} Una letra del alfabeto (de entre 5 categorías posibles: A, B, C, D, E).
+    \item \textbf{Parte 2 (Sucursal):} Un dígito numérico del 1 al 4 (que identifica una de las 4 sucursales operativas).
+    \item \textbf{Parte 3 (Identificador del Activo):} Dos dígitos numéricos del 0 al 9, donde se permite la repetición de dígitos.
+\end{itemize}
+¿Cuántos códigos de activos fijos distintos se pueden generar bajo este esquema?
+
+\tcbline
+\textbf{Solución Paso a Paso:}
+\begin{enumerate}
+    \item \textbf{Etapa 1 (Categoría):} Hay $n_1 = 5$ opciones de letras.
+    \item \textbf{Etapa 2 (Sucursal):} Hay $n_2 = 4$ opciones de dígitos.
+    \item \textbf{Etapa 3 (Primer dígito del activo):} Hay $n_3 = 10$ opciones ($0, 1, \dots, 9$).
+    \item \textbf{Etapa 4 (Segundo dígito del activo):} Hay $n_4 = 10$ opciones ($0, 1, \dots, 9$).
+\end{enumerate}
+Aplicando el Principio de la Multiplicación:
+\[
+N = n_1 \cdot n_2 \cdot n_3 \cdot n_4 = 5 \cdot 4 \cdot 10 \cdot 10 = 2{,}000 \text{ códigos diferentes.}
+\]
+\textbf{Interpretación Contable:} El sistema permite registrar hasta 2,000 activos individuales sin riesgo de duplicidad de códigos.
+\end{ejemplo}
+
+\subsection{Principio de la Adición (Regla de la Suma)}
+\begin{definicion}{Principio de la Adición para Eventos Mutuamente Excluyentes}
+Si una tarea o elección puede realizarse mediante la opción $A$ de $n$ maneras diferentes, o mediante la opción alternativa $B$ de $m$ maneras diferentes, y ambas opciones son \textbf{mutuamente excluyentes} (es decir, no pueden ejecutarse simultáneamente en el mismo intento), entonces el número total de formas en que puede cumplirse la tarea es:
+\begin{equation}
+    N = n + m
+\end{equation}
+En general, para $k$ alternativas mutuamente excluyentes:
+\begin{equation}
+    N = n_1 + n_2 + \dots + n_k
+\end{equation}
+\end{definicion}
+
+\begin{ejemplo}{Selección de Proveedor de Software de Auditoría (Basado en Lind)}
+Una firma de auditoría en Bolivia desea adquirir una licencia de software para la gestión de papeles de trabajo. Puede optar por proveedores nacionales, que ofrecen 3 soluciones certificadas, o por proveedores internacionales que ofrecen 5 soluciones homologadas. Si la firma únicamente adquirirá un solo paquete de software, ¿de cuántas formas puede tomar su decisión de compra?
+
+\tcbline
+\textbf{Solución:}
+Puesto que la adquisición de un software nacional excluye la compra simultánea de uno internacional en esta decisión:
+\[
+N = n_{\text{nacionales}} + n_{\text{internacionales}} = 3 + 5 = 8 \text{ opciones disponibles.}
+\]
+\end{ejemplo}
+
+\section{Factorial de un Número y sus Propiedades}
+\begin{definicion}{Factorial de un Entero Positivo}
+Para todo número entero positivo $n$, el factorial de $n$, denotado por $n!$, se define como el producto de todos los números enteros consecutivos desde 1 hasta $n$:
+\begin{equation}
+    n! = n \cdot (n-1) \cdot (n-2) \dotsm 3 \cdot 2 \cdot 1
+\end{equation}
+Por convención axiomática fundamental:
+\begin{equation}
+    0! = 1
+\end{equation}
+\end{definicion}
+
+\subsection{Propiedades Fundamentales de los Factoriales}
+\begin{enumerate}
+    \item \textbf{Propiedad Recursiva:} $n! = n \cdot (n-1)!$
+    \item \textbf{Propiedad de Cocientes:} Para $n > r$:
+    \[
+    \frac{n!}{r!} = n \cdot (n-1) \cdot (n-2) \dotsm (r+1)
+    \]
+    \item \textbf{Valores frecuentes:}
+    \begin{center}
+    \begin{tabular}{ccccc}
+    \toprule
+    $0! = 1$ & $1! = 1$ & $2! = 2$ & $3! = 6$ & $4! = 24$ \\
+    $5! = 120$ & $6! = 720$ & $7! = 5{,}040$ & $8! = 40{,}320$ & $9! = 362{,}880$ \\
+    \bottomrule
+    \end{tabular}
+    \end{center}
+\end{enumerate}
+
+\section{Permutaciones}
+Una permutación es cualquier arreglo u ordenación de un conjunto de objetos donde \textbf{el orden en que se colocan es fundamental}.
+
+\subsection{Permutaciones Lineales Simples de $n$ Objetos}
+El número de formas en que se pueden ordenar $n$ objetos distintos en una fila es:
+\begin{equation}
+    P_n = n!
+\end{equation}
+
+\subsection{Permutaciones de $n$ Objetos Tomados de $r$ en $r$ ($nPr$)}
+\begin{definicion}{Permutaciones de $n$ en $r$}
+El número de arreglos ordenados de tamaño $r$ que se pueden seleccionar a partir de un conjunto de $n$ objetos distintos ($r \le n$) es:
+\begin{equation}
+    {}_n P_r = P(n, r) = \frac{n!}{(n-r)!} = n \cdot (n-1) \cdot (n-2) \dotsm (n-r+1)
+\end{equation}
+\end{definicion}
+
+\begin{ejemplo}{Asignación de Cargos en el Directorio Financiero (Basado en Anderson)}
+En una junta general de accionistas de una empresa industrial, se postulan 8 candidatos calificados para ocupar tres cargos jerárquicos: Presidente del Directorio, Vicepresidente Ejecutivo y Síndico Financiero. ¿De cuántas formas distintas pueden asignarse estos 3 puestos si ningún candidato puede ocupar más de un cargo?
+
+\tcbline
+\textbf{Solución:}
+Dado que el orden y la jerarquía de los cargos son determinantes (no es lo mismo ser Presidente que Síndico), se trata de una permutación de $n = 8$ candidatos tomados de $r = 3$ en $3$:
+\[
+{}_8 P_3 = \frac{8!}{(8-3)!} = \frac{8!}{5!} = \frac{8 \cdot 7 \cdot 6 \cdot 5!}{5!} = 8 \cdot 7 \cdot 6 = 336 \text{ formas distintas.}
+\]
+\end{ejemplo}
+
+\subsection{Permutaciones con Repetición (Elementos Indistinguibles)}
+\begin{definicion}{Permutaciones con Elementos Repetidos}
+Si se dispone de $n$ objetos, de los cuales $r_1$ son de un primer tipo (idénticos entre sí), $r_2$ son de un segundo tipo, \dots, y $r_k$ son de un $k$-ésimo tipo, tales que $r_1 + r_2 + \dots + r_k = n$, el número de permutaciones distinguibles de los $n$ objetos es:
+\begin{equation}
+    P_n^{r_1, r_2, \dots, r_k} = \frac{n!}{r_1! \cdot r_2! \dotsm r_k!}
+\end{equation}
+\end{definicion}
+
+\begin{ejemplo}{Codificación de Lotes de Producción (Basado en Lind)}
+El auditor de costos de una fábrica textil en el Parque Industrial de Santa Cruz revisa una serie de etiquetas de control de calidad. Una clave de lote está formada por la secuencia de 9 caracteres compuesta por: 4 letras \textbf{A}, 3 letras \textbf{B} y 2 letras \textbf{C}. ¿Cuántas secuencias de etiquetas diferentes pueden formarse?
+
+\tcbline
+\textbf{Solución:}
+Tenemos un total de $n = 9$ elementos, con $r_1 = 4$ letras A, $r_2 = 3$ letras B y $r_3 = 2$ letras C:
+\[
+P_9^{4, 3, 2} = \frac{9!}{4! \cdot 3! \cdot 2!} = \frac{362{,}880}{24 \cdot 6 \cdot 2} = \frac{362{,}880}{288} = 1{,}260 \text{ secuencias distintas.}
+\]
+\end{ejemplo}
+
+\subsection{Permutaciones Circulares}
+Cuando los objetos se disponen en círculo o en una mesa redonda, no existe un primer ni un último lugar absoluto; las posiciones son relativas. Fijando un elemento como referencia, el número de permutaciones circulares de $n$ objetos es:
+\begin{equation}
+    P_c(n) = (n-1)!
+\end{equation}
+
+\begin{ejemplo}{Mesa de Negociación de Crédito Bancario}
+Seis ejecutivos de finanzas de una empresa y del banco se reúnen alrededor de una mesa redonda para negociar las condiciones de un fideicomiso. ¿De cuántas maneras diferentes pueden sentarse alrededor de la mesa?
+
+\tcbline
+\textbf{Solución:}
+\[
+P_c(6) = (6-1)! = 5! = 120 \text{ ordenaciones posibles.}
+\]
+\end{ejemplo}
+
+\section{Combinaciones}
+\begin{definicion}{Combinaciones Simples ($nCr$)}
+Una combinación es una selección de $r$ objetos tomados a partir de un conjunto de $n$ objetos distintos ($r \le n$), \textbf{sin importar el orden de colocación ni la secuencia de selección}. El número de combinaciones está dado por:
+\begin{equation}
+    {}_n C_r = \binom{n}{r} = \frac{n!}{r! \cdot (n-r)!}
+\end{equation}
+\end{definicion}
+
+\subsection{Propiedades Clave de las Combinaciones}
+\begin{enumerate}
+    \item \textbf{Propiedad de Simetría:} $\binom{n}{r} = \binom{n}{n-r}$
+    \item \textbf{Casos Extremos:} $\binom{n}{0} = 1, \quad \binom{n}{n} = 1, \quad \binom{n}{1} = n$
+    \item \textbf{Relación entre Permutaciones y Combinaciones:}
+    \begin{equation}
+        {}_n P_r = r! \cdot {}_n C_r \iff {}_n C_r = \frac{{}_n P_r}{r!}
+    \end{equation}
+\end{enumerate}
+
+\begin{alerta}
+\textbf{¿Cómo saber si usar Permutación o Combinación?}
+\begin{itemize}
+    \item Si al cambiar el orden de los elementos seleccionados se obtiene un resultado o asignación \textbf{diferente} (ej. Presidente vs. Secretario, orden de llegada, puestos con distinta función) $\implies$ \textbf{PERMUTACIÓN}.
+    \item Si al cambiar el orden de los elementos el grupo sigue siendo exactamente \textbf{el mismo} (ej. muestra de facturas a auditar, comisión de trabajo, mano de cartas) $\implies$ \textbf{COMBINACIÓN}.
+\end{itemize}
+\end{alerta}
+
+\begin{ejemplo}{Muestreo de Auditoría Financiera (Basado en Anderson)}
+Un equipo de auditoría externa debe inspeccionar una muestra aleatoria de 5 cuentas de clientes morosos a partir de una lista que contiene 12 cuentas críticas en mora.
+\begin{enumerate}[label=\alph*)]
+    \item ¿Cuántas muestras distintas de 5 cuentas pueden seleccionarse?
+    \item Si la lista contiene 7 cuentas comerciales y 5 cuentas industriales, ¿cuántas muestras de 5 cuentas contendrán exactamente 3 cuentas comerciales y 2 industriales?
+\end{enumerate}
+
+\tcbline
+\textbf{Solución:}
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Muestras totales de 5 cuentas de entre 12:}
+    Como el orden en que se extraen las cuentas para su revisión no altera el conjunto auditado:
+    \[
+    \binom{12}{5} = \frac{12!}{5! \cdot (12-5)!} = \frac{12 \cdot 11 \cdot 10 \cdot 9 \cdot 8}{5 \cdot 4 \cdot 3 \cdot 2 \cdot 1} = \frac{95{,}040}{120} = 792 \text{ muestras posibles.}
+    \]
+    \item \textbf{Muestras con 3 comerciales y 2 industriales:}
+    Se descompone en dos selecciones independientes aplicando la regla de la multiplicación:
+    \begin{itemize}
+        \item Formas de elegir 3 comerciales de entre 7: $\binom{7}{3} = \frac{7 \cdot 6 \cdot 5}{3 \cdot 2 \cdot 1} = 35$
+        \item Formas de elegir 2 industriales de entre 5: $\binom{5}{2} = \frac{5 \cdot 4}{2 \cdot 1} = 10$
+    \end{itemize}
+    Total de muestras con la condición requerida:
+    \[
+    N = \binom{7}{3} \cdot \binom{5}{2} = 35 \cdot 10 = 350 \text{ muestras.}
+    \]
+\end{enumerate}
+\end{ejemplo}
+
+\begin{ejemplo}{Conformación de un Tribunal de Grado en Contaduría (Basado en Lind)}
+El decanato de la Facultad de Ciencias Contables debe designar un tribunal calificador para una defensa de tesis de grado integrado por 4 docentes. Se dispone de 6 docentes del área de Auditoría y 5 docentes del área de Tributación. ¿De cuántas formas se puede conformar el tribunal si debe estar integrado por al menos 2 docentes del área de Auditoría?
+
+\tcbline
+\textbf{Solución:}
+La condición ``al menos 2 de Auditoría'' en un tribunal de 4 miembros abarca tres casos mutuamente excluyentes:
+\begin{itemize}
+    \item \textbf{Caso 1 (Exactamente 2 de Auditoría y 2 de Tributación):}
+    \[
+    N_1 = \binom{6}{2} \cdot \binom{5}{2} = 15 \cdot 10 = 150
+    \]
+    \item \textbf{Caso 2 (Exactamente 3 de Auditoría y 1 de Tributación):}
+    \[
+    N_2 = \binom{6}{3} \cdot \binom{5}{1} = 20 \cdot 5 = 100
+    \]
+    \item \textbf{Caso 3 (Exactamente 4 de Auditoría y 0 de Tributación):}
+    \[
+    N_3 = \binom{6}{4} \cdot \binom{5}{0} = 15 \cdot 1 = 15
+    \]
+\end{itemize}
+Aplicando el Principio de la Adición:
+\[
+N_{\text{total}} = N_1 + N_2 + N_3 = 150 + 100 + 15 = 265 \text{ formas distintas de integrar el tribunal.}
+\]
+\end{ejemplo}
+
+\section{Formulario Resumen del Capítulo 1}
+\begin{formulario}[Resumen de Fórmulas — Análisis Combinatorio]
+\begin{itemize}
+    \item \textbf{Regla del Producto:} $N = n_1 \cdot n_2 \dotsm n_k$
+    \item \textbf{Regla de la Suma (Excluyentes):} $N = n_1 + n_2 + \dots + n_k$
+    \item \textbf{Permutaciones Lineales Simples:} $P_n = n!$
+    \item \textbf{Permutaciones de $n$ en $r$ ($nPr$):} ${}_n P_r = \dfrac{n!}{(n-r)!}$
+    \item \textbf{Permutaciones con Repetición:} $P_n^{r_1, r_2, \dots, r_k} = \dfrac{n!}{r_1! \cdot r_2! \dotsm r_k!}$
+    \item \textbf{Permutaciones Circulares:} $P_c(n) = (n-1)!$
+    \item \textbf{Combinaciones Simples ($nCr$):} ${}_n C_r = \dbinom{n}{r} = \dfrac{n!}{r!(n-r)!}$
+\end{itemize}
+\end{formulario}
+
+\section{Ejercicios Propuestos de la Unidad}
+\subsection*{Nivel 1: Principios Fundamentales de Conteo}
+\begin{enumerate}
+    \item Una microempresa de consultoría contable cuenta con 9 profesionales. Se desea conformar una comisión de 3 consultores para realizar una auditoría ambiental. ¿De cuántas formas se puede seleccionar la comisión?
+    \item Un sistema informático bancario requiere que cada usuario cree un PIN de 4 dígitos. ¿Cuántos PINs diferentes pueden crearse si:
+    \begin{enumerate}[label=\alph*)]
+        \item Se permite repetir dígitos?
+        \item No se permite repetir ningún dígito?
+        \item El primer dígito no puede ser 0 y no se permiten repeticiones?
+    \end{enumerate}
+    \item Un analista de inversiones desea estructurar un portafolio seleccionando 2 bonos soberanos de entre 5 opciones disponibles y 3 acciones corporativas de entre 8 opciones disponibles. ¿Cuántos portafolios distintos puede diseñar?
+\end{enumerate}
+
+\subsection*{Nivel 2: Permutaciones y Muestreo en Auditoría}
+\begin{enumerate}[resume]
+    \item En una empresa importadora, se inspeccionan 15 contenedores de mercadería, de los cuales 4 presentan observaciones aduaneras y 11 están en regla. Si un fiscalizador elige al azar una muestra de 4 contenedores, ¿de cuántas formas puede contener la muestra:
+    \begin{enumerate}[label=\alph*)]
+        \item Exactamente 2 contenedores con observaciones?
+        \item Ningún contenedor con observaciones?
+        \item Al menos 1 contenedor con observaciones?
+    \end{enumerate}
+    \item Se deben asignar 5 auditores a 5 sucursales bancarias diferentes en Santa Cruz (una sucursal por auditor). ¿De cuántas maneras se puede realizar la asignación si el auditor senior necesariamente debe ser asignado a la sucursal central?
+    \item ¿Cuántas palabras con o sin sentido pueden formarse con todas las letras de la palabra «CONTABILIDAD»?
+\end{enumerate}
+
+\subsection*{Nivel 3: Casos Integrales de Aplicación Empresarial}
+\begin{enumerate}[resume]
+    \item Una junta general de accionistas de una empresa agroindustrial en Santa Cruz debe elegir una mesa directiva de 4 miembros: Presidente, Vicepresidente, Secretario y Tesorero. Se postulan 12 candidatos (7 del sector accionista mayoritario y 5 del sector minoritario).
+    \begin{enumerate}[label=\alph*)]
+        \item ¿Cuántas mesas directivas distintas se pueden conformar en total?
+        \item ¿En cuántas de ellas el Presidente es del sector mayoritario y el Tesorero del sector minoritario?
+    \end{enumerate}
+    \item Un auditor fiscal revisa un lote de 20 facturas comerciales, de las cuales 6 presentan irregularidades en el cálculo del crédito fiscal IVA. Si se extrae una muestra de 5 facturas para un peritaje judicial, ¿de cuántas maneras la muestra contendrá a lo sumo 2 facturas con irregularidades?
+\end{enumerate}

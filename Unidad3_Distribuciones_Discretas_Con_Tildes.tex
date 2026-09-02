@@ -1,0 +1,1034 @@
+\documentclass[10pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{ragged2e}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, shadows, calc, backgrounds}
+
+% ============================================
+% COLORES VIVOS Y CELESTES CLAROS
+% ============================================
+\definecolor{celeste}{RGB}{70, 160, 210}
+\definecolor{celesteclaro}{RGB}{176, 224, 255}
+\definecolor{celesteoscuro}{RGB}{30, 120, 180}
+\definecolor{gold}{RGB}{255, 200, 60}
+\definecolor{verdevivo}{RGB}{50, 205, 50}
+\definecolor{naranjavivo}{RGB}{255, 140, 0}
+\definecolor{moradovivo}{RGB}{147, 51, 234}
+\definecolor{rosavivo}{RGB}{255, 105, 180}
+\definecolor{rojovivo}{RGB}{255, 60, 60}
+\definecolor{amarillovivo}{RGB}{255, 220, 50}
+
+% ============================================
+% TEMA BASE Y CONFIGURACIÓN DE COLORES
+% ============================================
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\setbeamercolor{palette primary}{bg=celesteoscuro,fg=white}
+\setbeamercolor{palette secondary}{bg=celesteoscuro,fg=white}
+\setbeamercolor{palette tertiary}{bg=celesteoscuro,fg=white}
+\setbeamercolor{frametitle}{bg=celesteoscuro,fg=white}
+\setbeamercolor{title}{fg=celesteoscuro}
+\setbeamercolor{subtitle}{fg=celesteoscuro}
+\setbeamercolor{author}{fg=celesteoscuro}
+\setbeamercolor{institute}{fg=celesteoscuro}
+\setbeamercolor{date}{fg=celesteoscuro}
+
+\setbeamercolor{block title}{bg=celesteoscuro,fg=white}
+\setbeamercolor{block body}{bg=celesteclaro,fg=black}
+\setbeamercolor{block title alerted}{bg=rojovivo,fg=white}
+\setbeamercolor{block body alerted}{bg=red!10,fg=black}
+\setbeamercolor{block title example}{bg=verdevivo,fg=white}
+\setbeamercolor{block body example}{bg=green!10,fg=black}
+\setbeamercolor{alerted text}{fg=rojovivo}
+
+% ============================================
+% PIE DE PÁGINA
+% ============================================
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{page number in head/foot}%
+    \usebeamerfont{page number in head/foot}\insertframenumber{}/\inserttotalframenumber\hspace*{2ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\setbeamercolor{page number in head/foot}{bg=gold,fg=celesteoscuro}
+\setbeamertemplate{navigation symbols}{}
+
+% ============================================
+% COMANDO PARA CHECKMARKS DE COLORES
+% ============================================
+\newcommand{\cmark}[1]{\tikz[baseline=-0.5ex]{
+    \node[circle,fill=#1,minimum size=1.2em,inner sep=0pt,font=\tiny\bfseries] 
+    {\textcolor{white}{\checkmark}};
+}}
+
+% ============================================
+% ENTORNO PARA CAJAS LATERALES
+% ============================================
+\newenvironment{lateralbox}[1]{%
+    \begin{beamercolorbox}[rounded=true,shadow=true,wd=.9\linewidth]{block body}
+    \begin{center}\textbf{\color{celesteoscuro}#1}\end{center}
+    \vspace{0.1cm}
+    \small\color{celesteoscuro}
+}{%
+    \end{beamercolorbox}
+}
+
+% ============================================
+% INFORMACIÓN DE LA PRESENTACIÓN
+% ============================================
+\title[Distribuciones Discretas]{Unidad N\textdegree\ 3: Variables Aleatorias Discretas}
+\subtitle{Distribuciones de Probabilidad Discretas}
+\author{MSc. Anselmo Salguero Arano}
+\institute[UAGRM]{Universidad Autónoma Gabriel René Moreno \ Facultad de Ciencias Contables, Auditoría, \ Sistemas de Control de Gestión y Finanzas \ Carrera de Contaduría Pública}
+\date{}
+
+\begin{document}
+
+% ============================================
+% PORTADA
+% ============================================
+\begin{frame}[plain]
+    \centering
+    \vspace*{0.3cm}
+
+    \begin{figure}
+        \centering
+        \begin{minipage}{0.35\textwidth}
+            \centering
+            \includegraphics[width=0.5\linewidth]{Logouagrm}
+        \end{minipage}
+        \hspace{0.5cm}
+        \begin{minipage}{0.35\textwidth}
+            \centering
+            \includegraphics[width=0.5\linewidth]{Logocont}
+        \end{minipage}
+    \end{figure}
+
+    \vspace{-0.1cm}
+    {\large \color{celesteoscuro} \textbf{UNIVERSIDAD AUTÓNOMA GABRIEL RENÉ MORENO}} \\
+    \vspace{0.15cm}
+    {\normalsize \color{celesteoscuro} FACULTAD DE CIENCIAS CONTABLES, AUDITORÍA,} \\
+    {\normalsize \color{celesteoscuro} SISTEMAS DE CONTROL DE GESTIÓN Y FINANZAS} \\
+    {\normalsize \color{celesteoscuro} CARRERA DE \textbf{CONTADURÍA PÚBLICA}}
+
+    \vspace{0.1cm}
+    {\Large \color{celesteoscuro} \textbf{UNIDAD N\textdegree\ 3}}
+
+    \vspace{0.1cm}
+    {\large \color{celeste} \textbf{DISTRIBUCIONES DE PROBABILIDAD}} \\
+    {\large \color{celeste} \textbf{PARA VARIABLES ALEATORIAS DISCRETAS}}
+
+    \vspace{0.1cm}
+    {\Large \color{verdevivo} \textbf{Binomial | Hipergeométrica | Poisson}}
+
+    \vspace{0.1cm}
+    {\large \textbf{MSc. Anselmo Salguero Arano}}
+\end{frame}
+
+% ============================================
+% ============================================
+% PARTE 1: DISTRIBUCIÓN BINOMIAL
+% ============================================
+% ============================================
+
+\begin{frame}{Distribución Binomial -- Definición}
+\justifying
+La \textbf{distribución binomial} modela el número de \textbf{éxitos} en $n$ ensayos \textbf{independientes} de Bernoulli, donde cada ensayo tiene la misma probabilidad de éxito $p$.
+
+\vspace{0.3cm}
+\textbf{Condiciones necesarias:}
+\begin{itemize}
+    \item Número fijo de ensayos $n$.
+    \item Cada ensayo tiene solo dos resultados: éxito o fracaso.
+    \item Probabilidad de éxito $p$ es \textbf{constante} en cada ensayo.
+    \item Los ensayos son \textbf{independientes} entre sí.
+\end{itemize}
+
+\vspace{0.2cm}
+\begin{exampleblock}{Situaciones típicas}
+\begin{itemize}
+    \item Lanzar una moneda 10 veces y contar caras.
+    \item Probar 20 componentes y contar defectuosos.
+    \item Encuestar 50 personas y contar respuestas ``sí''.
+\end{itemize}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Fórmula de Probabilidad Binomial}
+\begin{center}
+\Large
+\[
+P(x) = \dbinom{n}{x} \cdot p^{x} \cdot q^{n-x}
+\]
+\end{center}
+
+\vspace{0.3cm}
+\textbf{Significado de cada símbolo:}
+\vspace{0.2cm}
+
+\begin{table}
+\centering
+\begin{tabular}{@{}cl@{}}
+\toprule
+\textbf{Símbolo} & \textbf{Significado} \\
+\midrule
+\textcolor{celesteoscuro}{\textbf{$n$}} & Número total de \textbf{ensayos} \\
+\textcolor{celesteoscuro}{\textbf{$x$}} & Número de \textbf{éxitos} deseados \\
+\textcolor{celesteoscuro}{\textbf{$p$}} & Probabilidad de \textbf{éxito} en cada ensayo \\
+\textcolor{celesteoscuro}{\textbf{$q$}} & Probabilidad de \textbf{fracaso}: $q = 1-p$ \\
+\textcolor{celesteoscuro}{\textbf{$\dbinom{n}{x}$}} & Combinaciones de $n$ tomadas de $x$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{Esperanza y Varianza -- Binomial}
+\justifying
+\textbf{Valor Esperado (Media):}
+\begin{center}
+\Large
+\[
+E(x) = n \cdot p
+\]
+\end{center}
+
+\vspace{0.3cm}
+\justifying
+\textbf{Varianza:}
+\begin{center}
+\Large
+\[
+V(x) = n \cdot p \cdot q
+\]
+\end{center}
+
+\vspace{0.3cm}
+\begin{alertblock}{Relación importante}
+La desviación estándar es $\sigma = \sqrt{n \cdot p \cdot q}$. Cuando $p = 0,5$, la distribución es simétrica.
+\end{alertblock}
+\end{frame}
+
+% ============================================
+% EJERCICIOS BINOMIAL
+% ============================================
+\begin{frame}{Ejercicio Binomial 1 -- Lanzamiento de Moneda}
+\textbf{Enunciado:}
+\justifying
+Se lanza una moneda equilibrada \textbf{6 veces}. ¿Cuál es la probabilidad de obtener \textbf{exactamente 4 caras}?
+
+\vspace{0.2cm}
+\textbf{Identificación de parámetros:}
+\begin{itemize}
+    \item $n = 6$ (número de lanzamientos)
+    \item $x = 4$ (éxitos = caras deseadas)
+    \item $p = 0,5$ (probabilidad de cara)
+    \item $q = 0,5$ (probabilidad de sello)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Ejercicio Binomial 1 -- Resolución}
+\[
+P(x=4) = \dbinom{6}{4} \cdot (0,5)^{4} \cdot (0,5)^{2}
+\]
+
+\textbf{Paso 1:} Calcular combinaciones
+\[
+\dbinom{6}{4} = \frac{6!}{4! \cdot 2!} = \frac{720}{24 \cdot 2} = 15
+\]
+
+\textbf{Paso 2:} Calcular probabilidades
+\[
+(0,5)^{4} = 0,0625 \qquad (0,5)^{2} = 0,25
+\]
+
+\textbf{Paso 3:} Multiplicar
+\[
+P(x=4) = 15 \times 0,0625 \times 0,25 = 15 \times 0,015625 = 0,234375
+\]
+
+\begin{block}{Resultado}
+\[
+\boxed{P(x=4) \approx 0,2344 \text{ o } 23,44\%}
+\]
+\end{block}
+\end{frame}
+
+\begin{frame}{Ejercicio Binomial 1 -- Gráfica Viva}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    ybar, bar width=18pt, width=10cm, height=6cm,
+    xlabel={$x$ (Número de caras)}, ylabel={$P(X=x)$},
+    ymin=0, ymax=0.35, xtick={0,1,2,3,4,5,6},
+    nodes near coords, nodes near coords align={vertical},
+    enlarge x limits=0.15, symbolic x coords={0,1,2,3,4,5,6},
+    title={$n=6,\; p=0,5$ -- Distribución Simétrica},
+    title style={font=\small, color=celesteoscuro},
+    axis lines*=left,
+    fill=verdevivo, draw=celesteoscuro,
+    every node near coord/.append style={font=\small\bfseries, color=celesteoscuro}
+]
+\addplot coordinates {(0,0.0156) (1,0.0938) (2,0.2344) (3,0.3125) (4,0.2344) (5,0.0938) (6,0.0156)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\footnotesize
+\textit{Nota: Distribución simétrica con $p=0,5$. La moda está en $x=3$.}
+\end{frame}
+
+\begin{frame}{Ejercicio Binomial 2 -- Componentes Defectuosos}
+\textbf{Enunciado:}
+\justifying
+Un lote de producción tiene un \textbf{10\% de componentes defectuosos}. Si se seleccionan \textbf{5 componentes al azar}, ¿cuál es la probabilidad de que \textbf{exactamente 2 sean defectuosos}?
+
+\vspace{0.2cm}
+\textbf{Identificación de parámetros:}
+\begin{itemize}
+    \item $n = 5$ (componentes seleccionados)
+    \item $x = 2$ (defectuosos deseados)
+    \item $p = 0,10$ (probabilidad de defecto)
+    \item $q = 0,90$ (probabilidad de no defecto)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Ejercicio Binomial 2 -- Resolución}
+\[
+P(x=2) = \dbinom{5}{2} \cdot (0,10)^{2} \cdot (0,90)^{3}
+\]
+
+\textbf{Paso 1:} Calcular combinaciones
+\[
+\dbinom{5}{2} = \frac{5!}{2! \cdot 3!} = \frac{120}{2 \cdot 6} = 10
+\]
+
+\textbf{Paso 2:} Calcular probabilidades
+\[
+(0,10)^{2} = 0,01 \qquad (0,90)^{3} = 0,729
+\]
+
+\textbf{Paso 3:} Multiplicar
+\[
+P(x=2) = 10 \times 0,01 \times 0,729 = 10 \times 0,00729 = 0,0729
+\]
+
+\begin{block}{Resultado}
+\[
+\boxed{P(x=2) \approx 0,0729 \text{ o } 7,29\%}
+\]
+\end{block}
+\end{frame}
+
+\begin{frame}{Ejercicio Binomial 2 -- Gráfica Viva}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    ybar, bar width=20pt, width=10cm, height=6cm,
+    xlabel={$x$ (Componentes defectuosos)}, ylabel={$P(X=x)$},
+    ymin=0, ymax=0.65, xtick={0,1,2,3,4,5},
+    nodes near coords, nodes near coords align={vertical},
+    enlarge x limits=0.15, symbolic x coords={0,1,2,3,4,5},
+    title={$n=5,\; p=0,10$ -- Distribución Asimétrica Positiva},
+    title style={font=\small, color=celesteoscuro},
+    axis lines*=left,
+    fill=naranjavivo, draw=celesteoscuro,
+    every node near coord/.append style={font=\small\bfseries, color=celesteoscuro}
+]
+\addplot coordinates {(0,0.5905) (1,0.3281) (2,0.0729) (3,0.0081) (4,0.0005) (5,0.0000)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\footnotesize
+\textit{Nota: Distribución fuertemente asimétrica positiva con $p$ pequeño.}
+\end{frame}
+
+% ============================================
+% ============================================
+% PARTE 2: DISTRIBUCIÓN HIPERGEOMÉTRICA
+% ============================================
+% ============================================
+
+\begin{frame}{Distribución Hipergeométrica -- Definición}
+\justifying
+La \textbf{distribución hipergeométrica} modela el número de éxitos en una muestra \textbf{sin reemplazo} extraída de una \textbf{población finita}.
+
+\vspace{0.3cm}
+\textbf{Condiciones necesarias:}
+\begin{itemize}
+    \item La población es \textbf{finita} y de tamaño conocido $N$.
+    \item El muestreo es \textbf{sin reemplazo}.
+    \item Las extracciones son \textbf{dependientes}.
+    \item Se clasifica en dos categorías: éxito y fracaso.
+\end{itemize}
+
+\vspace{0.2cm}
+\begin{alertblock}{Diferencia clave con la Binomial}
+En la Hipergeométrica \textbf{no se devuelve} el elemento extraído, por lo que la probabilidad de éxito \textbf{cambia} en cada extracción.
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{Fórmula de Probabilidad Hipergeométrica}
+\begin{center}
+\Large
+\[
+P(X=x) = \frac{\dbinom{T}{x} \cdot \dbinom{N-T}{n-x}}{\dbinom{N}{n}}
+\]
+\end{center}
+
+\vspace{0.3cm}
+\textbf{Significado de cada símbolo:}
+\vspace{0.2cm}
+
+\begin{table}
+\centering
+\begin{tabular}{@{}cl@{}}
+\toprule
+\textbf{Símbolo} & \textbf{Significado} \\
+\midrule
+\textcolor{celesteoscuro}{\textbf{$N$}} & Tamaño total de la \textbf{población} \\
+\textcolor{celesteoscuro}{\textbf{$T$}} & Número total de \textbf{éxitos} en la población \\
+\textcolor{celesteoscuro}{\textbf{$n$}} & Tamaño de la \textbf{muestra} \\
+\textcolor{celesteoscuro}{\textbf{$x$}} & Número de \textbf{éxitos} deseados en la muestra \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{Aproximación a la Binomial}
+\justifying
+Cuando $N$ es \textbf{mucho mayor} que $n$, la hipergeométrica puede aproximarse a la binomial:
+
+\vspace{0.3cm}
+\begin{center}
+\Large
+\[
+\frac{n}{N} \leq 0,05 \quad \text{(muestra no supera el 5\% de la población)}
+\]
+\end{center}
+
+\vspace{0.2cm}
+\justifying
+Si se cumple esta condición, el muestreo \textit{sin reemplazo} se comporta casi como \textit{con reemplazo}.
+
+\vspace{0.2cm}
+\begin{exampleblock}{Proporciones de referencia}
+\[
+p = \frac{T}{N} \qquad q = \frac{N-T}{N} = 1 - p
+\]
+Estos valores sirven como referencia para decidir si la aproximación es válida.
+\end{exampleblock}
+\end{frame}
+
+% ============================================
+% EJERCICIOS HIPERGEOMÉTRICA
+% ============================================
+\begin{frame}{Ejercicio Hipergeométrica 1 -- Refrigeradores}
+\textbf{Enunciado:}
+\justifying
+Diez refrigeradores han sido devueltos. De ellos, \textbf{4 tienen compresores defectuosos} y 6 tienen problemas leves. Si se examinan al azar \textbf{5 refrigeradores}, calcule la probabilidad de que \textbf{exactamente 2} tengan el compresor defectuoso.
+
+\vspace{0.2cm}
+\textbf{Identificación de variables:}
+\begin{itemize}
+    \item $N = 10$ (total de refrigeradores)
+    \item $T = 4$ (compresores defectuosos)
+    \item $n = 5$ (muestra examinada)
+    \item $x = 2$ (éxitos deseados)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Ejercicio Hipergeométrica 1 -- Resolución}
+\[
+P(X=2) = \frac{\dbinom{4}{2} \cdot \dbinom{10-4}{5-2}}{\dbinom{10}{5}} = \frac{\dbinom{4}{2} \cdot \dbinom{6}{3}}{\dbinom{10}{5}}
+\]
+
+\textbf{Paso 1:} Calcular combinaciones
+\[
+\dbinom{4}{2} = 6 \qquad \dbinom{6}{3} = 20 \qquad \dbinom{10}{5} = 252
+\]
+
+\textbf{Paso 2:} Sustituir
+\[
+P(X=2) = \frac{6 \times 20}{252} = \frac{120}{252} = \frac{10}{21}
+\]
+
+\begin{block}{Resultado}
+\[
+\boxed{P(X=2) \approx 0,4762 \text{ o } 47,62\%}
+\]
+\end{block}
+\end{frame}
+
+\begin{frame}{Ejercicio Hipergeométrica 1 -- Gráfica Viva}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    ybar, bar width=18pt, width=10cm, height=6cm,
+    xlabel={$x$ (Compresores defectuosos)}, ylabel={$P(X=x)$},
+    ymin=0, ymax=0.55, xtick={0,1,2,3,4},
+    nodes near coords, nodes near coords align={vertical},
+    enlarge x limits=0.15, symbolic x coords={0,1,2,3,4},
+    title={$N=10,\; T=4,\; n=5$},
+    title style={font=\small, color=celesteoscuro},
+    axis lines*=left,
+    fill=moradovivo, draw=celesteoscuro,
+    every node near coord/.append style={font=\small\bfseries, color=celesteoscuro}
+]
+\addplot coordinates {(0,0.0238) (1,0.2381) (2,0.4762) (3,0.2381) (4,0.0238)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\footnotesize
+\textit{Nota: Distribución simétrica con moda en $x=2$.}
+\end{frame}
+
+\begin{frame}{Ejercicio Hipergeométrica 2 -- Piezas de Tubería}
+\textbf{Enunciado:}
+\justifying
+Un lote contiene \textbf{100 piezas locales} y \textbf{200 foráneas}. Si se seleccionan \textbf{4 piezas al azar y sin reemplazo}, ¿cuál es la probabilidad de que \textbf{todas sean del proveedor local}?
+
+\vspace{0.2cm}
+\textbf{Identificación de variables:}
+\begin{itemize}
+    \item $N = 300$ (total de piezas)
+    \item $T = 100$ (piezas locales = éxitos)
+    \item $n = 4$ (muestra seleccionada)
+    \item $x = 4$ (todas locales)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Ejercicio Hipergeométrica 2 -- Resolución}
+\[
+P(X=4) = \frac{\dbinom{100}{4} \cdot \dbinom{200}{0}}{\dbinom{300}{4}}
+\]
+
+\textbf{Paso 1:} Calcular combinaciones
+\[
+\dbinom{100}{4} = 3.921.225 \qquad \dbinom{200}{0} = 1 \qquad \dbinom{300}{4} = 330.791.500
+\]
+
+\textbf{Paso 2:} Sustituir
+\[
+P(X=4) = \frac{3.921.225 \times 1}{330.791.500} \approx 0,01185
+\]
+
+\begin{block}{Resultado}
+\[
+\boxed{P(X=4) \approx 0,0119 \text{ o } 1,19\%}
+\]
+\end{block}
+\end{frame}
+
+\begin{frame}{Ejercicio Hipergeométrica 2 -- Gráfica Viva}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    ybar, bar width=20pt, width=10cm, height=6cm,
+    xlabel={$x$ (Piezas locales)}, ylabel={$P(X=x)$},
+    ymin=0, ymax=0.45, xtick={0,1,2,3,4},
+    nodes near coords, nodes near coords align={vertical},
+    enlarge x limits=0.15, symbolic x coords={0,1,2,3,4},
+    title={$N=300,\; T=100,\; n=4$},
+    title style={font=\small, color=celesteoscuro},
+    axis lines*=left,
+    fill=rosavivo, draw=celesteoscuro,
+    every node near coord/.append style={font=\small\bfseries, color=celesteoscuro}
+]
+\addplot coordinates {(0,0.1975) (1,0.3951) (2,0.2980) (3,0.0980) (4,0.0119)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\footnotesize
+\textit{Nota: Distribución asimétrica con moda en $x=1$.}
+\end{frame}
+
+% ============================================
+% ============================================
+% PARTE 3: DISTRIBUCIÓN DE POISSON
+% ============================================
+% ============================================
+
+\begin{frame}{Distribución de Poisson -- Definición}
+\justifying
+La \textbf{distribución de Poisson} modela el número de eventos que ocurren en un \textbf{intervalo fijo de tiempo o espacio}, con una \textbf{tasa promedio conocida} $\lambda$ y de forma \textbf{independiente}.
+
+\vspace{0.3cm}
+\textbf{Características principales:}
+\begin{itemize}
+    \item Los eventos ocurren de manera \textbf{independiente} entre sí.
+    \item La \textbf{tasa media} $\lambda$ es \textbf{constante} en el intervalo.
+    \item Dos eventos \textbf{no pueden ocurrir exactamente al mismo instante}.
+    \item La probabilidad es \textbf{proporcional al tamaño del intervalo}.
+\end{itemize}
+
+\vspace{0.2cm}
+\begin{exampleblock}{Situaciones típicas}
+\begin{itemize}
+    \item Llamadas telefónicas por hora a una centralita.
+    \item Defectos en tela por metro cuadrado.
+    \item Clientes que llegan a una caja en 10 minutos.
+    \item Accidentes de tránsito por semana.
+\end{itemize}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Fórmula de Probabilidad de Poisson}
+\begin{center}
+\Large
+\[
+P(x) = \frac{\lambda^{x} \cdot e^{-\lambda}}{x!}
+\]
+\end{center}
+
+\vspace{0.3cm}
+\textbf{Significado de cada símbolo:}
+\vspace{0.2cm}
+
+\begin{table}
+\centering
+\begin{tabular}{@{}cl@{}}
+\toprule
+\textbf{Símbolo} & \textbf{Significado} \\
+\midrule
+\textcolor{celesteoscuro}{\textbf{$\lambda$}} (lambda) & Número promedio de eventos en el intervalo \\
+\textcolor{celesteoscuro}{\textbf{$x$}} & Número de eventos cuya probabilidad se calcula \\
+\textcolor{celesteoscuro}{\textbf{$e$}} & Constante de Euler $\approx 2,71828$ \\
+\textcolor{celesteoscuro}{\textbf{$x!$}} & Factorial de $x$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\vspace{0.2cm}
+\begin{alertblock}{Nota importante}
+$\lambda$ debe corresponder al \textbf{mismo intervalo} que $x$. Si la tasa es por minuto y analizas una hora, ajusta $\lambda$ multiplicando por 60.
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{Esperanza y Varianza -- Poisson}
+\justifying
+\textbf{Valor Esperado (Media):}
+\begin{center}
+\Large
+\[
+E(x) = \lambda
+\]
+\end{center}
+
+\vspace{0.3cm}
+\justifying
+\textbf{Varianza:}
+\begin{center}
+\Large
+\[
+V(x) = \lambda
+\]
+\end{center}
+
+\vspace{0.3cm}
+\begin{exampleblock}{Propiedad distintiva}
+En Poisson, la \textbf{media y la varianza son iguales} a $\lambda$. Esta característica única permite diagnosticar si un conjunto de datos sigue este modelo.
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Aproximación a la Binomial}
+\justifying
+La Poisson aproxima la binomial cuando $n$ es grande y $p$ es pequeña:
+
+\vspace{0.3cm}
+\textbf{Condiciones:}
+\begin{itemize}
+    \item $n \geq 20$ (muestra grande)
+    \item $p \leq 0,05$ (probabilidad pequeña)
+    \item $\lambda = n \cdot p \leq 10$
+\end{itemize}
+
+\vspace{0.2cm}
+\begin{center}
+\Large
+\[
+\lambda = n \cdot p \quad \Rightarrow \quad P(x) \approx \frac{\lambda^{x} \cdot e^{-\lambda}}{x!}
+\]
+\end{center}
+
+\vspace{0.2cm}
+\justifying
+\textit{Ejemplo:} Fábrica con tasa de defecto del 2\%. Inspeccionando $n=200$ piezas: $\lambda = 200 \times 0,02 = 4$. La probabilidad de 3 defectuosas se aproxima muy bien con Poisson.
+\end{frame}
+
+% ============================================
+% EJERCICIOS POISSON
+% ============================================
+\begin{frame}{Ejercicio Poisson 1 -- Llamadas Telefónicas}
+\textbf{Enunciado:}
+\justifying
+A una central telefónica llegan en promedio \textbf{3 llamadas por minuto}. Calcule la probabilidad de que en un minuto determinado lleguen:
+
+\begin{enumerate}
+    \item[(a)] \textbf{Exactamente 2 llamadas}
+    \item[(b)] \textbf{Al menos 1 llamada}
+\end{enumerate}
+
+\vspace{0.2cm}
+\textbf{Identificación de parámetros:}
+\begin{itemize}
+    \item $\lambda = 3$ (llamadas por minuto)
+    \item Inciso (a): $x = 2$
+    \item Inciso (b): $x \geq 1$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Ejercicio Poisson 1 -- Resolución Inciso (a)}
+\textbf{Inciso (a): Probabilidad de exactamente 2 llamadas}
+
+\[
+P(x=2) = \frac{3^{2} \cdot e^{-3}}{2!} = \frac{9 \cdot e^{-3}}{2}
+\]
+
+\textbf{Paso 1:} Calcular $e^{-3}$
+\[
+e^{-3} \approx 0,049787
+\]
+
+\textbf{Paso 2:} Sustituir
+\[
+P(x=2) = \frac{9 \times 0,049787}{2} = \frac{0,44808}{2} = 0,22404
+\]
+
+\begin{block}{Resultado (a)}
+\[
+\boxed{P(x=2) \approx 0,2240 \text{ o } 22,40\%}
+\]
+\end{block}
+\end{frame}
+
+\begin{frame}{Ejercicio Poisson 1 -- Resolución Inciso (b)}
+\textbf{Inciso (b): Probabilidad de al menos 1 llamada}
+
+\[
+P(x \geq 1) = 1 - P(x = 0)
+\]
+
+\textbf{Paso 1:} Calcular $P(x=0)$
+\[
+P(x=0) = \frac{3^{0} \cdot e^{-3}}{0!} = \frac{1 \cdot 0,049787}{1} = 0,049787
+\]
+
+\textbf{Paso 2:} Complemento
+\[
+P(x \geq 1) = 1 - 0,049787 = 0,950213
+\]
+
+\begin{block}{Resultado (b)}
+\[
+\boxed{P(x \geq 1) \approx 0,9502 \text{ o } 95,02\%}
+\]
+\end{block}
+\end{frame}
+
+\begin{frame}{Ejercicio Poisson 1 -- Gráfica Viva}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    ybar, bar width=16pt, width=10cm, height=6cm,
+    xlabel={$x$ (Número de llamadas)}, ylabel={$P(X=x)$},
+    ymin=0, ymax=0.25, xtick={0,1,2,3,4,5,6,7},
+    nodes near coords, nodes near coords align={vertical},
+    enlarge x limits=0.15, symbolic x coords={0,1,2,3,4,5,6,7},
+    title={$\lambda = 3$ llamadas/minuto -- Asimétrica Positiva},
+    title style={font=\small, color=celesteoscuro},
+    axis lines*=left,
+    fill=amarillovivo, draw=celesteoscuro,
+    every node near coord/.append style={font=\small\bfseries, color=celesteoscuro}
+]
+\addplot coordinates {(0,0.0498) (1,0.1494) (2,0.2240) (3,0.2240) (4,0.1680) (5,0.1008) (6,0.0504) (7,0.0216)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\footnotesize
+\textit{Nota: Moda en $x=2$ y $x=3$ con igual probabilidad. Distribución asimétrica positiva.}
+\end{frame}
+
+\begin{frame}{Ejercicio Poisson 2 -- Defectos en Tela}
+\textbf{Enunciado:}
+\justifying
+Un inspector encuentra en promedio \textbf{4 defectos por cada 100 metros} de tela. ¿Cuál es la probabilidad de que en un rollo de \textbf{50 metros} haya:
+
+\begin{enumerate}
+    \item[(a)] \textbf{Exactamente 1 defecto}
+    \item[(b)] \textbf{Ningún defecto}
+\end{enumerate}
+
+\vspace{0.2cm}
+\textbf{Identificación de parámetros:}
+\begin{itemize}
+    \item $\lambda = 2$ (4 defectos/100m $\times$ 50m = 2 defectos esperados)
+    \item Inciso (a): $x = 1$
+    \item Inciso (b): $x = 0$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Ejercicio Poisson 2 -- Resolución Inciso (a)}
+\textbf{Inciso (a): Probabilidad de exactamente 1 defecto}
+
+\[
+P(x=1) = \frac{2^{1} \cdot e^{-2}}{1!} = 2 \cdot e^{-2}
+\]
+
+\textbf{Paso 1:} Calcular $e^{-2}$
+\[
+e^{-2} \approx 0,135335
+\]
+
+\textbf{Paso 2:} Sustituir
+\[
+P(x=1) = 2 \times 0,135335 = 0,27067
+\]
+
+\begin{block}{Resultado (a)}
+\[
+\boxed{P(x=1) \approx 0,2707 \text{ o } 27,07\%}
+\]
+\end{block}
+\end{frame}
+
+\begin{frame}{Ejercicio Poisson 2 -- Resolución Inciso (b)}
+\textbf{Inciso (b): Probabilidad de ningún defecto}
+
+\[
+P(x=0) = \frac{2^{0} \cdot e^{-2}}{0!} = \frac{1 \cdot 0,135335}{1} = 0,135335
+\]
+
+\textbf{Paso 1:} Verificar factorial
+\[
+0! = 1 \qquad 2^{0} = 1
+\]
+
+\textbf{Paso 2:} Resultado directo
+\[
+P(x=0) = e^{-2} \approx 0,135335
+\]
+
+\begin{block}{Resultado (b)}
+\[
+\boxed{P(x=0) \approx 0,1353 \text{ o } 13,53\%}
+\]
+\end{block}
+\end{frame}
+
+\begin{frame}{Ejercicio Poisson 2 -- Gráfica Viva}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    ybar, bar width=18pt, width=10cm, height=6cm,
+    xlabel={$x$ (Número de defectos)}, ylabel={$P(X=x)$},
+    ymin=0, ymax=0.30, xtick={0,1,2,3,4,5,6},
+    nodes near coords, nodes near coords align={vertical},
+    enlarge x limits=0.15, symbolic x coords={0,1,2,3,4,5,6},
+    title={$\lambda = 2$ defectos en 50 metros},
+    title style={font=\small, color=celesteoscuro},
+    axis lines*=left,
+    fill=celeste, draw=celesteoscuro,
+    every node near coord/.append style={font=\small\bfseries, color=celesteoscuro}
+]
+\addplot coordinates {(0,0.1353) (1,0.2707) (2,0.2707) (3,0.1804) (4,0.0902) (5,0.0361) (6,0.0120)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\footnotesize
+\textit{Nota: Para $\lambda = 2$, moda en $x=1$ y $x=2$ con igual probabilidad.}
+\end{frame}
+
+\begin{frame}{Ejercicio Poisson 3 -- Aproximación Binomial}
+\textbf{Enunciado:}
+\justifying
+Una fábrica produce piezas con tasa de defecto del \textbf{1,5\%}. Se inspecciona un lote de \textbf{200 piezas}. ¿Cuál es la probabilidad de encontrar \textbf{exactamente 3 piezas defectuosas}?
+
+\vspace{0.2cm}
+\textbf{Verificación de condiciones:}
+\begin{itemize}
+    \item $n = 200 \geq 20$ \checkmark
+    \item $p = 0,015 \leq 0,05$ \checkmark
+    \item $\lambda = 200 \times 0,015 = 3 \leq 10$ \checkmark
+\end{itemize}
+
+\vspace{0.2cm}
+\textbf{Conclusión:} Se usa \textbf{aproximación de Poisson} con $\lambda = 3$.
+\end{frame}
+
+\begin{frame}{Ejercicio Poisson 3 -- Resolución}
+\textbf{Aplicando Poisson con $\lambda = 3$:}
+
+\[
+P(x=3) = \frac{3^{3} \cdot e^{-3}}{3!} = \frac{27 \cdot e^{-3}}{6}
+\]
+
+\textbf{Paso 1:} Calcular $e^{-3} \approx 0,049787$
+
+\textbf{Paso 2:} Calcular numerador
+\[
+27 \times 0,049787 = 1,34425
+\]
+
+\textbf{Paso 3:} Dividir por factorial
+\[
+P(x=3) = \frac{1,34425}{6} = 0,22404
+\]
+
+\begin{block}{Resultado}
+\[
+\boxed{P(x=3) \approx 0,2240 \text{ o } 22,40\%}
+\]
+\end{block}
+
+\vspace{0.2cm}
+\footnotesize
+\textit{Comparación: Binomial exacta $P(x=3) \approx 0,2238$. ¡Aproximación excelente!}
+\end{frame}
+
+\begin{frame}{Ejercicio Poisson 3 -- Gráfica Viva}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    ybar, bar width=16pt, width=10cm, height=6cm,
+    xlabel={$x$ (Piezas defectuosas)}, ylabel={$P(X=x)$},
+    ymin=0, ymax=0.25, xtick={0,1,2,3,4,5,6,7,8},
+    nodes near coords, nodes near coords align={vertical},
+    enlarge x limits=0.15, symbolic x coords={0,1,2,3,4,5,6,7,8},
+    title={Aproximación Poisson: $\lambda = 3$ (n=200, p=0,015)},
+    title style={font=\small, color=celesteoscuro},
+    axis lines*=left,
+    fill=verdevivo, draw=celesteoscuro,
+    every node near coord/.append style={font=\small\bfseries, color=celesteoscuro}
+]
+\addplot coordinates {(0,0.0498) (1,0.1494) (2,0.2240) (3,0.2240) (4,0.1680) (5,0.1008) (6,0.0504) (7,0.0216) (8,0.0081)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\footnotesize
+\textit{Nota: Distribución de defectos esperados en el lote de 200 piezas.}
+\end{frame}
+
+% ============================================
+% RESUMEN COMPARATIVO
+% ============================================
+\begin{frame}{Resumen Comparativo de las Tres Distribuciones}
+\begin{table}
+\centering
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Característica} & \textbf{Binomial} & \textbf{Hipergeométrica} & \textbf{Poisson} \\
+\midrule
+Población & Infinita o con reemplazo & Finita sin reemplazo & Infinita/continua \\
+Independencia & Sí & No (dependiente) & Sí \\
+Probabilidad $p$ & Constante & Cambia & Constante (tasa) \\
+Parámetros & $n, p$ & $N, T, n$ & $\lambda$ \\
+Media & $n \cdot p$ & $n \cdot \frac{T}{N}$ & $\lambda$ \\
+Varianza & $n \cdot p \cdot q$ & Compleja & $\lambda$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\vspace{0.3cm}
+\begin{columns}[T]
+\begin{column}{0.32\textwidth}
+\begin{block}{Binomial}
+\[
+P(x) = \dbinom{n}{x} p^{x} q^{n-x}
+\]
+\end{block}
+\end{column}
+\begin{column}{0.36\textwidth}
+\begin{block}{Hipergeométrica}
+\[
+P(x) = \frac{\dbinom{T}{x}\dbinom{N-T}{n-x}}{\dbinom{N}{n}}
+\]
+\end{block}
+\end{column}
+\begin{column}{0.32\textwidth}
+\begin{block}{Poisson}
+\[
+P(x) = \frac{\lambda^{x} e^{-\lambda}}{x!}
+\]
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Resumen de Fórmulas Clave}
+\begin{columns}[T]
+\begin{column}{0.32\textwidth}
+\begin{exampleblock}{Binomial}
+\[
+E(x) = np
+\]
+\[
+V(x) = npq
+\]
+\end{exampleblock}
+\end{column}
+\begin{column}{0.36\textwidth}
+\begin{alertblock}{Hipergeométrica}
+\[
+E(x) = n\frac{T}{N}
+\]
+Aproxima a binomial si $\frac{n}{N} \leq 0,05$
+\end{alertblock}
+\end{column}
+\begin{column}{0.32\textwidth}
+\begin{block}{Poisson}
+\[
+E(x) = \lambda
+\]
+\[
+V(x) = \lambda
+\]
+Aproxima binomial si $n\geq20, p\leq0,05$
+\end{block}
+\end{column}
+\end{columns}
+
+\vspace{0.5cm}
+\begin{center}
+\Large
+\textcolor{celesteoscuro}{\textbf{¡La clave está en identificar el tipo de muestreo y la naturaleza de los eventos!}}
+\end{center}
+\end{frame}
+
+% ============================================
+% CIERRE
+% ============================================
+\begin{frame}{}
+\centering
+\vspace{2cm}
+{\Huge \textcolor{celesteoscuro}{\textbf{¡Gracias!}}}
+
+\vspace{0.5cm}
+{\large ¿Preguntas?}
+
+\vspace{1cm}
+\footnotesize
+\textcolor{celesteoscuro}{\textbf{MSc. Anselmo Salguero Arano}}\\
+Universidad Autónoma Gabriel René Moreno\\
+Carrera de Contaduría Pública
+\end{frame}
+
+\end{document}

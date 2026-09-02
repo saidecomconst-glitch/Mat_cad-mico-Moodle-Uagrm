@@ -1,0 +1,283 @@
+\documentclass[12pt,a4paper]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\geometry{margin=2.5cm}
+
+% Entornos destacados instruccionales
+\newtcolorbox{definicion}[1][]{
+    colback=blue!5!white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    title=Definición #1
+}
+
+\newtcolorbox{ejemplo}[1][]{
+    colback=green!5!white,
+    colframe=green!50!black,
+    fonttitle=\bfseries,
+    title=Ejemplo #1
+}
+
+\begin{document}
+
+% ----------------------------------------------------------------------
+% FRONTMATTER
+% ----------------------------------------------------------------------
+\frontmatter
+
+\begin{titlepage}
+\begin{center}
+    \vspace*{2cm}
+    \textbf{\Large UNIVERSIDAD AUTÓNOMA GABRIEL RENÉ MORENO} \\[0.5cm]
+    \textbf{\large FACULTAD DE CIENCIAS CONTABLES} \\[0.5cm]
+    \textbf{\large CARRERA DE CONTADURÍA PÚBLICA} \\[2cm]
+    
+    \textbf{\Huge ESTADÍSTICA II MAT-260} \\[1.5cm]
+    \textbf{\Large Texto Guía de Probabilidades e Inferencia} \\[2cm]
+    
+    \textbf{\large Docente: MSc. Anselmo Salguero Arano} \\[2cm]
+    \vfill
+    \textbf{\large Santa Cruz - Bolivia} \\
+\end{center}
+\end{titlepage}
+
+\tableofcontents
+
+% ----------------------------------------------------------------------
+% MAINMATTER
+% ----------------------------------------------------------------------
+\mainmatter
+
+% ----------------------------------------------------------------------
+% UNIDAD 1
+% ----------------------------------------------------------------------
+\chapter{Unidad N°1: Análisis Combinatorio}
+
+\section{Introducción}
+El análisis combinatorio trata de los diversos tipos de arreglos o selecciones que se pueden formar con los elementos de un conjunto[cite: 2]. Tomando en cuenta las propiedades de los grupos distintos que se pueden formar, diferenciándose entre sí por orden de colocación, por orden según la clase de elementos, y por el número de elementos que entra en cada clase[cite: 2]. El estudio del análisis combinatorio nos servirá como base para poder resolver y comprender problemas sobre probabilidades[cite: 2].
+
+\section{Conteo}
+El proceso de conteo simplifica la cuantificación de eventos[cite: 2]. En el estudio de lo que es posible existen esencialmente dos tipos de problemas: citar todo lo que puede suceder en una situación dada y determinar cuántas cosas diferentes pueden acontecer[cite: 2]. 
+
+\subsection{Leyes Fundamentales}
+\begin{definicion}[Ley de la Multiplicación]
+Si una elección consta de $k$ pasos, donde el primero puede realizarse de $n_{1}$ maneras, el segundo de $n_{2}$ maneras, y así sucesivamente, el número total de formas en que toda la situación puede resolverse es el producto de todas estas formas[cite: 2].
+\[
+\text{Total de formas} = n_{1} \times n_{2} \times \dots \times n_{k}
+\]
+Aplica para eventos que no son mutuamente excluyentes[cite: 2].
+\end{definicion}
+
+\begin{definicion}[Ley de la Adición]
+Si un evento $A$ puede ocurrir de $n$ formas diferentes y un evento $B$ de $m$ formas diferentes, y ambos son eventos mutuamente excluyentes (la ocurrencia de uno impide la del otro), el número total de formas es la suma de sus formas individuales[cite: 2].
+\[
+\text{Total de formas} = n + m
+\]
+\end{definicion}
+
+\section{Permutaciones}
+El número de permutaciones de $n$ objetos es el número de formas en las que pueden acomodarse esos objetos en términos de orden[cite: 2].
+
+\textbf{Permutaciones de $n$ objetos (Factorial):} El número total de arreglos posibles de $n$ objetos es $n$ factorial[cite: 2], denotado por $P_{n} = n!$.
+\[
+P_{n} = n! = n \times (n-1) \times (n-2) \times \dots \times 3 \times 2 \times 1
+\]
+\textbf{Permutaciones de $n$ objetos tomados de $r$ a la vez:}
+\[
+_{n}P_{r} = \frac{n!}{(n-r)!}
+\]
+
+\section{Combinaciones}
+En el caso de las combinaciones, lo importante es el número de agrupaciones diferentes de objetos que pueden ocurrir sin importar el orden[cite: 2].
+\[
+_{n}C_{r} = \frac{n!}{r! (n-r)!}
+\]
+
+\begin{ejemplo}[Diferencia entre Permutación y Combinación]
+A cada grupo ordenado de elementos se le llama permutación, mientras que a un grupo no ordenado de elementos se le llama combinación[cite: 2].
+El conjunto $\{A, B, C\}$ tiene 6 permutaciones: $(A,B,C)$, $(A,C,B)$, $(B,A,C)$, $(B,C,A)$, $(C,A,B)$, $(C,B,A)$, pero representa 1 sola combinación[cite: 2].
+\end{ejemplo}
+
+\section{Ejercicios propuestos}
+\begin{enumerate}
+    \item Determine el número de permutaciones posibles con las letras de la palabra "UAGRM".
+    \item Un comité de 4 personas debe formarse a partir de un grupo de 10 contadores. ¿De cuántas formas se puede seleccionar el comité?
+    \item Un estudiante debe responder 8 de 10 preguntas en un examen. ¿De cuántas maneras puede elegirlas?
+\end{enumerate}
+
+% ----------------------------------------------------------------------
+% UNIDAD 2
+% ----------------------------------------------------------------------
+\chapter{Unidad N°2: Probabilidad}
+
+\section{Introducción a la Probabilidad}
+Experimento es el proceso por el cual se obtiene un resultado de una observación[cite: 2]. Puede ser determinístico (el resultado se puede predecir en forma precisa) o aleatorio (el resultado no se puede predecir con exactitud)[cite: 2].
+
+\begin{definicion}[Espacio Muestral y Evento]
+Un conjunto $S$ que consta de todos los resultados posibles de un experimento aleatorio se llama espacio muestral, y cada resultado se llama punto muestral[cite: 2]. Un evento ($N$) es un subconjunto cualquiera de un espacio muestral[cite: 2].
+\end{definicion}
+
+\section{Definición de Probabilidad}
+Históricamente se han desarrollado tres enfoques conceptuales para definir probabilidad y para determinar valores de probabilidad[cite: 2]:
+\begin{itemize}
+    \item \textbf{Definición Clásica (A priori):} Se basa en la suposición de que cada uno de los resultados es igualmente probable[cite: 2]. $P(A) = \frac{N(A)}{S}$[cite: 2].
+    \item \textbf{Frecuencia Relativa (Empírica):} Se determina con base en la proporción de veces que ocurre un resultado favorable en un determinado número de observaciones[cite: 2].
+    \item \textbf{Subjetiva:} Es el grado de confianza que una persona tiene en que el evento ocurra, con base en toda la evidencia que tiene disponible[cite: 2].
+\end{itemize}
+
+\section{Reglas de Adición y Multiplicación}
+La suma de la probabilidad de ocurrencia más la probabilidad de no ocurrencia siempre es igual a 1[cite: 2]:
+\[
+P(A) + P(A') = 1
+\]
+\textbf{Regla general de adición para eventos no excluyentes:}
+\[
+P(A \cup B) = P(A) + P(B) - P(A \cap B)
+\]
+
+\begin{definicion}[Probabilidad Condicional]
+Cuando dos eventos son dependientes, se utiliza el concepto de probabilidad condicional para designar la ocurrencia de un evento relacionado[cite: 2].
+\[
+P(A|B) = \frac{P(A \cap B)}{P(B)}
+\]
+\end{definicion}
+
+\section{Teorema de Bayes}
+Se aplica en el contexto de eventos secuenciales[cite: 2]. La fórmula de cálculo para el teorema de Bayes es[cite: 2]:
+\[
+P(A|B) = \frac{P(A) \cdot P(B|A)}{P(A) \cdot P(B|A) + P(A') \cdot P(B|A')}
+\]
+
+\section{Ejercicios propuestos}
+\begin{enumerate}
+    \item En la Facultad de Ciencias Contables, la probabilidad de que un estudiante apruebe Estadística II es 0.70. ¿Cuál es la probabilidad de que no apruebe?
+    \item Si se lanzan dos dados, ¿cuál es la probabilidad de que la suma de sus caras sea 7?
+    \item Aplicar el teorema de Bayes para una fábrica con tres máquinas que producen el 20\%, 30\% y 50\% de las calculadoras, con tasas de defecto del 5\%, 4\% y 2\% respectivamente.
+\end{enumerate}
+
+
+% ----------------------------------------------------------------------
+% UNIDAD 3
+% ----------------------------------------------------------------------
+\chapter{Unidad N°3: Distribuciones de Probabilidad para Variables Aleatorias Discretas}
+
+\section{Distribución Binomial}
+A un número fijo $n$ de repeticiones independientes de una prueba de Bernoulli se llama experimento binomial[cite: 2]. Solo son dos posibles resultados mutuamente excluyentes en cada ensayo u observación: éxito ($p$) o fracaso ($q$)[cite: 2].
+\[
+P(x|n,p) = \frac{n!}{x!(n-x)!} p^x q^{n-x}
+\]
+Donde $x$ es el número específico de éxitos y $n$ es el número de observaciones o ensayos[cite: 2].
+
+\begin{ejemplo}[Medidas de tendencia central y dispersión]
+Para la distribución binomial, el valor esperado o media es $E(x) = n \times p$ y la varianza es $V(x) = n \times p \times q = \sigma^{2}$[cite: 2].
+\end{ejemplo}
+
+\section{Distribución Hipergeométrica}
+Cuando el muestreo se realiza sin reemplazo para cada uno de los elementos que se toman de una población finita, existe un cambio sistemático en la probabilidad de éxitos[cite: 2].
+\[
+P(X|N,T,n) = \frac{ \binom{T}{x} \binom{N-T}{n-x} }{ \binom{N}{n} }
+\]
+Donde $N$ es el número de elementos de la población y $T$ es el número total de éxitos incluidos en la población[cite: 2].
+
+\section{Distribución de Poisson}
+Puede utilizarse la distribución de Poisson para determinar la probabilidad de que ocurra un número asignado de eventos cuando estos ocurren en un continuo de tiempo y espacio[cite: 2].
+\[
+P(x|\lambda) = \frac{e^{-\lambda} \lambda^x}{x!}
+\]
+El valor esperado y la varianza son iguales a la media de la distribución: $E(x) = V(x) = \lambda$[cite: 2].
+
+\section{Ejercicios propuestos}
+\begin{enumerate}
+    \item Calcule la probabilidad de obtener exactamente 3 caras al lanzar una moneda 5 veces.
+    \item Una caja contiene 10 artículos, 3 defectuosos. Si se extraen 4 sin reemplazo, determine la probabilidad de obtener 1 defectuoso.
+    \item El número promedio de clientes que llega a un banco en un minuto es 2. ¿Cuál es la probabilidad de que lleguen exactamente 3 en un minuto?
+\end{enumerate}
+
+
+% ----------------------------------------------------------------------
+% UNIDAD 4
+% ----------------------------------------------------------------------
+\chapter{Unidad N°4: Distribución de Probabilidad para Variables Aleatorias Continuas}
+
+\section{Introducción}
+Existen diversas distribuciones continuas de probabilidad comunes que son aplicables como modelo a una amplia gama de variables continuas[cite: 2]. Una densidad de probabilidad se caracteriza por el hecho de que el área situada debajo de la curva entre dos valores $a$ y $b$, da la probabilidad de que una variable aleatoria tome un valor contenido en el intervalo $(a,b)$[cite: 2]. El área total situada debajo de la curva siempre es igual a 1[cite: 2].
+
+\section{Distribución Normal o Estándar}
+La gráfica de una distribución normal es una curva en forma de campana que se extiende indefinidamente en ambos sentidos[cite: 2]. 
+
+\begin{definicion}[Estandarización]
+Se utiliza para transformar cualquier distribución normal en la distribución normal estándar[cite: 2]. La fórmula es:
+\[
+Z = \frac{x - \mu}{\sigma}
+\]
+Donde $\mu$ es la media y $\sigma$ es la desviación estándar[cite: 2].
+\end{definicion}
+
+Las distribuciones de estadística como la media muestral y la proporción muestral tienen distribución normal cuando el tamaño de la muestra es grande, sin importar la forma de la distribución de la población de origen[cite: 2].
+
+\section{Ejercicios propuestos}
+\begin{enumerate}
+    \item Sabiendo que $Z$ sigue una distribución normal estándar, calcule el área bajo la curva a la derecha de $Z = 1.25$.
+    \item Los sueldos de los contadores tienen distribución normal con media 5000 Bs y desviación estándar 800 Bs. ¿Qué porcentaje gana menos de 4000 Bs?
+    \item Encuentre el valor de $Z$ que deja un área de 0.95 a su izquierda.
+\end{enumerate}
+
+
+% ----------------------------------------------------------------------
+% UNIDAD 5
+% ----------------------------------------------------------------------
+\chapter{Unidad N°5: Distribuciones de Muestreo e Intervalos de Confianza para la Media}
+
+\section{Población y Muestra}
+Llevar a cabo algunos estudios sobre toda una población resulta casi imposible o impráctico, por lo que la solución es llevar a cabo el estudio basándose en un subconjunto de ésta denominada muestra[cite: 2].
+\begin{itemize}
+    \item \textbf{Población:} es el conjunto de todos los elementos que interesan en un estudio[cite: 2].
+    \item \textbf{Muestra:} es un subconjunto de la población[cite: 2].
+\end{itemize}
+
+\section{Estimación Puntual y Teorema del Límite Central}
+Un estimador puntual es la estimación de un parámetro poblacional, basado en un solo número[cite: 2]. 
+
+\begin{definicion}[Teorema del Límite Central]
+Al aumentar el tamaño de la muestra, la distribución muestral de la media se aproxima a la forma de la distribución normal sin importar la forma de la distribución de las mediciones individuales de la población[cite: 2]. Puede suponerse que la distribución muestral de la media es aproximadamente normal cuando el tamaño de la muestra es $n \ge 30$[cite: 2].
+\end{definicion}
+
+\section{Intervalos de Confianza para la Media}
+Cuando puede utilizarse la distribución normal de probabilidad, el intervalo de confianza para la media se determina mediante[cite: 2]:
+\[
+\overline{X} \pm Z \sigma_{\overline{x}}
+\]
+
+\textbf{Determinación del tamaño de la muestra:} Si se conoce $\sigma$ o puede estimarse, el tamaño de la muestra que se requiere con base en la distribución normal es[cite: 2]:
+\[
+n = \left[ \frac{Z \sigma}{E} \right]^2
+\]
+Donde $E$ es el factor de error máximo permitido en el intervalo[cite: 2].
+
+\section{Ejercicios propuestos}
+\begin{enumerate}
+    \item Calcule el intervalo de confianza del 95\% para una muestra de 36 elementos con media 120 y desviación estándar 15.
+    \item Se requiere estimar la media poblacional con un margen de error de 5 y nivel de confianza del 99\%. Si $\sigma = 20$, ¿cuál debe ser el tamaño de la muestra?
+    \item Explique la importancia del Teorema del Límite Central.
+\end{enumerate}
+
+% ----------------------------------------------------------------------
+% BACKMATTER
+% ----------------------------------------------------------------------
+\backmatter
+
+\chapter{Referencias}
+\begin{itemize}
+    \item Salguero Arano, A. (2026). \textit{TEXTO ESTADÍSTICA II: Estadística inferencial}. Santa Cruz - Bolivia: Universidad Autónoma Gabriel René Moreno[cite: 2].
+    \item López, A., y Burgoa, C. (2020). \textit{Estadística Aplicada a los Negocios}.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lección 1.2: Permutaciones Simples, Variaciones (nPr) y Circulares | Estadística II</title>
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --uagrm-blue: #002b49;
+            --uagrm-accent: #0284c7;
+            --uagrm-red: #b22222;
+            --uagrm-green: #047857;
+            --uagrm-gold: #d97706;
+            --uagrm-bg: #f8fafc;
+            --uagrm-card: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--uagrm-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 15px;
+        }
+
+        .lesson-container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: var(--uagrm-card);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 43, 73, 0.08);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        /* HEADER */
+        .lesson-header {
+            background: linear-gradient(135deg, var(--uagrm-blue) 0%, #004b7a 100%);
+            color: #ffffff;
+            padding: 25px 30px;
+            position: relative;
+            border-bottom: 4px solid var(--uagrm-red);
+        }
+
+        .badge-leccion {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .lesson-header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .lesson-header h2 {
+            font-size: 15px;
+            color: #bae6fd;
+            font-weight: 400;
+        }
+
+        /* PROGRESS BAR */
+        .progress-section {
+            background: #f1f5f9;
+            padding: 12px 30px;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .progress-bar-container {
+            flex-grow: 1;
+            height: 10px;
+            background: #cbd5e1;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--uagrm-accent), #38bdf8);
+            width: 7.7%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--uagrm-blue);
+            white-space: nowrap;
+        }
+
+        /* PAGE BODY */
+        .page-content {
+            padding: 30px;
+            min-height: 480px;
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        .page-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--uagrm-blue);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--border-light);
+            padding-bottom: 6px;
+        }
+
+        .page-num-badge {
+            background: var(--uagrm-accent);
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        /* TEORÍA Y CAJAS */
+        .formula-box {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-left: 5px solid var(--uagrm-accent);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 18px 0;
+        }
+
+        .example-box {
+            background: #f8fafc;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 16px 0;
+        }
+
+        .example-box h4 {
+            color: var(--uagrm-blue);
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        /* EJERCICIO CARD */
+        .exercise-card {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .exercise-layout {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            margin-bottom: 18px;
+        }
+
+        .exercise-img {
+            flex-shrink: 0;
+            width: 200px;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+            background: #ffffff;
+            padding: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        }
+
+        .exercise-img img, .exercise-img svg {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        .exercise-text {
+            flex-grow: 1;
+            font-size: 14.5px;
+        }
+
+        /* MATCHING TABLE */
+        .matching-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .matching-table td {
+            padding: 10px 14px;
+            border: 1px solid var(--border-light);
+            vertical-align: middle;
+        }
+
+        .matching-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .matching-left {
+            width: 55%;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .matching-right {
+            width: 45%;
+        }
+
+        .matching-select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 13.5px;
+            background: #ffffff;
+            color: var(--text-dark);
+            outline: none;
+        }
+
+        .matching-select:focus {
+            border-color: var(--uagrm-accent);
+        }
+
+        /* MULTICHOICE OPTIONS */
+        .options-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .option-item {
+            margin-bottom: 10px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f8fafc;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+            font-size: 14px;
+        }
+
+        .option-label:hover {
+            background: #f1f5f9;
+            border-color: var(--uagrm-accent);
+        }
+
+        .option-label input[type="radio"] {
+            accent-color: var(--uagrm-accent);
+            width: 17px;
+            height: 17px;
+        }
+
+        /* FEEDBACK BOX */
+        .feedback-box {
+            display: none;
+            padding: 15px 18px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+
+        .feedback-box.correct {
+            display: block;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            color: #065f46;
+        }
+
+        .feedback-box.incorrect {
+            display: block;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+        }
+
+        /* BUTTONS & CONTROLS */
+        .lesson-controls {
+            background: #f8fafc;
+            padding: 16px 30px;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--uagrm-accent);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background: #0369a1;
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: var(--text-dark);
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e1;
+        }
+
+        .btn-success {
+            background: var(--uagrm-green);
+            color: #ffffff;
+        }
+
+        .btn-success:hover {
+            background: #065f46;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .attempt-indicator {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* MEDIA RESPONSIVE */
+        @media (max-width: 768px) {
+            .exercise-layout {
+                flex-direction: column;
+            }
+            .exercise-img {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="lesson-container">
+    <!-- HEADER -->
+    <header class="lesson-header">
+        <div class="badge-leccion">LECCIÓN FORMATIVA 1.2 • ESTADÍSTICA II (MAT-260)</div>
+        <h1>Lección 1.2: Permutaciones Simples, Variaciones (nPr) y Circulares</h1>
+        <h2>Ordenamientos Lineales, Subgrupos Ordenados y Mesas Redondas • Docente: <strong>MSc. Anselmo Salguero Arano</strong></h2>
+    </header>
+
+    <!-- PROGRESS BAR -->
+    <div class="progress-section">
+        <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+        <div class="progress-text" id="progressText">Página 1 de 13 (8%)</div>
+    </div>
+
+    <!-- PÁGINA 1: TEORÍA -->
+    <div class="page-content active" id="page1">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 1</span>
+            <h3>Fundamento Teórico y Síntesis Conceptual</h3>
+        </div>
+        
+<div class="formula-box">
+    <h4 style="color: var(--uagrm-blue); margin-bottom: 8px;">📌 Síntesis Teórica: Permutaciones Simples, Variaciones (\(nPr\)) y Circulares</h4>
+    <p>En las permutaciones, el <strong>orden de colocación o asignación es estrictamente relevante</strong>. Cada cambio de orden genera un resultado diferente en el espacio muestral:</p>
+<svg viewBox="0 0 750 180" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-height: 180px; display: block; margin: 15px auto; background: #ffffff; border-radius: 8px; border: 1px solid #e2e8f0; padding: 5px;">
+  <rect width="750" height="180" fill="#f8fafc" rx="8"/>
+  <g transform="translate(15, 15)">
+    <rect width="225" height="150" fill="#ffffff" stroke="#0284c7" stroke-width="1.5" rx="6"/>
+    <rect width="225" height="28" fill="#0284c7" rx="6 6 0 0"/>
+    <text x="112" y="19" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Permutación Lineal (P_n)</text>
+    <rect x="25" y="45" width="35" height="30" fill="#002b49" rx="4"/>
+    <text x="42" y="65" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">1°</text>
+    <rect x="70" y="45" width="35" height="30" fill="#0284c7" rx="4"/>
+    <text x="87" y="65" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">2°</text>
+    <rect x="115" y="45" width="35" height="30" fill="#047857" rx="4"/>
+    <text x="132" y="65" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">3°</text>
+    <rect x="160" y="45" width="35" height="30" fill="#d97706" rx="4"/>
+    <text x="177" y="65" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">n°</text>
+    <rect x="20" y="95" width="185" height="38" fill="#f0f9ff" stroke="#bae6fd" rx="4"/>
+    <text x="112" y="112" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">Todos los n elementos se ordenan</text>
+    <text x="112" y="127" font-size="12" font-weight="bold" fill="#b22222" text-anchor="middle">P_n = n!</text>
+  </g>
+  <g transform="translate(260, 15)">
+    <rect width="225" height="150" fill="#ffffff" stroke="#047857" stroke-width="1.5" rx="6"/>
+    <rect width="225" height="28" fill="#047857" rx="6 6 0 0"/>
+    <text x="112" y="19" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Variaciones / Subgrupos (nPr)</text>
+    <rect x="20" y="45" width="80" height="30" fill="#ecfdf5" stroke="#047857" rx="4"/>
+    <text x="60" y="64" font-size="11" font-weight="bold" fill="#065f46" text-anchor="middle">Universo: n</text>
+    <path d="M 105 60 L 125 60" stroke="#047857" stroke-width="2"/>
+    <text x="115" y="55" font-size="10" font-weight="bold" fill="#047857" text-anchor="middle">r &lt; n</text>
+    <rect x="130" y="45" width="75" height="30" fill="#d1fae5" stroke="#059669" rx="4"/>
+    <text x="167" y="64" font-size="11" font-weight="bold" fill="#065f46" text-anchor="middle">Elegidos: r</text>
+    <rect x="20" y="95" width="185" height="38" fill="#f0fdf4" stroke="#bbf7d0" rx="4"/>
+    <text x="112" y="112" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">Importa la posición o cargo</text>
+    <text x="112" y="127" font-size="12" font-weight="bold" fill="#b22222" text-anchor="middle">nPr = n! / (n - r)!</text>
+  </g>
+  <g transform="translate(505, 15)">
+    <rect width="230" height="150" fill="#ffffff" stroke="#b22222" stroke-width="1.5" rx="6"/>
+    <rect width="230" height="28" fill="#b22222" rx="6 6 0 0"/>
+    <text x="115" y="19" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Permutación Circular (P'_n)</text>
+    <circle cx="115" cy="62" r="22" fill="#fff1f2" stroke="#b22222" stroke-width="1.5"/>
+    <circle cx="115" cy="40" r="5" fill="#002b49"/>
+    <text x="115" y="34" font-size="8" font-weight="bold" fill="#002b49" text-anchor="middle">Fijo (1)</text>
+    <circle cx="137" cy="62" r="5" fill="#b22222"/>
+    <circle cx="115" cy="84" r="5" fill="#b22222"/>
+    <circle cx="93" cy="62" r="5" fill="#b22222"/>
+    <rect x="20" y="95" width="190" height="38" fill="#fff1f2" stroke="#fecdd3" rx="4"/>
+    <text x="115" y="112" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">Se fija 1 posición de referencia</text>
+    <text x="115" y="127" font-size="12" font-weight="bold" fill="#b22222" text-anchor="middle">P'_n = (n - 1)!</text>
+  </g>
+</svg>
+    <ul style="margin: 10px 0 10px 25px;">
+        <li><strong>Permutaciones Simples Lineales (\(P_n\)):</strong> Arreglos de \(n\) elementos diferentes tomados todos a la vez:
+            <div style="text-align: center; margin: 8px 0; font-size: 16px;">\[P_n = n! = n \times (n-1) \times (n-2) \dotsm 1\]</div>
+        </li>
+        <li><strong>Permutaciones de \(n\) tomados de \(r\) en \(r\) (\(nPr\) o Variaciones):</strong> Subgrupos ordenados de tamaño \(r\) elegidos de \(n\) elementos (\(r \le n\)):
+            <div style="text-align: center; margin: 8px 0; font-size: 16px;">\[nPr = \frac{n!}{(n-r)!} = n \times (n-1) \times (n-2) \dotsm (n-r+1)\]</div>
+        </li>
+        <li><strong>Permutaciones Circulares (\(P'_n\)):</strong> Arreglos cerrados sin principio ni fin (mesas redondas). Se fija un elemento como referencia posicional:
+            <div style="text-align: center; margin: 8px 0; font-size: 16px;">\[P'_n = (n-1)!\]</div>
+        </li>
+    </ul>
+</div>
+
+<div class="example-box">
+    <h4>💡 Ejemplo 1.3: Asignación de Cargos Directivos</h4>
+    <p><strong>Problema:</strong> De un directorio compuesto por 8 personas, se debe elegir un Presidente, un Secretario y un Tesorero. ¿Cuántas ternas directivas distintas pueden conformarse?</p>
+    <p><strong>Desarrollo Analítico:</strong> Como los cargos tienen jerarquía y funciones diferenciadas, <em>el orden importa</em>:</p>
+    <div style="text-align: center; margin: 6px 0;">\[_8P_3 = \frac{8!}{(8-3)!} = \frac{8!}{5!} = 8 \times 7 \times 6 = \mathbf{336 \text{ ternas directivas}}\]</div>
+</div>
+
+<div class="example-box">
+    <h4>💡 Ejemplo 1.4: Disposición de Asientos en Mesa de Directorio Circular</h4>
+    <p><strong>Problema:</strong> Se sientan 6 directores en una mesa circular de reuniones. ¿De cuántas maneras pueden disponer sus asientos?</p>
+    <p><strong>Desarrollo:</strong> Aplicamos permutación circular: \(P'_6 = (6-1)! = 5! = 5 \times 4 \times 3 \times 2 \times 1 = \mathbf{120 \text{ ordenaciones}}\).</p>
+</div>
+
+    </div>
+
+    <!-- PÁGINA 2: MULTIMEDIA -->
+    <div class="page-content" id="page2">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 2</span>
+            <h3>Refuerzo Audiovisual y Guía de Observación</h3>
+        </div>
+        
+<div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 10px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
+    <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
+        <div style="font-size: 36px;">🎬</div>
+        <div>
+            <h4 style="color: var(--uagrm-blue); font-size: 16px;">Video Educativo: Permutaciones y Variaciones (Khan Academy)</h4>
+            <p style="font-size: 13.5px; color: var(--text-muted);">Comprenda por qué el orden es determinante y cómo deducir la fórmula \(nPr = \frac{n!}{(n-r)!}\).</p>
+        </div>
+    </div>
+    
+    <div style="position: relative; padding-bottom: 45%; height: 0; overflow: hidden; border-radius: 8px; background: #000; margin-bottom: 20px;">
+        <iframe style="position: absolute; top:0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/ZCcjXn_c-b8" title="Permutaciones" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 4px solid var(--uagrm-green); padding: 15px 18px; border-radius: 0 6px 6px 0;">
+        <h5 style="color: var(--uagrm-green); margin-bottom: 6px;">🎯 Guía de Observación y Auto-Reflexión:</h5>
+        <ol style="margin-left: 20px; font-size: 13.5px; color: #166534;">
+            <li>¿Por qué en una mesa circular se resta 1 unidad a la cantidad de personas (\((n-1)!\))?</li>
+            <li>¿Qué diferencia conceptual existe entre calcular \(P_n\) y calcular \(nPr\) con \(r < n\)?</li>
+            <li>¿Cómo influye la asignación de posiciones fijas (ej. extremos) en el número de permutaciones disponibles?</li>
+        </ol>
+    </div>
+</div>
+
+    </div>
+
+    <!-- PÁGINAS 3 A 7: 5 EMPAREJAMIENTOS -->
+
+    <div class="page-content" id="page3">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 3</span>
+            <h3>Ejercicio Formativo 1: Emparejamiento (Fórmulas de Permutaciones)</h3>
+        </div>
+        <div class="exercise-card">
+            <div class="exercise-layout">
+                <div class="exercise-img"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="130" fill="#f8fafc" rx="8"/>
+  <circle cx="100" cy="60" r="34" fill="#002b49"/>
+  <text x="100" y="64" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">Mesa</text>
+  <circle cx="100" cy="16" r="10" fill="#b22222"/>
+  <text x="100" y="19" font-size="8" font-weight="bold" fill="#ffffff" text-anchor="middle">DF</text>
+  <circle cx="140" cy="38" r="9" fill="#0284c7"/>
+  <circle cx="140" cy="82" r="9" fill="#0284c7"/>
+  <circle cx="100" cy="104" r="9" fill="#0284c7"/>
+  <circle cx="60" cy="82" r="9" fill="#0284c7"/>
+  <circle cx="60" cy="38" r="9" fill="#0284c7"/>
+  <text x="100" y="124" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#002b49">Permutación Circular (n-1)!</text>
+</svg></div>
+                <div class="exercise-text">
+                    <p style="margin-bottom: 12px; font-weight: 600; color: var(--uagrm-blue);">Relacione el tipo de permutación con su modelo matemático correspondiente:</p>
+                    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 12px;">
+                        <em>Instrucciones: Seleccione en la columna derecha la correspondencia exacta para cada elemento de la izquierda. Dispone de hasta 3 intentos formativos.</em>
+                    </p>
+                    
+                    <table class="matching-table">
+                        <tbody>
+
+                            <tr>
+                                <td class="matching-left">Permutación simple de \(n\) elementos</td>
+                                <td class="matching-right">
+                                    <select class="matching-select" id="m_p3_0" data-correct="P_n = n!">
+                                        <option value="">-- Seleccionar --</option>
+                                        <option value="P_n = n!">P_n = n!</option>
+                                        <option value="n! / (n-r)!">n! / (n-r)!</option>
+                                        <option value="P'_n = (n-1)!">P'_n = (n-1)!</option>
+                                        <option value="1">1</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="matching-left">Permutaciones de \(n\) en \(r\) (\(nPr\))</td>
+                                <td class="matching-right">
+                                    <select class="matching-select" id="m_p3_1" data-correct="n! / (n-r)!">
+                                        <option value="">-- Seleccionar --</option>
+                                        <option value="P_n = n!">P_n = n!</option>
+                                        <option value="n! / (n-r)!">n! / (n-r)!</option>
+                                        <option value="P'_n = (n-1)!">P'_n = (n-1)!</option>
+                                        <option value="1">1</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="matching-left">Permutaciones circulares de \(n\) personas</td>
+                                <td class="matching-right">
+                                    <select class="matching-select" id="m_p3_2" data-correct="P'_n = (n-1)!">
+                                        <option value="">-- Seleccionar --</option>
+                                        <option value="P_n = n!">P_n = n!</option>
+                                        <option value="n! / (n-r)!">n! / (n-r)!</option>
+                                        <option value="P'_n = (n-1)!">P'_n = (n-1)!</option>
+                                        <option value="1">1</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="matching-left">Permutación de 1 objeto</td>
+                                <td class="matching-right">
+                                    <select class="matching-select" id="m_p3_3" data-correct="1">
+                                        <option value="">-- Seleccionar --</option>
+                                        <option value="P_n = n!">P_n = n!</option>
+                                        <option value="n! / (n-r)!">n! / (n-r)!</option>
+                                        <option value="P'_n = (n-1)!">P'_n = (n-1)!</option>
+                                        <option value="1">1</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <div class="feedback-box" id="fb_p3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content" id="page4">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 4</span>
+            <h3>Ejercicio Formativo 2: Emparejamiento (Cálculo Numérico de Variaciones (nPr))</h3>
+        </div>
+        <div class="exercise-card">
+            <div class="exercise-layout">
+                <div class="exercise-img"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="130" fill="#f8fafc" rx="8"/>
+  <g transform="translate(25, 35)">
+    <rect x="0" y="0" width="30" height="35" fill="#002b49" rx="4"/>
+    <text x="15" y="23" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">A</text>
+    <rect x="38" y="0" width="30" height="35" fill="#0284c7" rx="4"/>
+    <text x="53" y="23" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">B</text>
+    <rect x="76" y="0" width="30" height="35" fill="#047857" rx="4"/>
+    <text x="91" y="23" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">C</text>
+    <rect x="114" y="0" width="30" height="35" fill="#d97706" rx="4"/>
+    <text x="129" y="23" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">D</text>
+  </g>
+  <text x="100" y="110" text-anchor="middle" font-size="11" font-weight="bold" fill="#002b49">Arreglos Alfanuméricos</text>
+</svg></div>
+                <div class="exercise-text">
+                    <p style="margin-bottom: 12px; font-weight: 600; color: var(--uagrm-blue);">Asocie cada expresión con su resultado numérico exacto:</p>
+                    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 12px;">
+                        <em>Instrucciones: Seleccione en la columna derecha la correspondencia exacta para cada elemento de la izquierda. Dispone de hasta 3 intentos formativos.</em>
+                    </p>
+                    
+                    <table class="matching-table">
+                        <tbody>
+
+                            <tr>
+                                <td class="matching-left">\(_5P_2\)</td>
+                                <td class="matching-right">
+                                    <select class="matching-select" id="m_p4_0" data-correct="20">
+                                        <option value="">-- Seleccionar --</option>
+                                        <option value="20">20</option>
+                                        <option value="120">120</option>
+                                        <option value="42">42</option>
+                                        <option value="24">24</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="matching-left">\(_6P_3\)</td>
+                                <td class="matching-right">
+                                    <select class="matching-select" id="m_p4_1" data-correct="120">
+                                        <option value="">-- Seleccionar --</option>
+                                        <option value="20">20</option>
+                                        <option value="120">120</option>
+                                        <option value="42">42</option>
+                                        <option value="24">24</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="matching-left">\(_7P_2\)</td>
+                                <td class="matching-right">
+                                    <select class="matching-select" id="m_p4_2" data-correct="42">
+                                        <option value="">-- Seleccionar --</option>
+                                        <option value="20">20</option>
+                                        <option value="120">120</option>
+                                        <option value="42">42</option>
+                                        <option value="24">24</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="matching-left">\(_4P_4\)</td>
+                                <td class="matching-right">
+                                    <select class="matching-select" id="m_p4_3" data-correct="24">
+                                        <option value="">-- Seleccionar --</option>
+                                        <option value="20">20</option>
+                                        <option value="120">120</option>
+                                        <option value="42">42</option>
+                                        <option value="24">24</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <div class="feedback-box" id="fb_p4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content" id="page5">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 5</span>
+            <h3>Ejercicio Formativo 3: Emparejamiento (Permutaciones Circulares en Reuniones)</h3>
+        </div>
+        <div class="exercise-card">
+            <div class="exercise-layout">
+                <div class="exercise-img"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="130" fill="#f8fafc" rx="8"/>
+  <circle cx="100" cy="60" r="34" fill="#002b49"/>
+  <text x="100" y="64" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">Mesa</text>
+  <circle cx="100" cy="16" r="10" fill="#b22222"/>
+  <text x="100" y="19" font-size="8" font-weight="bold" fill="#ffffff" text-anchor="middle">DF</text>
+  <circle cx="140" cy="38" r="9" fill="#0284c7"/>
+  <circle cx="140" cy="82" r="9" fill="#0284c7"/>
+  <circle cx="100" cy="104" r="9" fill="#0284c7"/>
+  <circle cx="60" cy="82" r="9" fill="#0284c7"/>
+  <circle cx="60" cy="38" r="9" fill="#0284c7"/>
+  <text x="100" y="124" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#002b49">Permutación Circular (n-1)!</text>
+</svg></div>
+                <div class="exercise-text">
+                    <p style="margin-bottom: 12px; font-weight: 600; color: var(--uagrm-blue);">Relacione el número de integrantes en mesa redonda con sus arreglos circulares:</p>
+                    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 12px;">
+                        <em>Instrucciones: Seleccione en la columna derecha la correspondencia exacta para cada elemento de la izquierda. Dispone de hasta 3 intentos formativos.</em>
+                    </p>
+                    
+                    <table class="matching-table">
+                        <tbody>
+
+                            <tr>
+                                <td class="matching-left">4 personas en mesa redonda (\((4-1)!\))</td>
+                                <td class="matching-right">
+                                    <select class="matching-select" id="m_p5_0" data-correct="6 formas">
+                                        <option value="">-- Seleccionar --</option>
+                                        <option value="6 formas">6 formas</option>
+                                        <option value="24 formas">24 formas</option>
+                                        <option value="120 formas">120 formas</option>
+                                        <option value="720 formas">720 formas</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="matching-left">5 personas en mesa redonda (\((5-1)!\))</td>
+                                <td class="matching-right">
+                                    <select class="matching-select" id="m_p5_1" data-correct="24 formas">
+                                        <option value="">-- Seleccionar --</option>
+                                        <option value="6 formas">6 formas</option>
+                                        <option value="24 formas">24 formas</option>
+                                        <option value="120 formas">120 formas</option>
+                                        <option value="720 formas">720 formas</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="matching-left">6 personas en mesa redonda (\((6-1)!\))</td>
+                                <td class="matching-right">
+                                    <select class="matching-select" id="m_p5_2" data-correct="120 formas">
+                                        <option value="">-- Seleccionar --</option>
+                                        <option value="6 formas">6 formas</option>
+                                        <option value="24 formas">24 formas</option>
+                                        <option value="120 formas">120 formas</option>
+                                        <option value="720 formas">720 formas</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="matching-left">7 personas en mesa redonda (\((7-1)!\))</td>
+                                <td class="matching-right">
+                                    <select class="matching-select" id="m_p5_3" data-correct="720 formas">
+                                        <option value="">-- Seleccionar --</option>
+                                        <option value="6 formas">6 formas</option>
+                                        <option value="24 formas">24 formas</option>
+                                        <option value="120 formas">120 formas</option>
+                                        <option value="720 formas">720 formas</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <div class="feedback-box" id="fb_p5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content" id="page6">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 6</span>
+            <h3>Ejercicio Formativo 4: Emparejamiento (Arreglos de Letras con Posiciones Fijadas)</h3>
+        </div>
+        <div class="exercise-card">
+            <div class="exercise-layout">
+                <div class="exercise-img"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="130" fill="#f8fafc" rx="8"/>
+  <g transform="translate(25, 35)">
+    <rect x="0" y="0" width="30" height="35" fill="#002b49" rx="4"/>
+    <text x="15" y="23" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">A</text>
+    <rect x="38" y="0" width="30" height="35" fill="#0284c7" rx="4"/>
+    <text x="53" y="23" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">B</text>
+    <rect x="76" y="0" width="30" height="35" fill="#047857" rx="4"/>
+    <text x="91" y="23" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">C</text>
+    <rect x="114" y="0" width="30" height="35" fill="#d97706" rx="4"/>
+    <text x="129" y="23" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">D</text>
+  </g>
+  <text x="100" y="110" text-anchor="middle" font-size="11" font-weight="bold" fill="#002b49">Arreglos Alfanuméricos</text>
+</svg></div>
+                <div class="exercise-text">
+                    <p style="margin-bottom: 12px; font-weight: 600; color: var(--uagrm-blue);">Asocie la condición de alineación con el total de palabras formables:</p>
+                    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 12px;">
+                        <em>Instrucciones: Seleccione en la columna derecha la correspondencia exacta para cada elemento de la izquierda. Dispone de hasta 3 intentos formativos.</em>
+                    </p>
+                    
+                    <table class="matching-table">
+                        <tbody>
+
+                            <tr>
+                                <td class="matching-left">5 letras distintas libres (5!)</td>
+                                <td class="matching-right">
+                                    <select class="matching-select" id="m_p6_0" data-correct="120 palabras">
+                                        <option value="">-- Seleccionar --</option>
+                                        <option value="120 palabras">120 palabras</option>
+                                        <option value="120 palabras">120 palabras</option>
+                                        <option value="24 palabras">24 palabras</option>
+                                        <option value="120 palabras">120 palabras</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="matching-left">6 letras con primera letra fija (5!)</td>
+                                <td class="matching-right">
+                                    <select class="matching-select" id="m_p6_1" data-correct="120 palabras">
+                                        <option value="">-- Seleccionar --</option>
+                                        <option value="120 palabras">120 palabras</option>
+                                        <option value="120 palabras">120 palabras</option>
+                                        <option value="24 palabras">24 palabras</option>
+                                        <option value="120 palabras">120 palabras</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="matching-left">6 letras con extremos fijos (4!)</td>
+                                <td class="matching-right">
+                                    <select class="matching-select" id="m_p6_2" data-correct="24 palabras">
+                                        <option value="">-- Seleccionar --</option>
+                                        <option value="120 palabras">120 palabras</option>
+                                        <option value="120 palabras">120 palabras</option>
+                                        <option value="24 palabras">24 palabras</option>
+                                        <option value="120 palabras">120 palabras</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="matching-left">7 letras con extremos fijos (5!)</td>
+                                <td class="matching-right">
+                                    <select class="matching-select" id="m_p6_3" data-correct="120 palabras">
+                                        <option value="">-- Seleccionar --</option>
+                                        <option value="120 palabras">120 palabras</option>
+                                        <option value="120 palabras">120 palabras</option>
+                                        <option value="24 palabras">24 palabras</option>
+                                        <option value="120 palabras">120 palabras</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <div class="feedback-box" id="fb_p6"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content" id="page7">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 7</span>
+            <h3>Ejercicio Formativo 5: Emparejamiento (Podios y Jerarquías en Concursos)</h3>
+        </div>
+        <div class="exercise-card">
+            <div class="exercise-layout">
+                <div class="exercise-img"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="130" fill="#f8fafc" rx="8"/>
+  <g transform="translate(35, 30)">
+    <circle cx="15" cy="15" r="12" fill="#002b49"/>
+    <path d="M 0 45 C 0 32, 30 32, 30 45 Z" fill="#002b49"/>
+    <circle cx="50" cy="15" r="12" fill="#0284c7"/>
+    <path d="M 35 45 C 35 32, 65 32, 65 45 Z" fill="#0284c7"/>
+    <circle cx="85" cy="15" r="12" fill="#047857"/>
+    <path d="M 70 45 C 70 32, 100 32, 100 45 Z" fill="#047857"/>
+    <circle cx="120" cy="15" r="12" fill="#d97706"/>
+    <path d="M 105 45 C 105 32, 135 32, 135 45 Z" fill="#d97706"/>
+  </g>
+  <text x="100" y="115" text-anchor="middle" font-size="11" font-weight="bold" fill="#002b49">Comités y Muestreo (nCr)</text>
+</svg></div>
+                <div class="exercise-text">
+                    <p style="margin-bottom: 12px; font-weight: 600; color: var(--uagrm-blue);">Relacione la cantidad de competidores con los podios de 3 lugares:</p>
+                    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 12px;">
+                        <em>Instrucciones: Seleccione en la columna derecha la correspondencia exacta para cada elemento de la izquierda. Dispone de hasta 3 intentos formativos.</em>
+                    </p>
+                    
+                    <table class="matching-table">
+                        <tbody>
+
+                            <tr>
+                                <td class="matching-left">5 participantes (\(_5P_3\))</td>
+                                <td class="matching-right">
+                                    <select class="matching-select" id="m_p7_0" data-correct="60 podios">
+                                        <option value="">-- Seleccionar --</option>
+                                        <option value="60 podios">60 podios</option>
+                                        <option value="120 podios">120 podios</option>
+                                        <option value="210 podios">210 podios</option>
+                                        <option value="336 podios">336 podios</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="matching-left">6 participantes (\(_6P_3\))</td>
+                                <td class="matching-right">
+                                    <select class="matching-select" id="m_p7_1" data-correct="120 podios">
+                                        <option value="">-- Seleccionar --</option>
+                                        <option value="60 podios">60 podios</option>
+                                        <option value="120 podios">120 podios</option>
+                                        <option value="210 podios">210 podios</option>
+                                        <option value="336 podios">336 podios</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="matching-left">7 participantes (\(_7P_3\))</td>
+                                <td class="matching-right">
+                                    <select class="matching-select" id="m_p7_2" data-correct="210 podios">
+                                        <option value="">-- Seleccionar --</option>
+                                        <option value="60 podios">60 podios</option>
+                                        <option value="120 podios">120 podios</option>
+                                        <option value="210 podios">210 podios</option>
+                                        <option value="336 podios">336 podios</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="matching-left">8 participantes (\(_8P_3\))</td>
+                                <td class="matching-right">
+                                    <select class="matching-select" id="m_p7_3" data-correct="336 podios">
+                                        <option value="">-- Seleccionar --</option>
+                                        <option value="60 podios">60 podios</option>
+                                        <option value="120 podios">120 podios</option>
+                                        <option value="210 podios">210 podios</option>
+                                        <option value="336 podios">336 podios</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <div class="feedback-box" id="fb_p7"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content" id="page8">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 8</span>
+            <h3>Ejercicio Formativo 6: Selección Múltiple (Distribución de Asientos Alternados en Fila)</h3>
+        </div>
+        <div class="exercise-card">
+            <div class="exercise-layout">
+                <div class="exercise-img"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="130" fill="#f8fafc" rx="8"/>
+  <g transform="translate(35, 30)">
+    <circle cx="15" cy="15" r="12" fill="#002b49"/>
+    <path d="M 0 45 C 0 32, 30 32, 30 45 Z" fill="#002b49"/>
+    <circle cx="50" cy="15" r="12" fill="#0284c7"/>
+    <path d="M 35 45 C 35 32, 65 32, 65 45 Z" fill="#0284c7"/>
+    <circle cx="85" cy="15" r="12" fill="#047857"/>
+    <path d="M 70 45 C 70 32, 100 32, 100 45 Z" fill="#047857"/>
+    <circle cx="120" cy="15" r="12" fill="#d97706"/>
+    <path d="M 105 45 C 105 32, 135 32, 135 45 Z" fill="#d97706"/>
+  </g>
+  <text x="100" y="115" text-anchor="middle" font-size="11" font-weight="bold" fill="#002b49">Comités y Muestreo (nCr)</text>
+</svg></div>
+                <div class="exercise-text">
+                    <p style="margin-bottom: 15px; font-size: 15px; font-weight: 500; line-height: 1.6;">
+                        Se deben sentar 5 hombres y 4 mujeres en una fila de 9 asientos de tal manera que las mujeres ocupen siempre los lugares pares (posiciones 2, 4, 6 y 8). ¿De cuántas maneras diferentes pueden sentarse todas las personas?
+                    </p>
+                    
+                    <ul class="options-list">
+
+                        <li class="option-item">
+                            <label class="option-label">
+                                <input type="radio" name="mc_p8" value="0" data-correct="true" data-fb="¡Correcto! Los lugares pares (4 posiciones) los ocupan las 4 mujeres de \(4! = 24\) formas. Los lugares impares (5 posiciones) los ocupan los 5 hombres de \(5! = 120\) formas. Total = \(24 \times 120 = 2.880\) maneras.">
+                                <span><strong>A)</strong> \(2.880\) maneras</span>
+                            </label>
+                        </li>
+
+                        <li class="option-item">
+                            <label class="option-label">
+                                <input type="radio" name="mc_p8" value="1" data-correct="false" data-fb="Incorrecto. 362.880 corresponde a 9! (fila libre sin restricción).">
+                                <span><strong>B)</strong> \(362.880\) maneras</span>
+                            </label>
+                        </li>
+
+                        <li class="option-item">
+                            <label class="option-label">
+                                <input type="radio" name="mc_p8" value="2" data-correct="false" data-fb="Incorrecto. Verifique el producto de 4! = 24 y 5! = 120.">
+                                <span><strong>C)</strong> \(1.440\) maneras</span>
+                            </label>
+                        </li>
+
+                        <li class="option-item">
+                            <label class="option-label">
+                                <input type="radio" name="mc_p8" value="3" data-correct="false" data-fb="Incorrecto. Los lugares pares están predeterminados.">
+                                <span><strong>D)</strong> \(5.760\) maneras</span>
+                            </label>
+                        </li>
+
+                    </ul>
+
+                    <div class="feedback-box" id="fb_p8"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content" id="page9">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 9</span>
+            <h3>Ejercicio Formativo 7: Selección Múltiple (Mesa Redonda con Trío Directivo Inseparable)</h3>
+        </div>
+        <div class="exercise-card">
+            <div class="exercise-layout">
+                <div class="exercise-img"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="130" fill="#f8fafc" rx="8"/>
+  <circle cx="100" cy="60" r="34" fill="#002b49"/>
+  <text x="100" y="64" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">Mesa</text>
+  <circle cx="100" cy="16" r="10" fill="#b22222"/>
+  <text x="100" y="19" font-size="8" font-weight="bold" fill="#ffffff" text-anchor="middle">DF</text>
+  <circle cx="140" cy="38" r="9" fill="#0284c7"/>
+  <circle cx="140" cy="82" r="9" fill="#0284c7"/>
+  <circle cx="100" cy="104" r="9" fill="#0284c7"/>
+  <circle cx="60" cy="82" r="9" fill="#0284c7"/>
+  <circle cx="60" cy="38" r="9" fill="#0284c7"/>
+  <text x="100" y="124" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#002b49">Permutación Circular (n-1)!</text>
+</svg></div>
+                <div class="exercise-text">
+                    <p style="margin-bottom: 15px; font-size: 15px; font-weight: 500; line-height: 1.6;">
+                        Un Director Financiero y 6 gerentes de área (7 personas en total) se reúnen en una mesa circular. Si el Director Financiero debe sentarse siempre entre el Gerente de Operaciones y el Gerente de Marketing, ¿cuántas disposiciones de asiento son posibles?
+                    </p>
+                    
+                    <ul class="options-list">
+
+                        <li class="option-item">
+                            <label class="option-label">
+                                <input type="radio" name="mc_p9" value="0" data-correct="true" data-fb="¡Excelente! El trío [Operaciones, Director, Marketing] forma 1 bloque con \(2! = 2\) ordenamientos internos. Junto con los otros 4 gerentes son 5 elementos en círculo: \(P'_5 = (5-1)! = 24\). Total = \(24 \times 2 = 48\) disposiciones.">
+                                <span><strong>A)</strong> \(48\) disposiciones</span>
+                            </label>
+                        </li>
+
+                        <li class="option-item">
+                            <label class="option-label">
+                                <input type="radio" name="mc_p9" value="1" data-correct="false" data-fb="Incorrecto. 120 corresponde a (6-1)! sin considerar la restricción del trío.">
+                                <span><strong>B)</strong> \(120\) disposiciones</span>
+                            </label>
+                        </li>
+
+                        <li class="option-item">
+                            <label class="option-label">
+                                <input type="radio" name="mc_p9" value="2" data-correct="false" data-fb="Incorrecto. 720 corresponde a P'₇ = 6! = 720.">
+                                <span><strong>C)</strong> \(720\) disposiciones</span>
+                            </label>
+                        </li>
+
+                        <li class="option-item">
+                            <label class="option-label">
+                                <input type="radio" name="mc_p9" value="3" data-correct="false" data-fb="Incorrecto. Olvidó multiplicar por las 2 formas en que pueden ubicarse los gerentes laterales.">
+                                <span><strong>D)</strong> \(24\) disposiciones</span>
+                            </label>
+                        </li>
+
+                    </ul>
+
+                    <div class="feedback-box" id="fb_p9"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content" id="page10">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 10</span>
+            <h3>Ejercicio Formativo 8: Selección Múltiple (Anagramas con Letras Extremas Fijas)</h3>
+        </div>
+        <div class="exercise-card">
+            <div class="exercise-layout">
+                <div class="exercise-img"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="130" fill="#f8fafc" rx="8"/>
+  <g transform="translate(25, 35)">
+    <rect x="0" y="0" width="30" height="35" fill="#002b49" rx="4"/>
+    <text x="15" y="23" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">A</text>
+    <rect x="38" y="0" width="30" height="35" fill="#0284c7" rx="4"/>
+    <text x="53" y="23" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">B</text>
+    <rect x="76" y="0" width="30" height="35" fill="#047857" rx="4"/>
+    <text x="91" y="23" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">C</text>
+    <rect x="114" y="0" width="30" height="35" fill="#d97706" rx="4"/>
+    <text x="129" y="23" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">D</text>
+  </g>
+  <text x="100" y="110" text-anchor="middle" font-size="11" font-weight="bold" fill="#002b49">Arreglos Alfanuméricos</text>
+</svg></div>
+                <div class="exercise-text">
+                    <p style="margin-bottom: 15px; font-size: 15px; font-weight: 500; line-height: 1.6;">
+                        Con todas las letras de la palabra CONTABLE (8 letras distintas), ¿cuántas palabras de 8 letras se pueden formar que comiencen con la letra 'C' y terminen con la letra 'E'?
+                    </p>
+                    
+                    <ul class="options-list">
+
+                        <li class="option-item">
+                            <label class="option-label">
+                                <input type="radio" name="mc_p10" value="0" data-correct="true" data-fb="¡Correcto! Al fijar 'C' al inicio y 'E' al final, quedan 6 letras intermedias libres para permutar: \(P_6 = 6! = 720\) palabras.">
+                                <span><strong>A)</strong> \(720\) palabras</span>
+                            </label>
+                        </li>
+
+                        <li class="option-item">
+                            <label class="option-label">
+                                <input type="radio" name="mc_p10" value="1" data-correct="false" data-fb="Incorrecto. 40.320 es 8! (permutación de todas las letras sin fijar extremos).">
+                                <span><strong>B)</strong> \(40.320\) palabras</span>
+                            </label>
+                        </li>
+
+                        <li class="option-item">
+                            <label class="option-label">
+                                <input type="radio" name="mc_p10" value="2" data-correct="false" data-fb="Incorrecto. 5.040 es 7! (fijar solo una de las letras).">
+                                <span><strong>C)</strong> \(5.040\) palabras</span>
+                            </label>
+                        </li>
+
+                        <li class="option-item">
+                            <label class="option-label">
+                                <input type="radio" name="mc_p10" value="3" data-correct="false" data-fb="Incorrecto. Permute únicamente las 6 letras libres intermedias (6!).">
+                                <span><strong>D)</strong> \(1.440\) palabras</span>
+                            </label>
+                        </li>
+
+                    </ul>
+
+                    <div class="feedback-box" id="fb_p10"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content" id="page11">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 11</span>
+            <h3>Ejercicio Formativo 9: Selección Múltiple (Asignación de Auditores a Proyectos Regionales)</h3>
+        </div>
+        <div class="exercise-card">
+            <div class="exercise-layout">
+                <div class="exercise-img"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="130" fill="#f8fafc" rx="8"/>
+  <g transform="translate(35, 30)">
+    <circle cx="15" cy="15" r="12" fill="#002b49"/>
+    <path d="M 0 45 C 0 32, 30 32, 30 45 Z" fill="#002b49"/>
+    <circle cx="50" cy="15" r="12" fill="#0284c7"/>
+    <path d="M 35 45 C 35 32, 65 32, 65 45 Z" fill="#0284c7"/>
+    <circle cx="85" cy="15" r="12" fill="#047857"/>
+    <path d="M 70 45 C 70 32, 100 32, 100 45 Z" fill="#047857"/>
+    <circle cx="120" cy="15" r="12" fill="#d97706"/>
+    <path d="M 105 45 C 105 32, 135 32, 135 45 Z" fill="#d97706"/>
+  </g>
+  <text x="100" y="115" text-anchor="middle" font-size="11" font-weight="bold" fill="#002b49">Comités y Muestreo (nCr)</text>
+</svg></div>
+                <div class="exercise-text">
+                    <p style="margin-bottom: 15px; font-size: 15px; font-weight: 500; line-height: 1.6;">
+                        De un grupo de 9 auditores seniors disponibles, se deben asignar 4 de ellos a 4 proyectos distintos en diferentes ciudades (La Paz, Cochabamba, Sucre y Tarija). ¿De cuántas formas se puede realizar dicha asignación?
+                    </p>
+                    
+                    <ul class="options-list">
+
+                        <li class="option-item">
+                            <label class="option-label">
+                                <input type="radio" name="mc_p11" value="0" data-correct="true" data-fb="¡Muy bien! Como cada ciudad es un destino específico, el orden de asignación importa: \(_9P_4 = \frac{9!}{(9-4)!} = 9 \times 8 \times 7 \times 6 = 3.024\) formas.">
+                                <span><strong>A)</strong> \(3.024\) formas</span>
+                            </label>
+                        </li>
+
+                        <li class="option-item">
+                            <label class="option-label">
+                                <input type="radio" name="mc_p11" value="1" data-correct="false" data-fb="Incorrecto. 126 es ₉C₄ (combinación sin importar la ciudad asignada).">
+                                <span><strong>B)</strong> \(126\) formas</span>
+                            </label>
+                        </li>
+
+                        <li class="option-item">
+                            <label class="option-label">
+                                <input type="radio" name="mc_p11" value="2" data-correct="false" data-fb="Incorrecto. Verifique el producto de los 4 factores: 9 × 8 × 7 × 6.">
+                                <span><strong>C)</strong> \(15.120\) formas</span>
+                            </label>
+                        </li>
+
+                        <li class="option-item">
+                            <label class="option-label">
+                                <input type="radio" name="mc_p11" value="3" data-correct="false" data-fb="Incorrecto. 504 corresponde a ₉P₃ (asignar a 3 ciudades en lugar de 4).">
+                                <span><strong>D)</strong> \(504\) formas</span>
+                            </label>
+                        </li>
+
+                    </ul>
+
+                    <div class="feedback-box" id="fb_p11"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content" id="page12">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 12</span>
+            <h3>Ejercicio Formativo 10: Selección Múltiple (Alineación con Restricción de Proximidad)</h3>
+        </div>
+        <div class="exercise-card">
+            <div class="exercise-layout">
+                <div class="exercise-img"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="130" fill="#f8fafc" rx="8"/>
+  <g transform="translate(25, 35)">
+    <rect x="0" y="0" width="30" height="35" fill="#002b49" rx="4"/>
+    <text x="15" y="23" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">A</text>
+    <rect x="38" y="0" width="30" height="35" fill="#0284c7" rx="4"/>
+    <text x="53" y="23" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">B</text>
+    <rect x="76" y="0" width="30" height="35" fill="#047857" rx="4"/>
+    <text x="91" y="23" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">C</text>
+    <rect x="114" y="0" width="30" height="35" fill="#d97706" rx="4"/>
+    <text x="129" y="23" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">D</text>
+  </g>
+  <text x="100" y="110" text-anchor="middle" font-size="11" font-weight="bold" fill="#002b49">Arreglos Alfanuméricos</text>
+</svg></div>
+                <div class="exercise-text">
+                    <p style="margin-bottom: 15px; font-size: 15px; font-weight: 500; line-height: 1.6;">
+                        Una fila de 6 niños está formada frente a un aula. Si 2 niños específicos (Mateo y Sofía) insisten en estar siempre juntos, ¿de cuántas maneras diferentes puede formarse toda la fila?
+                    </p>
+                    
+                    <ul class="options-list">
+
+                        <li class="option-item">
+                            <label class="option-label">
+                                <input type="radio" name="mc_p12" value="0" data-correct="true" data-fb="¡Exacto! El bloque [Mateo, Sofía] cuenta como 1 elemento. Con los otros 4 niños son 5 elementos en fila (\(5! = 120\)). Por permutación interna del bloque (\(2! = 2\)): Total = \(120 \times 2 = 240\) maneras.">
+                                <span><strong>A)</strong> \(240\) maneras</span>
+                            </label>
+                        </li>
+
+                        <li class="option-item">
+                            <label class="option-label">
+                                <input type="radio" name="mc_p12" value="1" data-correct="false" data-fb="Incorrecto. 720 es 6! (fila libre sin restricción).">
+                                <span><strong>B)</strong> \(720\) maneras</span>
+                            </label>
+                        </li>
+
+                        <li class="option-item">
+                            <label class="option-label">
+                                <input type="radio" name="mc_p12" value="2" data-correct="false" data-fb="Incorrecto. 120 omite la permutación interna entre Mateo y Sofía.">
+                                <span><strong>C)</strong> \(120\) maneras</span>
+                            </label>
+                        </li>
+
+                        <li class="option-item">
+                            <label class="option-label">
+                                <input type="radio" name="mc_p12" value="3" data-correct="false" data-fb="Incorrecto. Verifique: P₅ × 2! = 120 × 2 = 240.">
+                                <span><strong>D)</strong> \(480\) maneras</span>
+                            </label>
+                        </li>
+
+                    </ul>
+
+                    <div class="feedback-box" id="fb_p12"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 13: CIERRE -->
+    <div class="page-content" id="page13">
+        <div class="page-title">
+            <span class="page-num-badge">Pág. 13</span>
+            <h3>Cierre y Logro de Competencias de la Lección</h3>
+        </div>
+        
+<div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 10px; padding: 25px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
+    <div style="font-size: 48px; margin-bottom: 12px;">🏆</div>
+    <h4 style="color: var(--uagrm-blue); font-size: 20px; margin-bottom: 8px;">¡Excelente trabajo! Ha concluido la Lección 1.2</h4>
+    <p style="font-size: 14.5px; color: var(--text-muted); max-width: 650px; margin: 0 auto 20px auto;">
+        Ha dominado con precisión los modelos de <strong>Permutaciones Simples (\(P_n\))</strong>, <strong>Variaciones (\(nPr\))</strong> y <strong>Permutaciones Circulares (\(P'_n\))</strong>.
+    </p>
+
+    <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 15px; max-width: 600px; margin: 0 auto 25px auto; text-align: left;">
+        <h5 style="color: var(--uagrm-green); margin-bottom: 6px;">📋 Competencias Validadas:</h5>
+        <ul style="font-size: 13.5px; color: #166534; margin-left: 20px;">
+            <li>Cálculo de arreglos ordenados totales (\(n!\)) y parciales (\(nPr\)).</li>
+            <li>Resolución de configuraciones simétricas circulares (\((n-1)!\)).</li>
+            <li>Modelación de cargos jerárquicos y ubicaciones restringidas.</li>
+        </ul>
+    </div>
+</div>
+
+    </div>
+
+    <!-- CONTROLES -->
+    <footer class="lesson-controls">
+        <div class="attempt-indicator" id="attemptIndicator">Modo Formativo • Lectura</div>
+        <div style="display: flex; gap: 10px;">
+            <button class="btn btn-secondary" id="btnPrev" style="display: none;" onclick="navigatePage(-1)">← Anterior</button>
+            <button class="btn btn-primary" id="btnAction" onclick="handleAction()">Continuar →</button>
+        </div>
+    </footer>
+</div>
+
+<script>
+    let currentPage = 1;
+    const totalPages = 13;
+    let attempts = {};
+
+    function updateProgress() {
+        const pct = Math.round((currentPage / totalPages) * 100);
+        document.getElementById('progressBar').style.width = pct + '%';
+        document.getElementById('progressText').innerText = `Página ${currentPage} de ${totalPages} (${pct}%)`;
+        
+        // Show/hide prev button
+        document.getElementById('btnPrev').style.display = currentPage > 1 ? 'inline-flex' : 'none';
+        
+        // Update attempt indicator
+        const attemptElem = document.getElementById('attemptIndicator');
+        if (currentPage === 1) {
+            attemptElem.innerText = 'Fundamento Teórico';
+            document.getElementById('btnAction').innerText = 'Avanzar a Videos →';
+            document.getElementById('btnAction').className = 'btn btn-primary';
+        } else if (currentPage === 2) {
+            attemptElem.innerText = 'Refuerzo Audiovisual';
+            document.getElementById('btnAction').innerText = 'Iniciar Ejercicios Prácticos →';
+            document.getElementById('btnAction').className = 'btn btn-primary';
+        } else if (currentPage >= 3 && currentPage <= 7) {
+            const att = attempts[currentPage] || 0;
+            attemptElem.innerText = `Intento ${att + 1} de 3 (Emparejamiento)`;
+            document.getElementById('btnAction').innerText = 'Comprobar Respuestas';
+            document.getElementById('btnAction').className = 'btn btn-primary';
+        } else if (currentPage >= 8 && currentPage <= 12) {
+            const att = attempts[currentPage] || 0;
+            attemptElem.innerText = `Intento ${att + 1} de 3 (Selección Múltiple)`;
+            document.getElementById('btnAction').innerText = 'Comprobar Selección';
+            document.getElementById('btnAction').className = 'btn btn-primary';
+        } else if (currentPage === 13) {
+            attemptElem.innerText = 'Lección Completada ✅';
+            document.getElementById('btnAction').innerText = 'Finalizar Lección (Volver al Curso)';
+            document.getElementById('btnAction').className = 'btn btn-success';
+        }
+
+        if (window.MathJax) {
+            MathJax.typesetPromise();
+        }
+    }
+
+    function navigatePage(direction) {
+        document.getElementById(`page${currentPage}`).classList.remove('active');
+        currentPage += direction;
+        if (currentPage < 1) currentPage = 1;
+        if (currentPage > totalPages) currentPage = totalPages;
+        document.getElementById(`page${currentPage}`).classList.add('active');
+        updateProgress();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function handleAction() {
+        if (currentPage === 1 || currentPage === 2) {
+            navigatePage(1);
+        } else if (currentPage >= 3 && currentPage <= 7) {
+            checkMatching();
+        } else if (currentPage >= 8 && currentPage <= 12) {
+            checkMultichoice();
+        } else if (currentPage === 13) {
+            alert('¡Felicitaciones! Ha completado exitosamente esta lección interactiva. Su avance ha sido registrado para habilitar el siguiente módulo.');
+            window.location.href = '../00_Guia_Estudio_Unidad_01_Analisis_Combinatorio.html';
+        }
+    }
+
+    function checkMatching() {
+        const pNum = currentPage;
+        const selects = document.querySelectorAll(`#page${pNum} .matching-select`);
+        let allFilled = true;
+        let allCorrect = true;
+
+        selects.forEach(s => {
+            if (!s.value) allFilled = false;
+            if (s.value !== s.getAttribute('data-correct')) allCorrect = false;
+        });
+
+        if (!allFilled) {
+            alert('Por favor complete todas las parejas de emparejamiento antes de comprobar.');
+            return;
+        }
+
+        attempts[pNum] = (attempts[pNum] || 0) + 1;
+        const fb = document.getElementById(`fb_p${pNum}`);
+
+        if (allCorrect) {
+            fb.className = 'feedback-box correct';
+            fb.innerHTML = '<strong>✅ ¡Excelente!</strong> Todas las parejas han sido asociadas correctamente con rigor conceptual y matemático.';
+            setTimeout(() => navigatePage(1), 1600);
+        } else {
+            if (attempts[pNum] < 3) {
+                fb.className = 'feedback-box incorrect';
+                fb.innerHTML = `<strong>❌ Algunas asociaciones no son correctas.</strong> Revise las definiciones y propiedades. Le queda(n) ${3 - attempts[pNum]} intento(s).`;
+            } else {
+                fb.className = 'feedback-box incorrect';
+                fb.innerHTML = '<strong>⚠️ Ha alcanzado los 3 intentos formativos.</strong> Avancemos a la siguiente actividad para continuar reforzando el aprendizaje.';
+                setTimeout(() => navigatePage(1), 2200);
+            }
+        }
+        updateProgress();
+    }
+
+    function checkMultichoice() {
+        const pNum = currentPage;
+        const selected = document.querySelector(`input[name="mc_p${pNum}"]:checked`);
+
+        if (!selected) {
+            alert('Por favor seleccione una opción de respuesta antes de comprobar.');
+            return;
+        }
+
+        attempts[pNum] = (attempts[pNum] || 0) + 1;
+        const isCorrect = selected.getAttribute('data-correct') === 'true';
+        const feedbackMsg = selected.getAttribute('data-fb');
+        const fb = document.getElementById(`fb_p${pNum}`);
+
+        if (isCorrect) {
+            fb.className = 'feedback-box correct';
+            fb.innerHTML = `<strong>✅ Respuesta Correcta:</strong> ${feedbackMsg}`;
+            setTimeout(() => navigatePage(1), 1800);
+        } else {
+            if (attempts[pNum] < 3) {
+                fb.className = 'feedback-box incorrect';
+                fb.innerHTML = `<strong>❌ Observación:</strong> ${feedbackMsg} (Intento ${attempts[pNum]}/3. Intente de nuevo).`;
+            } else {
+                fb.className = 'feedback-box incorrect';
+                fb.innerHTML = `<strong>⚠️ Solución explicada:</strong> ${feedbackMsg} Avanzando al siguiente ejercicio.`;
+                setTimeout(() => navigatePage(1), 2500);
+            }
+        }
+        updateProgress();
+    }
+</script>
+
+</body>
+</html>
