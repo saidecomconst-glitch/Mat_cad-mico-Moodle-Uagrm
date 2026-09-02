@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lección 2.1: Conceptos Fundamentales y Reglas de la Adición de Probabilidad | UAGRM</title>
-    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Lección 2.1: Conceptos Fundamentales y Reglas de la Adición de Probabilidad | Estadística II</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         :root {
             --uagrm-blue: #002b49;
-            --uagrm-darkblue: #001f35;
             --uagrm-red: #b22222;
-            --uagrm-accent: #0284c7;
-            --uagrm-green: #059669;
-            --uagrm-gold: #d97706;
-            --uagrm-purple: #7c3aed;
-            --bg-light: #f8fafc;
+            --accent-blue: #0284c7;
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --accent-purple: #8b5cf6;
+            --bg-body: #e2e8f0;
             --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
+            --text-dark: #0f172a;
             --border-light: #e2e8f0;
         }
 
@@ -31,58 +29,62 @@
         }
 
         body {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: var(--text-main);
+            background: var(--bg-body);
+            color: var(--text-dark);
             line-height: 1.6;
-            padding: 20px 10px;
+            padding: 25px 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
         .lesson-container {
-            max-width: 960px;
-            margin: 0 auto;
+            width: 100%;
+            max-width: 980px;
             background: var(--card-bg);
             border-radius: 14px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border: 1px solid var(--border-light);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.10);
+            border: 1px solid #cbd5e1;
             overflow: hidden;
         }
 
-        .lesson-header {
+        /* Cabecera de Lección */
+        .lesson-top-bar {
             background: linear-gradient(135deg, var(--uagrm-blue) 0%, #004b7a 100%);
             color: #ffffff;
-            padding: 30px 25px;
+            padding: 22px 30px;
             border-bottom: 4px solid var(--uagrm-red);
-            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        .badge-leccion {
-            display: inline-block;
-            background: var(--uagrm-red);
-            color: #ffffff;
-            font-size: 11.5px;
+        .lesson-top-bar h1 {
+            font-size: 20px;
             font-weight: 700;
-            padding: 4px 12px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            margin-bottom: 8px;
         }
 
-        .lesson-header h1 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .lesson-header h2 {
-            font-size: 14px;
-            font-weight: 400;
+        .lesson-top-bar p {
+            font-size: 13.5px;
             color: #bae6fd;
         }
 
+        .badge-leccion {
+            background: var(--uagrm-red);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Barra de progreso */
         .progress-section {
             background: #ffffff;
-            padding: 14px 25px;
+            padding: 12px 30px;
             border-bottom: 1px solid var(--border-light);
             display: flex;
             align-items: center;
@@ -93,30 +95,31 @@
         .progress-bar-container {
             flex-grow: 1;
             background: #e2e8f0;
-            height: 10px;
+            height: 9px;
             border-radius: 5px;
             overflow: hidden;
         }
 
         .progress-bar {
-            background: linear-gradient(90deg, var(--uagrm-accent), var(--uagrm-green));
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
             height: 100%;
             width: 8%;
             transition: width 0.3s ease;
         }
 
         .progress-text {
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 600;
             color: var(--uagrm-blue);
             min-width: 140px;
             text-align: right;
         }
 
+        /* Contenido de Página */
         .page-content {
             display: none;
-            padding: 30px;
-            min-height: 480px;
+            padding: 30px 35px;
+            min-height: 500px;
         }
 
         .page-content.active {
@@ -129,39 +132,185 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .page-title {
+        /* Tarjeta de Pregunta Estilo Diapositiva */
+        .statement-text {
+            font-size: 18px;
+            font-style: italic;
+            font-weight: 600;
+            color: var(--accent-blue);
+            line-height: 1.5;
+            margin-bottom: 22px;
+            text-align: justify;
+        }
+
+        .question-body-grid {
+            display: grid;
+            grid-template-columns: 1fr 260px;
+            gap: 25px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .question-body-grid {
+                grid-template-columns: 1fr;
+            }
+            .statement-text {
+                font-size: 16px;
+            }
+            .page-content {
+                padding: 20px 18px;
+            }
+        }
+
+        /* Lista de Opciones */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .option-card {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 9px;
+            padding: 13px 16px;
+            font-size: 14.5px;
+            font-weight: 500;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid var(--border-light);
+            text-align: left;
         }
 
-        .page-num-badge {
+        .option-card:hover {
+            border-color: var(--accent-blue);
+            background: #f0f9ff;
+            transform: translateX(3px);
+        }
+
+        .option-card.correct {
+            background: #ecfdf5 !important;
+            border-color: var(--accent-green) !important;
+            color: #065f46 !important;
+            font-weight: 600;
+        }
+
+        .option-card.incorrect {
+            background: #fef2f2 !important;
+            border-color: var(--uagrm-red) !important;
+            color: #991b1b !important;
+        }
+
+        .option-letter {
+            color: var(--accent-blue);
+            font-weight: 700;
+            font-size: 15px;
+            min-width: 24px;
+        }
+
+        /* Emparejamiento */
+        .matching-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .matching-grid { grid-template-columns: 1fr; }
+        }
+
+        .match-card {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 13.5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .match-select {
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1.5px solid #cbd5e1;
+            font-size: 13px;
+            background: #ffffff;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .btn-check-match {
+            margin-top: 16px;
             background: var(--uagrm-blue);
             color: white;
-            font-size: 13px;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 6px;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 7px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
         }
 
-        .page-title h3 {
-            font-size: 17px;
-            color: var(--uagrm-blue);
+        .btn-check-match:hover {
+            background: #00406c;
         }
 
+        /* Ilustración del personaje */
+        .illustration-box {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .illustration-box svg {
+            width: 100%;
+            max-width: 240px;
+            height: auto;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.08));
+        }
+
+        /* Feedback */
+        .feedback-container {
+            margin-top: 16px;
+            padding: 14px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .feedback-container.correct {
+            background: #ecfdf5;
+            border-left: 4px solid var(--accent-green);
+            color: #065f46;
+            display: block;
+        }
+
+        .feedback-container.incorrect {
+            background: #fef2f2;
+            border-left: 4px solid var(--uagrm-red);
+            color: #991b1b;
+            display: block;
+        }
+
+        /* Navegación */
         .nav-buttons {
             background: #f8fafc;
-            padding: 16px 25px;
+            padding: 16px 30px;
             border-top: 1px solid var(--border-light);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .btn {
+        .btn-nav {
             padding: 10px 22px;
             border-radius: 8px;
             font-size: 14px;
@@ -173,17 +322,16 @@
 
         .btn-prev {
             background: #ffffff;
-            color: var(--text-main);
-            border: 1.5px solid var(--border-light);
+            color: var(--text-dark);
+            border: 1.5px solid #cbd5e1;
         }
 
         .btn-prev:hover:not(:disabled) {
             background: #f1f5f9;
-            border-color: #cbd5e1;
         }
 
         .btn-next {
-            background: var(--uagrm-accent);
+            background: var(--accent-blue);
             color: white;
         }
 
@@ -192,214 +340,47 @@
             box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
         }
 
-        .btn:disabled {
+        .btn-nav:disabled {
             opacity: 0.4;
             cursor: not-allowed;
         }
 
-        /* Ejercicios y opciones */
-        .question-box {
+        /* Cajas didácticas */
+        .concept-card {
             background: #ffffff;
             border: 1px solid var(--border-light);
             border-radius: 10px;
             padding: 22px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-        }
-
-        .question-enunciado {
-            font-size: 15.5px;
-            font-weight: 600;
-            color: var(--uagrm-blue);
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .option-item {
-            background: #f8fafc;
-            border: 1.5px solid var(--border-light);
-            border-radius: 8px;
-            padding: 12px 16px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .option-item:hover {
-            background: #eff6ff;
-            border-color: var(--uagrm-accent);
-            transform: translateX(3px);
-        }
-
-        .option-item.selected-correct {
-            background: #ecfdf5 !important;
-            border-color: var(--uagrm-green) !important;
-            color: #065f46 !important;
-            font-weight: 600;
-        }
-
-        .option-item.selected-incorrect {
-            background: #fef2f2 !important;
-            border-color: var(--uagrm-red) !important;
-            color: #991b1b !important;
-        }
-
-        .feedback-box {
-            margin-top: 15px;
-            padding: 14px 18px;
-            border-radius: 8px;
-            font-size: 13.5px;
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .feedback-box.correct {
-            background: #ecfdf5;
-            border-left: 4px solid var(--uagrm-green);
-            color: #065f46;
-            display: block;
-        }
-
-        .feedback-box.incorrect {
-            background: #fef2f2;
-            border-left: 4px solid var(--uagrm-red);
-            color: #991b1b;
-            display: block;
-        }
-
-        /* Emparejamiento */
-        .matching-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 15px;
-        }
-
-        @media (max-width: 650px) {
-            .matching-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .match-card {
-            background: #f8fafc;
-            border: 1px solid var(--border-light);
-            border-radius: 6px;
-            padding: 10px 14px;
-            font-size: 13.5px;
-            display: flex;
-            align-items: center;
-        }
-
-        .match-select {
-            width: 100%;
-            padding: 8px 12px;
-            border-radius: 6px;
-            border: 1.5px solid var(--border-light);
-            font-size: 13px;
-            background: #ffffff;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .match-select:focus {
-            border-color: var(--uagrm-accent);
-        }
-
-        .btn-check-match {
-            margin-top: 15px;
-            background: var(--uagrm-blue);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-size: 13.5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-check-match:hover {
-            background: #00406c;
-        }
-
-        /* Cajas de teoría */
-        .concept-card {
-            background: #ffffff;
-            border: 1px solid var(--border-light);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 18px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-        }
-
-        .concept-card h4 {
-            color: var(--uagrm-blue);
-            font-size: 16px;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .alert-box {
-            background: #eff6ff;
-            border-left: 4px solid var(--uagrm-accent);
-            padding: 12px 16px;
-            border-radius: 0 8px 8px 0;
-            margin: 14px 0;
-            font-size: 13.5px;
         }
 
         .formula-box {
             background: #f8fafc;
             border: 1.5px dashed #cbd5e1;
             border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
+            padding: 16px;
+            margin: 16px 0;
             text-align: center;
-        }
-
-        .green-box {
-            background: #ecfdf5;
-            border-left: 4px solid var(--uagrm-green);
-            padding: 12px 16px;
-            border-radius: 0 8px 8px 0;
-            margin: 14px 0;
-            font-size: 13.5px;
-        }
-
-        .red-box {
-            background: #fef2f2;
-            border-left: 4px solid var(--uagrm-red);
-            padding: 12px 16px;
-            border-radius: 0 8px 8px 0;
-            margin: 14px 0;
-            font-size: 13.5px;
         }
     </style>
 </head>
 <body>
 
 <div class="lesson-container">
-    <!-- HEADER -->
-    <div class="lesson-header">
-        <span class="badge-leccion">UNIDAD 2 • LECCIÓN 2.1</span>
-        <h1>Conceptos Fundamentales y Reglas de la Adición de Probabilidad</h1>
-        <h2>Enfoques Clásico, Empírico, Axiomas de Kolmogorov y Eventos Mutuamente Excluyentes • MSc. Anselmo Salguero Arano</h2>
+    <!-- TOP BAR -->
+    <div class="lesson-top-bar">
+        <div>
+            <span class="badge-leccion">UNIDAD 2 • LECCIÓN 2.1</span>
+            <h1 style="margin-top: 4px;">Conceptos Fundamentales y Reglas de la Adición de Probabilidad</h1>
+            <p>Enfoques de Probabilidad, Axiomas de Kolmogorov y Reglas de Adición • MSc. Anselmo Salguero Arano</p>
+        </div>
+        <div style="font-size: 13px; font-weight: 600; background: rgba(255,255,255,0.18); padding: 6px 14px; border-radius: 20px;">
+            Estadística II (MAT-260)
+        </div>
     </div>
 
-    <!-- PROGRESS -->
+    <!-- PROGRESS BAR -->
     <div class="progress-section">
         <div class="progress-bar-container">
             <div class="progress-bar" id="progressBar"></div>
@@ -409,795 +390,917 @@
 
     <!-- PÁGINA 1: TEORÍA -->
     <div class="page-content active" id="page1">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 1</span>
-            <h3>Fundamento Teórico y Síntesis Conceptual</h3>
+        <div style="font-size: 18px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 15px; border-bottom: 2px solid var(--border-light); padding-bottom: 8px;">
+            📚 Fundamento Teórico y Síntesis Conceptual
         </div>
         
-<div class="formula-box">
-    <h4 style="color: var(--uagrm-blue); margin-bottom: 8px;">📌 Fundamentos Teóricos: Incertidumbre y Probabilidad en Negocios (Anderson & Lind)</h4>
-    <p>En el ámbito contable y financiero, la probabilidad cuantifica la posibilidad de ocurrencia de eventos sujetos a riesgo e incertidumbre:</p>
+<div class="concept-card">
+    <h3 style="color: var(--uagrm-blue); margin-bottom: 10px;">📌 1. Definición y Enfoques de Probabilidad (Lind & Anderson)</h3>
+    <p>La probabilidad es una medida cuantitativa de la incertidumbre sobre la ocurrencia de un evento futuro en un experimento aleatorio, acotada estrictamente en el intervalo \([0, 1]\).</p>
     
-    <!-- SVG INFOGRAFÍA VIBRANTE TEORÍA 2.1 -->
-    <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; display: block; margin: 15px auto; background: #ffffff; border-radius: 8px; border: 1px solid #e2e8f0; padding: 5px;">
-      <defs>
-        <linearGradient id="gradP1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#0284c7"/>
-          <stop offset="100%" stop-color="#0369a1"/>
-        </linearGradient>
-        <linearGradient id="gradP2" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#059669"/>
-          <stop offset="100%" stop-color="#047857"/>
-        </linearGradient>
-        <linearGradient id="gradP3" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#b22222"/>
-          <stop offset="100%" stop-color="#881337"/>
-        </linearGradient>
-      </defs>
-      <rect width="820" height="200" fill="#f8fafc" rx="8"/>
-      
-      <!-- Panel 1: Enfoques -->
-      <g transform="translate(15, 15)">
-        <rect width="250" height="170" fill="#ffffff" stroke="#0284c7" stroke-width="1.5" rx="6"/>
-        <rect width="250" height="30" fill="url(#gradP1)" rx="6 6 0 0"/>
-        <text x="125" y="20" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Enfoques de Probabilidad</text>
-        <rect x="15" y="42" width="220" height="34" fill="#e0f2fe" rx="4"/>
-        <text x="25" y="58" font-size="11" font-weight="bold" fill="#0369a1">1. Clásico (Laplace):</text>
-        <text x="25" y="71" font-size="10" fill="#002b49">P(A) = Casos Favorables / Posibles</text>
-        <rect x="15" y="82" width="220" height="34" fill="#f0f9ff" rx="4"/>
-        <text x="25" y="98" font-size="11" font-weight="bold" fill="#0369a1">2. Empírico / Frecuentista:</text>
-        <text x="25" y="111" font-size="10" fill="#002b49">P(A) ≈ Frecuencia Relativa histórica</text>
-        <rect x="15" y="122" width="220" height="34" fill="#f0f9ff" rx="4"/>
-        <text x="25" y="138" font-size="11" font-weight="bold" fill="#0369a1">3. Subjetivo:</text>
-        <text x="25" y="151" font-size="10" fill="#002b49">Juicio experto y grado de creencia</text>
-      </g>
-
-      <!-- Panel 2: Regla Especial de Adición -->
-      <g transform="translate(280, 15)">
-        <rect width="250" height="170" fill="#ffffff" stroke="#047857" stroke-width="1.5" rx="6"/>
-        <rect width="250" height="30" fill="url(#gradP2)" rx="6 6 0 0"/>
-        <text x="125" y="20" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Eventos Mutuamente Excluyentes</text>
-        <circle cx="65" cy="75" r="25" fill="#d1fae5" stroke="#047857" stroke-width="1.5"/>
-        <text x="65" y="80" font-size="12" font-weight="bold" fill="#065f46" text-anchor="middle">A</text>
-        <circle cx="185" cy="75" r="25" fill="#d1fae5" stroke="#047857" stroke-width="1.5"/>
-        <text x="185" y="80" font-size="12" font-weight="bold" fill="#065f46" text-anchor="middle">B</text>
-        <text x="125" y="80" font-size="11" font-weight="bold" fill="#b22222" text-anchor="middle">A ∩ B = ∅</text>
-        <rect x="15" y="115" width="220" height="42" fill="#ecfdf5" stroke="#a7f3d0" rx="4"/>
-        <text x="125" y="132" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">Regla Especial de la Adición:</text>
-        <text x="125" y="148" font-size="12" font-weight="bold" fill="#047857" text-anchor="middle">P(A ∪ B) = P(A) + P(B)</text>
-      </g>
-
-      <!-- Panel 3: Regla General de Adición -->
-      <g transform="translate(545, 15)">
-        <rect width="260" height="170" fill="#ffffff" stroke="#b22222" stroke-width="1.5" rx="6"/>
-        <rect width="260" height="30" fill="url(#gradP3)" rx="6 6 0 0"/>
-        <text x="130" y="20" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Eventos No Excluyentes (Solapados)</text>
-        <circle cx="95" cy="75" r="28" fill="#fee2e2" fill-opacity="0.7" stroke="#b22222" stroke-width="1.5"/>
-        <circle cx="165" cy="75" r="28" fill="#fee2e2" fill-opacity="0.7" stroke="#b22222" stroke-width="1.5"/>
-        <text x="75" y="78" font-size="11" font-weight="bold" fill="#991b1b">A</text>
-        <text x="130" y="78" font-size="10" font-weight="bold" fill="#991b1b" text-anchor="middle">A∩B</text>
-        <text x="185" y="78" font-size="11" font-weight="bold" fill="#991b1b">B</text>
-        <rect x="15" y="115" width="230" height="42" fill="#fff1f2" stroke="#fecdd3" rx="4"/>
-        <text x="130" y="132" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">Regla General de la Adición:</text>
-        <text x="130" y="148" font-size="12" font-weight="bold" fill="#b22222" text-anchor="middle">P(A ∪ B) = P(A) + P(B) - P(A ∩ B)</text>
-      </g>
-    </svg>
-
-    <ul style="margin: 10px 0 10px 25px;">
-        <li><strong>Axiomas de Kolmogorov:</strong> Para cualquier evento \(A\), se cumple \(0 \le P(A) \le 1\), \(P(S) = 1\) y para el complemento \(P(A') = 1 - P(A)\).</li>
-        <li><strong>Regla Especial:</strong> Si dos opciones son incompatibles (\(A \cap B = \emptyset\)), sus probabilidades se suman de forma directa: \(P(A \cup B) = P(A) + P(B)\).</li>
-        <li><strong>Regla General:</strong> Si dos eventos pueden presentarse conjuntamente (\(A \cap B \neq \emptyset\)), se resta la probabilidad de la intersección para no duplicar el conteo.</li>
-    </ul>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin: 18px 0;">
+        <div style="background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 8px; padding: 14px;">
+            <h4 style="color: #0284c7; margin-bottom: 6px;">1. Enfoque Clásico (Laplace)</h4>
+            <p style="font-size: 13px;">Asume resultados elementales igualmente probables (equiprobabilidad).<br>
+            <strong>Fórmula:</strong> \(P(A) = \frac{n(A)}{N} = \frac{\text{Casos Favorables}}{\text{Casos Posibles}}\)</p>
+        </div>
+        <div style="background: #ecfdf5; border: 1.5px solid #a7f3d0; border-radius: 8px; padding: 14px;">
+            <h4 style="color: #059669; margin-bottom: 6px;">2. Enfoque Empírico (Frecuentista)</h4>
+            <p style="font-size: 13px;">Se basa en la fracción de veces que ocurrió el evento en ensayos pasados.<br>
+            <strong>Fórmula:</strong> \(P(A) \approx \frac{\text{Frecuencia del evento}}{\text{Número total de observaciones}}\)</p>
+        </div>
+        <div style="background: #fef3c7; border: 1.5px solid #fde68a; border-radius: 8px; padding: 14px;">
+            <h4 style="color: #d97706; margin-bottom: 6px;">3. Enfoque Subjetivo</h4>
+            <p style="font-size: 13px;">Representa el grado de creencia o juicio de un experto ante eventos únicos donde no existen datos previos repetitivos.</p>
+        </div>
+    </div>
 </div>
 
-<div class="example-box">
-    <h4>💡 Ejemplo 2.1: Auditoría de Facturación Fiscal (IVA vs. IUE)</h4>
-    <p><strong>Problema:</strong> En una muestra de 500 empresas comerciales de Santa Cruz, el 35% presenta observaciones en el débito fiscal IVA (\(P(A) = 0.35\)), el 20% presenta inconsistencias en el IUE (\(P(B) = 0.20\)), y el 10% tiene observaciones en ambos tributos (\(P(A \cap B) = 0.10\)). ¿Cuál es la probabilidad de que una empresa elegida al azar tenga al menos una observación tributaria?</p>
-    <p><strong>Desarrollo Analítico:</strong></p>
-    <div style="text-align: center; margin: 8px 0;">\[P(A \cup B) = P(A) + P(B) - P(A \cap B) = 0.35 + 0.20 - 0.10 = \mathbf{0.45 \quad (45\%)}\]</div>
-    <p><strong>Interpretación:</strong> Existe un 45% de probabilidad de que una empresa seleccionada al azar deba ser sujeta a fiscalización por irregularidades en IVA, en IUE o en ambos tributos.</p>
+<div class="concept-card">
+    <h3 style="color: var(--uagrm-blue); margin-bottom: 10px;">📐 2. Axiomas de Kolmogorov y Reglas de la Adición</h3>
+    <ul style="margin-left: 20px; font-size: 14px;">
+        <li><strong>Axioma de no negatividad:</strong> \(0 \le P(A) \le 1\) para todo evento \(A\).</li>
+        <li><strong>Axioma del evento seguro:</strong> \(P(S) = 1.00\).</li>
+        <li><strong>Regla del complemento:</strong> \(P(A') = 1 - P(A)\).</li>
+        <li><strong>Regla Especial de la Adición (Eventos Mutuamente Excluyentes):</strong> Si \(A \cap B = \emptyset\), entonces:
+            <div style="text-align: center; margin: 8px 0; font-weight: bold; color: #0284c7;">\(P(A \cup B) = P(A) + P(B)\)</div>
+        </li>
+        <li><strong>Regla General de la Adición (Eventos No Excluyentes / Solapados):</strong> Si \(A \cap B \neq \emptyset\), entonces:
+            <div style="text-align: center; margin: 8px 0; font-weight: bold; color: #b22222;">\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</div>
+        </li>
+    </ul>
 </div>
 
     </div>
 
     <!-- PÁGINA 2: MULTIMEDIA -->
     <div class="page-content" id="page2">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 2</span>
-            <h3>Refuerzo Audiovisual y Guía de Observación</h3>
+        <div style="font-size: 18px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 15px; border-bottom: 2px solid var(--border-light); padding-bottom: 8px;">
+            🎬 Refuerzo Audiovisual y Guía de Estudio
         </div>
         
-<div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 10px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
-    <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
-        <div style="font-size: 36px;">🎬</div>
-        <div>
-            <h4 style="color: var(--uagrm-blue); font-size: 16px;">Video Educativo: Fundamentos y Reglas de la Adición (Khan Academy / UAGRM)</h4>
-            <p style="font-size: 13.5px; color: var(--text-muted);">Comprenda la intuición geométrica de los diagramas de Venn y la no duplicación de la intersección.</p>
-        </div>
+<div class="concept-card">
+    <h3 style="color: var(--uagrm-blue); margin-bottom: 12px;">🎬 Video Educativo: Fundamentos y Axiomas de Probabilidad</h3>
+    <div style="position: relative; padding-bottom: 52%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid #cbd5e1; margin-bottom: 18px;">
+        <iframe src="https://www.youtube-nocookie.com/embed/24XN9yTfKVs" style="position: absolute; top:0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>
     </div>
-    
-    <div style="position: relative; padding-bottom: 45%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid #cbd5e1; margin-bottom: 20px; background: #000;">
-        <iframe style="position: absolute; top:0; left: 0; width: 100%; height: 100%;" 
-                src="https://www.youtube-nocookie.com/embed/uzkc-qNVoOk" 
-                title="Reglas de Probabilidad" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-        </iframe>
-    </div>
-
-    <div style="background: #f8fafc; border-left: 4px solid var(--uagrm-accent); padding: 15px; border-radius: 0 6px 6px 0; font-size: 13.5px;">
-        <strong>📋 Guía de Observación para el Estudiante:</strong>
-        <ul style="margin: 6px 0 0 20px;">
-            <li>Identifique claramente cuándo dos eventos son mutuamente excluyentes (disjuntos) vs. cuando existe una región compartida.</li>
-            <li>Observe cómo la regla del complemento simplifica cálculos del tipo <em>"al menos uno"</em> (\(P(\text{al menos 1}) = 1 - P(\text{ninguno})\)).</li>
-        </ul>
+    <div style="background: #f8fafc; border-left: 4px solid var(--accent-blue); padding: 14px; border-radius: 0 8px 8px 0; font-size: 13.5px;">
+        <strong>📋 Guía de Observación y Autoestudio:</strong>
+        <ol style="margin: 8px 0 0 20px;">
+            <li>Identifique la diferencia conceptual entre la unión (\(A \cup B\)) y la intersección (\(A \cap B\)).</li>
+            <li>Observe por qué es fundamental restar la probabilidad conjunta en eventos no excluyentes para evitar la doble contabilización.</li>
+        </ol>
     </div>
 </div>
 
     </div>
 
-    <!-- PÁGINA 3: EJERCICIO 1 (Opción Múltiple) -->
+    <!-- PÁGINA 3: EJERCICIO 1 -->
     <div class="page-content" id="page3">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 3</span>
-            <h3>Actividad Formativa 1 de 10: Evaluación de Probabilidad Clásica de Laplace</h3>
+        <div style="font-size: 15px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 14px;">
+            Actividad Formativa 1 de 10: Enfoque Clásico de Probabilidad
         </div>
-        <div class="question-box">
 
-            <div class="question-enunciado">En un arqueo de caja sorpresivo, un auditor encuentra un lote de 120 recibos de egreso numerados correlativamente. De ellos, 30 corresponden a viáticos, 45 a compra de suministros y 45 a servicios básicos. Si se extrae un recibo al azar, ¿cuál es la probabilidad clásica de que corresponda a viáticos?</div>
-            
-<svg viewBox="0 0 500 90" xmlns="http://www.w3.org/2000/svg" style="max-width: 420px; display: block; margin: 10px auto; background: #ffffff; border-radius: 6px; border: 1px solid #e2e8f0;">
-  <rect width="500" height="90" fill="#f8fafc" rx="6"/>
-  <rect x="30" y="20" width="120" height="50" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
-  <text x="90" y="42" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">Viáticos</text>
-  <text x="90" y="58" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">n = 30</text>
-  <rect x="170" y="20" width="140" height="50" fill="#f1f5f9" stroke="#94a3b8" rx="4"/>
-  <text x="240" y="42" font-size="11" font-weight="bold" fill="#475569" text-anchor="middle">Otros Gastos</text>
-  <text x="240" y="58" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">n = 90</text>
-  <rect x="330" y="20" width="140" height="50" fill="#dcfce7" stroke="#16a34a" rx="4"/>
-  <text x="400" y="42" font-size="11" font-weight="bold" fill="#15803d" text-anchor="middle">Total Lote</text>
-  <text x="400" y="58" font-size="12" font-weight="bold" fill="#15803d" text-anchor="middle">N = 120</text>
-</svg>
+        <div class="statement-text">
+            En un lote de 200 piezas industriales producidas por una máquina automatizada, 30 son de Tipo A, 50 de Tipo B y 120 de Tipo C. Si se extrae una pieza al azar y todas tienen la misma probabilidad de ser seleccionadas, ¿cuál es la probabilidad clásica de que sea de Tipo A?
+        </div>
+        <div class="question-body-grid">
+            <div class="options-list" id="optGrid_3">
 
-            <div class="options-grid" id="optGrid_3">
-
-                <div class="option-item" onclick="selectOption(3, 0, true)">
-                    <span style="font-weight: bold; width: 24px;">A)</span>
-                    <span>\(P(V) = \frac{30}{120} = 0.25 \quad (25\%)\)</span>
+                <div class="option-card" onclick="selectOption(3, 0, true, 'Enfoque clásico de Laplace: \(P(A) = \frac{30}{200} = 0.15\) (15%).')">
+                    <span class="option-letter">A)</span>
+                    <span>\(P(A) = \frac{30}{200} = 0.15 \quad (15\%)\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(3, 1, false)">
-                    <span style="font-weight: bold; width: 24px;">B)</span>
-                    <span>\(P(V) = \frac{30}{90} = 0.3333 \quad (33.33\%)\)</span>
+                <div class="option-card" onclick="selectOption(3, 1, false, 'Dividió entre los casos restantes en lugar del espacio muestral total (200).')">
+                    <span class="option-letter">B)</span>
+                    <span>\(P(A) = \frac{30}{170} \approx 0.1765\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(3, 2, false)">
-                    <span style="font-weight: bold; width: 24px;">C)</span>
-                    <span>\(P(V) = \frac{45}{120} = 0.375 \quad (37.5\%)\)</span>
+                <div class="option-card" onclick="selectOption(3, 2, false, '50 corresponde al Tipo B, no al Tipo A.')">
+                    <span class="option-letter">C)</span>
+                    <span>\(P(A) = \frac{50}{200} = 0.25\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(3, 3, false)">
-                    <span style="font-weight: bold; width: 24px;">D)</span>
-                    <span>\(P(V) = 0.75 \quad (75\%)\)</span>
+                <div class="option-card" onclick="selectOption(3, 3, false, '0.85 es la probabilidad del complemento (no ser Tipo A).')">
+                    <span class="option-letter">D)</span>
+                    <span>\(P(A) = 0.85\)</span>
                 </div>
 
             </div>
-            <div class="feedback-box" id="fb_3"></div>
-
+            <div class="illustration-box">
+                <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="245" rx="80" ry="10" fill="#cbd5e1"/>
+  <!-- Cuerpo con overol -->
+  <path d="M 65 145 C 65 120 175 120 175 145 L 180 235 C 180 240 60 240 60 235 Z" fill="#f59e0b" stroke="#78350f" stroke-width="2.5"/>
+  <rect x="95" y="150" width="50" height="70" fill="#ffffff" stroke="#78350f" stroke-width="2" rx="3"/>
+  <path d="M 105 160 L 115 175 L 135 155" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round"/>
+  <!-- Cabeza con casco -->
+  <ellipse cx="120" cy="95" rx="36" ry="38" fill="#fed7aa" stroke="#78350f" stroke-width="2.5"/>
+  <path d="M 80 85 C 80 50 160 50 160 85 Z" fill="#eab308" stroke="#78350f" stroke-width="2.5"/>
+  <rect x="75" y="80" width="90" height="10" rx="3" fill="#fde047" stroke="#78350f" stroke-width="2"/>
+  <!-- Ojos y rostro -->
+  <circle cx="106" cy="98" r="4.5" fill="#0f172a"/>
+  <circle cx="134" cy="98" r="4.5" fill="#0f172a"/>
+  <path d="M 112 118 Q 120 125 128 118" stroke="#78350f" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Engranaje de calidad -->
+  <circle cx="190" cy="70" r="18" fill="#94a3b8" stroke="#475569" stroke-width="2"/>
+  <circle cx="190" cy="70" r="8" fill="#ffffff" stroke="#475569" stroke-width="2"/>
+</svg>
+            </div>
         </div>
+        <div class="feedback-container" id="fb_3"></div>
+
     </div>
 
-    <!-- PÁGINA 4: EJERCICIO 2 (Emparejamiento) -->
+    <!-- PÁGINA 4: EJERCICIO 2 -->
     <div class="page-content" id="page4">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 4</span>
-            <h3>Actividad Formativa 2 de 10: Emparejamiento: Enfoques Conceptuales de la Probabilidad</h3>
+        <div style="font-size: 15px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 14px;">
+            Actividad Formativa 2 de 10: Emparejamiento: Enfoques de Probabilidad
         </div>
-        <div class="question-box">
 
-            <div class="question-enunciado">Relacione cada situación empresarial con el enfoque probabilístico correspondiente según Anderson y Lind:</div>
-            
-            <div class="matching-container">
-                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
-                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
+        <div class="statement-text">
+            Relacione cada situación experimental con el enfoque de probabilidad respectivo (Lind & Anderson):
+        </div>
+        <div class="question-body-grid">
+            <div>
+                <div class="matching-grid">
+                    <div style="font-weight: 700; color: var(--uagrm-blue); font-size: 13.5px;">Premisa / Concepto</div>
+                    <div style="font-weight: 700; color: var(--uagrm-blue); font-size: 13.5px;">Correspondencia / Cálculo</div>
 
-                <div class="match-card">
-                    <span><strong>1.</strong> Probabilidad calculada como 1/6 al lanzar un dado legal o 1/52 al extraer una carta.</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_4_0">
-                        <option value="">-- Seleccione una opción --</option>
+                    <div class="match-card">
+                        <span><strong>1.</strong> Probabilidad de obtener cara al lanzar una moneda equilibrada (1/2)</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_4_0">
+                            <option value="">-- Seleccione una opción --</option>
 <option value="0">Enfoque Clásico a Priori (Laplace)</option>
-<option value="1">Enfoque Empírico o de Frecuencia Relativa</option>
-<option value="2">Enfoque Subjetivo o Juicio Profesional</option>
+<option value="1">Enfoque Empírico o Frecuentista</option>
+<option value="2">Enfoque Subjetivo (Juicio Experto)</option>
 <option value="3">Ley de los Grandes Números</option>
 
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
-                <div class="match-card">
-                    <span><strong>2.</strong> Tasa de fallas en auditoría estimada según el registro histórico de 10.000 facturas del año anterior.</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_4_1">
-                        <option value="">-- Seleccione una opción --</option>
+                    <div class="match-card">
+                        <span><strong>2.</strong> Tasa de productos defectuosos según los registros históricos del último año</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_4_1">
+                            <option value="">-- Seleccione una opción --</option>
 <option value="0">Enfoque Clásico a Priori (Laplace)</option>
-<option value="1">Enfoque Empírico o de Frecuencia Relativa</option>
-<option value="2">Enfoque Subjetivo o Juicio Profesional</option>
+<option value="1">Enfoque Empírico o Frecuentista</option>
+<option value="2">Enfoque Subjetivo (Juicio Experto)</option>
 <option value="3">Ley de los Grandes Números</option>
 
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
-                <div class="match-card">
-                    <span><strong>3.</strong> Estimación del gerente financiero sobre el éxito de una fusión sin precedentes de la empresa.</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_4_2">
-                        <option value="">-- Seleccione una opción --</option>
+                    <div class="match-card">
+                        <span><strong>3.</strong> Estimación del gerente sobre el éxito de una nueva tecnología no probada</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_4_2">
+                            <option value="">-- Seleccione una opción --</option>
 <option value="0">Enfoque Clásico a Priori (Laplace)</option>
-<option value="1">Enfoque Empírico o de Frecuencia Relativa</option>
-<option value="2">Enfoque Subjetivo o Juicio Profesional</option>
+<option value="1">Enfoque Empírico o Frecuentista</option>
+<option value="2">Enfoque Subjetivo (Juicio Experto)</option>
 <option value="3">Ley de los Grandes Números</option>
 
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
-                <div class="match-card">
-                    <span><strong>4.</strong> A medida que el número de auditorías tiende a infinito, la frecuencia relativa converge a la probabilidad.</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_4_3">
-                        <option value="">-- Seleccione una opción --</option>
+                    <div class="match-card">
+                        <span><strong>4.</strong> A medida que el número de ensayos crece, la frecuencia se aproxima a la probabilidad real</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_4_3">
+                            <option value="">-- Seleccione una opción --</option>
 <option value="0">Enfoque Clásico a Priori (Laplace)</option>
-<option value="1">Enfoque Empírico o de Frecuencia Relativa</option>
-<option value="2">Enfoque Subjetivo o Juicio Profesional</option>
+<option value="1">Enfoque Empírico o Frecuentista</option>
+<option value="2">Enfoque Subjetivo (Juicio Experto)</option>
 <option value="3">Ley de los Grandes Números</option>
 
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
+                </div>
+                <button class="btn-check-match" onclick="checkMatching(4)">Verificar Respuestas</button>
             </div>
-            <button class="btn-check-match" onclick="checkMatching(4)">Verificar Respuestas</button>
-            <div class="feedback-box" id="fb_4"></div>
-
+            <div class="illustration-box">
+                <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="245" rx="80" ry="10" fill="#cbd5e1"/>
+  <!-- Cuerpo -->
+  <path d="M 70 140 C 70 115 170 115 170 140 L 180 230 C 180 240 60 240 60 230 Z" fill="#0284c7" stroke="#002b49" stroke-width="2.5"/>
+  <path d="M 105 135 L 120 180 L 135 135 Z" fill="#ffffff" stroke="#002b49" stroke-width="2"/>
+  <polygon points="115,145 125,145 122,175 118,175" fill="#b22222"/>
+  <!-- Cabeza -->
+  <ellipse cx="120" cy="85" rx="36" ry="40" fill="#fed7aa" stroke="#002b49" stroke-width="2.5"/>
+  <path d="M 85 70 C 85 45 155 45 155 70 C 155 60 140 50 120 50 C 100 50 85 60 85 70 Z" fill="#78350f"/>
+  <!-- Lentes de analista -->
+  <circle cx="106" cy="85" r="12" fill="#e0f2fe" fill-opacity="0.7" stroke="#002b49" stroke-width="2.5"/>
+  <circle cx="134" cy="85" r="12" fill="#e0f2fe" fill-opacity="0.7" stroke="#002b49" stroke-width="2.5"/>
+  <line x1="118" y1="85" x2="122" y2="85" stroke="#002b49" stroke-width="2.5"/>
+  <circle cx="106" cy="85" r="4" fill="#002b49"/>
+  <circle cx="134" cy="85" r="4" fill="#002b49"/>
+  <!-- Sonrisa amigable -->
+  <path d="M 110 110 Q 120 118 130 110" stroke="#002b49" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Portapapeles con gráficos -->
+  <rect x="140" y="150" width="60" height="75" rx="4" fill="#ffffff" stroke="#002b49" stroke-width="2"/>
+  <rect x="150" y="160" width="10" height="40" fill="#10b981"/>
+  <rect x="165" y="170" width="10" height="30" fill="#f59e0b"/>
+  <rect x="180" y="155" width="10" height="45" fill="#0284c7"/>
+</svg>
+            </div>
         </div>
+        <div class="feedback-container" id="fb_4"></div>
+
     </div>
 
-    <!-- PÁGINA 5: EJERCICIO 3 (Opción Múltiple) -->
+    <!-- PÁGINA 5: EJERCICIO 3 -->
     <div class="page-content" id="page5">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 5</span>
-            <h3>Actividad Formativa 3 de 10: Regla Especial de la Adición (Eventos Disjuntos)</h3>
+        <div style="font-size: 15px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 14px;">
+            Actividad Formativa 3 de 10: Regla del Evento Complementario
         </div>
-        <div class="question-box">
 
-            <div class="question-enunciado">Una firma consultora presenta tres propuestas licitatorias independientes para proyectos municipales A, B y C. Debido a las bases del concurso, una empresa solo puede ganar un único contrato o ninguno. Las probabilidades de adjudicación estimadas son \(P(A) = 0.25\), \(P(B) = 0.30\) y \(P(C) = 0.15\). ¿Cuál es la probabilidad de que la firma gane alguno de los tres contratos?</div>
-            
-<svg viewBox="0 0 500 90" xmlns="http://www.w3.org/2000/svg" style="max-width: 420px; display: block; margin: 10px auto; background: #ffffff; border-radius: 6px; border: 1px solid #e2e8f0;">
-  <rect width="500" height="90" fill="#f8fafc" rx="6"/>
-  <circle cx="80" cy="45" r="28" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5"/>
-  <text x="80" y="42" font-size="10" font-weight="bold" fill="#0369a1" text-anchor="middle">Contrato A</text>
-  <text x="80" y="56" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">0.25</text>
-  <circle cx="210" cy="45" r="28" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-  <text x="210" y="42" font-size="10" font-weight="bold" fill="#15803d" text-anchor="middle">Contrato B</text>
-  <text x="210" y="56" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">0.30</text>
-  <circle cx="340" cy="45" r="28" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
-  <text x="340" y="42" font-size="10" font-weight="bold" fill="#b45309" text-anchor="middle">Contrato C</text>
-  <text x="340" y="56" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">0.15</text>
-  <text x="440" y="50" font-size="12" font-weight="bold" fill="#b22222" text-anchor="middle">Disjuntos</text>
-</svg>
+        <div class="statement-text">
+            En un estudio de control de calidad en un centro logístico, se determinó que la probabilidad de que un envío sufra retrasos en la entrega es \(P(R) = 0.06\). ¿Cuál es la probabilidad de que un paquete elegido al azar se entregue a tiempo y sin ningún retraso (\(R'\))?
+        </div>
+        <div class="question-body-grid">
+            <div class="options-list" id="optGrid_5">
 
-            <div class="options-grid" id="optGrid_5">
-
-                <div class="option-item" onclick="selectOption(5, 0, true)">
-                    <span style="font-weight: bold; width: 24px;">A)</span>
-                    <span>\(P(A \cup B \cup C) = 0.25 + 0.30 + 0.15 = 0.70 \quad (70\%)\)</span>
+                <div class="option-card" onclick="selectOption(5, 0, true, 'Por el axioma del complemento: \(P(R') = 1 - P(R) = 1 - 0.06 = 0.94\) (94%).')">
+                    <span class="option-letter">A)</span>
+                    <span>\(P(R') = 1 - 0.06 = 0.94 \quad (94\%)\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(5, 1, false)">
-                    <span style="font-weight: bold; width: 24px;">B)</span>
-                    <span>\(P(A \cup B \cup C) = 0.25 \times 0.30 \times 0.15 = 0.01125\)</span>
+                <div class="option-card" onclick="selectOption(5, 1, false, '0.06 es la probabilidad de sí sufrir retrasos.')">
+                    <span class="option-letter">B)</span>
+                    <span>\(P(R') = 0.06\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(5, 2, false)">
-                    <span style="font-weight: bold; width: 24px;">C)</span>
-                    <span>\(P(A \cup B \cup C) = 1 - (0.25 + 0.30 + 0.15) = 0.30\)</span>
+                <div class="option-card" onclick="selectOption(5, 2, false, 'La probabilidad no puede superar 1.00.')">
+                    <span class="option-letter">C)</span>
+                    <span>\(P(R') = 1.06\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(5, 3, false)">
-                    <span style="font-weight: bold; width: 24px;">D)</span>
-                    <span>\(P(A \cup B \cup C) = 0.55\)</span>
+                <div class="option-card" onclick="selectOption(5, 3, false, 'Error aritmético.')">
+                    <span class="option-letter">D)</span>
+                    <span>\(P(R') = 0.88\)</span>
                 </div>
 
             </div>
-            <div class="feedback-box" id="fb_5"></div>
-
+            <div class="illustration-box">
+                <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="245" rx="85" ry="10" fill="#cbd5e1"/>
+  <!-- Camión de reparto -->
+  <g transform="translate(30, 100)">
+    <rect x="10" y="30" width="100" height="60" rx="4" fill="#0284c7" stroke="#0369a1" stroke-width="2.5"/>
+    <path d="M 110 50 L 140 50 L 155 70 L 155 90 L 110 90 Z" fill="#38bdf8" stroke="#0369a1" stroke-width="2.5"/>
+    <circle cx="45" cy="95" r="14" fill="#1e293b" stroke="#0f172a" stroke-width="2"/>
+    <circle cx="45" cy="95" r="6" fill="#94a3b8"/>
+    <circle cx="130" cy="95" r="14" fill="#1e293b" stroke="#0f172a" stroke-width="2"/>
+    <circle cx="130" cy="95" r="6" fill="#94a3b8"/>
+    <rect x="35" y="45" width="45" height="30" fill="#ffffff" rx="2"/>
+    <text x="57" y="65" font-size="12" font-weight="bold" fill="#0284c7" text-anchor="middle">LOG</text>
+  </g>
+  <!-- Caja de encomienda -->
+  <rect x="155" y="45" width="45" height="45" rx="3" fill="#d97706" stroke="#92400e" stroke-width="2"/>
+  <line x1="155" y1="67" x2="200" y2="67" stroke="#92400e" stroke-width="2"/>
+  <line x1="177" y1="45" x2="177" y2="90" stroke="#92400e" stroke-width="2"/>
+</svg>
+            </div>
         </div>
+        <div class="feedback-container" id="fb_5"></div>
+
     </div>
 
-    <!-- PÁGINA 6: EJERCICIO 4 (Emparejamiento) -->
+    <!-- PÁGINA 6: EJERCICIO 4 -->
     <div class="page-content" id="page6">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 6</span>
-            <h3>Actividad Formativa 4 de 10: Emparejamiento: Axiomas Fundamentales de Kolmogorov</h3>
+        <div style="font-size: 15px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 14px;">
+            Actividad Formativa 4 de 10: Emparejamiento: Axiomas Fundamentales
         </div>
-        <div class="question-box">
 
-            <div class="question-enunciado">Vincule cada axioma formal con su expresión matemática exacta:</div>
-            
-            <div class="matching-container">
-                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
-                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
+        <div class="statement-text">
+            Vincule cada axioma de probabilidad de Kolmogorov con su expresión matemática formal:
+        </div>
+        <div class="question-body-grid">
+            <div>
+                <div class="matching-grid">
+                    <div style="font-weight: 700; color: var(--uagrm-blue); font-size: 13.5px;">Premisa / Concepto</div>
+                    <div style="font-weight: 700; color: var(--uagrm-blue); font-size: 13.5px;">Correspondencia / Cálculo</div>
 
-                <div class="match-card">
-                    <span><strong>1.</strong> Axioma de No Negatividad y Acotación</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_6_0">
-                        <option value="">-- Seleccione una opción --</option>
+                    <div class="match-card">
+                        <span><strong>1.</strong> Axioma de No Negatividad</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_6_0">
+                            <option value="">-- Seleccione una opción --</option>
 <option value="0">0 ≤ P(A) ≤ 1 para todo evento A</option>
 <option value="1">P(S) = 1.00</option>
 <option value="2">P(∅) = 0.00</option>
 <option value="3">P(A') = 1 - P(A)</option>
 
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
-                <div class="match-card">
-                    <span><strong>2.</strong> Axioma del Evento Seguro (Espacio Muestral)</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_6_1">
-                        <option value="">-- Seleccione una opción --</option>
+                    <div class="match-card">
+                        <span><strong>2.</strong> Axioma del Espacio Muestral Total</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_6_1">
+                            <option value="">-- Seleccione una opción --</option>
 <option value="0">0 ≤ P(A) ≤ 1 para todo evento A</option>
 <option value="1">P(S) = 1.00</option>
 <option value="2">P(∅) = 0.00</option>
 <option value="3">P(A') = 1 - P(A)</option>
 
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
-                <div class="match-card">
-                    <span><strong>3.</strong> Probabilidad del Evento Imposible</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_6_2">
-                        <option value="">-- Seleccione una opción --</option>
+                    <div class="match-card">
+                        <span><strong>3.</strong> Axioma del Evento Vacío (Imposible)</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_6_2">
+                            <option value="">-- Seleccione una opción --</option>
 <option value="0">0 ≤ P(A) ≤ 1 para todo evento A</option>
 <option value="1">P(S) = 1.00</option>
 <option value="2">P(∅) = 0.00</option>
 <option value="3">P(A') = 1 - P(A)</option>
 
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
-                <div class="match-card">
-                    <span><strong>4.</strong> Regla del Evento Complementario</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_6_3">
-                        <option value="">-- Seleccione una opción --</option>
+                    <div class="match-card">
+                        <span><strong>4.</strong> Axioma del Evento Complementario</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_6_3">
+                            <option value="">-- Seleccione una opción --</option>
 <option value="0">0 ≤ P(A) ≤ 1 para todo evento A</option>
 <option value="1">P(S) = 1.00</option>
 <option value="2">P(∅) = 0.00</option>
 <option value="3">P(A') = 1 - P(A)</option>
 
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
+                </div>
+                <button class="btn-check-match" onclick="checkMatching(6)">Verificar Respuestas</button>
             </div>
-            <button class="btn-check-match" onclick="checkMatching(6)">Verificar Respuestas</button>
-            <div class="feedback-box" id="fb_6"></div>
-
+            <div class="illustration-box">
+                <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="240" rx="90" ry="12" fill="#cbd5e1"/>
+  <!-- Dado Rojo 3D -->
+  <g transform="translate(30, 80)">
+    <polygon points="40,10 90,10 110,35 60,35" fill="#ef4444" stroke="#7f1d1d" stroke-width="2"/>
+    <polygon points="90,10 110,35 110,95 90,70" fill="#b91c1c" stroke="#7f1d1d" stroke-width="2"/>
+    <polygon points="40,10 90,10 90,70 40,70" fill="#dc2626" stroke="#7f1d1d" stroke-width="2"/>
+    <!-- Puntos dado 1 -->
+    <circle cx="65" cy="40" r="5" fill="#ffffff"/>
+    <circle cx="52" cy="25" r="5" fill="#ffffff"/>
+    <circle cx="78" cy="55" r="5" fill="#ffffff"/>
+  </g>
+  <!-- Dado Azul 3D -->
+  <g transform="translate(100, 120)">
+    <polygon points="40,10 90,10 110,35 60,35" fill="#0284c7" stroke="#0369a1" stroke-width="2"/>
+    <polygon points="90,10 110,35 110,95 90,70" fill="#0369a1" stroke="#075985" stroke-width="2"/>
+    <polygon points="40,10 90,10 90,70 40,70" fill="#0ea5e9" stroke="#0369a1" stroke-width="2"/>
+    <!-- Puntos dado 2 -->
+    <circle cx="65" cy="40" r="5" fill="#ffffff"/>
+    <circle cx="52" cy="55" r="5" fill="#ffffff"/>
+    <circle cx="78" cy="25" r="5" fill="#ffffff"/>
+    <circle cx="52" cy="25" r="5" fill="#ffffff"/>
+    <circle cx="78" cy="55" r="5" fill="#ffffff"/>
+  </g>
+  <!-- Moneda dorada girando -->
+  <ellipse cx="175" cy="65" rx="30" ry="30" fill="#f59e0b" stroke="#b45309" stroke-width="3"/>
+  <ellipse cx="175" cy="65" rx="24" ry="24" fill="#fbbf24"/>
+  <text x="175" y="73" font-size="20" font-weight="bold" fill="#78350f" text-anchor="middle">Bs</text>
+</svg>
+            </div>
         </div>
+        <div class="feedback-container" id="fb_6"></div>
+
     </div>
 
-    <!-- PÁGINA 7: EJERCICIO 5 (Opción Múltiple) -->
+    <!-- PÁGINA 7: EJERCICIO 5 -->
     <div class="page-content" id="page7">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 7</span>
-            <h3>Actividad Formativa 5 de 10: Regla General de la Adición (Eventos No Excluyentes)</h3>
+        <div style="font-size: 15px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 14px;">
+            Actividad Formativa 5 de 10: Regla Especial de la Adición (Eventos Disjuntos)
         </div>
-        <div class="question-box">
 
-            <div class="question-enunciado">Un banco determina que el 60% de sus clientes empresariales posee cuenta corriente (\(P(C) = 0.60\)), el 40% tiene una línea de crédito comercial (\(P(L) = 0.40\)), y el 25% cuenta con ambos productos financieros (\(P(C \cap L) = 0.25\)). ¿Cuál es la probabilidad de que un cliente elegido al azar tenga al menos uno de estos dos productos?</div>
-            
-<svg viewBox="0 0 500 90" xmlns="http://www.w3.org/2000/svg" style="max-width: 420px; display: block; margin: 10px auto; background: #ffffff; border-radius: 6px; border: 1px solid #e2e8f0;">
-  <rect width="500" height="90" fill="#f8fafc" rx="6"/>
-  <circle cx="190" cy="45" r="32" fill="#e0f2fe" fill-opacity="0.6" stroke="#0284c7" stroke-width="1.5"/>
-  <circle cx="260" cy="45" r="32" fill="#fee2e2" fill-opacity="0.6" stroke="#b22222" stroke-width="1.5"/>
-  <text x="160" y="48" font-size="11" font-weight="bold" fill="#0369a1">C (0.60)</text>
-  <text x="225" y="48" font-size="10" font-weight="bold" fill="#002b49" text-anchor="middle">0.25</text>
-  <text x="290" y="48" font-size="11" font-weight="bold" fill="#991b1b">L (0.40)</text>
-  <text x="400" y="48" font-size="12" font-weight="bold" fill="#047857" text-anchor="middle">P(C ∪ L) = ?</text>
-</svg>
+        <div class="statement-text">
+            Una empresa de transporte clasifica la demanda de viajes en tres tipos de clientes mutuamente excluyentes: Corporativo (\(P(C)=0.35\)), Turístico (\(P(T)=0.45\)) y Ocasional (\(P(O)=0.20\)). ¿Cuál es la probabilidad de que el próximo cliente sea Corporativo o Turístico?
+        </div>
+        <div class="question-body-grid">
+            <div class="options-list" id="optGrid_7">
 
-            <div class="options-grid" id="optGrid_7">
-
-                <div class="option-item" onclick="selectOption(7, 0, true)">
-                    <span style="font-weight: bold; width: 24px;">A)</span>
-                    <span>\(P(C \cup L) = 0.60 + 0.40 - 0.25 = 0.75 \quad (75\%)\)</span>
+                <div class="option-card" onclick="selectOption(7, 0, true, 'Al ser mutuamente excluyentes: \(P(C \cup T) = 0.35 + 0.45 = 0.80\) (80%).')">
+                    <span class="option-letter">A)</span>
+                    <span>\(P(C \cup T) = 0.35 + 0.45 = 0.80 \quad (80\%)\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(7, 1, false)">
-                    <span style="font-weight: bold; width: 24px;">B)</span>
-                    <span>\(P(C \cup L) = 0.60 + 0.40 = 1.00 \quad (100\%)\)</span>
+                <div class="option-card" onclick="selectOption(7, 1, false, 'Multiplicó en lugar de sumar.')">
+                    <span class="option-letter">B)</span>
+                    <span>\(P(C \cup T) = 0.35 \times 0.45 = 0.1575\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(7, 2, false)">
-                    <span style="font-weight: bold; width: 24px;">C)</span>
-                    <span>\(P(C \cup L) = 0.25\)</span>
+                <div class="option-card" onclick="selectOption(7, 2, false, '0.20 es la probabilidad de clientes ocasionales.')">
+                    <span class="option-letter">C)</span>
+                    <span>\(P(C \cup T) = 0.20\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(7, 3, false)">
-                    <span style="font-weight: bold; width: 24px;">D)</span>
-                    <span>\(P(C \cup L) = 0.50\)</span>
+                <div class="option-card" onclick="selectOption(7, 3, false, '1.00 es la probabilidad del espacio muestral completo.')">
+                    <span class="option-letter">D)</span>
+                    <span>\(P(C \cup T) = 1.00\)</span>
                 </div>
 
             </div>
-            <div class="feedback-box" id="fb_7"></div>
-
+            <div class="illustration-box">
+                <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="245" rx="80" ry="10" fill="#cbd5e1"/>
+  <!-- Cliente amigable con bolsa de compras -->
+  <path d="M 70 145 C 70 120 170 120 170 145 L 175 235 C 175 240 65 240 65 235 Z" fill="#ec4899" stroke="#9d174d" stroke-width="2.5"/>
+  <!-- Cabeza -->
+  <ellipse cx="120" cy="90" rx="35" ry="38" fill="#fed7aa" stroke="#9d174d" stroke-width="2.5"/>
+  <path d="M 85 75 C 85 45 155 45 155 75 C 145 60 130 55 120 55 C 110 55 95 60 85 75 Z" fill="#831843"/>
+  <circle cx="107" cy="92" r="4.5" fill="#0f172a"/>
+  <circle cx="133" cy="92" r="4.5" fill="#0f172a"/>
+  <path d="M 112 112 Q 120 120 128 112" stroke="#9d174d" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Bolsas de compra -->
+  <rect x="165" y="165" width="40" height="50" rx="3" fill="#10b981" stroke="#047857" stroke-width="2"/>
+  <path d="M 175 165 C 175 150 195 150 195 165" fill="none" stroke="#047857" stroke-width="2"/>
+  <!-- Carrito / Gráfico de satisfacción -->
+  <circle cx="45" cy="80" r="16" fill="#fef08a" stroke="#ca8a04" stroke-width="2"/>
+  <text x="45" y="86" font-size="16" font-weight="bold" fill="#ca8a04" text-anchor="middle">★</text>
+</svg>
+            </div>
         </div>
+        <div class="feedback-container" id="fb_7"></div>
+
     </div>
 
-    <!-- PÁGINA 8: EJERCICIO 6 (Emparejamiento) -->
+    <!-- PÁGINA 8: EJERCICIO 6 -->
     <div class="page-content" id="page8">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 8</span>
-            <h3>Actividad Formativa 6 de 10: Emparejamiento: Tipología de Eventos y Reglas de Adición</h3>
+        <div style="font-size: 15px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 14px;">
+            Actividad Formativa 6 de 10: Emparejamiento: Fórmulas de la Adición
         </div>
-        <div class="question-box">
 
-            <div class="question-enunciado">Asocie la relación entre eventos con su fórmula correspondiente:</div>
-            
-            <div class="matching-container">
-                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
-                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
+        <div class="statement-text">
+            Asocie la tipología de eventos con su fórmula correspondiente de adición:
+        </div>
+        <div class="question-body-grid">
+            <div>
+                <div class="matching-grid">
+                    <div style="font-weight: 700; color: var(--uagrm-blue); font-size: 13.5px;">Premisa / Concepto</div>
+                    <div style="font-weight: 700; color: var(--uagrm-blue); font-size: 13.5px;">Correspondencia / Cálculo</div>
 
-                <div class="match-card">
-                    <span><strong>1.</strong> Eventos Mutuamente Excluyentes (Disjuntos)</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_8_0">
-                        <option value="">-- Seleccione una opción --</option>
+                    <div class="match-card">
+                        <span><strong>1.</strong> Eventos Mutuamente Excluyentes (A ∩ B = ∅)</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_8_0">
+                            <option value="">-- Seleccione una opción --</option>
 <option value="0">P(A ∪ B) = P(A) + P(B)</option>
 <option value="1">P(A ∪ B) = P(A) + P(B) - P(A ∩ B)</option>
-<option value="2">P(A ∪ B ∪ ... ∪ K) = 1.00</option>
-<option value="3">P(A ∩ B) = 0</option>
+<option value="2">P(A ∩ B) = 0</option>
+<option value="3">P(A₁ ∪ A₂ ∪ ... ∪ A_k) = 1.00</option>
 
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
-                <div class="match-card">
-                    <span><strong>2.</strong> Eventos No Excluyentes (Con Intersección)</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_8_1">
-                        <option value="">-- Seleccione una opción --</option>
+                    <div class="match-card">
+                        <span><strong>2.</strong> Eventos No Excluyentes (A ∩ B ≠ ∅)</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_8_1">
+                            <option value="">-- Seleccione una opción --</option>
 <option value="0">P(A ∪ B) = P(A) + P(B)</option>
 <option value="1">P(A ∪ B) = P(A) + P(B) - P(A ∩ B)</option>
-<option value="2">P(A ∪ B ∪ ... ∪ K) = 1.00</option>
-<option value="3">P(A ∩ B) = 0</option>
+<option value="2">P(A ∩ B) = 0</option>
+<option value="3">P(A₁ ∪ A₂ ∪ ... ∪ A_k) = 1.00</option>
 
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
-                <div class="match-card">
-                    <span><strong>3.</strong> Eventos Colectivamente Exhaustivos</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_8_2">
-                        <option value="">-- Seleccione una opción --</option>
+                    <div class="match-card">
+                        <span><strong>3.</strong> Intersección en Eventos Disjuntos</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_8_2">
+                            <option value="">-- Seleccione una opción --</option>
 <option value="0">P(A ∪ B) = P(A) + P(B)</option>
 <option value="1">P(A ∪ B) = P(A) + P(B) - P(A ∩ B)</option>
-<option value="2">P(A ∪ B ∪ ... ∪ K) = 1.00</option>
-<option value="3">P(A ∩ B) = 0</option>
+<option value="2">P(A ∩ B) = 0</option>
+<option value="3">P(A₁ ∪ A₂ ∪ ... ∪ A_k) = 1.00</option>
 
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
-                <div class="match-card">
-                    <span><strong>4.</strong> Probabilidad Conjunta en Eventos Disjuntos</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_8_3">
-                        <option value="">-- Seleccione una opción --</option>
+                    <div class="match-card">
+                        <span><strong>4.</strong> Partición Colectivamente Exhaustiva</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_8_3">
+                            <option value="">-- Seleccione una opción --</option>
 <option value="0">P(A ∪ B) = P(A) + P(B)</option>
 <option value="1">P(A ∪ B) = P(A) + P(B) - P(A ∩ B)</option>
-<option value="2">P(A ∪ B ∪ ... ∪ K) = 1.00</option>
-<option value="3">P(A ∩ B) = 0</option>
+<option value="2">P(A ∩ B) = 0</option>
+<option value="3">P(A₁ ∪ A₂ ∪ ... ∪ A_k) = 1.00</option>
 
-                    </select>
+                        </select>
+                    </div>
+
                 </div>
-
+                <button class="btn-check-match" onclick="checkMatching(8)">Verificar Respuestas</button>
             </div>
-            <button class="btn-check-match" onclick="checkMatching(8)">Verificar Respuestas</button>
-            <div class="feedback-box" id="fb_8"></div>
-
+            <div class="illustration-box">
+                <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="245" rx="80" ry="10" fill="#cbd5e1"/>
+  <!-- Cliente amigable con bolsa de compras -->
+  <path d="M 70 145 C 70 120 170 120 170 145 L 175 235 C 175 240 65 240 65 235 Z" fill="#ec4899" stroke="#9d174d" stroke-width="2.5"/>
+  <!-- Cabeza -->
+  <ellipse cx="120" cy="90" rx="35" ry="38" fill="#fed7aa" stroke="#9d174d" stroke-width="2.5"/>
+  <path d="M 85 75 C 85 45 155 45 155 75 C 145 60 130 55 120 55 C 110 55 95 60 85 75 Z" fill="#831843"/>
+  <circle cx="107" cy="92" r="4.5" fill="#0f172a"/>
+  <circle cx="133" cy="92" r="4.5" fill="#0f172a"/>
+  <path d="M 112 112 Q 120 120 128 112" stroke="#9d174d" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Bolsas de compra -->
+  <rect x="165" y="165" width="40" height="50" rx="3" fill="#10b981" stroke="#047857" stroke-width="2"/>
+  <path d="M 175 165 C 175 150 195 150 195 165" fill="none" stroke="#047857" stroke-width="2"/>
+  <!-- Carrito / Gráfico de satisfacción -->
+  <circle cx="45" cy="80" r="16" fill="#fef08a" stroke="#ca8a04" stroke-width="2"/>
+  <text x="45" y="86" font-size="16" font-weight="bold" fill="#ca8a04" text-anchor="middle">★</text>
+</svg>
+            </div>
         </div>
+        <div class="feedback-container" id="fb_8"></div>
+
     </div>
 
-    <!-- PÁGINA 9: EJERCICIO 7 (Opción Múltiple) -->
+    <!-- PÁGINA 9: EJERCICIO 7 -->
     <div class="page-content" id="page9">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 9</span>
-            <h3>Actividad Formativa 7 de 10: Regla del Complemento y Control de Calidad</h3>
+        <div style="font-size: 15px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 14px;">
+            Actividad Formativa 7 de 10: Regla General de la Adición (Eventos Solapados)
         </div>
-        <div class="question-box">
 
-            <div class="question-enunciado">La probabilidad de que una declaración jurada tributaria enviada por el portal SIAT contenga errores materiales es de \(P(E) = 0.08\). Si se revisa una declaración al azar, ¿cuál es la probabilidad de que esté completamente libre de errores (\(E'\))?</div>
-            
-<svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 420px; display: block; margin: 10px auto; background: #ffffff; border-radius: 6px; border: 1px solid #e2e8f0;">
-  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
-  <rect x="40" y="20" width="70" height="40" fill="#fee2e2" stroke="#b22222" rx="4"/>
-  <text x="75" y="44" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">E (0.08)</text>
-  <rect x="120" y="20" width="230" height="40" fill="#dcfce7" stroke="#16a34a" rx="4"/>
-  <text x="235" y="44" font-size="11" font-weight="bold" fill="#15803d" text-anchor="middle">Complemento E' = 1 - P(E)</text>
-  <text x="420" y="44" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">P(S) = 1.00</text>
-</svg>
+        <div class="statement-text">
+            En una encuesta a 400 consumidores, el 50% consume el Producto X (\(P(X)=0.50\)), el 40% consume el Producto Y (\(P(Y)=0.40\)) y el 20% consume ambos productos simultáneamente (\(P(X \cap Y)=0.20\)). ¿Cuál es la probabilidad de que un consumidor consuma al menos uno de los dos productos?
+        </div>
+        <div class="question-body-grid">
+            <div class="options-list" id="optGrid_9">
 
-            <div class="options-grid" id="optGrid_9">
-
-                <div class="option-item" onclick="selectOption(9, 0, true)">
-                    <span style="font-weight: bold; width: 24px;">A)</span>
-                    <span>\(P(E') = 1 - 0.08 = 0.92 \quad (92\%)\)</span>
+                <div class="option-card" onclick="selectOption(9, 0, true, 'Regla general: \(P(X \cup Y) = 0.50 + 0.40 - 0.20 = 0.70\) (70%).')">
+                    <span class="option-letter">A)</span>
+                    <span>\(P(X \cup Y) = 0.50 + 0.40 - 0.20 = 0.70 \quad (70\%)\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(9, 1, false)">
-                    <span style="font-weight: bold; width: 24px;">B)</span>
-                    <span>\(P(E') = 0.08\)</span>
+                <div class="option-card" onclick="selectOption(9, 1, false, 'No restó la intersección, duplicando el conteo de los que consumen ambos.')">
+                    <span class="option-letter">B)</span>
+                    <span>\(P(X \cup Y) = 0.50 + 0.40 = 0.90\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(9, 2, false)">
-                    <span style="font-weight: bold; width: 24px;">C)</span>
-                    <span>\(P(E') = 1 + 0.08 = 1.08\)</span>
+                <div class="option-card" onclick="selectOption(9, 2, false, '0.20 es la intersección, no la unión.')">
+                    <span class="option-letter">C)</span>
+                    <span>\(P(X \cup Y) = 0.20\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(9, 3, false)">
-                    <span style="font-weight: bold; width: 24px;">D)</span>
-                    <span>\(P(E') = 0.80\)</span>
+                <div class="option-card" onclick="selectOption(9, 3, false, '0.30 es la probabilidad de no consumir ninguno.')">
+                    <span class="option-letter">D)</span>
+                    <span>\(P(X \cup Y) = 0.30\)</span>
                 </div>
 
             </div>
-            <div class="feedback-box" id="fb_9"></div>
-
+            <div class="illustration-box">
+                <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="245" rx="80" ry="10" fill="#cbd5e1"/>
+  <!-- Cuerpo -->
+  <path d="M 70 140 C 70 115 170 115 170 140 L 180 230 C 180 240 60 240 60 230 Z" fill="#0284c7" stroke="#002b49" stroke-width="2.5"/>
+  <path d="M 105 135 L 120 180 L 135 135 Z" fill="#ffffff" stroke="#002b49" stroke-width="2"/>
+  <polygon points="115,145 125,145 122,175 118,175" fill="#b22222"/>
+  <!-- Cabeza -->
+  <ellipse cx="120" cy="85" rx="36" ry="40" fill="#fed7aa" stroke="#002b49" stroke-width="2.5"/>
+  <path d="M 85 70 C 85 45 155 45 155 70 C 155 60 140 50 120 50 C 100 50 85 60 85 70 Z" fill="#78350f"/>
+  <!-- Lentes de analista -->
+  <circle cx="106" cy="85" r="12" fill="#e0f2fe" fill-opacity="0.7" stroke="#002b49" stroke-width="2.5"/>
+  <circle cx="134" cy="85" r="12" fill="#e0f2fe" fill-opacity="0.7" stroke="#002b49" stroke-width="2.5"/>
+  <line x1="118" y1="85" x2="122" y2="85" stroke="#002b49" stroke-width="2.5"/>
+  <circle cx="106" cy="85" r="4" fill="#002b49"/>
+  <circle cx="134" cy="85" r="4" fill="#002b49"/>
+  <!-- Sonrisa amigable -->
+  <path d="M 110 110 Q 120 118 130 110" stroke="#002b49" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Portapapeles con gráficos -->
+  <rect x="140" y="150" width="60" height="75" rx="4" fill="#ffffff" stroke="#002b49" stroke-width="2"/>
+  <rect x="150" y="160" width="10" height="40" fill="#10b981"/>
+  <rect x="165" y="170" width="10" height="30" fill="#f59e0b"/>
+  <rect x="180" y="155" width="10" height="45" fill="#0284c7"/>
+</svg>
+            </div>
         </div>
+        <div class="feedback-container" id="fb_9"></div>
+
     </div>
 
-    <!-- PÁGINA 10: EJERCICIO 8 (Emparejamiento) -->
+    <!-- PÁGINA 10: EJERCICIO 8 -->
     <div class="page-content" id="page10">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 10</span>
-            <h3>Actividad Formativa 8 de 10: Emparejamiento: Cálculos Numéricos de Probabilidad en Auditoría</h3>
+        <div style="font-size: 15px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 14px;">
+            Actividad Formativa 8 de 10: Emparejamiento: Cálculo Numérico de Conjuntos
         </div>
-        <div class="question-box">
 
-            <div class="question-enunciado">Dados P(A) = 0.50, P(B) = 0.40 y P(A ∩ B) = 0.20, determine el resultado correcto para cada operación:</div>
-            
-            <div class="matching-container">
-                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
-                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
+        <div class="statement-text">
+            Dados P(A) = 0.60, P(B) = 0.40 y P(A ∩ B) = 0.20, relacione cada cálculo con su resultado:
+        </div>
+        <div class="question-body-grid">
+            <div>
+                <div class="matching-grid">
+                    <div style="font-weight: 700; color: var(--uagrm-blue); font-size: 13.5px;">Premisa / Concepto</div>
+                    <div style="font-weight: 700; color: var(--uagrm-blue); font-size: 13.5px;">Correspondencia / Cálculo</div>
 
-                <div class="match-card">
-                    <span><strong>1.</strong> Probabilidad de la Unión: P(A ∪ B)</span>
+                    <div class="match-card">
+                        <span><strong>1.</strong> Probabilidad de la Unión: P(A ∪ B)</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_10_0">
+                            <option value="">-- Seleccione una opción --</option>
+<option value="0">0.80 (80%)</option>
+<option value="1">0.40 (40%)</option>
+<option value="2">0.40 (40%)</option>
+<option value="3">0.20 (20%)</option>
+
+                        </select>
+                    </div>
+
+                    <div class="match-card">
+                        <span><strong>2.</strong> Probabilidad del Complemento: P(A')</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_10_1">
+                            <option value="">-- Seleccione una opción --</option>
+<option value="0">0.80 (80%)</option>
+<option value="1">0.40 (40%)</option>
+<option value="2">0.40 (40%)</option>
+<option value="3">0.20 (20%)</option>
+
+                        </select>
+                    </div>
+
+                    <div class="match-card">
+                        <span><strong>3.</strong> Probabilidad de que ocurra SOLO A: P(A - B)</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_10_2">
+                            <option value="">-- Seleccione una opción --</option>
+<option value="0">0.80 (80%)</option>
+<option value="1">0.40 (40%)</option>
+<option value="2">0.40 (40%)</option>
+<option value="3">0.20 (20%)</option>
+
+                        </select>
+                    </div>
+
+                    <div class="match-card">
+                        <span><strong>4.</strong> Probabilidad de que no ocurra ni A ni B: P((A ∪ B)')</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_10_3">
+                            <option value="">-- Seleccione una opción --</option>
+<option value="0">0.80 (80%)</option>
+<option value="1">0.40 (40%)</option>
+<option value="2">0.40 (40%)</option>
+<option value="3">0.20 (20%)</option>
+
+                        </select>
+                    </div>
+
                 </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_10_0">
-                        <option value="">-- Seleccione una opción --</option>
-<option value="0">0.70 (70%)</option>
-<option value="1">0.50 (50%)</option>
-<option value="2">0.30 (30%)</option>
-<option value="3">0.30 (30%)</option>
-
-                    </select>
-                </div>
-
-                <div class="match-card">
-                    <span><strong>2.</strong> Probabilidad del Complemento de A: P(A')</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_10_1">
-                        <option value="">-- Seleccione una opción --</option>
-<option value="0">0.70 (70%)</option>
-<option value="1">0.50 (50%)</option>
-<option value="2">0.30 (30%)</option>
-<option value="3">0.30 (30%)</option>
-
-                    </select>
-                </div>
-
-                <div class="match-card">
-                    <span><strong>3.</strong> Probabilidad de que ocurra SOLO A: P(A - B)</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_10_2">
-                        <option value="">-- Seleccione una opción --</option>
-<option value="0">0.70 (70%)</option>
-<option value="1">0.50 (50%)</option>
-<option value="2">0.30 (30%)</option>
-<option value="3">0.30 (30%)</option>
-
-                    </select>
-                </div>
-
-                <div class="match-card">
-                    <span><strong>4.</strong> Probabilidad de que no ocurra ni A ni B: P((A ∪ B)')</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_10_3">
-                        <option value="">-- Seleccione una opción --</option>
-<option value="0">0.70 (70%)</option>
-<option value="1">0.50 (50%)</option>
-<option value="2">0.30 (30%)</option>
-<option value="3">0.30 (30%)</option>
-
-                    </select>
-                </div>
-
+                <button class="btn-check-match" onclick="checkMatching(10)">Verificar Respuestas</button>
             </div>
-            <button class="btn-check-match" onclick="checkMatching(10)">Verificar Respuestas</button>
-            <div class="feedback-box" id="fb_10"></div>
-
-        </div>
-    </div>
-
-    <!-- PÁGINA 11: EJERCICIO 9 (Opción Múltiple) -->
-    <div class="page-content" id="page11">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 11</span>
-            <h3>Actividad Formativa 9 de 10: Axiomas de Kolmogorov y Probabilidad de Eventos Conjuntos Nulos</h3>
-        </div>
-        <div class="question-box">
-
-            <div class="question-enunciado">Si dos cuentas contables A y B son mutuamente excluyentes, de modo que \(P(A) = 0.45\) y \(P(B) = 0.35\), ¿cuál es el valor de la probabilidad conjunta \(P(A \cap B)\)?</div>
-            
-<svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 420px; display: block; margin: 10px auto; background: #ffffff; border-radius: 6px; border: 1px solid #e2e8f0;">
-  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
-  <circle cx="120" cy="40" r="26" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5"/>
-  <text x="120" y="44" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">A (0.45)</text>
-  <circle cx="280" cy="40" r="26" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
-  <text x="280" y="44" font-size="11" font-weight="bold" fill="#b45309" text-anchor="middle">B (0.35)</text>
-  <text x="400" y="44" font-size="12" font-weight="bold" fill="#b22222" text-anchor="middle">A ∩ B = ?</text>
+            <div class="illustration-box">
+                <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="245" rx="80" ry="10" fill="#cbd5e1"/>
+  <!-- Cuerpo -->
+  <path d="M 70 140 C 70 115 170 115 170 140 L 180 230 C 180 240 60 240 60 230 Z" fill="#0284c7" stroke="#002b49" stroke-width="2.5"/>
+  <path d="M 105 135 L 120 180 L 135 135 Z" fill="#ffffff" stroke="#002b49" stroke-width="2"/>
+  <polygon points="115,145 125,145 122,175 118,175" fill="#b22222"/>
+  <!-- Cabeza -->
+  <ellipse cx="120" cy="85" rx="36" ry="40" fill="#fed7aa" stroke="#002b49" stroke-width="2.5"/>
+  <path d="M 85 70 C 85 45 155 45 155 70 C 155 60 140 50 120 50 C 100 50 85 60 85 70 Z" fill="#78350f"/>
+  <!-- Lentes de analista -->
+  <circle cx="106" cy="85" r="12" fill="#e0f2fe" fill-opacity="0.7" stroke="#002b49" stroke-width="2.5"/>
+  <circle cx="134" cy="85" r="12" fill="#e0f2fe" fill-opacity="0.7" stroke="#002b49" stroke-width="2.5"/>
+  <line x1="118" y1="85" x2="122" y2="85" stroke="#002b49" stroke-width="2.5"/>
+  <circle cx="106" cy="85" r="4" fill="#002b49"/>
+  <circle cx="134" cy="85" r="4" fill="#002b49"/>
+  <!-- Sonrisa amigable -->
+  <path d="M 110 110 Q 120 118 130 110" stroke="#002b49" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Portapapeles con gráficos -->
+  <rect x="140" y="150" width="60" height="75" rx="4" fill="#ffffff" stroke="#002b49" stroke-width="2"/>
+  <rect x="150" y="160" width="10" height="40" fill="#10b981"/>
+  <rect x="165" y="170" width="10" height="30" fill="#f59e0b"/>
+  <rect x="180" y="155" width="10" height="45" fill="#0284c7"/>
 </svg>
+            </div>
+        </div>
+        <div class="feedback-container" id="fb_10"></div>
 
-            <div class="options-grid" id="optGrid_11">
+    </div>
 
-                <div class="option-item" onclick="selectOption(11, 0, true)">
-                    <span style="font-weight: bold; width: 24px;">A)</span>
-                    <span>\(P(A \cap B) = 0 \quad (\text{Evento imposible})\)</span>
+    <!-- PÁGINA 11: EJERCICIO 9 -->
+    <div class="page-content" id="page11">
+        <div style="font-size: 15px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 14px;">
+            Actividad Formativa 9 de 10: Espacio Muestral y Lanzamiento de Dados
+        </div>
+
+        <div class="statement-text">
+            Al lanzar dos dados equilibrados de 6 caras simultáneamente, el espacio muestral total consta de 36 resultados posibles (\(6 \times 6\)). ¿Cuál es la probabilidad de obtener una suma igual a 7?
+        </div>
+        <div class="question-body-grid">
+            <div class="options-list" id="optGrid_11">
+
+                <div class="option-card" onclick="selectOption(11, 0, true, 'Las 6 parejas favorables son: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1). Probabilidad: \(6/36 = 1/6\).')">
+                    <span class="option-letter">A)</span>
+                    <span>\(P(\text{Suma}=7) = \frac{6}{36} = \frac{1}{6} \approx 0.1667 \quad (16.67\%)\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(11, 1, false)">
-                    <span style="font-weight: bold; width: 24px;">B)</span>
-                    <span>\(P(A \cap B) = 0.45 \times 0.35 = 0.1575\)</span>
+                <div class="option-card" onclick="selectOption(11, 1, false, 'Confundió el valor de la suma (7) con el número de casos favorables (6).')">
+                    <span class="option-letter">B)</span>
+                    <span>\(P(\text{Suma}=7) = \frac{7}{36} \approx 0.1944\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(11, 2, false)">
-                    <span style="font-weight: bold; width: 24px;">C)</span>
-                    <span>\(P(A \cap B) = 0.80\)</span>
+                <div class="option-card" onclick="selectOption(11, 2, false, '1/36 sería solo una pareja, no las seis combinaciones.')">
+                    <span class="option-letter">C)</span>
+                    <span>\(P(\text{Suma}=7) = \frac{1}{36}\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(11, 3, false)">
-                    <span style="font-weight: bold; width: 24px;">D)</span>
-                    <span>\(P(A \cap B) = 0.10\)</span>
+                <div class="option-card" onclick="selectOption(11, 3, false, 'El espacio muestral de dos dados es 36, no 12.')">
+                    <span class="option-letter">D)</span>
+                    <span>\(P(\text{Suma}=7) = \frac{6}{12} = 0.50\)</span>
                 </div>
 
             </div>
-            <div class="feedback-box" id="fb_11"></div>
-
+            <div class="illustration-box">
+                <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="240" rx="90" ry="12" fill="#cbd5e1"/>
+  <!-- Dado Rojo 3D -->
+  <g transform="translate(30, 80)">
+    <polygon points="40,10 90,10 110,35 60,35" fill="#ef4444" stroke="#7f1d1d" stroke-width="2"/>
+    <polygon points="90,10 110,35 110,95 90,70" fill="#b91c1c" stroke="#7f1d1d" stroke-width="2"/>
+    <polygon points="40,10 90,10 90,70 40,70" fill="#dc2626" stroke="#7f1d1d" stroke-width="2"/>
+    <!-- Puntos dado 1 -->
+    <circle cx="65" cy="40" r="5" fill="#ffffff"/>
+    <circle cx="52" cy="25" r="5" fill="#ffffff"/>
+    <circle cx="78" cy="55" r="5" fill="#ffffff"/>
+  </g>
+  <!-- Dado Azul 3D -->
+  <g transform="translate(100, 120)">
+    <polygon points="40,10 90,10 110,35 60,35" fill="#0284c7" stroke="#0369a1" stroke-width="2"/>
+    <polygon points="90,10 110,35 110,95 90,70" fill="#0369a1" stroke="#075985" stroke-width="2"/>
+    <polygon points="40,10 90,10 90,70 40,70" fill="#0ea5e9" stroke="#0369a1" stroke-width="2"/>
+    <!-- Puntos dado 2 -->
+    <circle cx="65" cy="40" r="5" fill="#ffffff"/>
+    <circle cx="52" cy="55" r="5" fill="#ffffff"/>
+    <circle cx="78" cy="25" r="5" fill="#ffffff"/>
+    <circle cx="52" cy="25" r="5" fill="#ffffff"/>
+    <circle cx="78" cy="55" r="5" fill="#ffffff"/>
+  </g>
+  <!-- Moneda dorada girando -->
+  <ellipse cx="175" cy="65" rx="30" ry="30" fill="#f59e0b" stroke="#b45309" stroke-width="3"/>
+  <ellipse cx="175" cy="65" rx="24" ry="24" fill="#fbbf24"/>
+  <text x="175" y="73" font-size="20" font-weight="bold" fill="#78350f" text-anchor="middle">Bs</text>
+</svg>
+            </div>
         </div>
+        <div class="feedback-container" id="fb_11"></div>
+
     </div>
 
-    <!-- PÁGINA 12: EJERCICIO 10 (Emparejamiento) -->
+    <!-- PÁGINA 12: EJERCICIO 10 -->
     <div class="page-content" id="page12">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 12</span>
-            <h3>Actividad Formativa 10 de 10: Emparejamiento: Interpretación de Escenarios Empresariales</h3>
+        <div style="font-size: 15px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 14px;">
+            Actividad Formativa 10 de 10: Emparejamiento: Interpretación de Eventos
         </div>
-        <div class="question-box">
 
-            <div class="question-enunciado">Relacione el planteamiento textual con su correspondiente representación en teoría de conjuntos:</div>
-            
-            <div class="matching-container">
-                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
-                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
+        <div class="statement-text">
+            Asocie cada concepto teórico con su definición práctica en toma de decisiones:
+        </div>
+        <div class="question-body-grid">
+            <div>
+                <div class="matching-grid">
+                    <div style="font-weight: 700; color: var(--uagrm-blue); font-size: 13.5px;">Premisa / Concepto</div>
+                    <div style="font-weight: 700; color: var(--uagrm-blue); font-size: 13.5px;">Correspondencia / Cálculo</div>
 
-                <div class="match-card">
-                    <span><strong>1.</strong> La empresa presenta falla en IVA O en IUE (o en ambos)</span>
+                    <div class="match-card">
+                        <span><strong>1.</strong> Eventos Mutuamente Excluyentes</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_12_0">
+                            <option value="">-- Seleccione una opción --</option>
+<option value="0">La ocurrencia de uno impide totalmente la del otro</option>
+<option value="1">Totalidad de resultados posibles e indivisibles</option>
+<option value="2">Un único resultado elemental del experimento</option>
+<option value="3">Subconjunto formado por dos o más puntos muestrales</option>
+
+                        </select>
+                    </div>
+
+                    <div class="match-card">
+                        <span><strong>2.</strong> Espacio Muestral (S)</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_12_1">
+                            <option value="">-- Seleccione una opción --</option>
+<option value="0">La ocurrencia de uno impide totalmente la del otro</option>
+<option value="1">Totalidad de resultados posibles e indivisibles</option>
+<option value="2">Un único resultado elemental del experimento</option>
+<option value="3">Subconjunto formado por dos o más puntos muestrales</option>
+
+                        </select>
+                    </div>
+
+                    <div class="match-card">
+                        <span><strong>3.</strong> Punto Muestral</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_12_2">
+                            <option value="">-- Seleccione una opción --</option>
+<option value="0">La ocurrencia de uno impide totalmente la del otro</option>
+<option value="1">Totalidad de resultados posibles e indivisibles</option>
+<option value="2">Un único resultado elemental del experimento</option>
+<option value="3">Subconjunto formado por dos o más puntos muestrales</option>
+
+                        </select>
+                    </div>
+
+                    <div class="match-card">
+                        <span><strong>4.</strong> Evento Compuesto</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_12_3">
+                            <option value="">-- Seleccione una opción --</option>
+<option value="0">La ocurrencia de uno impide totalmente la del otro</option>
+<option value="1">Totalidad de resultados posibles e indivisibles</option>
+<option value="2">Un único resultado elemental del experimento</option>
+<option value="3">Subconjunto formado por dos o más puntos muestrales</option>
+
+                        </select>
+                    </div>
+
                 </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_12_0">
-                        <option value="">-- Seleccione una opción --</option>
-<option value="0">P(A ∪ B)</option>
-<option value="1">P(A ∩ B)</option>
-<option value="2">P(A' ∩ B') = 1 - P(A ∪ B)</option>
-<option value="3">P(A ∩ B') = P(A) - P(A ∩ B)</option>
-
-                    </select>
-                </div>
-
-                <div class="match-card">
-                    <span><strong>2.</strong> La empresa presenta falla en IVA Y simultáneamente en IUE</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_12_1">
-                        <option value="">-- Seleccione una opción --</option>
-<option value="0">P(A ∪ B)</option>
-<option value="1">P(A ∩ B)</option>
-<option value="2">P(A' ∩ B') = 1 - P(A ∪ B)</option>
-<option value="3">P(A ∩ B') = P(A) - P(A ∩ B)</option>
-
-                    </select>
-                </div>
-
-                <div class="match-card">
-                    <span><strong>3.</strong> La empresa NO presenta ninguna observación tributaria</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_12_2">
-                        <option value="">-- Seleccione una opción --</option>
-<option value="0">P(A ∪ B)</option>
-<option value="1">P(A ∩ B)</option>
-<option value="2">P(A' ∩ B') = 1 - P(A ∪ B)</option>
-<option value="3">P(A ∩ B') = P(A) - P(A ∩ B)</option>
-
-                    </select>
-                </div>
-
-                <div class="match-card">
-                    <span><strong>4.</strong> La empresa presenta falla ÚNICAMENTE en IVA pero no en IUE</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_12_3">
-                        <option value="">-- Seleccione una opción --</option>
-<option value="0">P(A ∪ B)</option>
-<option value="1">P(A ∩ B)</option>
-<option value="2">P(A' ∩ B') = 1 - P(A ∪ B)</option>
-<option value="3">P(A ∩ B') = P(A) - P(A ∩ B)</option>
-
-                    </select>
-                </div>
-
+                <button class="btn-check-match" onclick="checkMatching(12)">Verificar Respuestas</button>
             </div>
-            <button class="btn-check-match" onclick="checkMatching(12)">Verificar Respuestas</button>
-            <div class="feedback-box" id="fb_12"></div>
-
+            <div class="illustration-box">
+                <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="245" rx="80" ry="10" fill="#cbd5e1"/>
+  <!-- Traje ejecutivo -->
+  <path d="M 65 140 C 65 115 175 115 175 140 L 185 235 C 185 240 55 240 55 235 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2.5"/>
+  <polygon points="105,135 120,195 135,135" fill="#ffffff"/>
+  <polygon points="116,145 124,145 121,185 119,185" fill="#10b981"/>
+  <!-- Cabeza -->
+  <ellipse cx="120" cy="85" rx="35" ry="38" fill="#fed7aa" stroke="#0f172a" stroke-width="2.5"/>
+  <path d="M 85 70 C 85 45 155 45 155 70 C 150 55 130 50 120 50 C 105 50 90 55 85 70 Z" fill="#334155"/>
+  <circle cx="107" cy="88" r="4.5" fill="#0f172a"/>
+  <circle cx="133" cy="88" r="4.5" fill="#0f172a"/>
+  <path d="M 112 108 Q 120 115 128 108" stroke="#0f172a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Maletín ejecutivo y tarjeta de crédito -->
+  <rect x="155" y="165" width="55" height="42" rx="4" fill="#78350f" stroke="#451a03" stroke-width="2"/>
+  <rect x="175" y="155" width="15" height="10" fill="none" stroke="#451a03" stroke-width="2"/>
+  <rect x="35" y="160" width="45" height="28" rx="3" fill="#0284c7" stroke="#0369a1" stroke-width="2"/>
+  <rect x="35" y="167" width="45" height="5" fill="#0f172a"/>
+</svg>
+            </div>
         </div>
+        <div class="feedback-container" id="fb_12"></div>
+
     </div>
 
-    <!-- PÁGINA 13: CIERRE Y EVALUACIÓN FINAL -->
+    <!-- PÁGINA 13: CIERRE -->
     <div class="page-content" id="page13">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 13</span>
-            <h3>Síntesis Ejecutiva y Reporte de Desempeño</h3>
+        <div style="font-size: 18px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 15px; border-bottom: 2px solid var(--border-light); padding-bottom: 8px;">
+            🏆 Síntesis y Evaluación de Desempeño
         </div>
         
-<div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 10px; padding: 25px;">
-    <h4 style="color: var(--uagrm-blue); margin-bottom: 15px; font-size: 17px;">🏁 Síntesis Ejecutiva de la Lección 2.1</h4>
-    <p style="font-size: 14px; margin-bottom: 15px;">Ha completado la primera lección de la Unidad 2. Ha dominado los tres enfoques de probabilidad (clásico, empírico y subjetivo), los axiomas de Kolmogorov y las reglas fundamentales de la adición para eventos disjuntos y no excluyentes.</p>
-    
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
-        <div style="background: #eff6ff; padding: 15px; border-radius: 8px; border-left: 4px solid var(--uagrm-accent);">
-            <strong style="color: var(--uagrm-blue);">Puntos Clave para Recordar:</strong>
-            <ul style="margin: 8px 0 0 18px; font-size: 13.5px;">
-                <li>La probabilidad siempre está acotada: \(0 \le P(A) \le 1\).</li>
-                <li>Si hay solapamiento (\(A \cap B \neq \emptyset\)), reste la intersección.</li>
-                <li>\(P(\text{al menos uno}) = 1 - P(\text{ninguno})\).</li>
-            </ul>
-        </div>
-        <div style="background: #ecfdf5; padding: 15px; border-radius: 8px; border-left: 4px solid var(--uagrm-green); text-align: center;">
-            <div style="font-size: 13px; font-weight: bold; color: var(--uagrm-green); text-transform: uppercase;">Puntaje Formativo Obtenido</div>
-            <div id="finalScoreDisplay" style="font-size: 30px; font-weight: 800; color: var(--uagrm-blue); margin: 6px 0;">100 / 100 Puntos</div>
-            <div style="font-size: 12px; color: var(--text-muted);">¡Excelente progreso formativo!</div>
-        </div>
+<div class="concept-card" style="text-align: center;">
+    <div style="font-size: 40px; margin-bottom: 10px;">🎯</div>
+    <h3 style="color: var(--uagrm-blue); margin-bottom: 8px;">¡Felicitaciones por completar la Lección 2.1!</h3>
+    <p style="color: var(--text-muted); font-size: 14px; max-width: 600px; margin: 0 auto 20px auto;">
+        Ha consolidado los enfoques clásico, empírico y subjetivo, junto con las reglas especial y general de la adición de probabilidades.
+    </p>
+
+    <div style="display: inline-block; background: #eff6ff; border: 2px solid #bfdbfe; border-radius: 12px; padding: 18px 30px; margin-bottom: 20px;">
+        <div style="font-size: 13px; font-weight: 600; color: #0284c7; text-transform: uppercase;">Puntaje Formativo Obtenido</div>
+        <div style="font-size: 36px; font-weight: 800; color: var(--uagrm-blue); margin: 4px 0;" id="finalScoreDisplay">0 / 100</div>
+        <div id="finalBadge" style="display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 700;">En progreso</div>
     </div>
 </div>
 
     </div>
 
-    <!-- NAV BUTTONS -->
+    <!-- NAVEGACIÓN -->
     <div class="nav-buttons">
-        <button class="btn btn-prev" id="btnPrev" onclick="navigatePage(-1)" disabled>← Anterior</button>
-        <button class="btn btn-next" id="btnNext" onclick="navigatePage(1)">Siguiente →</button>
+        <button class="btn-nav btn-prev" id="btnPrev" onclick="navigatePage(-1)" disabled>← Anterior</button>
+        <button class="btn-nav btn-next" id="btnNext" onclick="navigatePage(1)">Siguiente →</button>
     </div>
 </div>
 
@@ -1207,8 +1310,7 @@
     let score = 0;
     let answeredPages = new Set();
     
-    // Almacén seguro de datos de emparejamiento
-    const matchingStore = {"4": [{"left": "Probabilidad calculada como 1/6 al lanzar un dado legal o 1/52 al extraer una carta.", "right": "Enfoque Clásico a Priori (Laplace)"}, {"left": "Tasa de fallas en auditoría estimada según el registro histórico de 10.000 facturas del año anterior.", "right": "Enfoque Empírico o de Frecuencia Relativa"}, {"left": "Estimación del gerente financiero sobre el éxito de una fusión sin precedentes de la empresa.", "right": "Enfoque Subjetivo o Juicio Profesional"}, {"left": "A medida que el número de auditorías tiende a infinito, la frecuencia relativa converge a la probabilidad.", "right": "Ley de los Grandes Números"}], "6": [{"left": "Axioma de No Negatividad y Acotación", "right": "0 ≤ P(A) ≤ 1 para todo evento A"}, {"left": "Axioma del Evento Seguro (Espacio Muestral)", "right": "P(S) = 1.00"}, {"left": "Probabilidad del Evento Imposible", "right": "P(∅) = 0.00"}, {"left": "Regla del Evento Complementario", "right": "P(A') = 1 - P(A)"}], "8": [{"left": "Eventos Mutuamente Excluyentes (Disjuntos)", "right": "P(A ∪ B) = P(A) + P(B)"}, {"left": "Eventos No Excluyentes (Con Intersección)", "right": "P(A ∪ B) = P(A) + P(B) - P(A ∩ B)"}, {"left": "Eventos Colectivamente Exhaustivos", "right": "P(A ∪ B ∪ ... ∪ K) = 1.00"}, {"left": "Probabilidad Conjunta en Eventos Disjuntos", "right": "P(A ∩ B) = 0"}], "10": [{"left": "Probabilidad de la Unión: P(A ∪ B)", "right": "0.70 (70%)"}, {"left": "Probabilidad del Complemento de A: P(A')", "right": "0.50 (50%)"}, {"left": "Probabilidad de que ocurra SOLO A: P(A - B)", "right": "0.30 (30%)"}, {"left": "Probabilidad de que no ocurra ni A ni B: P((A ∪ B)')", "right": "0.30 (30%)"}], "12": [{"left": "La empresa presenta falla en IVA O en IUE (o en ambos)", "right": "P(A ∪ B)"}, {"left": "La empresa presenta falla en IVA Y simultáneamente en IUE", "right": "P(A ∩ B)"}, {"left": "La empresa NO presenta ninguna observación tributaria", "right": "P(A' ∩ B') = 1 - P(A ∪ B)"}, {"left": "La empresa presenta falla ÚNICAMENTE en IVA pero no en IUE", "right": "P(A ∩ B') = P(A) - P(A ∩ B)"}]};
+    const matchingStore = {"4": [{"left": "Probabilidad de obtener cara al lanzar una moneda equilibrada (1/2)", "right": "Enfoque Clásico a Priori (Laplace)"}, {"left": "Tasa de productos defectuosos según los registros históricos del último año", "right": "Enfoque Empírico o Frecuentista"}, {"left": "Estimación del gerente sobre el éxito de una nueva tecnología no probada", "right": "Enfoque Subjetivo (Juicio Experto)"}, {"left": "A medida que el número de ensayos crece, la frecuencia se aproxima a la probabilidad real", "right": "Ley de los Grandes Números"}], "6": [{"left": "Axioma de No Negatividad", "right": "0 ≤ P(A) ≤ 1 para todo evento A"}, {"left": "Axioma del Espacio Muestral Total", "right": "P(S) = 1.00"}, {"left": "Axioma del Evento Vacío (Imposible)", "right": "P(∅) = 0.00"}, {"left": "Axioma del Evento Complementario", "right": "P(A') = 1 - P(A)"}], "8": [{"left": "Eventos Mutuamente Excluyentes (A ∩ B = ∅)", "right": "P(A ∪ B) = P(A) + P(B)"}, {"left": "Eventos No Excluyentes (A ∩ B ≠ ∅)", "right": "P(A ∪ B) = P(A) + P(B) - P(A ∩ B)"}, {"left": "Intersección en Eventos Disjuntos", "right": "P(A ∩ B) = 0"}, {"left": "Partición Colectivamente Exhaustiva", "right": "P(A₁ ∪ A₂ ∪ ... ∪ A_k) = 1.00"}], "10": [{"left": "Probabilidad de la Unión: P(A ∪ B)", "right": "0.80 (80%)"}, {"left": "Probabilidad del Complemento: P(A')", "right": "0.40 (40%)"}, {"left": "Probabilidad de que ocurra SOLO A: P(A - B)", "right": "0.40 (40%)"}, {"left": "Probabilidad de que no ocurra ni A ni B: P((A ∪ B)')", "right": "0.20 (20%)"}], "12": [{"left": "Eventos Mutuamente Excluyentes", "right": "La ocurrencia de uno impide totalmente la del otro"}, {"left": "Espacio Muestral (S)", "right": "Totalidad de resultados posibles e indivisibles"}, {"left": "Punto Muestral", "right": "Un único resultado elemental del experimento"}, {"left": "Evento Compuesto", "right": "Subconjunto formado por dos o más puntos muestrales"}]};
 
     function updateNav() {
         document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
@@ -1244,33 +1346,34 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function selectOption(pageNum, optIndex, isCorrect) {
+    function selectOption(pageNum, optIndex, isCorrect, feedbackText) {
         if (answeredPages.has(pageNum)) return;
         answeredPages.add(pageNum);
 
         const grid = document.getElementById('optGrid_' + pageNum);
-        const items = grid.querySelectorAll('.option-item');
+        const items = grid.querySelectorAll('.option-card');
         const fb = document.getElementById('fb_' + pageNum);
 
         items.forEach((item, idx) => {
             item.style.pointerEvents = 'none';
             if (idx === optIndex) {
                 if (isCorrect) {
-                    item.classList.add('selected-correct');
+                    item.classList.add('correct');
                 } else {
-                    item.classList.add('selected-incorrect');
+                    item.classList.add('incorrect');
                 }
             }
         });
 
         if (isCorrect) {
             score += 10;
-            fb.className = 'feedback-box correct';
-            fb.innerHTML = '<strong>✓ ¡Respuesta Correcta!</strong> Excelente aplicación de las propiedades teóricas y cálculo estadístico.';
+            fb.className = 'feedback-container correct';
+            fb.innerHTML = '<strong>✓ ¡Respuesta Correcta!</strong> ' + (feedbackText || 'Excelente deducción probabilística.');
         } else {
-            fb.className = 'feedback-box incorrect';
-            fb.innerHTML = '<strong>✗ Respuesta Incorrecta.</strong> Revise el procedimiento analítico y la justificación teórica.';
+            fb.className = 'feedback-container incorrect';
+            fb.innerHTML = '<strong>✗ Respuesta Incorrecta.</strong> ' + (feedbackText || 'Revise el planteamiento y la formulación teórica.');
         }
+        if (window.MathJax) MathJax.typesetPromise();
     }
 
     function checkMatching(pageNum) {
@@ -1292,7 +1395,7 @@
                     selectElem.style.borderColor = 'var(--uagrm-red)';
                     selectElem.style.backgroundColor = '#fef2f2';
                 } else {
-                    selectElem.style.borderColor = 'var(--uagrm-green)';
+                    selectElem.style.borderColor = 'var(--accent-green)';
                     selectElem.style.backgroundColor = '#ecfdf5';
                 }
             }
@@ -1308,12 +1411,13 @@
 
         if (allCorrect) {
             score += 10;
-            fb.className = 'feedback-box correct';
-            fb.innerHTML = '<strong>✓ ¡Excelente!</strong> Todas las asociaciones y correspondencias son 100% correctas.';
+            fb.className = 'feedback-container correct';
+            fb.innerHTML = '<strong>✓ ¡Excelente!</strong> Todas las relaciones y correspondencias son 100% correctas.';
         } else {
-            fb.className = 'feedback-box incorrect';
-            fb.innerHTML = '<strong>✗ Observación en Emparejamiento:</strong> Revise las opciones marcadas en rojo e intente consolidar la relación conceptual.';
+            fb.className = 'feedback-container incorrect';
+            fb.innerHTML = '<strong>✗ Observación en Emparejamiento:</strong> Revise las opciones en rojo para afianzar el concepto.';
         }
+        if (window.MathJax) MathJax.typesetPromise();
     }
 
     function renderFinalScore() {
@@ -1332,7 +1436,7 @@
                 badgeElem.style.background = '#fef3c7';
                 badgeElem.style.color = '#b45309';
             } else {
-                badgeElem.textContent = 'Requiere Refuerzo y Repaso';
+                badgeElem.textContent = 'Requiere Refuerzo';
                 badgeElem.style.background = '#fee2e2';
                 badgeElem.style.color = '#b22222';
             }

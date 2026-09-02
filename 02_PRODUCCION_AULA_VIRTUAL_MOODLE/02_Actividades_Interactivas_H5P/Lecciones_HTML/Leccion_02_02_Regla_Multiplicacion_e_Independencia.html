@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lección 2.2: Reglas de la Multiplicación, Independencia y Dependencia Estadística | UAGRM</title>
-    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Lección 2.2: Reglas de la Multiplicación, Independencia y Dependencia Estadística | Estadística II</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         :root {
             --uagrm-blue: #002b49;
-            --uagrm-darkblue: #001f35;
             --uagrm-red: #b22222;
-            --uagrm-accent: #0284c7;
-            --uagrm-green: #059669;
-            --uagrm-gold: #d97706;
-            --uagrm-purple: #7c3aed;
-            --bg-light: #f8fafc;
+            --accent-blue: #0284c7;
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --accent-purple: #8b5cf6;
+            --bg-body: #e2e8f0;
             --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
+            --text-dark: #0f172a;
             --border-light: #e2e8f0;
         }
 
@@ -31,58 +29,62 @@
         }
 
         body {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: var(--text-main);
+            background: var(--bg-body);
+            color: var(--text-dark);
             line-height: 1.6;
-            padding: 20px 10px;
+            padding: 25px 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
         .lesson-container {
-            max-width: 960px;
-            margin: 0 auto;
+            width: 100%;
+            max-width: 980px;
             background: var(--card-bg);
             border-radius: 14px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border: 1px solid var(--border-light);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.10);
+            border: 1px solid #cbd5e1;
             overflow: hidden;
         }
 
-        .lesson-header {
+        /* Cabecera de Lección */
+        .lesson-top-bar {
             background: linear-gradient(135deg, var(--uagrm-blue) 0%, #004b7a 100%);
             color: #ffffff;
-            padding: 30px 25px;
+            padding: 22px 30px;
             border-bottom: 4px solid var(--uagrm-red);
-            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        .badge-leccion {
-            display: inline-block;
-            background: var(--uagrm-red);
-            color: #ffffff;
-            font-size: 11.5px;
+        .lesson-top-bar h1 {
+            font-size: 20px;
             font-weight: 700;
-            padding: 4px 12px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            margin-bottom: 8px;
         }
 
-        .lesson-header h1 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .lesson-header h2 {
-            font-size: 14px;
-            font-weight: 400;
+        .lesson-top-bar p {
+            font-size: 13.5px;
             color: #bae6fd;
         }
 
+        .badge-leccion {
+            background: var(--uagrm-red);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Barra de progreso */
         .progress-section {
             background: #ffffff;
-            padding: 14px 25px;
+            padding: 12px 30px;
             border-bottom: 1px solid var(--border-light);
             display: flex;
             align-items: center;
@@ -93,30 +95,31 @@
         .progress-bar-container {
             flex-grow: 1;
             background: #e2e8f0;
-            height: 10px;
+            height: 9px;
             border-radius: 5px;
             overflow: hidden;
         }
 
         .progress-bar {
-            background: linear-gradient(90deg, var(--uagrm-accent), var(--uagrm-green));
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
             height: 100%;
             width: 8%;
             transition: width 0.3s ease;
         }
 
         .progress-text {
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 600;
             color: var(--uagrm-blue);
             min-width: 140px;
             text-align: right;
         }
 
+        /* Contenido de Página */
         .page-content {
             display: none;
-            padding: 30px;
-            min-height: 480px;
+            padding: 30px 35px;
+            min-height: 500px;
         }
 
         .page-content.active {
@@ -129,39 +132,185 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .page-title {
+        /* Tarjeta de Pregunta Estilo Diapositiva */
+        .statement-text {
+            font-size: 18px;
+            font-style: italic;
+            font-weight: 600;
+            color: var(--accent-blue);
+            line-height: 1.5;
+            margin-bottom: 22px;
+            text-align: justify;
+        }
+
+        .question-body-grid {
+            display: grid;
+            grid-template-columns: 1fr 260px;
+            gap: 25px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .question-body-grid {
+                grid-template-columns: 1fr;
+            }
+            .statement-text {
+                font-size: 16px;
+            }
+            .page-content {
+                padding: 20px 18px;
+            }
+        }
+
+        /* Lista de Opciones */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .option-card {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 9px;
+            padding: 13px 16px;
+            font-size: 14.5px;
+            font-weight: 500;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid var(--border-light);
+            text-align: left;
         }
 
-        .page-num-badge {
+        .option-card:hover {
+            border-color: var(--accent-blue);
+            background: #f0f9ff;
+            transform: translateX(3px);
+        }
+
+        .option-card.correct {
+            background: #ecfdf5 !important;
+            border-color: var(--accent-green) !important;
+            color: #065f46 !important;
+            font-weight: 600;
+        }
+
+        .option-card.incorrect {
+            background: #fef2f2 !important;
+            border-color: var(--uagrm-red) !important;
+            color: #991b1b !important;
+        }
+
+        .option-letter {
+            color: var(--accent-blue);
+            font-weight: 700;
+            font-size: 15px;
+            min-width: 24px;
+        }
+
+        /* Emparejamiento */
+        .matching-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .matching-grid { grid-template-columns: 1fr; }
+        }
+
+        .match-card {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 13.5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .match-select {
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1.5px solid #cbd5e1;
+            font-size: 13px;
+            background: #ffffff;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .btn-check-match {
+            margin-top: 16px;
             background: var(--uagrm-blue);
             color: white;
-            font-size: 13px;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 6px;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 7px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
         }
 
-        .page-title h3 {
-            font-size: 17px;
-            color: var(--uagrm-blue);
+        .btn-check-match:hover {
+            background: #00406c;
         }
 
+        /* Ilustración del personaje */
+        .illustration-box {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .illustration-box svg {
+            width: 100%;
+            max-width: 240px;
+            height: auto;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.08));
+        }
+
+        /* Feedback */
+        .feedback-container {
+            margin-top: 16px;
+            padding: 14px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .feedback-container.correct {
+            background: #ecfdf5;
+            border-left: 4px solid var(--accent-green);
+            color: #065f46;
+            display: block;
+        }
+
+        .feedback-container.incorrect {
+            background: #fef2f2;
+            border-left: 4px solid var(--uagrm-red);
+            color: #991b1b;
+            display: block;
+        }
+
+        /* Navegación */
         .nav-buttons {
             background: #f8fafc;
-            padding: 16px 25px;
+            padding: 16px 30px;
             border-top: 1px solid var(--border-light);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .btn {
+        .btn-nav {
             padding: 10px 22px;
             border-radius: 8px;
             font-size: 14px;
@@ -173,17 +322,16 @@
 
         .btn-prev {
             background: #ffffff;
-            color: var(--text-main);
-            border: 1.5px solid var(--border-light);
+            color: var(--text-dark);
+            border: 1.5px solid #cbd5e1;
         }
 
         .btn-prev:hover:not(:disabled) {
             background: #f1f5f9;
-            border-color: #cbd5e1;
         }
 
         .btn-next {
-            background: var(--uagrm-accent);
+            background: var(--accent-blue);
             color: white;
         }
 
@@ -192,214 +340,47 @@
             box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
         }
 
-        .btn:disabled {
+        .btn-nav:disabled {
             opacity: 0.4;
             cursor: not-allowed;
         }
 
-        /* Ejercicios y opciones */
-        .question-box {
+        /* Cajas didácticas */
+        .concept-card {
             background: #ffffff;
             border: 1px solid var(--border-light);
             border-radius: 10px;
             padding: 22px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-        }
-
-        .question-enunciado {
-            font-size: 15.5px;
-            font-weight: 600;
-            color: var(--uagrm-blue);
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .option-item {
-            background: #f8fafc;
-            border: 1.5px solid var(--border-light);
-            border-radius: 8px;
-            padding: 12px 16px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .option-item:hover {
-            background: #eff6ff;
-            border-color: var(--uagrm-accent);
-            transform: translateX(3px);
-        }
-
-        .option-item.selected-correct {
-            background: #ecfdf5 !important;
-            border-color: var(--uagrm-green) !important;
-            color: #065f46 !important;
-            font-weight: 600;
-        }
-
-        .option-item.selected-incorrect {
-            background: #fef2f2 !important;
-            border-color: var(--uagrm-red) !important;
-            color: #991b1b !important;
-        }
-
-        .feedback-box {
-            margin-top: 15px;
-            padding: 14px 18px;
-            border-radius: 8px;
-            font-size: 13.5px;
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .feedback-box.correct {
-            background: #ecfdf5;
-            border-left: 4px solid var(--uagrm-green);
-            color: #065f46;
-            display: block;
-        }
-
-        .feedback-box.incorrect {
-            background: #fef2f2;
-            border-left: 4px solid var(--uagrm-red);
-            color: #991b1b;
-            display: block;
-        }
-
-        /* Emparejamiento */
-        .matching-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 15px;
-        }
-
-        @media (max-width: 650px) {
-            .matching-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .match-card {
-            background: #f8fafc;
-            border: 1px solid var(--border-light);
-            border-radius: 6px;
-            padding: 10px 14px;
-            font-size: 13.5px;
-            display: flex;
-            align-items: center;
-        }
-
-        .match-select {
-            width: 100%;
-            padding: 8px 12px;
-            border-radius: 6px;
-            border: 1.5px solid var(--border-light);
-            font-size: 13px;
-            background: #ffffff;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .match-select:focus {
-            border-color: var(--uagrm-accent);
-        }
-
-        .btn-check-match {
-            margin-top: 15px;
-            background: var(--uagrm-blue);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-size: 13.5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-check-match:hover {
-            background: #00406c;
-        }
-
-        /* Cajas de teoría */
-        .concept-card {
-            background: #ffffff;
-            border: 1px solid var(--border-light);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 18px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-        }
-
-        .concept-card h4 {
-            color: var(--uagrm-blue);
-            font-size: 16px;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .alert-box {
-            background: #eff6ff;
-            border-left: 4px solid var(--uagrm-accent);
-            padding: 12px 16px;
-            border-radius: 0 8px 8px 0;
-            margin: 14px 0;
-            font-size: 13.5px;
         }
 
         .formula-box {
             background: #f8fafc;
             border: 1.5px dashed #cbd5e1;
             border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
+            padding: 16px;
+            margin: 16px 0;
             text-align: center;
-        }
-
-        .green-box {
-            background: #ecfdf5;
-            border-left: 4px solid var(--uagrm-green);
-            padding: 12px 16px;
-            border-radius: 0 8px 8px 0;
-            margin: 14px 0;
-            font-size: 13.5px;
-        }
-
-        .red-box {
-            background: #fef2f2;
-            border-left: 4px solid var(--uagrm-red);
-            padding: 12px 16px;
-            border-radius: 0 8px 8px 0;
-            margin: 14px 0;
-            font-size: 13.5px;
         }
     </style>
 </head>
 <body>
 
 <div class="lesson-container">
-    <!-- HEADER -->
-    <div class="lesson-header">
-        <span class="badge-leccion">UNIDAD 2 • LECCIÓN 2.2</span>
-        <h1>Reglas de la Multiplicación, Independencia y Dependencia Estadística</h1>
-        <h2>Eventos Conjuntos, Muestreo con y sin Reemplazo y Redundancia en Sistemas • MSc. Anselmo Salguero Arano</h2>
+    <!-- TOP BAR -->
+    <div class="lesson-top-bar">
+        <div>
+            <span class="badge-leccion">UNIDAD 2 • LECCIÓN 2.2</span>
+            <h1 style="margin-top: 4px;">Reglas de la Multiplicación, Independencia y Dependencia Estadística</h1>
+            <p>Eventos Conjuntos, Muestreo con y sin Reemplazo y Confiabilidad de Sistemas • MSc. Anselmo Salguero Arano</p>
+        </div>
+        <div style="font-size: 13px; font-weight: 600; background: rgba(255,255,255,0.18); padding: 6px 14px; border-radius: 20px;">
+            Estadística II (MAT-260)
+        </div>
     </div>
 
-    <!-- PROGRESS -->
+    <!-- PROGRESS BAR -->
     <div class="progress-section">
         <div class="progress-bar-container">
             <div class="progress-bar" id="progressBar"></div>
@@ -409,803 +390,901 @@
 
     <!-- PÁGINA 1: TEORÍA -->
     <div class="page-content active" id="page1">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 1</span>
-            <h3>Fundamento Teórico y Síntesis Conceptual</h3>
+        <div style="font-size: 18px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 15px; border-bottom: 2px solid var(--border-light); padding-bottom: 8px;">
+            📚 Fundamento Teórico y Síntesis Conceptual
         </div>
         
-<div class="formula-box">
-    <h4 style="color: var(--uagrm-blue); margin-bottom: 8px;">📌 Fundamentos Teóricos: Regla de la Multiplicación e Independencia (Lind & Anderson)</h4>
-    <p>La regla de la multiplicación nos permite determinar la probabilidad de que dos o más eventos ocurran de manera conjunta o secuencial (\(A \cap B\)):</p>
+<div class="concept-card">
+    <h3 style="color: var(--uagrm-blue); margin-bottom: 10px;">📌 1. Reglas de la Multiplicación de Probabilidades (Lind & Anderson)</h3>
+    <p>La regla de la multiplicación permite calcular la probabilidad conjunta de que ocurran dos eventos simultáneamente o en secuencia (\(P(A \cap B)\)):</p>
     
-    <!-- SVG INFOGRAFÍA VIBRANTE TEORÍA 2.2 -->
-    <svg viewBox="0 0 820 210" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; display: block; margin: 15px auto; background: #ffffff; border-radius: 8px; border: 1px solid #e2e8f0; padding: 5px;">
-      <defs>
-        <linearGradient id="gradM1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#059669"/>
-          <stop offset="100%" stop-color="#047857"/>
-        </linearGradient>
-        <linearGradient id="gradM2" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#0284c7"/>
-          <stop offset="100%" stop-color="#0369a1"/>
-        </linearGradient>
-        <linearGradient id="gradM3" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#d97706"/>
-          <stop offset="100%" stop-color="#b45309"/>
-        </linearGradient>
-      </defs>
-      <rect width="820" height="210" fill="#f8fafc" rx="8"/>
-      
-      <!-- Panel 1: Independencia -->
-      <g transform="translate(15, 15)">
-        <rect width="250" height="180" fill="#ffffff" stroke="#059669" stroke-width="1.5" rx="6"/>
-        <rect width="250" height="30" fill="url(#gradM1)" rx="6 6 0 0"/>
-        <text x="125" y="20" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Eventos Independientes</text>
-        <rect x="15" y="42" width="220" height="40" fill="#ecfdf5" rx="4"/>
-        <text x="125" y="58" font-size="11" font-weight="bold" fill="#065f46" text-anchor="middle">Criterio Formal:</text>
-        <text x="125" y="74" font-size="12" font-weight="bold" fill="#047857" text-anchor="middle">P(A|B) = P(A)  ó  P(B|A) = P(B)</text>
-        <rect x="15" y="90" width="220" height="78" fill="#f0fdf4" stroke="#bbf7d0" rx="4"/>
-        <text x="125" y="110" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">Regla Especial:</text>
-        <text x="125" y="130" font-size="14" font-weight="bold" fill="#059669" text-anchor="middle">P(A ∩ B) = P(A) · P(B)</text>
-        <text x="125" y="152" font-size="10.5" fill="#475569" text-anchor="middle">Muestreo con reemplazo / Procesos sin memoria</text>
-      </g>
-
-      <!-- Panel 2: Dependencia -->
-      <g transform="translate(280, 15)">
-        <rect width="250" height="180" fill="#ffffff" stroke="#0284c7" stroke-width="1.5" rx="6"/>
-        <rect width="250" height="30" fill="url(#gradM2)" rx="6 6 0 0"/>
-        <text x="125" y="20" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Eventos Dependientes</text>
-        <rect x="15" y="42" width="220" height="40" fill="#e0f2fe" rx="4"/>
-        <text x="125" y="58" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">Criterio Formal:</text>
-        <text x="125" y="74" font-size="12" font-weight="bold" fill="#0284c7" text-anchor="middle">P(A|B) ≠ P(A)</text>
-        <rect x="15" y="90" width="220" height="78" fill="#f0f9ff" stroke="#bae6fd" rx="4"/>
-        <text x="125" y="110" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">Regla General:</text>
-        <text x="125" y="130" font-size="14" font-weight="bold" fill="#0284c7" text-anchor="middle">P(A ∩ B) = P(A) · P(B|A)</text>
-        <text x="125" y="152" font-size="10.5" fill="#475569" text-anchor="middle">Muestreo sin reemplazo en auditoría</text>
-      </g>
-
-      <!-- Panel 3: Redundancia en Paralelo -->
-      <g transform="translate(545, 15)">
-        <rect width="260" height="180" fill="#ffffff" stroke="#d97706" stroke-width="1.5" rx="6"/>
-        <rect width="260" height="30" fill="url(#gradM3)" rx="6 6 0 0"/>
-        <text x="130" y="20" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Sistemas Redundantes (Servidores ERP)</text>
-        <!-- Esquema en paralelo -->
-        <line x1="30" y1="75" x2="60" y2="75" stroke="#d97706" stroke-width="2"/>
-        <line x1="60" y1="55" x2="60" y2="95" stroke="#d97706" stroke-width="2"/>
-        <line x1="60" y1="55" x2="90" y2="55" stroke="#d97706" stroke-width="2"/>
-        <line x1="60" y1="95" x2="90" y2="95" stroke="#d97706" stroke-width="2"/>
-        <rect x="90" y="42" width="75" height="26" fill="#fef3c7" stroke="#d97706" rx="3"/>
-        <text x="127" y="59" font-size="10" font-weight="bold" fill="#92400e" text-anchor="middle">Servidor 1</text>
-        <rect x="90" y="82" width="75" height="26" fill="#fef3c7" stroke="#d97706" rx="3"/>
-        <text x="127" y="99" font-size="10" font-weight="bold" fill="#92400e" text-anchor="middle">Servidor 2</text>
-        <line x1="165" y1="55" x2="195" y2="55" stroke="#d97706" stroke-width="2"/>
-        <line x1="165" y1="95" x2="195" y2="95" stroke="#d97706" stroke-width="2"/>
-        <line x1="195" y1="55" x2="195" y2="95" stroke="#d97706" stroke-width="2"/>
-        <line x1="195" y1="75" x2="225" y2="75" stroke="#d97706" stroke-width="2"/>
-        <rect x="15" y="125" width="230" height="42" fill="#fffbeb" stroke="#fde68a" rx="4"/>
-        <text x="130" y="142" font-size="11" font-weight="bold" fill="#92400e" text-anchor="middle">P(Al menos 1 funcione):</text>
-        <text x="130" y="158" font-size="11.5" font-weight="bold" fill="#b22222" text-anchor="middle">1 - P(F₁ ∩ F₂) = 1 - [P(F₁) · P(F₂)]</text>
-      </g>
-    </svg>
-
-    <ul style="margin: 10px 0 10px 25px;">
-        <li><strong>Independencia Estadística:</strong> La ocurrencia del evento \(A\) no altera la probabilidad de ocurrencia del evento \(B\). En tal caso: \(P(A \cap B) = P(A) \cdot P(B)\).</li>
-        <li><strong>Dependencia en Muestreo Sin Reemplazo:</strong> Cada extracción modifica el espacio muestral disponible para el siguiente ensayo.</li>
-    </ul>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 18px 0;">
+        <div style="background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 8px; padding: 14px;">
+            <h4 style="color: #0284c7; margin-bottom: 6px;">1. Regla Especial (Eventos Independientes)</h4>
+            <p style="font-size: 13px;">La ocurrencia de \(B\) no altera la probabilidad de \(A\).<br>
+            <strong>Fórmula:</strong> \(P(A \cap B) = P(A) \cdot P(B)\)</p>
+        </div>
+        <div style="background: #fef2f2; border: 1.5px solid #fecaca; border-radius: 8px; padding: 14px;">
+            <h4 style="color: #b22222; margin-bottom: 6px;">2. Regla General (Eventos Dependientes)</h4>
+            <p style="font-size: 13px;">La ocurrencia de \(A\) influye en la probabilidad de \(B\).<br>
+            <strong>Fórmula:</strong> \(P(A \cap B) = P(A) \cdot P(B|A)\)</p>
+        </div>
+    </div>
 </div>
 
-<div class="example-box">
-    <h4>💡 Ejemplo 2.2: Auditoría de Muestreo de Facturas Sin Reemplazo</h4>
-    <p><strong>Problema:</strong> Un lote de 20 facturas de compras contiene 4 con errores de crédito fiscal y 16 correctas. Un auditor extrae sucesivamente 2 facturas sin reemplazo. ¿Cuál es la probabilidad de que ambas facturas tengan error?</p>
-    <p><strong>Desarrollo Analítico:</strong></p>
-    <ul style="margin-left: 20px;">
-        <li>Probabilidad de error en la 1ª factura (\(E_1\)): \(P(E_1) = \frac{4}{20}\).</li>
-        <li>Probabilidad de error en la 2ª factura dado que la 1ª tuvo error (\(E_2|E_1\)): \(P(E_2|E_1) = \frac{3}{19}\).</li>
+<div class="concept-card">
+    <h3 style="color: var(--uagrm-blue); margin-bottom: 10px;">⚡ 2. Independencia Estadística vs. Exclusión Mutua</h3>
+    <ul style="margin-left: 20px; font-size: 14px;">
+        <li><strong>Definición formal de independencia:</strong> Dos eventos son independientes si y solo si \(P(A|B) = P(A)\) o \(P(A \cap B) = P(A)P(B)\).</li>
+        <li><strong>Muestreo con reemplazo:</strong> Cada elemento extraído se regresa al conjunto poblacional; las probabilidades se mantienen constantes (ensayos independientes).</li>
+        <li><strong>Muestreo sin reemplazo:</strong> El elemento no se reintegra; el espacio muestral disminuye en cada intento (ensayos dependientes).</li>
+        <li><strong>Confiabilidad de sistemas en paralelo:</strong> Para que el sistema falle, deben fallar todos los componentes independientes: \(P(\text{Operar}) = 1 - P(F_1 \cap F_2) = 1 - [P(F_1)P(F_2)]\).</li>
     </ul>
-    <div style="text-align: center; margin: 8px 0;">\[P(E_1 \cap E_2) = P(E_1) \cdot P(E_2|E_1) = \frac{4}{20} \times \frac{3}{19} = \frac{12}{380} = \frac{3}{95} \approx \mathbf{0.0316 \quad (3.16\%)}\]</div>
 </div>
 
     </div>
 
     <!-- PÁGINA 2: MULTIMEDIA -->
     <div class="page-content" id="page2">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 2</span>
-            <h3>Refuerzo Audiovisual y Guía de Observación</h3>
+        <div style="font-size: 18px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 15px; border-bottom: 2px solid var(--border-light); padding-bottom: 8px;">
+            🎬 Refuerzo Audiovisual y Guía de Estudio
         </div>
         
-<div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 10px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
-    <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
-        <div style="font-size: 36px;">🎬</div>
-        <div>
-            <h4 style="color: var(--uagrm-blue); font-size: 16px;">Video Educativo: Regla de la Multiplicación e Independencia (Khan Academy)</h4>
-            <p style="font-size: 13.5px; color: var(--text-muted);">Visualice la diferencia entre eventos independientes y dependientes con ejemplos secuenciales.</p>
-        </div>
+<div class="concept-card">
+    <h3 style="color: var(--uagrm-blue); margin-bottom: 12px;">🎬 Video Educativo: Regla de la Multiplicación e Independencia</h3>
+    <div style="position: relative; padding-bottom: 52%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid #cbd5e1; margin-bottom: 18px;">
+        <iframe src="https://www.youtube-nocookie.com/embed/S_8qMskfP9U" style="position: absolute; top:0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>
     </div>
-    
-    <div style="position: relative; padding-bottom: 45%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid #cbd5e1; margin-bottom: 20px; background: #000;">
-        <iframe style="position: absolute; top:0; left: 0; width: 100%; height: 100%;" 
-                src="https://www.youtube-nocookie.com/embed/bqw_e_1lFjY" 
-                title="Regla de la Multiplicación" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-        </iframe>
-    </div>
-
-    <div style="background: #f8fafc; border-left: 4px solid var(--uagrm-accent); padding: 15px; border-radius: 0 6px 6px 0; font-size: 13.5px;">
-        <strong>📋 Guía de Observación para el Estudiante:</strong>
-        <ul style="margin: 6px 0 0 20px;">
-            <li>Observe cómo cambia el denominador en las extracciones sin reemplazo.</li>
-            <li>Comprenda por qué dos eventos disjuntos con probabilidad mayor a cero NUNCA pueden ser independientes.</li>
-        </ul>
+    <div style="background: #f8fafc; border-left: 4px solid var(--accent-blue); padding: 14px; border-radius: 0 8px 8px 0; font-size: 13.5px;">
+        <strong>📋 Puntos Clave de Reflexión:</strong>
+        <ol style="margin: 8px 0 0 20px;">
+            <li>Verifique cómo cambia el denominador en el muestreo sin reemplazo.</li>
+            <li>Diferencie con precisión por qué dos eventos disjuntos con probabilidades positivas NUNCA pueden ser independientes.</li>
+        </ol>
     </div>
 </div>
 
     </div>
 
-    <!-- PÁGINA 3: EJERCICIO 1 (Opción Múltiple) -->
+    <!-- PÁGINA 3: EJERCICIO 1 -->
     <div class="page-content" id="page3">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 3</span>
-            <h3>Actividad Formativa 1 de 10: Muestreo Sin Reemplazo en Auditoría Forense</h3>
+        <div style="font-size: 15px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 14px;">
+            Actividad Formativa 1 de 10: Regla Especial de la Multiplicación
         </div>
-        <div class="question-box">
 
-            <div class="question-enunciado">Un perito auditor revisa una carpeta con 15 cheques girados, de los cuales 3 carecen de la segunda firma autorizada. Si se seleccionan 2 cheques al azar sin reemplazo, ¿cuál es la probabilidad de que ambos cheques tengan la irregularidad de firmas?</div>
-            
-<svg viewBox="0 0 500 90" xmlns="http://www.w3.org/2000/svg" style="max-width: 420px; display: block; margin: 10px auto; background: #ffffff; border-radius: 6px; border: 1px solid #e2e8f0;">
-  <rect width="500" height="90" fill="#f8fafc" rx="6"/>
-  <rect x="30" y="20" width="130" height="50" fill="#fee2e2" stroke="#b22222" rx="4"/>
-  <text x="95" y="42" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">1ª Extracción</text>
-  <text x="95" y="58" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">P(A₁) = 3/15</text>
-  <path d="M 170 45 L 210 45" stroke="#b22222" stroke-width="2"/>
-  <text x="190" y="38" font-size="12" font-weight="bold" fill="#b22222" text-anchor="middle">×</text>
-  <rect x="220" y="20" width="130" height="50" fill="#fee2e2" stroke="#b22222" rx="4"/>
-  <text x="285" y="42" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">2ª Extracción</text>
-  <text x="285" y="58" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">P(A₂|A₁) = 2/14</text>
-  <text x="420" y="50" font-size="12" font-weight="bold" fill="#047857" text-anchor="middle">P(A₁ ∩ A₂) = ?</text>
-</svg>
+        <div class="statement-text">
+            En una línea de ensamble, la probabilidad de que una máquina A sufra una parada técnica es \(P(A) = 0.05\), y la probabilidad de que una máquina B sufra una parada es \(P(B) = 0.10\). Si ambas máquinas operan de forma independiente, ¿cuál es la probabilidad de que ambas se detengan simultáneamente en un día determinado?
+        </div>
+        <div class="question-body-grid">
+            <div class="options-list" id="optGrid_3">
 
-            <div class="options-grid" id="optGrid_3">
-
-                <div class="option-item" onclick="selectOption(3, 0, true)">
-                    <span style="font-weight: bold; width: 24px;">A)</span>
-                    <span>\(P(A_1 \cap A_2) = \frac{3}{15} \times \frac{2}{14} = \frac{6}{210} = \frac{1}{35} \approx 0.0286 \quad (2.86\%)\)</span>
+                <div class="option-card" onclick="selectOption(3, 0, true, 'Eventos independientes: \(P(A \cap B) = P(A) \cdot P(B) = 0.05 \times 0.10 = 0.005\) (0.50%).')">
+                    <span class="option-letter">A)</span>
+                    <span>\(P(A \cap B) = 0.05 \times 0.10 = 0.005 \quad (0.50\%)\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(3, 1, false)">
-                    <span style="font-weight: bold; width: 24px;">B)</span>
-                    <span>\(P(A_1 \cap A_2) = \frac{3}{15} \times \frac{3}{15} = \frac{9}{225} = 0.0400 \quad (4.00\%)\)</span>
+                <div class="option-card" onclick="selectOption(3, 1, false, 'Sumó en lugar de multiplicar.')">
+                    <span class="option-letter">B)</span>
+                    <span>\(P(A \cap B) = 0.05 + 0.10 = 0.15\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(3, 2, false)">
-                    <span style="font-weight: bold; width: 24px;">C)</span>
-                    <span>\(P(A_1 \cap A_2) = \frac{3}{15} + \frac{2}{14} = 0.3429\)</span>
+                <div class="option-card" onclick="selectOption(3, 2, false, 'Dividió erróneamente las probabilidades.')">
+                    <span class="option-letter">C)</span>
+                    <span>\(P(A \cap B) = 0.05 / 0.10 = 0.50\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(3, 3, false)">
-                    <span style="font-weight: bold; width: 24px;">D)</span>
-                    <span>\(P(A_1 \cap A_2) = 0.20\)</span>
+                <div class="option-card" onclick="selectOption(3, 3, false, 'Solo sería cero si fuesen mutuamente excluyentes.')">
+                    <span class="option-letter">D)</span>
+                    <span>\(P(A \cap B) = 0.00\)</span>
                 </div>
 
             </div>
-            <div class="feedback-box" id="fb_3"></div>
-
+            <div class="illustration-box">
+                <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="245" rx="80" ry="10" fill="#cbd5e1"/>
+  <!-- Cuerpo con overol -->
+  <path d="M 65 145 C 65 120 175 120 175 145 L 180 235 C 180 240 60 240 60 235 Z" fill="#f59e0b" stroke="#78350f" stroke-width="2.5"/>
+  <rect x="95" y="150" width="50" height="70" fill="#ffffff" stroke="#78350f" stroke-width="2" rx="3"/>
+  <path d="M 105 160 L 115 175 L 135 155" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round"/>
+  <!-- Cabeza con casco -->
+  <ellipse cx="120" cy="95" rx="36" ry="38" fill="#fed7aa" stroke="#78350f" stroke-width="2.5"/>
+  <path d="M 80 85 C 80 50 160 50 160 85 Z" fill="#eab308" stroke="#78350f" stroke-width="2.5"/>
+  <rect x="75" y="80" width="90" height="10" rx="3" fill="#fde047" stroke="#78350f" stroke-width="2"/>
+  <!-- Ojos y rostro -->
+  <circle cx="106" cy="98" r="4.5" fill="#0f172a"/>
+  <circle cx="134" cy="98" r="4.5" fill="#0f172a"/>
+  <path d="M 112 118 Q 120 125 128 118" stroke="#78350f" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Engranaje de calidad -->
+  <circle cx="190" cy="70" r="18" fill="#94a3b8" stroke="#475569" stroke-width="2"/>
+  <circle cx="190" cy="70" r="8" fill="#ffffff" stroke="#475569" stroke-width="2"/>
+</svg>
+            </div>
         </div>
+        <div class="feedback-container" id="fb_3"></div>
+
     </div>
 
-    <!-- PÁGINA 4: EJERCICIO 2 (Emparejamiento) -->
+    <!-- PÁGINA 4: EJERCICIO 2 -->
     <div class="page-content" id="page4">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 4</span>
-            <h3>Actividad Formativa 2 de 10: Emparejamiento: Fórmulas de la Regla de Multiplicación</h3>
+        <div style="font-size: 15px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 14px;">
+            Actividad Formativa 2 de 10: Emparejamiento: Fórmulas de Multiplicación
         </div>
-        <div class="question-box">
 
-            <div class="question-enunciado">Vincule cada contexto con su ecuación probabilística correspondiente:</div>
-            
-            <div class="matching-container">
-                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
-                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
+        <div class="statement-text">
+            Relacione cada situación de cálculo con su fórmula de multiplicación correspondiente:
+        </div>
+        <div class="question-body-grid">
+            <div>
+                <div class="matching-grid">
+                    <div style="font-weight: 700; color: var(--uagrm-blue); font-size: 13.5px;">Premisa / Concepto</div>
+                    <div style="font-weight: 700; color: var(--uagrm-blue); font-size: 13.5px;">Correspondencia / Cálculo</div>
 
-                <div class="match-card">
-                    <span><strong>1.</strong> Regla de Multiplicación para Eventos Independientes</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_4_0">
-                        <option value="">-- Seleccione una opción --</option>
+                    <div class="match-card">
+                        <span><strong>1.</strong> Regla de Multiplicación para Eventos Independientes</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_4_0">
+                            <option value="">-- Seleccione una opción --</option>
 <option value="0">P(A ∩ B) = P(A) · P(B)</option>
 <option value="1">P(A ∩ B) = P(A) · P(B|A)</option>
 <option value="2">P(A|B) = P(A)</option>
-<option value="3">P(Éxito) = P(C₁) · P(C₂)</option>
+<option value="3">1 - [P(F₁) · P(F₂)]</option>
 
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
-                <div class="match-card">
-                    <span><strong>2.</strong> Regla General de Multiplicación (Eventos Dependientes)</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_4_1">
-                        <option value="">-- Seleccione una opción --</option>
+                    <div class="match-card">
+                        <span><strong>2.</strong> Regla General de Multiplicación (Eventos Dependientes)</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_4_1">
+                            <option value="">-- Seleccione una opción --</option>
 <option value="0">P(A ∩ B) = P(A) · P(B)</option>
 <option value="1">P(A ∩ B) = P(A) · P(B|A)</option>
 <option value="2">P(A|B) = P(A)</option>
-<option value="3">P(Éxito) = P(C₁) · P(C₂)</option>
+<option value="3">1 - [P(F₁) · P(F₂)]</option>
 
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
-                <div class="match-card">
-                    <span><strong>3.</strong> Condición Necesaria y Suficiente de Independencia</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_4_2">
-                        <option value="">-- Seleccione una opción --</option>
+                    <div class="match-card">
+                        <span><strong>3.</strong> Condición Necesaria y Suficiente de Independencia</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_4_2">
+                            <option value="">-- Seleccione una opción --</option>
 <option value="0">P(A ∩ B) = P(A) · P(B)</option>
 <option value="1">P(A ∩ B) = P(A) · P(B|A)</option>
 <option value="2">P(A|B) = P(A)</option>
-<option value="3">P(Éxito) = P(C₁) · P(C₂)</option>
+<option value="3">1 - [P(F₁) · P(F₂)]</option>
 
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
-                <div class="match-card">
-                    <span><strong>4.</strong> Confiabilidad de Sistema con 2 Componentes en Serie</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_4_3">
-                        <option value="">-- Seleccione una opción --</option>
+                    <div class="match-card">
+                        <span><strong>4.</strong> Confiabilidad de 2 Componentes en Paralelo</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_4_3">
+                            <option value="">-- Seleccione una opción --</option>
 <option value="0">P(A ∩ B) = P(A) · P(B)</option>
 <option value="1">P(A ∩ B) = P(A) · P(B|A)</option>
 <option value="2">P(A|B) = P(A)</option>
-<option value="3">P(Éxito) = P(C₁) · P(C₂)</option>
+<option value="3">1 - [P(F₁) · P(F₂)]</option>
 
-                    </select>
+                        </select>
+                    </div>
+
                 </div>
-
+                <button class="btn-check-match" onclick="checkMatching(4)">Verificar Respuestas</button>
             </div>
-            <button class="btn-check-match" onclick="checkMatching(4)">Verificar Respuestas</button>
-            <div class="feedback-box" id="fb_4"></div>
-
+            <div class="illustration-box">
+                <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="245" rx="80" ry="10" fill="#cbd5e1"/>
+  <!-- Cuerpo -->
+  <path d="M 70 140 C 70 115 170 115 170 140 L 180 230 C 180 240 60 240 60 230 Z" fill="#0284c7" stroke="#002b49" stroke-width="2.5"/>
+  <path d="M 105 135 L 120 180 L 135 135 Z" fill="#ffffff" stroke="#002b49" stroke-width="2"/>
+  <polygon points="115,145 125,145 122,175 118,175" fill="#b22222"/>
+  <!-- Cabeza -->
+  <ellipse cx="120" cy="85" rx="36" ry="40" fill="#fed7aa" stroke="#002b49" stroke-width="2.5"/>
+  <path d="M 85 70 C 85 45 155 45 155 70 C 155 60 140 50 120 50 C 100 50 85 60 85 70 Z" fill="#78350f"/>
+  <!-- Lentes de analista -->
+  <circle cx="106" cy="85" r="12" fill="#e0f2fe" fill-opacity="0.7" stroke="#002b49" stroke-width="2.5"/>
+  <circle cx="134" cy="85" r="12" fill="#e0f2fe" fill-opacity="0.7" stroke="#002b49" stroke-width="2.5"/>
+  <line x1="118" y1="85" x2="122" y2="85" stroke="#002b49" stroke-width="2.5"/>
+  <circle cx="106" cy="85" r="4" fill="#002b49"/>
+  <circle cx="134" cy="85" r="4" fill="#002b49"/>
+  <!-- Sonrisa amigable -->
+  <path d="M 110 110 Q 120 118 130 110" stroke="#002b49" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Portapapeles con gráficos -->
+  <rect x="140" y="150" width="60" height="75" rx="4" fill="#ffffff" stroke="#002b49" stroke-width="2"/>
+  <rect x="150" y="160" width="10" height="40" fill="#10b981"/>
+  <rect x="165" y="170" width="10" height="30" fill="#f59e0b"/>
+  <rect x="180" y="155" width="10" height="45" fill="#0284c7"/>
+</svg>
+            </div>
         </div>
+        <div class="feedback-container" id="fb_4"></div>
+
     </div>
 
-    <!-- PÁGINA 5: EJERCICIO 3 (Opción Múltiple) -->
+    <!-- PÁGINA 5: EJERCICIO 3 -->
     <div class="page-content" id="page5">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 5</span>
-            <h3>Actividad Formativa 3 de 10: Independencia Estadística en Control Interno</h3>
+        <div style="font-size: 15px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 14px;">
+            Actividad Formativa 3 de 10: Muestreo Sin Reemplazo de Componentes
         </div>
-        <div class="question-box">
 
-            <div class="question-enunciado">En un sistema contable automatizado, la probabilidad de que ocurra una falla eléctrica en el servidor es \(P(E) = 0.05\), y la probabilidad de un error humano en el ingreso de datos es \(P(H) = 0.10\). Si ambos eventos son estadísticamente independientes, ¿cuál es la probabilidad de que en un día determinado ocurran ambos incidentes simultáneamente?</div>
-            
-<svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 420px; display: block; margin: 10px auto; background: #ffffff; border-radius: 6px; border: 1px solid #e2e8f0;">
-  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
-  <rect x="40" y="15" width="120" height="50" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
-  <text x="100" y="36" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">Falla Eléctrica</text>
-  <text x="100" y="52" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">P(E) = 0.05</text>
-  <text x="190" y="45" font-size="16" font-weight="bold" fill="#0284c7" text-anchor="middle">×</text>
-  <rect x="220" y="15" width="120" height="50" fill="#fef3c7" stroke="#d97706" rx="4"/>
-  <text x="280" y="36" font-size="11" font-weight="bold" fill="#b45309" text-anchor="middle">Error Humano</text>
-  <text x="280" y="52" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">P(H) = 0.10</text>
-  <text x="410" y="45" font-size="12" font-weight="bold" fill="#047857" text-anchor="middle">P(E ∩ H) = ?</text>
-</svg>
+        <div class="statement-text">
+            Una caja contiene 10 bombillas electrónicas, de las cuales 3 están defectuosas. Si un técnico extrae 2 bombillas de forma sucesiva y SIN reemplazo, ¿cuál es la probabilidad de que ambas bombillas resulten defectuosas?
+        </div>
+        <div class="question-body-grid">
+            <div class="options-list" id="optGrid_5">
 
-            <div class="options-grid" id="optGrid_5">
-
-                <div class="option-item" onclick="selectOption(5, 0, true)">
-                    <span style="font-weight: bold; width: 24px;">A)</span>
-                    <span>\(P(E \cap H) = 0.05 \times 0.10 = 0.0050 \quad (0.50\%)\)</span>
+                <div class="option-card" onclick="selectOption(5, 0, true, 'Sin reemplazo: \(P(D_1)=3/10\) y \(P(D_2|D_1)=2/9\). Producto: \(6/90 = 1/15 \approx 6.67\%\).')">
+                    <span class="option-letter">A)</span>
+                    <span>\(P(D_1 \cap D_2) = \frac{3}{10} \times \frac{2}{9} = \frac{6}{90} = \frac{1}{15} \approx 0.0667 \quad (6.67\%)\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(5, 1, false)">
-                    <span style="font-weight: bold; width: 24px;">B)</span>
-                    <span>\(P(E \cap H) = 0.05 + 0.10 = 0.1500 \quad (15.0\%)\)</span>
+                <div class="option-card" onclick="selectOption(5, 1, false, 'Ese cálculo corresponde a muestreo con reemplazo.')">
+                    <span class="option-letter">B)</span>
+                    <span>\(P(D_1 \cap D_2) = \frac{3}{10} \times \frac{3}{10} = 0.0900\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(5, 2, false)">
-                    <span style="font-weight: bold; width: 24px;">C)</span>
-                    <span>\(P(E \cap H) = 0.05 / 0.10 = 0.5000\)</span>
+                <div class="option-card" onclick="selectOption(5, 2, false, 'Sumó en lugar de aplicar la regla del producto.')">
+                    <span class="option-letter">C)</span>
+                    <span>\(P(D_1 \cap D_2) = \frac{3}{10} + \frac{2}{9} = 0.5222\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(5, 3, false)">
-                    <span style="font-weight: bold; width: 24px;">D)</span>
-                    <span>\(P(E \cap H) = 0.0005\)</span>
+                <div class="option-card" onclick="selectOption(5, 3, false, '3/10 es la probabilidad de una sola bombilla.')">
+                    <span class="option-letter">D)</span>
+                    <span>\(P(D_1 \cap D_2) = 0.3000\)</span>
                 </div>
 
             </div>
-            <div class="feedback-box" id="fb_5"></div>
-
+            <div class="illustration-box">
+                <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="245" rx="85" ry="10" fill="#cbd5e1"/>
+  <!-- Camión de reparto -->
+  <g transform="translate(30, 100)">
+    <rect x="10" y="30" width="100" height="60" rx="4" fill="#0284c7" stroke="#0369a1" stroke-width="2.5"/>
+    <path d="M 110 50 L 140 50 L 155 70 L 155 90 L 110 90 Z" fill="#38bdf8" stroke="#0369a1" stroke-width="2.5"/>
+    <circle cx="45" cy="95" r="14" fill="#1e293b" stroke="#0f172a" stroke-width="2"/>
+    <circle cx="45" cy="95" r="6" fill="#94a3b8"/>
+    <circle cx="130" cy="95" r="14" fill="#1e293b" stroke="#0f172a" stroke-width="2"/>
+    <circle cx="130" cy="95" r="6" fill="#94a3b8"/>
+    <rect x="35" y="45" width="45" height="30" fill="#ffffff" rx="2"/>
+    <text x="57" y="65" font-size="12" font-weight="bold" fill="#0284c7" text-anchor="middle">LOG</text>
+  </g>
+  <!-- Caja de encomienda -->
+  <rect x="155" y="45" width="45" height="45" rx="3" fill="#d97706" stroke="#92400e" stroke-width="2"/>
+  <line x1="155" y1="67" x2="200" y2="67" stroke="#92400e" stroke-width="2"/>
+  <line x1="177" y1="45" x2="177" y2="90" stroke="#92400e" stroke-width="2"/>
+</svg>
+            </div>
         </div>
+        <div class="feedback-container" id="fb_5"></div>
+
     </div>
 
-    <!-- PÁGINA 6: EJERCICIO 4 (Emparejamiento) -->
+    <!-- PÁGINA 6: EJERCICIO 4 -->
     <div class="page-content" id="page6">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 6</span>
-            <h3>Actividad Formativa 4 de 10: Emparejamiento: Muestreo Con vs. Sin Reemplazo</h3>
+        <div style="font-size: 15px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 14px;">
+            Actividad Formativa 4 de 10: Emparejamiento: Muestreo Con y Sin Reemplazo
         </div>
-        <div class="question-box">
 
-            <div class="question-enunciado">Relacione las características metodológicas con el tipo de muestreo en auditoría:</div>
-            
-            <div class="matching-container">
-                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
-                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
+        <div class="statement-text">
+            Vincule cada propiedad metodológica con su tipo de muestreo:
+        </div>
+        <div class="question-body-grid">
+            <div>
+                <div class="matching-grid">
+                    <div style="font-weight: 700; color: var(--uagrm-blue); font-size: 13.5px;">Premisa / Concepto</div>
+                    <div style="font-weight: 700; color: var(--uagrm-blue); font-size: 13.5px;">Correspondencia / Cálculo</div>
 
-                <div class="match-card">
-                    <span><strong>1.</strong> La probabilidad de selección de cada elemento permanece constante en cada etapa.</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_6_0">
-                        <option value="">-- Seleccione una opción --</option>
+                    <div class="match-card">
+                        <span><strong>1.</strong> La probabilidad de cada extracción permanece constante</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_6_0">
+                            <option value="">-- Seleccione una opción --</option>
 <option value="0">Muestreo Con Reemplazo (Independiente)</option>
 <option value="1">Muestreo Sin Reemplazo (Dependiente)</option>
 <option value="2">Muestreo Sin Reemplazo</option>
 <option value="3">Muestreo Con Reemplazo</option>
 
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
-                <div class="match-card">
-                    <span><strong>2.</strong> El tamaño de la población N disminuye en 1 en cada extracción sucesiva.</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_6_1">
-                        <option value="">-- Seleccione una opción --</option>
+                    <div class="match-card">
+                        <span><strong>2.</strong> El tamaño del espacio muestral disminuye en cada extracción</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_6_1">
+                            <option value="">-- Seleccione una opción --</option>
 <option value="0">Muestreo Con Reemplazo (Independiente)</option>
 <option value="1">Muestreo Sin Reemplazo (Dependiente)</option>
 <option value="2">Muestreo Sin Reemplazo</option>
 <option value="3">Muestreo Con Reemplazo</option>
 
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
-                <div class="match-card">
-                    <span><strong>3.</strong> Técnica estándar aplicada en la auditoría de comprobantes y facturas contables.</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_6_2">
-                        <option value="">-- Seleccione una opción --</option>
+                    <div class="match-card">
+                        <span><strong>3.</strong> Extracción simultánea de un comité o muestra física</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_6_2">
+                            <option value="">-- Seleccione una opción --</option>
 <option value="0">Muestreo Con Reemplazo (Independiente)</option>
 <option value="1">Muestreo Sin Reemplazo (Dependiente)</option>
 <option value="2">Muestreo Sin Reemplazo</option>
 <option value="3">Muestreo Con Reemplazo</option>
 
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
-                <div class="match-card">
-                    <span><strong>4.</strong> Generación de números aleatorios para simulación de escenarios de mercado.</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_6_3">
-                        <option value="">-- Seleccione una opción --</option>
+                    <div class="match-card">
+                        <span><strong>4.</strong> Generación de números aleatorios en simulaciones computacionales</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_6_3">
+                            <option value="">-- Seleccione una opción --</option>
 <option value="0">Muestreo Con Reemplazo (Independiente)</option>
 <option value="1">Muestreo Sin Reemplazo (Dependiente)</option>
 <option value="2">Muestreo Sin Reemplazo</option>
 <option value="3">Muestreo Con Reemplazo</option>
 
-                    </select>
-                </div>
+                        </select>
+                    </div>
 
+                </div>
+                <button class="btn-check-match" onclick="checkMatching(6)">Verificar Respuestas</button>
             </div>
-            <button class="btn-check-match" onclick="checkMatching(6)">Verificar Respuestas</button>
-            <div class="feedback-box" id="fb_6"></div>
-
+            <div class="illustration-box">
+                <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="245" rx="85" ry="10" fill="#cbd5e1"/>
+  <!-- Camión de reparto -->
+  <g transform="translate(30, 100)">
+    <rect x="10" y="30" width="100" height="60" rx="4" fill="#0284c7" stroke="#0369a1" stroke-width="2.5"/>
+    <path d="M 110 50 L 140 50 L 155 70 L 155 90 L 110 90 Z" fill="#38bdf8" stroke="#0369a1" stroke-width="2.5"/>
+    <circle cx="45" cy="95" r="14" fill="#1e293b" stroke="#0f172a" stroke-width="2"/>
+    <circle cx="45" cy="95" r="6" fill="#94a3b8"/>
+    <circle cx="130" cy="95" r="14" fill="#1e293b" stroke="#0f172a" stroke-width="2"/>
+    <circle cx="130" cy="95" r="6" fill="#94a3b8"/>
+    <rect x="35" y="45" width="45" height="30" fill="#ffffff" rx="2"/>
+    <text x="57" y="65" font-size="12" font-weight="bold" fill="#0284c7" text-anchor="middle">LOG</text>
+  </g>
+  <!-- Caja de encomienda -->
+  <rect x="155" y="45" width="45" height="45" rx="3" fill="#d97706" stroke="#92400e" stroke-width="2"/>
+  <line x1="155" y1="67" x2="200" y2="67" stroke="#92400e" stroke-width="2"/>
+  <line x1="177" y1="45" x2="177" y2="90" stroke="#92400e" stroke-width="2"/>
+</svg>
+            </div>
         </div>
+        <div class="feedback-container" id="fb_6"></div>
+
     </div>
 
-    <!-- PÁGINA 7: EJERCICIO 5 (Opción Múltiple) -->
+    <!-- PÁGINA 7: EJERCICIO 5 -->
     <div class="page-content" id="page7">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 7</span>
-            <h3>Actividad Formativa 5 de 10: Redundancia de Servidores y Regla del Complemento</h3>
+        <div style="font-size: 15px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 14px;">
+            Actividad Formativa 5 de 10: Confiabilidad de Servidores en Paralelo
         </div>
-        <div class="question-box">
 
-            <div class="question-enunciado">Un centro de cómputo financiero opera con 2 servidores en paralelo. La probabilidad de que un servidor falle en un día es de 0.02, y los servidores operan de forma independiente. ¿Cuál es la probabilidad de que el sistema ERP continúe funcionando (es decir, que al menos un servidor opere)?</div>
-            
-<svg viewBox="0 0 500 90" xmlns="http://www.w3.org/2000/svg" style="max-width: 420px; display: block; margin: 10px auto; background: #ffffff; border-radius: 6px; border: 1px solid #e2e8f0;">
-  <rect width="500" height="90" fill="#f8fafc" rx="6"/>
-  <rect x="30" y="15" width="130" height="60" fill="#fef2f2" stroke="#b22222" rx="4"/>
-  <text x="95" y="38" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">Falla S1: P(F₁) = 0.02</text>
-  <text x="95" y="56" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">Falla S2: P(F₂) = 0.02</text>
-  <path d="M 170 45 L 210 45" stroke="#047857" stroke-width="2"/>
-  <rect x="220" y="15" width="250" height="60" fill="#ecfdf5" stroke="#047857" rx="4"/>
-  <text x="345" y="38" font-size="11" font-weight="bold" fill="#065f46" text-anchor="middle">P(Al menos 1 opere) = 1 - P(F₁ ∩ F₂)</text>
-  <text x="345" y="58" font-size="12" font-weight="bold" fill="#047857" text-anchor="middle">1 - (0.02 × 0.02) = ?</text>
-</svg>
+        <div class="statement-text">
+            Un centro de cómputo posee dos servidores de base de datos que funcionan en paralelo e independientemente. La probabilidad de que falle el servidor 1 es de 0.02 y la del servidor 2 es de 0.03. ¿Cuál es la confiabilidad del sistema (es decir, la probabilidad de que al menos un servidor se mantenga operativo)?
+        </div>
+        <div class="question-body-grid">
+            <div class="options-list" id="optGrid_7">
 
-            <div class="options-grid" id="optGrid_7">
-
-                <div class="option-item" onclick="selectOption(7, 0, true)">
-                    <span style="font-weight: bold; width: 24px;">A)</span>
-                    <span>\(P(\text{Operar}) = 1 - (0.02 \times 0.02) = 1 - 0.0004 = 0.9996 \quad (99.96\%)\)</span>
+                <div class="option-card" onclick="selectOption(7, 0, true, 'Por el complemento del fallo simultáneo: \(1 - (0.02 \times 0.03) = 0.9994\) (99.94%).')">
+                    <span class="option-letter">A)</span>
+                    <span>\(P(\text{Operar}) = 1 - (0.02 \times 0.03) = 1 - 0.0006 = 0.9994 \quad (99.94\%)\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(7, 1, false)">
-                    <span style="font-weight: bold; width: 24px;">B)</span>
-                    <span>\(P(\text{Operar}) = 1 - (0.02 + 0.02) = 0.9600 \quad (96.00\%)\)</span>
+                <div class="option-card" onclick="selectOption(7, 1, false, 'Trató los fallos como disjuntos en lugar de independientes.')">
+                    <span class="option-letter">B)</span>
+                    <span>\(P(\text{Operar}) = 1 - (0.02 + 0.03) = 0.9500\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(7, 2, false)">
-                    <span style="font-weight: bold; width: 24px;">C)</span>
-                    <span>\(P(\text{Operar}) = 0.9800 \quad (98.00\%)\)</span>
+                <div class="option-card" onclick="selectOption(7, 2, false, 'Ese es el cálculo para componentes en serie (ambos funcionando a la vez).')">
+                    <span class="option-letter">C)</span>
+                    <span>\(P(\text{Operar}) = 0.98 \times 0.97 = 0.9506\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(7, 3, false)">
-                    <span style="font-weight: bold; width: 24px;">D)</span>
-                    <span>\(P(\text{Operar}) = 0.0004\)</span>
+                <div class="option-card" onclick="selectOption(7, 3, false, '0.0006 es la probabilidad de falla total.')">
+                    <span class="option-letter">D)</span>
+                    <span>\(P(\text{Operar}) = 0.0006\)</span>
                 </div>
 
             </div>
-            <div class="feedback-box" id="fb_7"></div>
-
+            <div class="illustration-box">
+                <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="245" rx="80" ry="10" fill="#cbd5e1"/>
+  <!-- Servidor Rack -->
+  <rect x="65" y="60" width="110" height="160" rx="8" fill="#1e293b" stroke="#0f172a" stroke-width="3"/>
+  <!-- Servidor 1 -->
+  <rect x="75" y="75" width="90" height="32" rx="4" fill="#334155" stroke="#475569" stroke-width="1.5"/>
+  <circle cx="87" cy="91" r="4" fill="#10b981"/>
+  <circle cx="98" cy="91" r="4" fill="#10b981"/>
+  <line x1="115" y1="91" x2="155" y2="91" stroke="#64748b" stroke-width="3" stroke-dasharray="4"/>
+  <!-- Servidor 2 -->
+  <rect x="75" y="118" width="90" height="32" rx="4" fill="#334155" stroke="#475569" stroke-width="1.5"/>
+  <circle cx="87" cy="134" r="4" fill="#10b981"/>
+  <circle cx="98" cy="134" r="4" fill="#3b82f6"/>
+  <line x1="115" y1="134" x2="155" y2="134" stroke="#64748b" stroke-width="3" stroke-dasharray="4"/>
+  <!-- Servidor 3 -->
+  <rect x="75" y="161" width="90" height="32" rx="4" fill="#334155" stroke="#475569" stroke-width="1.5"/>
+  <circle cx="87" cy="177" r="4" fill="#10b981"/>
+  <circle cx="98" cy="177" r="4" fill="#10b981"/>
+  <line x1="115" y1="177" x2="155" y2="177" stroke="#64748b" stroke-width="3" stroke-dasharray="4"/>
+  <!-- Nube superior -->
+  <path d="M 100 45 C 90 35 110 20 125 30 C 135 15 160 25 155 45 Z" fill="#0284c7"/>
+</svg>
+            </div>
         </div>
+        <div class="feedback-container" id="fb_7"></div>
+
     </div>
 
-    <!-- PÁGINA 8: EJERCICIO 6 (Emparejamiento) -->
+    <!-- PÁGINA 8: EJERCICIO 6 -->
     <div class="page-content" id="page8">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 8</span>
-            <h3>Actividad Formativa 6 de 10: Emparejamiento: Relación entre Independencia y Mutua Exclusión</h3>
+        <div style="font-size: 15px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 14px;">
+            Actividad Formativa 6 de 10: Emparejamiento: Cálculos en Eventos Independientes
         </div>
-        <div class="question-box">
 
-            <div class="question-enunciado">Asocie los teoremas y propiedades teóricas fundamentales:</div>
-            
-            <div class="matching-container">
-                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
-                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
+        <div class="statement-text">
+            Dados P(A) = 0.50 y P(B) = 0.30 siendo A y B estadísticamente independientes, relacione:
+        </div>
+        <div class="question-body-grid">
+            <div>
+                <div class="matching-grid">
+                    <div style="font-weight: 700; color: var(--uagrm-blue); font-size: 13.5px;">Premisa / Concepto</div>
+                    <div style="font-weight: 700; color: var(--uagrm-blue); font-size: 13.5px;">Correspondencia / Cálculo</div>
 
-                <div class="match-card">
-                    <span><strong>1.</strong> Si dos eventos A y B con P(A)>0 y P(B)>0 son mutuamente excluyentes...</span>
+                    <div class="match-card">
+                        <span><strong>1.</strong> Probabilidad Conjunta P(A ∩ B)</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_8_0">
+                            <option value="">-- Seleccione una opción --</option>
+<option value="0">0.15 (15%)</option>
+<option value="1">0.65 (65%)</option>
+<option value="2">0.50 (50%)</option>
+<option value="3">0.35 (35%)</option>
+
+                        </select>
+                    </div>
+
+                    <div class="match-card">
+                        <span><strong>2.</strong> Probabilidad de la Unión P(A ∪ B)</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_8_1">
+                            <option value="">-- Seleccione una opción --</option>
+<option value="0">0.15 (15%)</option>
+<option value="1">0.65 (65%)</option>
+<option value="2">0.50 (50%)</option>
+<option value="3">0.35 (35%)</option>
+
+                        </select>
+                    </div>
+
+                    <div class="match-card">
+                        <span><strong>3.</strong> Probabilidad Condicional P(A|B)</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_8_2">
+                            <option value="">-- Seleccione una opción --</option>
+<option value="0">0.15 (15%)</option>
+<option value="1">0.65 (65%)</option>
+<option value="2">0.50 (50%)</option>
+<option value="3">0.35 (35%)</option>
+
+                        </select>
+                    </div>
+
+                    <div class="match-card">
+                        <span><strong>4.</strong> Probabilidad de que no ocurra ninguno: P((A ∪ B)')</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_8_3">
+                            <option value="">-- Seleccione una opción --</option>
+<option value="0">0.15 (15%)</option>
+<option value="1">0.65 (65%)</option>
+<option value="2">0.50 (50%)</option>
+<option value="3">0.35 (35%)</option>
+
+                        </select>
+                    </div>
+
                 </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_8_0">
-                        <option value="">-- Seleccione una opción --</option>
-<option value="0">Son necesariamente dependientes (P(A∩B)=0 ≠ P(A)·P(B))</option>
-<option value="1">No pueden ser mutuamente excluyentes (tienen P(A∩B) > 0)</option>
-<option value="2">A y B son estadísticamente independientes</option>
-<option value="3">A y B son mutuamente excluyentes</option>
-
-                    </select>
-                </div>
-
-                <div class="match-card">
-                    <span><strong>2.</strong> Si dos eventos A y B son estadísticamente independientes...</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_8_1">
-                        <option value="">-- Seleccione una opción --</option>
-<option value="0">Son necesariamente dependientes (P(A∩B)=0 ≠ P(A)·P(B))</option>
-<option value="1">No pueden ser mutuamente excluyentes (tienen P(A∩B) > 0)</option>
-<option value="2">A y B son estadísticamente independientes</option>
-<option value="3">A y B son mutuamente excluyentes</option>
-
-                    </select>
-                </div>
-
-                <div class="match-card">
-                    <span><strong>3.</strong> Si P(A ∩ B) = P(A) · P(B)...</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_8_2">
-                        <option value="">-- Seleccione una opción --</option>
-<option value="0">Son necesariamente dependientes (P(A∩B)=0 ≠ P(A)·P(B))</option>
-<option value="1">No pueden ser mutuamente excluyentes (tienen P(A∩B) > 0)</option>
-<option value="2">A y B son estadísticamente independientes</option>
-<option value="3">A y B son mutuamente excluyentes</option>
-
-                    </select>
-                </div>
-
-                <div class="match-card">
-                    <span><strong>4.</strong> Si P(A ∩ B) = 0...</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_8_3">
-                        <option value="">-- Seleccione una opción --</option>
-<option value="0">Son necesariamente dependientes (P(A∩B)=0 ≠ P(A)·P(B))</option>
-<option value="1">No pueden ser mutuamente excluyentes (tienen P(A∩B) > 0)</option>
-<option value="2">A y B son estadísticamente independientes</option>
-<option value="3">A y B son mutuamente excluyentes</option>
-
-                    </select>
-                </div>
-
+                <button class="btn-check-match" onclick="checkMatching(8)">Verificar Respuestas</button>
             </div>
-            <button class="btn-check-match" onclick="checkMatching(8)">Verificar Respuestas</button>
-            <div class="feedback-box" id="fb_8"></div>
-
+            <div class="illustration-box">
+                <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="245" rx="80" ry="10" fill="#cbd5e1"/>
+  <!-- Cliente amigable con bolsa de compras -->
+  <path d="M 70 145 C 70 120 170 120 170 145 L 175 235 C 175 240 65 240 65 235 Z" fill="#ec4899" stroke="#9d174d" stroke-width="2.5"/>
+  <!-- Cabeza -->
+  <ellipse cx="120" cy="90" rx="35" ry="38" fill="#fed7aa" stroke="#9d174d" stroke-width="2.5"/>
+  <path d="M 85 75 C 85 45 155 45 155 75 C 145 60 130 55 120 55 C 110 55 95 60 85 75 Z" fill="#831843"/>
+  <circle cx="107" cy="92" r="4.5" fill="#0f172a"/>
+  <circle cx="133" cy="92" r="4.5" fill="#0f172a"/>
+  <path d="M 112 112 Q 120 120 128 112" stroke="#9d174d" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Bolsas de compra -->
+  <rect x="165" y="165" width="40" height="50" rx="3" fill="#10b981" stroke="#047857" stroke-width="2"/>
+  <path d="M 175 165 C 175 150 195 150 195 165" fill="none" stroke="#047857" stroke-width="2"/>
+  <!-- Carrito / Gráfico de satisfacción -->
+  <circle cx="45" cy="80" r="16" fill="#fef08a" stroke="#ca8a04" stroke-width="2"/>
+  <text x="45" y="86" font-size="16" font-weight="bold" fill="#ca8a04" text-anchor="middle">★</text>
+</svg>
+            </div>
         </div>
+        <div class="feedback-container" id="fb_8"></div>
+
     </div>
 
-    <!-- PÁGINA 9: EJERCICIO 7 (Opción Múltiple) -->
+    <!-- PÁGINA 9: EJERCICIO 7 -->
     <div class="page-content" id="page9">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 9</span>
-            <h3>Actividad Formativa 7 de 10: Verificación de Independencia a partir de Probabilidades Dadas</h3>
+        <div style="font-size: 15px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 14px;">
+            Actividad Formativa 7 de 10: Verificación Empírica de Independencia
         </div>
-        <div class="question-box">
 
-            <div class="question-enunciado">Sean dos eventos A y B tales que \(P(A) = 0.60\), \(P(B) = 0.50\) y \(P(A \cap B) = 0.30\). ¿Son los eventos A y B estadísticamente independientes?</div>
-            
-<svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 420px; display: block; margin: 10px auto; background: #ffffff; border-radius: 6px; border: 1px solid #e2e8f0;">
-  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
-  <text x="100" y="35" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">P(A) · P(B)</text>
-  <text x="100" y="55" font-size="12" font-weight="bold" fill="#0284c7" text-anchor="middle">0.60 × 0.50 = 0.30</text>
-  <text x="250" y="45" font-size="16" font-weight="bold" fill="#047857" text-anchor="middle">VS</text>
-  <text x="400" y="35" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">P(A ∩ B) Dado</text>
-  <text x="400" y="55" font-size="12" font-weight="bold" fill="#047857" text-anchor="middle">0.30</text>
-</svg>
+        <div class="statement-text">
+            En un estudio de mercado se determinó que \(P(A) = 0.60\), \(P(B) = 0.50\) y \(P(A \cap B) = 0.30\). De acuerdo con la teoría matemática de probabilidades, ¿son los eventos A y B estadísticamente independientes?
+        </div>
+        <div class="question-body-grid">
+            <div class="options-list" id="optGrid_9">
 
-            <div class="options-grid" id="optGrid_9">
-
-                <div class="option-item" onclick="selectOption(9, 0, true)">
-                    <span style="font-weight: bold; width: 24px;">A)</span>
+                <div class="option-card" onclick="selectOption(9, 0, true, 'Se cumple exactamente la condición de independencia: \(P(A \cap B) = P(A) \cdot P(B)\).')">
+                    <span class="option-letter">A)</span>
                     <span>Sí, porque \(P(A) \times P(B) = 0.60 \times 0.50 = 0.30 = P(A \cap B)\).</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(9, 1, false)">
-                    <span style="font-weight: bold; width: 24px;">B)</span>
-                    <span>No, porque \(P(A) \neq P(B)\).</span>
+                <div class="option-card" onclick="selectOption(9, 1, false, 'Para eventos independientes con probabilidades positivas, la intersección DEBE ser positiva.')">
+                    <span class="option-letter">B)</span>
+                    <span>No, porque su intersección es mayor que cero.</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(9, 2, false)">
-                    <span style="font-weight: bold; width: 24px;">C)</span>
-                    <span>No, porque su suma da 1.10 superando 1.</span>
+                <div class="option-card" onclick="selectOption(9, 2, false, 'La suma de probabilidades marginales no determina independencia.')">
+                    <span class="option-letter">C)</span>
+                    <span>No, porque la suma de probabilidades no es 1.</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(9, 3, false)">
-                    <span style="font-weight: bold; width: 24px;">D)</span>
+                <div class="option-card" onclick="selectOption(9, 3, false, 'Al tener intersección 0.30 > 0, no son excluyentes.')">
+                    <span class="option-letter">D)</span>
                     <span>Son mutuamente excluyentes.</span>
                 </div>
 
             </div>
-            <div class="feedback-box" id="fb_9"></div>
-
-        </div>
-    </div>
-
-    <!-- PÁGINA 10: EJERCICIO 8 (Emparejamiento) -->
-    <div class="page-content" id="page10">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 10</span>
-            <h3>Actividad Formativa 8 de 10: Emparejamiento: Cálculos Numéricos de Probabilidad Conjunta</h3>
-        </div>
-        <div class="question-box">
-
-            <div class="question-enunciado">Con P(A) = 0.40, P(B) = 0.30 independientes, calcule los siguientes valores:</div>
-            
-            <div class="matching-container">
-                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
-                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
-
-                <div class="match-card">
-                    <span><strong>1.</strong> Probabilidad conjunta: P(A ∩ B)</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_10_0">
-                        <option value="">-- Seleccione una opción --</option>
-<option value="0">0.12 (12%)</option>
-<option value="1">0.58 (58%)</option>
-<option value="2">0.40 (40%)</option>
-<option value="3">0.88 (88%)</option>
-
-                    </select>
-                </div>
-
-                <div class="match-card">
-                    <span><strong>2.</strong> Probabilidad de la unión: P(A ∪ B)</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_10_1">
-                        <option value="">-- Seleccione una opción --</option>
-<option value="0">0.12 (12%)</option>
-<option value="1">0.58 (58%)</option>
-<option value="2">0.40 (40%)</option>
-<option value="3">0.88 (88%)</option>
-
-                    </select>
-                </div>
-
-                <div class="match-card">
-                    <span><strong>3.</strong> Probabilidad condicional: P(A|B)</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_10_2">
-                        <option value="">-- Seleccione una opción --</option>
-<option value="0">0.12 (12%)</option>
-<option value="1">0.58 (58%)</option>
-<option value="2">0.40 (40%)</option>
-<option value="3">0.88 (88%)</option>
-
-                    </select>
-                </div>
-
-                <div class="match-card">
-                    <span><strong>4.</strong> Probabilidad de que falle al menos uno: 1 - P(A ∩ B)</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_10_3">
-                        <option value="">-- Seleccione una opción --</option>
-<option value="0">0.12 (12%)</option>
-<option value="1">0.58 (58%)</option>
-<option value="2">0.40 (40%)</option>
-<option value="3">0.88 (88%)</option>
-
-                    </select>
-                </div>
-
-            </div>
-            <button class="btn-check-match" onclick="checkMatching(10)">Verificar Respuestas</button>
-            <div class="feedback-box" id="fb_10"></div>
-
-        </div>
-    </div>
-
-    <!-- PÁGINA 11: EJERCICIO 9 (Opción Múltiple) -->
-    <div class="page-content" id="page11">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 11</span>
-            <h3>Actividad Formativa 9 de 10: Muestreo Con Reemplazo vs. Sin Reemplazo</h3>
-        </div>
-        <div class="question-box">
-
-            <div class="question-enunciado">De un fichero con 10 carpetas de auditoría tributaria donde 2 son de alta complejidad y 8 son rutinarias, se extraen 2 carpetas CON reemplazo (la primera se devuelve al fichero antes de extraer la segunda). ¿Cuál es la probabilidad de que ambas sean de alta complejidad?</div>
-            
-<svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 420px; display: block; margin: 10px auto; background: #ffffff; border-radius: 6px; border: 1px solid #e2e8f0;">
-  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
-  <rect x="50" y="15" width="160" height="50" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
-  <text x="130" y="36" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">1ª Extracción (2/10)</text>
-  <text x="130" y="52" font-size="10" fill="#475569" text-anchor="middle">Se reintegra la carpeta</text>
-  <text x="250" y="45" font-size="16" font-weight="bold" fill="#0284c7" text-anchor="middle">×</text>
-  <rect x="290" y="15" width="160" height="50" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
-  <text x="370" y="36" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">2ª Extracción (2/10)</text>
-  <text x="370" y="52" font-size="10" fill="#475569" text-anchor="middle">Muestreo Independiente</text>
+            <div class="illustration-box">
+                <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="245" rx="80" ry="10" fill="#cbd5e1"/>
+  <!-- Cuerpo -->
+  <path d="M 70 140 C 70 115 170 115 170 140 L 180 230 C 180 240 60 240 60 230 Z" fill="#0284c7" stroke="#002b49" stroke-width="2.5"/>
+  <path d="M 105 135 L 120 180 L 135 135 Z" fill="#ffffff" stroke="#002b49" stroke-width="2"/>
+  <polygon points="115,145 125,145 122,175 118,175" fill="#b22222"/>
+  <!-- Cabeza -->
+  <ellipse cx="120" cy="85" rx="36" ry="40" fill="#fed7aa" stroke="#002b49" stroke-width="2.5"/>
+  <path d="M 85 70 C 85 45 155 45 155 70 C 155 60 140 50 120 50 C 100 50 85 60 85 70 Z" fill="#78350f"/>
+  <!-- Lentes de analista -->
+  <circle cx="106" cy="85" r="12" fill="#e0f2fe" fill-opacity="0.7" stroke="#002b49" stroke-width="2.5"/>
+  <circle cx="134" cy="85" r="12" fill="#e0f2fe" fill-opacity="0.7" stroke="#002b49" stroke-width="2.5"/>
+  <line x1="118" y1="85" x2="122" y2="85" stroke="#002b49" stroke-width="2.5"/>
+  <circle cx="106" cy="85" r="4" fill="#002b49"/>
+  <circle cx="134" cy="85" r="4" fill="#002b49"/>
+  <!-- Sonrisa amigable -->
+  <path d="M 110 110 Q 120 118 130 110" stroke="#002b49" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Portapapeles con gráficos -->
+  <rect x="140" y="150" width="60" height="75" rx="4" fill="#ffffff" stroke="#002b49" stroke-width="2"/>
+  <rect x="150" y="160" width="10" height="40" fill="#10b981"/>
+  <rect x="165" y="170" width="10" height="30" fill="#f59e0b"/>
+  <rect x="180" y="155" width="10" height="45" fill="#0284c7"/>
 </svg>
+            </div>
+        </div>
+        <div class="feedback-container" id="fb_9"></div>
 
-            <div class="options-grid" id="optGrid_11">
+    </div>
 
-                <div class="option-item" onclick="selectOption(11, 0, true)">
-                    <span style="font-weight: bold; width: 24px;">A)</span>
-                    <span>\(P(C_1 \cap C_2) = \frac{2}{10} \times \frac{2}{10} = \frac{4}{100} = 0.04 \quad (4\%)\)</span>
+    <!-- PÁGINA 10: EJERCICIO 8 -->
+    <div class="page-content" id="page10">
+        <div style="font-size: 15px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 14px;">
+            Actividad Formativa 8 de 10: Emparejamiento: Relación Independencia vs Exclusión
+        </div>
+
+        <div class="statement-text">
+            Asocie los teoremas fundamentales sobre independencia y mutua exclusión:
+        </div>
+        <div class="question-body-grid">
+            <div>
+                <div class="matching-grid">
+                    <div style="font-weight: 700; color: var(--uagrm-blue); font-size: 13.5px;">Premisa / Concepto</div>
+                    <div style="font-weight: 700; color: var(--uagrm-blue); font-size: 13.5px;">Correspondencia / Cálculo</div>
+
+                    <div class="match-card">
+                        <span><strong>1.</strong> Si dos eventos A y B con P(A)>0 y P(B)>0 son mutuamente excluyentes...</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_10_0">
+                            <option value="">-- Seleccione una opción --</option>
+<option value="0">Son necesariamente dependientes (P(A∩B)=0 ≠ P(A)·P(B))</option>
+<option value="1">No pueden ser mutuamente excluyentes (tienen P(A∩B) > 0)</option>
+<option value="2">A y B son estadísticamente independientes</option>
+<option value="3">A y B son mutuamente excluyentes</option>
+
+                        </select>
+                    </div>
+
+                    <div class="match-card">
+                        <span><strong>2.</strong> Si dos eventos A y B son estadísticamente independientes...</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_10_1">
+                            <option value="">-- Seleccione una opción --</option>
+<option value="0">Son necesariamente dependientes (P(A∩B)=0 ≠ P(A)·P(B))</option>
+<option value="1">No pueden ser mutuamente excluyentes (tienen P(A∩B) > 0)</option>
+<option value="2">A y B son estadísticamente independientes</option>
+<option value="3">A y B son mutuamente excluyentes</option>
+
+                        </select>
+                    </div>
+
+                    <div class="match-card">
+                        <span><strong>3.</strong> Si P(A ∩ B) = P(A) · P(B)...</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_10_2">
+                            <option value="">-- Seleccione una opción --</option>
+<option value="0">Son necesariamente dependientes (P(A∩B)=0 ≠ P(A)·P(B))</option>
+<option value="1">No pueden ser mutuamente excluyentes (tienen P(A∩B) > 0)</option>
+<option value="2">A y B son estadísticamente independientes</option>
+<option value="3">A y B son mutuamente excluyentes</option>
+
+                        </select>
+                    </div>
+
+                    <div class="match-card">
+                        <span><strong>4.</strong> Si P(A ∩ B) = 0...</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_10_3">
+                            <option value="">-- Seleccione una opción --</option>
+<option value="0">Son necesariamente dependientes (P(A∩B)=0 ≠ P(A)·P(B))</option>
+<option value="1">No pueden ser mutuamente excluyentes (tienen P(A∩B) > 0)</option>
+<option value="2">A y B son estadísticamente independientes</option>
+<option value="3">A y B son mutuamente excluyentes</option>
+
+                        </select>
+                    </div>
+
+                </div>
+                <button class="btn-check-match" onclick="checkMatching(10)">Verificar Respuestas</button>
+            </div>
+            <div class="illustration-box">
+                <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="245" rx="80" ry="10" fill="#cbd5e1"/>
+  <!-- Traje ejecutivo -->
+  <path d="M 65 140 C 65 115 175 115 175 140 L 185 235 C 185 240 55 240 55 235 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2.5"/>
+  <polygon points="105,135 120,195 135,135" fill="#ffffff"/>
+  <polygon points="116,145 124,145 121,185 119,185" fill="#10b981"/>
+  <!-- Cabeza -->
+  <ellipse cx="120" cy="85" rx="35" ry="38" fill="#fed7aa" stroke="#0f172a" stroke-width="2.5"/>
+  <path d="M 85 70 C 85 45 155 45 155 70 C 150 55 130 50 120 50 C 105 50 90 55 85 70 Z" fill="#334155"/>
+  <circle cx="107" cy="88" r="4.5" fill="#0f172a"/>
+  <circle cx="133" cy="88" r="4.5" fill="#0f172a"/>
+  <path d="M 112 108 Q 120 115 128 108" stroke="#0f172a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Maletín ejecutivo y tarjeta de crédito -->
+  <rect x="155" y="165" width="55" height="42" rx="4" fill="#78350f" stroke="#451a03" stroke-width="2"/>
+  <rect x="175" y="155" width="15" height="10" fill="none" stroke="#451a03" stroke-width="2"/>
+  <rect x="35" y="160" width="45" height="28" rx="3" fill="#0284c7" stroke="#0369a1" stroke-width="2"/>
+  <rect x="35" y="167" width="45" height="5" fill="#0f172a"/>
+</svg>
+            </div>
+        </div>
+        <div class="feedback-container" id="fb_10"></div>
+
+    </div>
+
+    <!-- PÁGINA 11: EJERCICIO 9 -->
+    <div class="page-content" id="page11">
+        <div style="font-size: 15px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 14px;">
+            Actividad Formativa 9 de 10: Muestreo Sucesivo de Billete / Moneda
+        </div>
+
+        <div class="statement-text">
+            Se lanza una moneda equilibrada 3 veces consecutivas. Si cada lanzamiento es independiente con \(P(\text{Cara}) = 0.50\), ¿cuál es la probabilidad de obtener 3 caras seguidas?
+        </div>
+        <div class="question-body-grid">
+            <div class="options-list" id="optGrid_11">
+
+                <div class="option-card" onclick="selectOption(11, 0, true, 'Por la regla especial de multiplicación: \((0.5)^3 = 0.125\) o \(1/8\) (12.5%).')">
+                    <span class="option-letter">A)</span>
+                    <span>\(P(C_1 \cap C_2 \cap C_3) = 0.50 \times 0.50 \times 0.50 = 0.125 \quad (12.5\%)\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(11, 1, false)">
-                    <span style="font-weight: bold; width: 24px;">B)</span>
-                    <span>\(P(C_1 \cap C_2) = \frac{2}{10} \times \frac{1}{9} = \frac{2}{90} \approx 0.0222\)</span>
+                <div class="option-card" onclick="selectOption(11, 1, false, 'La probabilidad no puede superar a 1.')">
+                    <span class="option-letter">B)</span>
+                    <span>\(P = 0.50 + 0.50 + 0.50 = 1.50\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(11, 2, false)">
-                    <span style="font-weight: bold; width: 24px;">C)</span>
-                    <span>\(P(C_1 \cap C_2) = 0.40\)</span>
+                <div class="option-card" onclick="selectOption(11, 2, false, '0.50 es la probabilidad de un solo lanzamiento.')">
+                    <span class="option-letter">C)</span>
+                    <span>\(P = 0.50\)</span>
                 </div>
 
-                <div class="option-item" onclick="selectOption(11, 3, false)">
-                    <span style="font-weight: bold; width: 24px;">D)</span>
-                    <span>\(P(C_1 \cap C_2) = 0.20\)</span>
+                <div class="option-card" onclick="selectOption(11, 3, false, '0.375 es la probabilidad de obtener exactamente 2 caras.')">
+                    <span class="option-letter">D)</span>
+                    <span>\(P = 0.375\)</span>
                 </div>
 
             </div>
-            <div class="feedback-box" id="fb_11"></div>
-
+            <div class="illustration-box">
+                <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="240" rx="90" ry="12" fill="#cbd5e1"/>
+  <!-- Dado Rojo 3D -->
+  <g transform="translate(30, 80)">
+    <polygon points="40,10 90,10 110,35 60,35" fill="#ef4444" stroke="#7f1d1d" stroke-width="2"/>
+    <polygon points="90,10 110,35 110,95 90,70" fill="#b91c1c" stroke="#7f1d1d" stroke-width="2"/>
+    <polygon points="40,10 90,10 90,70 40,70" fill="#dc2626" stroke="#7f1d1d" stroke-width="2"/>
+    <!-- Puntos dado 1 -->
+    <circle cx="65" cy="40" r="5" fill="#ffffff"/>
+    <circle cx="52" cy="25" r="5" fill="#ffffff"/>
+    <circle cx="78" cy="55" r="5" fill="#ffffff"/>
+  </g>
+  <!-- Dado Azul 3D -->
+  <g transform="translate(100, 120)">
+    <polygon points="40,10 90,10 110,35 60,35" fill="#0284c7" stroke="#0369a1" stroke-width="2"/>
+    <polygon points="90,10 110,35 110,95 90,70" fill="#0369a1" stroke="#075985" stroke-width="2"/>
+    <polygon points="40,10 90,10 90,70 40,70" fill="#0ea5e9" stroke="#0369a1" stroke-width="2"/>
+    <!-- Puntos dado 2 -->
+    <circle cx="65" cy="40" r="5" fill="#ffffff"/>
+    <circle cx="52" cy="55" r="5" fill="#ffffff"/>
+    <circle cx="78" cy="25" r="5" fill="#ffffff"/>
+    <circle cx="52" cy="25" r="5" fill="#ffffff"/>
+    <circle cx="78" cy="55" r="5" fill="#ffffff"/>
+  </g>
+  <!-- Moneda dorada girando -->
+  <ellipse cx="175" cy="65" rx="30" ry="30" fill="#f59e0b" stroke="#b45309" stroke-width="3"/>
+  <ellipse cx="175" cy="65" rx="24" ry="24" fill="#fbbf24"/>
+  <text x="175" y="73" font-size="20" font-weight="bold" fill="#78350f" text-anchor="middle">Bs</text>
+</svg>
+            </div>
         </div>
+        <div class="feedback-container" id="fb_11"></div>
+
     </div>
 
-    <!-- PÁGINA 12: EJERCICIO 10 (Emparejamiento) -->
+    <!-- PÁGINA 12: EJERCICIO 10 -->
     <div class="page-content" id="page12">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 12</span>
-            <h3>Actividad Formativa 10 de 10: Emparejamiento: Aplicaciones en Finanzas y Auditoría</h3>
+        <div style="font-size: 15px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 14px;">
+            Actividad Formativa 10 de 10: Emparejamiento: Confiabilidad y Sistemas
         </div>
-        <div class="question-box">
 
-            <div class="question-enunciado">Relacione el problema práctico con el modelo probabilístico aplicado:</div>
-            
-            <div class="matching-container">
-                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
-                <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
+        <div class="statement-text">
+            Vincule cada configuración de ingeniería y sistemas con su modelo de confiabilidad:
+        </div>
+        <div class="question-body-grid">
+            <div>
+                <div class="matching-grid">
+                    <div style="font-weight: 700; color: var(--uagrm-blue); font-size: 13.5px;">Premisa / Concepto</div>
+                    <div style="font-weight: 700; color: var(--uagrm-blue); font-size: 13.5px;">Correspondencia / Cálculo</div>
 
-                <div class="match-card">
-                    <span><strong>1.</strong> Probabilidad de que dos clientes crediticios independientes incurran en mora a la vez</span>
+                    <div class="match-card">
+                        <span><strong>1.</strong> Sistema en Serie (2 componentes deben funcionar)</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_12_0">
+                            <option value="">-- Seleccione una opción --</option>
+<option value="0">P(C₁) · P(C₂)</option>
+<option value="1">1 - [P(F₁) · P(F₂)]</option>
+<option value="2">P(C₁) · P(C₂) · P(C₃)</option>
+<option value="3">P(F₁) · P(F₂)</option>
+
+                        </select>
+                    </div>
+
+                    <div class="match-card">
+                        <span><strong>2.</strong> Sistema en Paralelo (al menos uno debe funcionar)</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_12_1">
+                            <option value="">-- Seleccione una opción --</option>
+<option value="0">P(C₁) · P(C₂)</option>
+<option value="1">1 - [P(F₁) · P(F₂)]</option>
+<option value="2">P(C₁) · P(C₂) · P(C₃)</option>
+<option value="3">P(F₁) · P(F₂)</option>
+
+                        </select>
+                    </div>
+
+                    <div class="match-card">
+                        <span><strong>3.</strong> Tres componentes independientes en serie</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_12_2">
+                            <option value="">-- Seleccione una opción --</option>
+<option value="0">P(C₁) · P(C₂)</option>
+<option value="1">1 - [P(F₁) · P(F₂)]</option>
+<option value="2">P(C₁) · P(C₂) · P(C₃)</option>
+<option value="3">P(F₁) · P(F₂)</option>
+
+                        </select>
+                    </div>
+
+                    <div class="match-card">
+                        <span><strong>4.</strong> Probabilidad de fallo simultáneo en paralelo</span>
+                    </div>
+                    <div class="match-card">
+                        <select class="match-select" id="match_select_12_3">
+                            <option value="">-- Seleccione una opción --</option>
+<option value="0">P(C₁) · P(C₂)</option>
+<option value="1">1 - [P(F₁) · P(F₂)]</option>
+<option value="2">P(C₁) · P(C₂) · P(C₃)</option>
+<option value="3">P(F₁) · P(F₂)</option>
+
+                        </select>
+                    </div>
+
                 </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_12_0">
-                        <option value="">-- Seleccione una opción --</option>
-<option value="0">P(M₁) · P(M₂)</option>
-<option value="1">(k/N) · ((k-1)/(N-1)) · ((k-2)/(N-2))</option>
-<option value="2">1 - [P(Falla₁) · P(Falla₂)]</option>
-<option value="3">P(Firma₁) · P(Firma₂ | Firma₁)</option>
-
-                    </select>
-                </div>
-
-                <div class="match-card">
-                    <span><strong>2.</strong> Probabilidad de extraer 3 facturas con sobreprecio sin reponer las auditadas</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_12_1">
-                        <option value="">-- Seleccione una opción --</option>
-<option value="0">P(M₁) · P(M₂)</option>
-<option value="1">(k/N) · ((k-1)/(N-1)) · ((k-2)/(N-2))</option>
-<option value="2">1 - [P(Falla₁) · P(Falla₂)]</option>
-<option value="3">P(Firma₁) · P(Firma₂ | Firma₁)</option>
-
-                    </select>
-                </div>
-
-                <div class="match-card">
-                    <span><strong>3.</strong> Sistema bancario con servidor principal y servidor espejo redundante</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_12_2">
-                        <option value="">-- Seleccione una opción --</option>
-<option value="0">P(M₁) · P(M₂)</option>
-<option value="1">(k/N) · ((k-1)/(N-1)) · ((k-2)/(N-2))</option>
-<option value="2">1 - [P(Falla₁) · P(Falla₂)]</option>
-<option value="3">P(Firma₁) · P(Firma₂ | Firma₁)</option>
-
-                    </select>
-                </div>
-
-                <div class="match-card">
-                    <span><strong>4.</strong> Control secuencial de 2 firmas de autorización en orden de pago</span>
-                </div>
-                <div class="match-card">
-                    <select class="match-select" id="match_select_12_3">
-                        <option value="">-- Seleccione una opción --</option>
-<option value="0">P(M₁) · P(M₂)</option>
-<option value="1">(k/N) · ((k-1)/(N-1)) · ((k-2)/(N-2))</option>
-<option value="2">1 - [P(Falla₁) · P(Falla₂)]</option>
-<option value="3">P(Firma₁) · P(Firma₂ | Firma₁)</option>
-
-                    </select>
-                </div>
-
+                <button class="btn-check-match" onclick="checkMatching(12)">Verificar Respuestas</button>
             </div>
-            <button class="btn-check-match" onclick="checkMatching(12)">Verificar Respuestas</button>
-            <div class="feedback-box" id="fb_12"></div>
-
+            <div class="illustration-box">
+                <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="245" rx="80" ry="10" fill="#cbd5e1"/>
+  <!-- Servidor Rack -->
+  <rect x="65" y="60" width="110" height="160" rx="8" fill="#1e293b" stroke="#0f172a" stroke-width="3"/>
+  <!-- Servidor 1 -->
+  <rect x="75" y="75" width="90" height="32" rx="4" fill="#334155" stroke="#475569" stroke-width="1.5"/>
+  <circle cx="87" cy="91" r="4" fill="#10b981"/>
+  <circle cx="98" cy="91" r="4" fill="#10b981"/>
+  <line x1="115" y1="91" x2="155" y2="91" stroke="#64748b" stroke-width="3" stroke-dasharray="4"/>
+  <!-- Servidor 2 -->
+  <rect x="75" y="118" width="90" height="32" rx="4" fill="#334155" stroke="#475569" stroke-width="1.5"/>
+  <circle cx="87" cy="134" r="4" fill="#10b981"/>
+  <circle cx="98" cy="134" r="4" fill="#3b82f6"/>
+  <line x1="115" y1="134" x2="155" y2="134" stroke="#64748b" stroke-width="3" stroke-dasharray="4"/>
+  <!-- Servidor 3 -->
+  <rect x="75" y="161" width="90" height="32" rx="4" fill="#334155" stroke="#475569" stroke-width="1.5"/>
+  <circle cx="87" cy="177" r="4" fill="#10b981"/>
+  <circle cx="98" cy="177" r="4" fill="#10b981"/>
+  <line x1="115" y1="177" x2="155" y2="177" stroke="#64748b" stroke-width="3" stroke-dasharray="4"/>
+  <!-- Nube superior -->
+  <path d="M 100 45 C 90 35 110 20 125 30 C 135 15 160 25 155 45 Z" fill="#0284c7"/>
+</svg>
+            </div>
         </div>
+        <div class="feedback-container" id="fb_12"></div>
+
     </div>
 
-    <!-- PÁGINA 13: CIERRE Y EVALUACIÓN FINAL -->
+    <!-- PÁGINA 13: CIERRE -->
     <div class="page-content" id="page13">
-        <div class="page-title">
-            <span class="page-num-badge">Pág. 13</span>
-            <h3>Síntesis Ejecutiva y Reporte de Desempeño</h3>
+        <div style="font-size: 18px; font-weight: 700; color: var(--uagrm-blue); margin-bottom: 15px; border-bottom: 2px solid var(--border-light); padding-bottom: 8px;">
+            🏆 Síntesis y Evaluación de Desempeño
         </div>
         
-<div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 10px; padding: 25px;">
-    <h4 style="color: var(--uagrm-blue); margin-bottom: 15px; font-size: 17px;">🏁 Síntesis Ejecutiva de la Lección 2.2</h4>
-    <p style="font-size: 14px; margin-bottom: 15px;">Ha completado con éxito la Lección 2.2. Ahora domina la regla de la multiplicación para eventos conjuntos, la prueba formal de independencia estadística y la distinción entre muestreo con y sin reemplazo.</p>
-    
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
-        <div style="background: #eff6ff; padding: 15px; border-radius: 8px; border-left: 4px solid var(--uagrm-accent);">
-            <strong style="color: var(--uagrm-blue);">Puntos Clave para Recordar:</strong>
-            <ul style="margin: 8px 0 0 18px; font-size: 13.5px;">
-                <li>Independencia: \(P(A \cap B) = P(A) \cdot P(B)\).</li>
-                <li>Sin reemplazo: \(P(A \cap B) = P(A) \cdot P(B|A)\).</li>
-                <li>Dos eventos disjuntos nunca son independientes si sus probabilidades son mayores a cero.</li>
-            </ul>
-        </div>
-        <div style="background: #ecfdf5; padding: 15px; border-radius: 8px; border-left: 4px solid var(--uagrm-green); text-align: center;">
-            <div style="font-size: 13px; font-weight: bold; color: var(--uagrm-green); text-transform: uppercase;">Puntaje Formativo Obtenido</div>
-            <div id="finalScoreDisplay" style="font-size: 30px; font-weight: 800; color: var(--uagrm-blue); margin: 6px 0;">100 / 100 Puntos</div>
-            <div style="font-size: 12px; color: var(--text-muted);">¡Excelente progreso formativo!</div>
-        </div>
+<div class="concept-card" style="text-align: center;">
+    <div style="font-size: 40px; margin-bottom: 10px;">⚡</div>
+    <h3 style="color: var(--uagrm-blue); margin-bottom: 8px;">¡Excelente trabajo en la Lección 2.2!</h3>
+    <p style="color: var(--text-muted); font-size: 14px; max-width: 600px; margin: 0 auto 20px auto;">
+        Ha dominado las reglas general y especial de la multiplicación, la distinción entre muestreo con/sin reemplazo y la modelación de confiabilidad en sistemas.
+    </p>
+
+    <div style="display: inline-block; background: #eff6ff; border: 2px solid #bfdbfe; border-radius: 12px; padding: 18px 30px; margin-bottom: 20px;">
+        <div style="font-size: 13px; font-weight: 600; color: #0284c7; text-transform: uppercase;">Puntaje Formativo Obtenido</div>
+        <div style="font-size: 36px; font-weight: 800; color: var(--uagrm-blue); margin: 4px 0;" id="finalScoreDisplay">0 / 100</div>
+        <div id="finalBadge" style="display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 700;">En progreso</div>
     </div>
 </div>
 
     </div>
 
-    <!-- NAV BUTTONS -->
+    <!-- NAVEGACIÓN -->
     <div class="nav-buttons">
-        <button class="btn btn-prev" id="btnPrev" onclick="navigatePage(-1)" disabled>← Anterior</button>
-        <button class="btn btn-next" id="btnNext" onclick="navigatePage(1)">Siguiente →</button>
+        <button class="btn-nav btn-prev" id="btnPrev" onclick="navigatePage(-1)" disabled>← Anterior</button>
+        <button class="btn-nav btn-next" id="btnNext" onclick="navigatePage(1)">Siguiente →</button>
     </div>
 </div>
 
@@ -1215,8 +1294,7 @@
     let score = 0;
     let answeredPages = new Set();
     
-    // Almacén seguro de datos de emparejamiento
-    const matchingStore = {"4": [{"left": "Regla de Multiplicación para Eventos Independientes", "right": "P(A ∩ B) = P(A) · P(B)"}, {"left": "Regla General de Multiplicación (Eventos Dependientes)", "right": "P(A ∩ B) = P(A) · P(B|A)"}, {"left": "Condición Necesaria y Suficiente de Independencia", "right": "P(A|B) = P(A)"}, {"left": "Confiabilidad de Sistema con 2 Componentes en Serie", "right": "P(Éxito) = P(C₁) · P(C₂)"}], "6": [{"left": "La probabilidad de selección de cada elemento permanece constante en cada etapa.", "right": "Muestreo Con Reemplazo (Independiente)"}, {"left": "El tamaño de la población N disminuye en 1 en cada extracción sucesiva.", "right": "Muestreo Sin Reemplazo (Dependiente)"}, {"left": "Técnica estándar aplicada en la auditoría de comprobantes y facturas contables.", "right": "Muestreo Sin Reemplazo"}, {"left": "Generación de números aleatorios para simulación de escenarios de mercado.", "right": "Muestreo Con Reemplazo"}], "8": [{"left": "Si dos eventos A y B con P(A)>0 y P(B)>0 son mutuamente excluyentes...", "right": "Son necesariamente dependientes (P(A∩B)=0 ≠ P(A)·P(B))"}, {"left": "Si dos eventos A y B son estadísticamente independientes...", "right": "No pueden ser mutuamente excluyentes (tienen P(A∩B) > 0)"}, {"left": "Si P(A ∩ B) = P(A) · P(B)...", "right": "A y B son estadísticamente independientes"}, {"left": "Si P(A ∩ B) = 0...", "right": "A y B son mutuamente excluyentes"}], "10": [{"left": "Probabilidad conjunta: P(A ∩ B)", "right": "0.12 (12%)"}, {"left": "Probabilidad de la unión: P(A ∪ B)", "right": "0.58 (58%)"}, {"left": "Probabilidad condicional: P(A|B)", "right": "0.40 (40%)"}, {"left": "Probabilidad de que falle al menos uno: 1 - P(A ∩ B)", "right": "0.88 (88%)"}], "12": [{"left": "Probabilidad de que dos clientes crediticios independientes incurran en mora a la vez", "right": "P(M₁) · P(M₂)"}, {"left": "Probabilidad de extraer 3 facturas con sobreprecio sin reponer las auditadas", "right": "(k/N) · ((k-1)/(N-1)) · ((k-2)/(N-2))"}, {"left": "Sistema bancario con servidor principal y servidor espejo redundante", "right": "1 - [P(Falla₁) · P(Falla₂)]"}, {"left": "Control secuencial de 2 firmas de autorización en orden de pago", "right": "P(Firma₁) · P(Firma₂ | Firma₁)"}]};
+    const matchingStore = {"4": [{"left": "Regla de Multiplicación para Eventos Independientes", "right": "P(A ∩ B) = P(A) · P(B)"}, {"left": "Regla General de Multiplicación (Eventos Dependientes)", "right": "P(A ∩ B) = P(A) · P(B|A)"}, {"left": "Condición Necesaria y Suficiente de Independencia", "right": "P(A|B) = P(A)"}, {"left": "Confiabilidad de 2 Componentes en Paralelo", "right": "1 - [P(F₁) · P(F₂)]"}], "6": [{"left": "La probabilidad de cada extracción permanece constante", "right": "Muestreo Con Reemplazo (Independiente)"}, {"left": "El tamaño del espacio muestral disminuye en cada extracción", "right": "Muestreo Sin Reemplazo (Dependiente)"}, {"left": "Extracción simultánea de un comité o muestra física", "right": "Muestreo Sin Reemplazo"}, {"left": "Generación de números aleatorios en simulaciones computacionales", "right": "Muestreo Con Reemplazo"}], "8": [{"left": "Probabilidad Conjunta P(A ∩ B)", "right": "0.15 (15%)"}, {"left": "Probabilidad de la Unión P(A ∪ B)", "right": "0.65 (65%)"}, {"left": "Probabilidad Condicional P(A|B)", "right": "0.50 (50%)"}, {"left": "Probabilidad de que no ocurra ninguno: P((A ∪ B)')", "right": "0.35 (35%)"}], "10": [{"left": "Si dos eventos A y B con P(A)>0 y P(B)>0 son mutuamente excluyentes...", "right": "Son necesariamente dependientes (P(A∩B)=0 ≠ P(A)·P(B))"}, {"left": "Si dos eventos A y B son estadísticamente independientes...", "right": "No pueden ser mutuamente excluyentes (tienen P(A∩B) > 0)"}, {"left": "Si P(A ∩ B) = P(A) · P(B)...", "right": "A y B son estadísticamente independientes"}, {"left": "Si P(A ∩ B) = 0...", "right": "A y B son mutuamente excluyentes"}], "12": [{"left": "Sistema en Serie (2 componentes deben funcionar)", "right": "P(C₁) · P(C₂)"}, {"left": "Sistema en Paralelo (al menos uno debe funcionar)", "right": "1 - [P(F₁) · P(F₂)]"}, {"left": "Tres componentes independientes en serie", "right": "P(C₁) · P(C₂) · P(C₃)"}, {"left": "Probabilidad de fallo simultáneo en paralelo", "right": "P(F₁) · P(F₂)"}]};
 
     function updateNav() {
         document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
@@ -1252,33 +1330,34 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function selectOption(pageNum, optIndex, isCorrect) {
+    function selectOption(pageNum, optIndex, isCorrect, feedbackText) {
         if (answeredPages.has(pageNum)) return;
         answeredPages.add(pageNum);
 
         const grid = document.getElementById('optGrid_' + pageNum);
-        const items = grid.querySelectorAll('.option-item');
+        const items = grid.querySelectorAll('.option-card');
         const fb = document.getElementById('fb_' + pageNum);
 
         items.forEach((item, idx) => {
             item.style.pointerEvents = 'none';
             if (idx === optIndex) {
                 if (isCorrect) {
-                    item.classList.add('selected-correct');
+                    item.classList.add('correct');
                 } else {
-                    item.classList.add('selected-incorrect');
+                    item.classList.add('incorrect');
                 }
             }
         });
 
         if (isCorrect) {
             score += 10;
-            fb.className = 'feedback-box correct';
-            fb.innerHTML = '<strong>✓ ¡Respuesta Correcta!</strong> Excelente aplicación de las propiedades teóricas y cálculo estadístico.';
+            fb.className = 'feedback-container correct';
+            fb.innerHTML = '<strong>✓ ¡Respuesta Correcta!</strong> ' + (feedbackText || 'Excelente deducción probabilística.');
         } else {
-            fb.className = 'feedback-box incorrect';
-            fb.innerHTML = '<strong>✗ Respuesta Incorrecta.</strong> Revise el procedimiento analítico y la justificación teórica.';
+            fb.className = 'feedback-container incorrect';
+            fb.innerHTML = '<strong>✗ Respuesta Incorrecta.</strong> ' + (feedbackText || 'Revise el planteamiento y la formulación teórica.');
         }
+        if (window.MathJax) MathJax.typesetPromise();
     }
 
     function checkMatching(pageNum) {
@@ -1300,7 +1379,7 @@
                     selectElem.style.borderColor = 'var(--uagrm-red)';
                     selectElem.style.backgroundColor = '#fef2f2';
                 } else {
-                    selectElem.style.borderColor = 'var(--uagrm-green)';
+                    selectElem.style.borderColor = 'var(--accent-green)';
                     selectElem.style.backgroundColor = '#ecfdf5';
                 }
             }
@@ -1316,12 +1395,13 @@
 
         if (allCorrect) {
             score += 10;
-            fb.className = 'feedback-box correct';
-            fb.innerHTML = '<strong>✓ ¡Excelente!</strong> Todas las asociaciones y correspondencias son 100% correctas.';
+            fb.className = 'feedback-container correct';
+            fb.innerHTML = '<strong>✓ ¡Excelente!</strong> Todas las relaciones y correspondencias son 100% correctas.';
         } else {
-            fb.className = 'feedback-box incorrect';
-            fb.innerHTML = '<strong>✗ Observación en Emparejamiento:</strong> Revise las opciones marcadas en rojo e intente consolidar la relación conceptual.';
+            fb.className = 'feedback-container incorrect';
+            fb.innerHTML = '<strong>✗ Observación en Emparejamiento:</strong> Revise las opciones en rojo para afianzar el concepto.';
         }
+        if (window.MathJax) MathJax.typesetPromise();
     }
 
     function renderFinalScore() {
@@ -1340,7 +1420,7 @@
                 badgeElem.style.background = '#fef3c7';
                 badgeElem.style.color = '#b45309';
             } else {
-                badgeElem.textContent = 'Requiere Refuerzo y Repaso';
+                badgeElem.textContent = 'Requiere Refuerzo';
                 badgeElem.style.background = '#fee2e2';
                 badgeElem.style.color = '#b22222';
             }

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demostración: Diseño Estilo Diapositiva Institucional | UAGRM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --uagrm-blue: #002b49;
+            --uagrm-red: #b22222;
+            --accent-cyan: #00bcd4;
+            --accent-pink: #e91e63;
+            --accent-orange: #ff9800;
+            --accent-green: #8bc34a;
+            --accent-purple: #9c27b0;
+            --bg-slide: #ffffff;
+            --text-dark: #0f172a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: #e2e8f0;
+            padding: 30px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Contenedor estilo Diapositiva 16:9 */
+        .slide-card {
+            width: 100%;
+            max-width: 980px;
+            background: var(--bg-slide);
+            border-radius: 12px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+            border: 1px solid #cbd5e1;
+            overflow: hidden;
+            position: relative;
+            padding: 25px 40px 35px 40px;
+        }
+
+        /* Cabecera institucional */
+        .slide-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 20px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .header-logo-left {
+            width: 55px;
+            height: 55px;
+            background: radial-gradient(circle, #0284c7 0%, #002b49 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 10px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        .header-center-text {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: #334155;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+
+        .header-logo-right {
+            width: 55px;
+            height: 55px;
+            background: radial-gradient(circle, #b22222 0%, #6b0f0f 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 9.5px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        /* Elementos decorativos (círculos de colores) */
+        .deco-circles {
+            position: absolute;
+            left: 70px;
+            top: 15px;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .circle-lg { width: 26px; height: 26px; border-radius: 50%; background: var(--accent-orange); }
+        .circle-md { width: 20px; height: 20px; border-radius: 50%; background: var(--accent-green); }
+        .circle-sm { width: 14px; height: 14px; border-radius: 50%; background: var(--accent-pink); }
+
+        /* Título del ejercicio */
+        .exercise-title {
+            font-size: 26px;
+            font-weight: 600;
+            color: #ec4899;
+            margin-left: 90px;
+            margin-top: 5px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .exercise-title::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 140px;
+            height: 3px;
+            background: var(--accent-cyan);
+            border-radius: 2px;
+        }
+
+        /* Enunciado formal en estilo diapositiva */
+        .statement-text {
+            font-size: 19px;
+            font-style: italic;
+            font-weight: 600;
+            color: #0284c7;
+            line-height: 1.5;
+            margin: 30px 0 20px 0;
+            text-align: justify;
+        }
+
+        /* Cuerpo interactivo con ilustración */
+        .slide-body {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 25px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .slide-body { grid-template-columns: 1fr; }
+            .statement-text { font-size: 16px; }
+            .exercise-title { margin-left: 0; }
+            .deco-circles { display: none; }
+        }
+
+        /* Opciones de respuesta interactivas */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 14px 18px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e293b;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .option-btn:hover {
+            border-color: #0284c7;
+            background: #f0f9ff;
+            transform: translateX(4px);
+        }
+
+        .option-btn.correct {
+            background: #ecfdf5 !important;
+            border-color: #10b981 !important;
+            color: #065f46 !important;
+        }
+
+        .option-btn.incorrect {
+            background: #fef2f2 !important;
+            border-color: #ef4444 !important;
+            color: #991b1b !important;
+        }
+
+        /* Ilustración de personaje / caso real */
+        .character-illustration {
+            text-align: center;
+            position: relative;
+        }
+
+        .character-illustration svg {
+            width: 100%;
+            max-width: 240px;
+            height: auto;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.1));
+        }
+
+        /* Pie de diapositiva */
+        .slide-footer {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12.5px;
+            color: #ec4899;
+            font-weight: 600;
+        }
+
+        .slide-number {
+            width: 34px;
+            height: 34px;
+            background: #ec4899;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .bottom-deco-dots {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            margin-right: 15px;
+        }
+
+        .dot-cyan { width: 14px; height: 14px; border-radius: 50%; background: var(--accent-cyan); }
+        .dot-purple { width: 18px; height: 18px; border-radius: 50%; background: var(--accent-purple); }
+    </style>
+</head>
+<body>
+
+<div class="slide-card">
+    <!-- CABECERA INSTITUCIONAL OFICIAL -->
+    <div class="slide-header">
+        <div class="header-logo-left">
+            UAGRM<br>1880
+        </div>
+        
+        <!-- Círculos decorativos originales -->
+        <div class="deco-circles">
+            <div class="circle-lg"></div>
+            <div class="circle-md"></div>
+            <div class="circle-sm"></div>
+        </div>
+
+        <div class="header-center-text">
+            UNIVERSIDAD AUTÓNOMA GABRIEL RENÉ MORENO<br>
+            FACULTAD DE AUDITORÍA FINANCIERA O CONTADURÍA PÚBLICA<br>
+            CARRERA DE CONTADURÍA PÚBLICA<br>
+            <span style="color: var(--uagrm-blue); font-size: 11.5px;">ESTADÍSTICA II &nbsp; MAT-260 &nbsp; DOCENTE: MSc. Anselmo Salguero Arano</span>
+        </div>
+
+        <div class="header-logo-right">
+            AUDITORÍA<br>UAGRM
+        </div>
+    </div>
+
+    <!-- TÍTULO DE EJERCICIO -->
+    <div class="exercise-title">
+        Ejercicio N° 3
+    </div>
+
+    <!-- ENUNCIADO EXACTO CON TIPOGRAFÍA DE CÁTEDRA -->
+    <div class="statement-text">
+        Un jurado de 9 jueces va a decidir la inocencia o culpabilidad de un acusado. Suponga que 6 votan por la inocencia y el resto por la culpabilidad. Si se seleccionan al azar 3 jueces y se pregunta su voto, ¿cuál es la probabilidad de que ningún juez seleccionado esté a favor de la inocencia del acusado?
+    </div>
+
+    <!-- CUERPO: OPCIONES INTERACTIVAS + ILUSTRACIÓN VIBRANTE -->
+    <div class="slide-body">
+        <div class="options-list" id="demoOptions">
+            <button class="option-btn" onclick="checkDemo(0, true)">
+                <span style="color: #0284c7; font-weight: bold;">A)</span>
+                <span>\(P(X=0) = \frac{\binom{6}{0} \cdot \binom{3}{3}}{\binom{9}{3}} = \frac{1 \times 1}{84} = \frac{1}{84} \approx 0.0119 \quad (1.19\%)\)</span>
+            </button>
+            <button class="option-btn" onclick="checkDemo(1, false)">
+                <span style="color: #0284c7; font-weight: bold;">B)</span>
+                <span>\(P(X=0) = \frac{3}{9} = 0.3333 \quad (33.33\%)\)</span>
+            </button>
+            <button class="option-btn" onclick="checkDemo(2, false)">
+                <span style="color: #0284c7; font-weight: bold;">C)</span>
+                <span>\(P(X=0) = \frac{\binom{6}{3}}{\binom{9}{3}} = \frac{20}{84} \approx 0.2381 \quad (23.81\%)\)</span>
+            </button>
+            <button class="option-btn" onclick="checkDemo(3, false)">
+                <span style="color: #0284c7; font-weight: bold;">D)</span>
+                <span>\(P(X=0) = 0.0000 \quad (0\%)\)</span>
+            </button>
+            <div id="demoFeedback" style="margin-top: 10px; font-size: 14px; display: none;"></div>
+        </div>
+
+        <!-- ILUSTRACIÓN VECTORIAL DEL CASO (ACUSADO / JURADO) -->
+        <div class="character-illustration">
+            <svg viewBox="0 0 240 280" xmlns="http://www.w3.org/2000/svg">
+                <!-- Sombra base -->
+                <ellipse cx="120" cy="265" rx="85" ry="10" fill="#cbd5e1"/>
+                
+                <!-- Bola de presidiario y cadena -->
+                <circle cx="205" cy="245" r="22" fill="#1e293b"/>
+                <circle cx="200" cy="240" r="19" fill="#334155"/>
+                <ellipse cx="196" cy="236" rx="5" ry="3" fill="#64748b" transform="rotate(-30 196 236)"/>
+                <path d="M 135 245 Q 165 255 185 245" stroke="#475569" stroke-width="6" fill="none" stroke-dasharray="6,4"/>
+                
+                <!-- Cuerpo y traje a rayas -->
+                <path d="M 65 140 C 65 110, 155 110, 155 140 L 165 240 C 165 250, 55 250, 55 240 Z" fill="#ffffff" stroke="#1e293b" stroke-width="3"/>
+                <!-- Rayas negras del traje -->
+                <path d="M 70 145 L 85 245" stroke="#1e293b" stroke-width="10"/>
+                <path d="M 98 135 L 105 245" stroke="#1e293b" stroke-width="10"/>
+                <path d="M 125 135 L 128 245" stroke="#1e293b" stroke-width="10"/>
+                <path d="M 148 145 L 148 245" stroke="#1e293b" stroke-width="10"/>
+                
+                <!-- Cabeza y rostro expresivo -->
+                <ellipse cx="110" cy="85" rx="38" ry="42" fill="#fed7aa" stroke="#1e293b" stroke-width="3"/>
+                <!-- Gorro presidiario a rayas -->
+                <path d="M 75 65 C 75 40, 145 40, 145 65 Z" fill="#ffffff" stroke="#1e293b" stroke-width="3"/>
+                <path d="M 92 48 L 92 65" stroke="#1e293b" stroke-width="7"/>
+                <path d="M 110 44 L 110 65" stroke="#1e293b" stroke-width="7"/>
+                <path d="M 128 48 L 128 65" stroke="#1e293b" stroke-width="7"/>
+                
+                <!-- Cejas enojadas/preocupadas -->
+                <path d="M 85 75 L 102 82" stroke="#1e293b" stroke-width="3.5" stroke-linecap="round"/>
+                <path d="M 135 75 L 118 82" stroke="#1e293b" stroke-width="3.5" stroke-linecap="round"/>
+                
+                <!-- Ojos -->
+                <ellipse cx="95" cy="88" rx="5" ry="6" fill="#1e293b"/>
+                <ellipse cx="125" cy="88" rx="5" ry="6" fill="#1e293b"/>
+                
+                <!-- Nariz prominente -->
+                <path d="M 110 85 C 122 95, 122 110, 108 112 C 98 114, 98 102, 108 98" fill="#fdba74" stroke="#1e293b" stroke-width="2.5"/>
+                
+                <!-- Boca disgustada -->
+                <path d="M 92 122 Q 110 112 128 122" stroke="#1e293b" stroke-width="3" fill="none" stroke-linecap="round"/>
+                
+                <!-- Número de reo -->
+                <rect x="90" y="170" width="40" height="18" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
+                <text x="110" y="183" font-size="9" font-weight="bold" fill="#1e293b" text-anchor="middle">N° 260</text>
+            </svg>
+        </div>
+    </div>
+
+    <!-- PIE DE DIAPOSITIVA CON IDENTIDAD -->
+    <div class="slide-footer">
+        <div>Unidad N° 2: Probabilidades • Carrera de Contaduría Pública • UAGRM</div>
+        <div style="display: flex; align-items: center;">
+            <div class="bottom-deco-dots">
+                <div class="dot-cyan"></div>
+                <div class="dot-purple"></div>
+            </div>
+            <div class="slide-number">21</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function checkDemo(idx, isCorrect) {
+        const btns = document.querySelectorAll('.option-btn');
+        const fb = document.getElementById('demoFeedback');
+        
+        btns.forEach((btn, i) => {
+            btn.style.pointerEvents = 'none';
+            if (i === idx) {
+                if (isCorrect) {
+                    btn.classList.add('correct');
+                    fb.innerHTML = '<div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 12px; border-radius: 6px; color: #065f46;"><strong>✓ ¡Correcto!</strong> En un muestreo sin reemplazo (Hipergeométrica), la probabilidad de seleccionar 0 jueces a favor de la inocencia (es decir, los 3 jueces culpables) es exactamente: \$$\\frac{\\binom{6}{0} \\binom{3}{3}}{\\binom{9}{3}} = \\frac{1 \\times 1}{84} = 0.0119 \\quad (1.19\\%)\$$</div>';
+                } else {
+                    btn.classList.add('incorrect');
+                    fb.innerHTML = '<div style="background: #fef2f2; border-left: 4px solid #ef4444; padding: 12px; border-radius: 6px; color: #991b1b;"><strong>✗ Incorrecto.</strong> Recuerde que al seleccionar 3 jueces simultáneamente sin reemplazo de una población finita (N=9, k=6 inocentes, N-k=3 culpables), se aplica el modelo combinatorio hipergeométrico.</div>';
+                }
+            }
+        });
+        fb.style.display = 'block';
+        if (window.MathJax) MathJax.typesetPromise();
+    }
+</script>
+
+</body>
+</html>
