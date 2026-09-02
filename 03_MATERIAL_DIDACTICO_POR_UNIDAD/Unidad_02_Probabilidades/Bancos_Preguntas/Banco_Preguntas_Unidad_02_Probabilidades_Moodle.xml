@@ -11,7 +11,18 @@
 <question type="multichoice">
   <name><text>U02_P01_Concepto_Espacio_Muestral</text></name>
   <questiontext format="html">
-    <text><![CDATA[En el contexto del control interno y auditoría financiera, ¿cómo se define formalmente el <strong>Espacio Muestral (S)</strong> de un experimento aleatorio?]]></text>
+    <text><![CDATA[En el contexto del control interno y auditoría financiera, ¿cómo se define formalmente el <strong>Espacio Muestral (S)</strong> de un experimento aleatorio?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 95" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="95" fill="#f8fafc" rx="6"/>
+  <rect x="25" y="15" width="450" height="65" fill="#eff6ff" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="4" rx="6"/>
+  <text x="45" y="36" font-size="12" font-weight="bold" fill="#002b49">Espacio Muestral S (Universo de Auditoría):</text>
+  <circle cx="90" cy="58" r="14" fill="#0284c7"/><text x="90" y="62" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">e₁</text>
+  <circle cx="150" cy="58" r="14" fill="#0284c7"/><text x="150" y="62" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">e₂</text>
+  <circle cx="210" cy="58" r="14" fill="#0284c7"/><text x="210" y="62" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">e₃</text>
+  <text x="260" y="62" font-size="14" font-weight="bold" fill="#0284c7">···</text>
+  <circle cx="310" cy="58" r="14" fill="#0284c7"/><text x="310" y="62" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">e_k</text>
+  <rect x="360" y="42" width="100" height="30" fill="#dcfce7" stroke="#16a34a" rx="4"/>
+  <text x="410" y="61" font-size="11" font-weight="bold" fill="#15803d" text-anchor="middle">P(S) = 1.00</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -51,7 +62,18 @@
 <question type="multichoice">
   <name><text>U02_P02_Enfoque_Clasico_Laplace</text></name>
   <questiontext format="html">
-    <text><![CDATA[Un lote de 150 comprobantes contables contiene 30 facturas con retención del IUE, 60 con retención del IT y 60 sin retenciones. Si todos los comprobantes tienen la misma probabilidad de ser seleccionados, ¿cuál es la probabilidad clásica de extraer un comprobante con retención del IUE?]]></text>
+    <text><![CDATA[Un lote de 150 comprobantes contables contiene 30 facturas con retención del IUE, 60 con retención del IT y 60 sin retenciones. Si todos los comprobantes tienen la misma probabilidad de ser seleccionados, ¿cuál es la probabilidad clásica de extraer un comprobante con retención del IUE?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 95" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="95" fill="#f8fafc" rx="6"/>
+  <rect x="20" y="20" width="130" height="55" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
+  <text x="85" y="44" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">IUE (Favorables)</text>
+  <text x="85" y="62" font-size="13" font-weight="bold" fill="#002b49" text-anchor="middle">n = 30</text>
+  <rect x="170" y="20" width="140" height="55" fill="#f1f5f9" stroke="#94a3b8" rx="4"/>
+  <text x="240" y="44" font-size="11" font-weight="bold" fill="#475569" text-anchor="middle">Otros Comprobantes</text>
+  <text x="240" y="62" font-size="13" font-weight="bold" fill="#002b49" text-anchor="middle">n = 120</text>
+  <rect x="330" y="20" width="140" height="55" fill="#ecfdf5" stroke="#10b981" rx="4"/>
+  <text x="400" y="44" font-size="11" font-weight="bold" fill="#065f46" text-anchor="middle">Total Lote (S)</text>
+  <text x="400" y="62" font-size="13" font-weight="bold" fill="#065f46" text-anchor="middle">N = 150</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -91,7 +113,15 @@
 <question type="multichoice">
   <name><text>U02_P03_Axioma_No_Negatividad</text></name>
   <questiontext format="html">
-    <text><![CDATA[De acuerdo con los axiomas fundamentales de Kolmogorov, para cualquier evento contable o financiero \(A\), ¿cuál de las siguientes afirmaciones sobre su probabilidad \(P(A)\) es estrictamente verdadera?]]></text>
+    <text><![CDATA[De acuerdo con los axiomas fundamentales de Kolmogorov, para cualquier evento contable o financiero \(A\), ¿cuál de las siguientes afirmaciones sobre su probabilidad \(P(A)\) es estrictamente verdadera?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
+  <rect x="30" y="20" width="110" height="40" fill="#fee2e2" stroke="#b22222" rx="4"/>
+  <text x="85" y="44" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">0.00 (Imposible)</text>
+  <line x1="150" y1="40" x2="330" y2="40" stroke="#0284c7" stroke-width="3"/>
+  <circle cx="240" cy="40" r="12" fill="#0284c7"/><text x="240" y="44" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">P(A)</text>
+  <rect x="340" y="20" width="130" height="40" fill="#dcfce7" stroke="#16a34a" rx="4"/>
+  <text x="405" y="44" font-size="11" font-weight="bold" fill="#15803d" text-anchor="middle">1.00 (Seguro)</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -131,7 +161,14 @@
 <question type="multichoice">
   <name><text>U02_P04_Regla_Complemento_Auditoria</text></name>
   <questiontext format="html">
-    <text><![CDATA[La probabilidad de que una empresa comercial sea seleccionada por el SIN para una fiscalización externa durante la presente gestión es de \(P(F) = 0.07\). ¿Cuál es la probabilidad de que la empresa NO sea fiscalizada (\(F'\))?]]></text>
+    <text><![CDATA[La probabilidad de que una empresa comercial sea seleccionada por el SIN para una fiscalización externa durante la presente gestión es de \(P(F) = 0.07\). ¿Cuál es la probabilidad de que la empresa NO sea fiscalizada (\(F'\))?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
+  <rect x="30" y="20" width="90" height="40" fill="#fee2e2" stroke="#b22222" rx="4"/>
+  <text x="75" y="44" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">F (0.07)</text>
+  <rect x="135" y="20" width="230" height="40" fill="#dcfce7" stroke="#16a34a" rx="4"/>
+  <text x="250" y="44" font-size="11" font-weight="bold" fill="#15803d" text-anchor="middle">Complemento F' = 1 - P(F)</text>
+  <text x="420" y="44" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">P(S) = 1.00</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -171,7 +208,19 @@
 <question type="multichoice">
   <name><text>U02_P05_Regla_Especial_Adicion_Disjuntos</text></name>
   <questiontext format="html">
-    <text><![CDATA[Un departamento de adquisiciones evalúa cotizaciones de tres proveedores independientes (A, B y C) para un contrato exclusivo. Si las probabilidades de adjudicación son \(P(A) = 0.35\), \(P(B) = 0.40\) y \(P(C) = 0.15\), y los eventos son mutuamente excluyentes, ¿cuál es la probabilidad de que gane el contrato alguno de estos tres proveedores?]]></text>
+    <text><![CDATA[Un departamento de adquisiciones evalúa cotizaciones de tres proveedores independientes (A, B y C) para un contrato exclusivo. Si las probabilidades de adjudicación son \(P(A) = 0.35\), \(P(B) = 0.40\) y \(P(C) = 0.15\), y los eventos son mutuamente excluyentes, ¿cuál es la probabilidad de que gane el contrato alguno de estos tres proveedores?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 95" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="95" fill="#f8fafc" rx="6"/>
+  <circle cx="90" cy="48" r="30" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5"/>
+  <text x="90" y="44" font-size="10" font-weight="bold" fill="#0369a1" text-anchor="middle">Proveedor A</text>
+  <text x="90" y="60" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">0.35</text>
+  <circle cx="220" cy="48" r="30" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="220" y="44" font-size="10" font-weight="bold" fill="#15803d" text-anchor="middle">Proveedor B</text>
+  <text x="220" y="60" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">0.40</text>
+  <circle cx="350" cy="48" r="30" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+  <text x="350" y="44" font-size="10" font-weight="bold" fill="#b45309" text-anchor="middle">Proveedor C</text>
+  <text x="350" y="60" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">0.15</text>
+  <text x="440" y="52" font-size="11" font-weight="bold" fill="#b22222" text-anchor="middle">Disjuntos</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -211,7 +260,16 @@
 <question type="multichoice">
   <name><text>U02_P06_Regla_General_Adicion_Solapados</text></name>
   <questiontext format="html">
-    <text><![CDATA[En una entidad bancaria, el 50% de los clientes posee tarjeta de débito (\(P(D)=0.50\)), el 30% posee tarjeta de crédito (\(P(C)=0.30\)) y el 15% posee ambas tarjetas (\(P(D \cap C)=0.15\)). ¿Cuál es la probabilidad de que un cliente elegido al azar posea al menos una de las dos tarjetas?]]></text>
+    <text><![CDATA[En una entidad bancaria, el 50% de los clientes posee tarjeta de débito (\(P(D)=0.50\)), el 30% posee tarjeta de crédito (\(P(C)=0.30\)) y el 15% posee ambas tarjetas (\(P(D \cap C)=0.15\)). ¿Cuál es la probabilidad de que un cliente elegido al azar posea al menos una de las dos tarjetas?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 95" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="95" fill="#f8fafc" rx="6"/>
+  <circle cx="190" cy="48" r="34" fill="#e0f2fe" fill-opacity="0.6" stroke="#0284c7" stroke-width="1.5"/>
+  <circle cx="260" cy="48" r="34" fill="#fee2e2" fill-opacity="0.6" stroke="#b22222" stroke-width="1.5"/>
+  <text x="150" y="52" font-size="11" font-weight="bold" fill="#0369a1">Débito (0.50)</text>
+  <text x="225" y="52" font-size="10" font-weight="bold" fill="#002b49" text-anchor="middle">0.15</text>
+  <text x="300" y="52" font-size="11" font-weight="bold" fill="#991b1b">Crédito (0.30)</text>
+  <rect x="380" y="28" width="105" height="40" fill="#dcfce7" stroke="#16a34a" rx="4"/>
+  <text x="432" y="52" font-size="11" font-weight="bold" fill="#15803d" text-anchor="middle">P(D ∪ C) = ?</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -251,7 +309,12 @@
 <question type="multichoice">
   <name><text>U02_P07_Eventos_Mutuamente_Excluyentes_Definicion</text></name>
   <questiontext format="html">
-    <text><![CDATA[¿Qué condición matemática caracteriza rigurosamente a dos eventos \(A\) y \(B\) como <strong>mutuamente excluyentes</strong>?]]></text>
+    <text><![CDATA[¿Qué condición matemática caracteriza rigurosamente a dos eventos \(A\) y \(B\) como <strong>mutuamente excluyentes</strong>?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
+  <circle cx="120" cy="40" r="28" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5"/><text x="120" y="44" font-size="12" font-weight="bold" fill="#0369a1" text-anchor="middle">Evento A</text>
+  <circle cx="280" cy="40" r="28" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/><text x="280" y="44" font-size="12" font-weight="bold" fill="#15803d" text-anchor="middle">Evento B</text>
+  <rect x="360" y="22" width="110" height="36" fill="#fee2e2" stroke="#b22222" rx="4"/><text x="415" y="44" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">A ∩ B = ∅</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -291,7 +354,16 @@
 <question type="multichoice">
   <name><text>U02_P08_Probabilidad_Subjetiva_Definicion</text></name>
   <questiontext format="html">
-    <text><![CDATA[El directorio de una corporación debe evaluar la probabilidad de éxito en el lanzamiento de una criptomoneda institucional propia, para lo cual no existen registros históricos previos ni simetría clásica. ¿Qué enfoque probabilístico se aplica en esta decisión gerencial?]]></text>
+    <text><![CDATA[El directorio de una corporación debe evaluar la probabilidad de éxito en el lanzamiento de una criptomoneda institucional propia, para lo cual no existen registros históricos previos ni simetría clásica. ¿Qué enfoque probabilístico se aplica en esta decisión gerencial?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
+  <rect x="30" y="15" width="200" height="50" fill="#eff6ff" stroke="#0284c7" rx="4"/>
+  <text x="130" y="36" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">Sin datos históricos</text>
+  <text x="130" y="52" font-size="10" fill="#002b49" text-anchor="middle">Proyecto inédito de inversión</text>
+  <path d="M 240 40 L 280 40" stroke="#0284c7" stroke-width="2"/>
+  <rect x="290" y="15" width="180" height="50" fill="#fef3c7" stroke="#d97706" rx="4"/>
+  <text x="380" y="36" font-size="11" font-weight="bold" fill="#b45309" text-anchor="middle">Juicio de Expertos</text>
+  <text x="380" y="52" font-size="10" font-weight="bold" fill="#002b49" text-anchor="middle">Enfoque Subjetivo</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -331,7 +403,16 @@
 <question type="multichoice">
   <name><text>U02_P09_Calculo_Union_Tres_Eventos_Disjuntos</text></name>
   <questiontext format="html">
-    <text><![CDATA[Un arqueo de valores clasifica la cartera de inversiones en 3 opciones mutuamente excluyentes: Bonos del Estado (40%), Depósitos a Plazo Fijo (35%) y Acciones Preferentes (25%). ¿Cuál es la probabilidad de que una inversión seleccionada al azar sea un Bono o un DPF?]]></text>
+    <text><![CDATA[Un arqueo de valores clasifica la cartera de inversiones en 3 opciones mutuamente excluyentes: Bonos del Estado (40%), Depósitos a Plazo Fijo (35%) y Acciones Preferentes (25%). ¿Cuál es la probabilidad de que una inversión seleccionada al azar sea un Bono o un DPF?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
+  <rect x="30" y="20" width="130" height="40" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
+  <text x="95" y="44" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">Bonos (0.40)</text>
+  <text x="180" y="45" font-size="18" font-weight="bold" fill="#0284c7" text-anchor="middle">+</text>
+  <rect x="200" y="20" width="130" height="40" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
+  <text x="265" y="44" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">DPF (0.35)</text>
+  <rect x="350" y="20" width="120" height="40" fill="#dcfce7" stroke="#16a34a" rx="4"/>
+  <text x="410" y="44" font-size="11" font-weight="bold" fill="#15803d" text-anchor="middle">Unión = 0.75</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -371,7 +452,12 @@
 <question type="matching">
   <name><text>U02_P10_Match_Enfoques_Probabilidad</text></name>
   <questiontext format="html">
-    <text><![CDATA[Relacione cada situación empresarial con el enfoque de probabilidad respectivo según Anderson y Lind:]]></text>
+    <text><![CDATA[Relacione cada situación empresarial con el enfoque de probabilidad respectivo según Anderson y Lind:<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 75" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="75" fill="#f8fafc" rx="6"/>
+  <rect x="15" y="15" width="140" height="45" fill="#e0f2fe" stroke="#0284c7" rx="4"/><text x="85" y="42" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">1. Clásico (Laplace)</text>
+  <rect x="175" y="15" width="140" height="45" fill="#ecfdf5" stroke="#10b981" rx="4"/><text x="245" y="42" font-size="11" font-weight="bold" fill="#065f46" text-anchor="middle">2. Empírico / Frec.</text>
+  <rect x="335" y="15" width="150" height="45" fill="#fef3c7" stroke="#d97706" rx="4"/><text x="410" y="42" font-size="11" font-weight="bold" fill="#92400e" text-anchor="middle">3. Subjetivo / Juicio</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
@@ -401,7 +487,11 @@
 <question type="matching">
   <name><text>U02_P11_Match_Axiomas_Kolmogorov</text></name>
   <questiontext format="html">
-    <text><![CDATA[Asocie cada axioma de probabilidad de Kolmogorov con su expresión analítica formal:]]></text>
+    <text><![CDATA[Asocie cada axioma de probabilidad de Kolmogorov con su expresión analítica formal:<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 75" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="75" fill="#f8fafc" rx="6"/>
+  <text x="250" y="32" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">Axiomas de la Medida de Probabilidad (Kolmogorov, 1933)</text>
+  <text x="250" y="54" font-size="12" font-weight="bold" fill="#0284c7" text-anchor="middle">0 ≤ P(A) ≤ 1  |  P(S) = 1  |  P(A') = 1 - P(A)</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
@@ -431,7 +521,16 @@
 <question type="matching">
   <name><text>U02_P12_Match_Reglas_Adicion</text></name>
   <questiontext format="html">
-    <text><![CDATA[Vincule la tipología de eventos con su fórmula de adición correspondiente:]]></text>
+    <text><![CDATA[Vincule la tipología de eventos con su fórmula de adición correspondiente:<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 95" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="95" fill="#f8fafc" rx="6"/>
+  <circle cx="190" cy="48" r="34" fill="#e0f2fe" fill-opacity="0.6" stroke="#0284c7" stroke-width="1.5"/>
+  <circle cx="260" cy="48" r="34" fill="#fee2e2" fill-opacity="0.6" stroke="#b22222" stroke-width="1.5"/>
+  <text x="150" y="52" font-size="11" font-weight="bold" fill="#0369a1">Débito (0.50)</text>
+  <text x="225" y="52" font-size="10" font-weight="bold" fill="#002b49" text-anchor="middle">0.15</text>
+  <text x="300" y="52" font-size="11" font-weight="bold" fill="#991b1b">Crédito (0.30)</text>
+  <rect x="380" y="28" width="105" height="40" fill="#dcfce7" stroke="#16a34a" rx="4"/>
+  <text x="432" y="52" font-size="11" font-weight="bold" fill="#15803d" text-anchor="middle">P(D ∪ C) = ?</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
@@ -461,7 +560,15 @@
 <question type="matching">
   <name><text>U02_P13_Match_Calculos_Numericos_Adicion</text></name>
   <questiontext format="html">
-    <text><![CDATA[Dados P(A) = 0.60, P(B) = 0.30 y P(A ∩ B) = 0.18, determine el valor numérico exacto:]]></text>
+    <text><![CDATA[Dados P(A) = 0.60, P(B) = 0.30 y P(A ∩ B) = 0.18, determine el valor numérico exacto:<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 75" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="75" fill="#f8fafc" rx="6"/>
+  <circle cx="190" cy="38" r="28" fill="#e0f2fe" fill-opacity="0.6" stroke="#0284c7"/>
+  <circle cx="250" cy="38" r="28" fill="#fee2e2" fill-opacity="0.6" stroke="#b22222"/>
+  <text x="160" y="42" font-size="10" font-weight="bold" fill="#0369a1">0.42</text>
+  <text x="220" y="42" font-size="10" font-weight="bold" fill="#002b49" text-anchor="middle">0.18</text>
+  <text x="280" y="42" font-size="10" font-weight="bold" fill="#991b1b">0.12</text>
+  <text x="390" y="42" font-size="11" font-weight="bold" fill="#047857" text-anchor="middle">Exterior = 0.28</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
@@ -498,7 +605,17 @@
 <question type="multichoice">
   <name><text>U02_P14_Regla_Especial_Multiplicacion_Independientes</text></name>
   <questiontext format="html">
-    <text><![CDATA[Si dos eventos contables A y B son estadísticamente independientes con \(P(A) = 0.40\) y \(P(B) = 0.25\), ¿cuál es la probabilidad de que ambos ocurran simultáneamente (\(P(A \cap B)\))?]]></text>
+    <text><![CDATA[Si dos eventos contables A y B son estadísticamente independientes con \(P(A) = 0.40\) y \(P(B) = 0.25\), ¿cuál es la probabilidad de que ambos ocurran simultáneamente (\(P(A \cap B)\))?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 95" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="95" fill="#f8fafc" rx="6"/>
+  <rect x="40" y="22" width="125" height="50" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
+  <text x="102" y="44" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">Evento A (0.40)</text>
+  <text x="102" y="60" font-size="10" fill="#002b49" text-anchor="middle">Independiente</text>
+  <text x="200" y="52" font-size="18" font-weight="bold" fill="#047857" text-anchor="middle">×</text>
+  <rect x="235" y="22" width="125" height="50" fill="#fef3c7" stroke="#d97706" rx="4"/>
+  <text x="297" y="44" font-size="11" font-weight="bold" fill="#b45309" text-anchor="middle">Evento B (0.25)</text>
+  <text x="297" y="60" font-size="10" fill="#002b49" text-anchor="middle">Independiente</text>
+  <text x="425" y="52" font-size="12" font-weight="bold" fill="#047857" text-anchor="middle">P(A ∩ B) = ?</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -538,7 +655,17 @@
 <question type="multichoice">
   <name><text>U02_P15_Muestreo_Sin_Reemplazo_Facturas</text></name>
   <questiontext format="html">
-    <text><![CDATA[Un auditor revisa una carpeta con 20 comprobantes de diario, de los cuales 4 presentan observaciones formales. Si extrae 2 comprobantes al azar SIN reemplazo, ¿cuál es la probabilidad de que ambos comprobantes tengan observaciones?]]></text>
+    <text><![CDATA[Un auditor revisa una carpeta con 20 comprobantes de diario, de los cuales 4 presentan observaciones formales. Si extrae 2 comprobantes al azar SIN reemplazo, ¿cuál es la probabilidad de que ambos comprobantes tengan observaciones?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 95" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="95" fill="#f8fafc" rx="6"/>
+  <rect x="30" y="22" width="135" height="50" fill="#fee2e2" stroke="#b22222" rx="4"/>
+  <text x="97" y="44" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">1ª Factura: 4/20</text>
+  <text x="97" y="60" font-size="10" fill="#002b49" text-anchor="middle">Sin Reemplazo</text>
+  <text x="195" y="52" font-size="18" font-weight="bold" fill="#b22222" text-anchor="middle">×</text>
+  <rect x="225" y="22" width="135" height="50" fill="#fee2e2" stroke="#b22222" rx="4"/>
+  <text x="292" y="44" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">2ª Factura: 3/19</text>
+  <text x="292" y="60" font-size="10" fill="#002b49" text-anchor="middle">Espacio reducido</text>
+  <text x="425" y="52" font-size="12" font-weight="bold" fill="#047857" text-anchor="middle">P(E₁ ∩ E₂) = ?</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -578,7 +705,11 @@
 <question type="multichoice">
   <name><text>U02_P16_Criterio_Formal_Independencia</text></name>
   <questiontext format="html">
-    <text><![CDATA[¿Cuál de las siguientes igualdades constituye la definición matemática rigurosa de <strong>independencia estadística</strong> entre dos eventos A y B?]]></text>
+    <text><![CDATA[¿Cuál de las siguientes igualdades constituye la definición matemática rigurosa de <strong>independencia estadística</strong> entre dos eventos A y B?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
+  <text x="250" y="34" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">Definición Formal de Independencia Estocástica</text>
+  <text x="250" y="56" font-size="13" font-weight="bold" fill="#059669" text-anchor="middle">P(A|B) = P(A)   ⟺   P(A ∩ B) = P(A) · P(B)</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -618,7 +749,16 @@
 <question type="multichoice">
   <name><text>U02_P17_Redundancia_Servidores_ERP</text></name>
   <questiontext format="html">
-    <text><![CDATA[Un sistema bancario cuenta con dos servidores independientes que respaldan la base de datos contable. La probabilidad de falla diaria de cada servidor es de 0.01. ¿Cuál es la probabilidad de que el sistema ERP funcione con normalidad durante el día (es decir, que al menos un servidor opere)?]]></text>
+    <text><![CDATA[Un sistema bancario cuenta con dos servidores independientes que respaldan la base de datos contable. La probabilidad de falla diaria de cada servidor es de 0.01. ¿Cuál es la probabilidad de que el sistema ERP funcione con normalidad durante el día (es decir, que al menos un servidor opere)?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 85" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="85" fill="#f8fafc" rx="6"/>
+  <rect x="25" y="15" width="130" height="55" fill="#fee2e2" stroke="#b22222" rx="4"/>
+  <text x="90" y="38" font-size="10" font-weight="bold" fill="#991b1b" text-anchor="middle">Falla S1: 0.01</text>
+  <text x="90" y="54" font-size="10" font-weight="bold" fill="#991b1b" text-anchor="middle">Falla S2: 0.01</text>
+  <path d="M 165 42 L 205 42" stroke="#047857" stroke-width="2"/>
+  <rect x="215" y="15" width="260" height="55" fill="#ecfdf5" stroke="#047857" rx="4"/>
+  <text x="345" y="36" font-size="10.5" font-weight="bold" fill="#065f46" text-anchor="middle">P(Al menos 1 opere) = 1 - P(F₁ ∩ F₂)</text>
+  <text x="345" y="56" font-size="12" font-weight="bold" fill="#047857" text-anchor="middle">1 - (0.01 × 0.01) = 0.9999 (99.99%)</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -658,7 +798,14 @@
 <question type="multichoice">
   <name><text>U02_P18_Prueba_Independencia_Datos_Reales</text></name>
   <questiontext format="html">
-    <text><![CDATA[En un estudio de auditoría tributaria se halló que \(P(A) = 0.50\), \(P(B) = 0.40\) y \(P(A \cap B) = 0.20\). ¿Son los eventos A y B independientes?]]></text>
+    <text><![CDATA[En un estudio de auditoría tributaria se halló que \(P(A) = 0.50\), \(P(B) = 0.40\) y \(P(A \cap B) = 0.20\). ¿Son los eventos A y B independientes?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
+  <text x="100" y="35" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">P(A) · P(B)</text>
+  <text x="100" y="55" font-size="12" font-weight="bold" fill="#0284c7" text-anchor="middle">0.50 × 0.40 = 0.20</text>
+  <text x="250" y="45" font-size="16" font-weight="bold" fill="#047857" text-anchor="middle">==</text>
+  <text x="400" y="35" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">P(A ∩ B) Observado</text>
+  <text x="400" y="55" font-size="12" font-weight="bold" fill="#047857" text-anchor="middle">0.20</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -698,7 +845,17 @@
 <question type="multichoice">
   <name><text>U02_P19_Muestreo_Tres_Etapas_Sin_Reemplazo</text></name>
   <questiontext format="html">
-    <text><![CDATA[Una caja chica contiene 10 billetes de 100 Bs, de los cuales 2 son falsificados. Si el cajero extrae sucesivamente 2 billetes sin reemplazo, ¿cuál es la probabilidad de que NINGUNO sea falsificado?]]></text>
+    <text><![CDATA[Una caja chica contiene 10 billetes de 100 Bs, de los cuales 2 son falsificados. Si el cajero extrae sucesivamente 2 billetes sin reemplazo, ¿cuál es la probabilidad de que NINGUNO sea falsificado?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
+  <rect x="30" y="15" width="160" height="50" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
+  <text x="110" y="36" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">1º Legítimo: 8/10</text>
+  <text x="110" y="52" font-size="10" fill="#475569" text-anchor="middle">10 billetes en caja</text>
+  <text x="220" y="45" font-size="16" font-weight="bold" fill="#0284c7" text-anchor="middle">×</text>
+  <rect x="250" y="15" width="160" height="50" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
+  <text x="330" y="36" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">2º Legítimo: 7/9</text>
+  <text x="330" y="52" font-size="10" fill="#475569" text-anchor="middle">9 billetes restantes</text>
+  <text x="450" y="45" font-size="11" font-weight="bold" fill="#047857" text-anchor="middle">= 62.22%</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -738,7 +895,16 @@
 <question type="multichoice">
   <name><text>U02_P20_Relacion_Disjuncion_Independencia</text></name>
   <questiontext format="html">
-    <text><![CDATA[Si dos eventos A y B tienen probabilidades no nulas (\(P(A)>0\) y \(P(B)>0\)) y son mutuamente excluyentes, ¿pueden ser estadísticamente independientes?]]></text>
+    <text><![CDATA[Si dos eventos A y B tienen probabilidades no nulas (\(P(A)>0\) y \(P(B)>0\)) y son mutuamente excluyentes, ¿pueden ser estadísticamente independientes?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
+  <rect x="25" y="15" width="210" height="50" fill="#fee2e2" stroke="#b22222" rx="4"/>
+  <text x="130" y="36" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">Disjuntos (A ∩ B = ∅)</text>
+  <text x="130" y="52" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">P(A ∩ B) = 0</text>
+  <text x="250" y="45" font-size="18" font-weight="bold" fill="#b22222" text-anchor="middle">≠</text>
+  <rect x="265" y="15" width="210" height="50" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
+  <text x="370" y="36" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">Independientes</text>
+  <text x="370" y="52" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">P(A) · P(B) &gt; 0</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -778,7 +944,17 @@
 <question type="multichoice">
   <name><text>U02_P21_Control_Dual_Firmas_Auditoria</text></name>
   <questiontext format="html">
-    <text><![CDATA[Un procedimiento de pago exige la aprobación sucesiva de dos directores. La probabilidad de que el Director 1 apruebe la orden es de 0.80 (\(P(D_1)=0.80\)). Dado que el Director 1 aprobó, la probabilidad de que el Director 2 también apruebe es de 0.90 (\(P(D_2|D_1)=0.90\)). ¿Cuál es la probabilidad de que la orden sea aprobada por ambos directores?]]></text>
+    <text><![CDATA[Un procedimiento de pago exige la aprobación sucesiva de dos directores. La probabilidad de que el Director 1 apruebe la orden es de 0.80 (\(P(D_1)=0.80\)). Dado que el Director 1 aprobó, la probabilidad de que el Director 2 también apruebe es de 0.90 (\(P(D_2|D_1)=0.90\)). ¿Cuál es la probabilidad de que la orden sea aprobada por ambos directores?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
+  <rect x="30" y="15" width="160" height="50" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
+  <text x="110" y="36" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">Director 1: 0.80</text>
+  <text x="110" y="52" font-size="10" fill="#475569" text-anchor="middle">1ª Aprobación</text>
+  <text x="220" y="45" font-size="16" font-weight="bold" fill="#0284c7" text-anchor="middle">×</text>
+  <rect x="250" y="15" width="160" height="50" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
+  <text x="330" y="36" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">Director 2|D1: 0.90</text>
+  <text x="330" y="52" font-size="10" fill="#475569" text-anchor="middle">2ª Aprobación</text>
+  <text x="450" y="45" font-size="12" font-weight="bold" fill="#047857" text-anchor="middle">= 72%</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -818,7 +994,15 @@
 <question type="multichoice">
   <name><text>U02_P22_Componentes_En_Serie_Confiabilidad</text></name>
   <questiontext format="html">
-    <text><![CDATA[Un proceso de auditoría electrónica requiere que 3 filtros de seguridad independientes se ejecuten con éxito. Sus probabilidades de funcionamiento correcto son 0.95, 0.90 y 0.98 respectivamente. ¿Cuál es la confiabilidad global del proceso (probabilidad de que los 3 filtros operen sin error)?]]></text>
+    <text><![CDATA[Un proceso de auditoría electrónica requiere que 3 filtros de seguridad independientes se ejecuten con éxito. Sus probabilidades de funcionamiento correcto son 0.95, 0.90 y 0.98 respectivamente. ¿Cuál es la confiabilidad global del proceso (probabilidad de que los 3 filtros operen sin error)?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 75" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="75" fill="#f8fafc" rx="6"/>
+  <rect x="20" y="15" width="110" height="45" fill="#e0f2fe" stroke="#0284c7" rx="3"/><text x="75" y="42" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">F1: 0.95</text>
+  <text x="145" y="42" font-size="16" font-weight="bold" fill="#0284c7" text-anchor="middle">×</text>
+  <rect x="160" y="15" width="110" height="45" fill="#e0f2fe" stroke="#0284c7" rx="3"/><text x="215" y="42" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">F2: 0.90</text>
+  <text x="285" y="42" font-size="16" font-weight="bold" fill="#0284c7" text-anchor="middle">×</text>
+  <rect x="300" y="15" width="110" height="45" fill="#e0f2fe" stroke="#0284c7" rx="3"/><text x="355" y="42" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">F3: 0.98</text>
+  <text x="455" y="42" font-size="11" font-weight="bold" fill="#047857" text-anchor="middle">= 83.8%</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -858,7 +1042,17 @@
 <question type="matching">
   <name><text>U02_P23_Match_Formulas_Multiplicacion</text></name>
   <questiontext format="html">
-    <text><![CDATA[Relacione cada contexto probabilístico con su fórmula de multiplicación correspondiente:]]></text>
+    <text><![CDATA[Relacione cada contexto probabilístico con su fórmula de multiplicación correspondiente:<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 95" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="95" fill="#f8fafc" rx="6"/>
+  <rect x="40" y="22" width="125" height="50" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
+  <text x="102" y="44" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">Evento A (0.40)</text>
+  <text x="102" y="60" font-size="10" fill="#002b49" text-anchor="middle">Independiente</text>
+  <text x="200" y="52" font-size="18" font-weight="bold" fill="#047857" text-anchor="middle">×</text>
+  <rect x="235" y="22" width="125" height="50" fill="#fef3c7" stroke="#d97706" rx="4"/>
+  <text x="297" y="44" font-size="11" font-weight="bold" fill="#b45309" text-anchor="middle">Evento B (0.25)</text>
+  <text x="297" y="60" font-size="10" fill="#002b49" text-anchor="middle">Independiente</text>
+  <text x="425" y="52" font-size="12" font-weight="bold" fill="#047857" text-anchor="middle">P(A ∩ B) = ?</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
@@ -888,7 +1082,17 @@
 <question type="matching">
   <name><text>U02_P24_Match_Muestreo_Con_Sin_Reemplazo</text></name>
   <questiontext format="html">
-    <text><![CDATA[Vincule las propiedades del muestreo con su modalidad metodológica:]]></text>
+    <text><![CDATA[Vincule las propiedades del muestreo con su modalidad metodológica:<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 95" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="95" fill="#f8fafc" rx="6"/>
+  <rect x="30" y="22" width="135" height="50" fill="#fee2e2" stroke="#b22222" rx="4"/>
+  <text x="97" y="44" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">1ª Factura: 4/20</text>
+  <text x="97" y="60" font-size="10" fill="#002b49" text-anchor="middle">Sin Reemplazo</text>
+  <text x="195" y="52" font-size="18" font-weight="bold" fill="#b22222" text-anchor="middle">×</text>
+  <rect x="225" y="22" width="135" height="50" fill="#fee2e2" stroke="#b22222" rx="4"/>
+  <text x="292" y="44" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">2ª Factura: 3/19</text>
+  <text x="292" y="60" font-size="10" fill="#002b49" text-anchor="middle">Espacio reducido</text>
+  <text x="425" y="52" font-size="12" font-weight="bold" fill="#047857" text-anchor="middle">P(E₁ ∩ E₂) = ?</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
@@ -918,7 +1122,11 @@
 <question type="matching">
   <name><text>U02_P25_Match_Calculos_Independencia</text></name>
   <questiontext format="html">
-    <text><![CDATA[Con P(A) = 0.50 y P(B) = 0.30 siendo A y B estadísticamente independientes, determine:]]></text>
+    <text><![CDATA[Con P(A) = 0.50 y P(B) = 0.30 siendo A y B estadísticamente independientes, determine:<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 75" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="75" fill="#f8fafc" rx="6"/>
+  <rect x="30" y="15" width="200" height="45" fill="#e0f2fe" stroke="#0284c7" rx="4"/><text x="130" y="42" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">P(A) = 0.50 | P(B) = 0.30</text>
+  <rect x="270" y="15" width="200" height="45" fill="#dcfce7" stroke="#16a34a" rx="4"/><text x="370" y="42" font-size="11" font-weight="bold" fill="#15803d" text-anchor="middle">P(A ∩ B) = 0.50 × 0.30 = 0.15</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
@@ -948,7 +1156,11 @@
 <question type="matching">
   <name><text>U02_P26_Match_Casos_Empresariales_Multiplicacion</text></name>
   <questiontext format="html">
-    <text><![CDATA[Asocie cada caso con su modelo de probabilidad multiplicativo:]]></text>
+    <text><![CDATA[Asocie cada caso con su modelo de probabilidad multiplicativo:<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 75" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="75" fill="#f8fafc" rx="6"/>
+  <text x="250" y="32" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">Modelación de Eventos Conjuntos en Finanzas y Auditoría</text>
+  <text x="250" y="54" font-size="11" font-weight="bold" fill="#0284c7" text-anchor="middle">Riesgo Conjunto | Muestreo Sin Reposición | Redundancia ERP</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
@@ -985,7 +1197,11 @@
 <question type="multichoice">
   <name><text>U02_P27_Definicion_Probabilidad_Condicional</text></name>
   <questiontext format="html">
-    <text><![CDATA[¿Cómo se define formalmente la <strong>Probabilidad Condicional</strong> de que ocurra el evento A, dado que ya ocurrió el evento B (con \(P(B) > 0\))?]]></text>
+    <text><![CDATA[¿Cómo se define formalmente la <strong>Probabilidad Condicional</strong> de que ocurra el evento A, dado que ya ocurrió el evento B (con \(P(B) > 0\))?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
+  <text x="250" y="34" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">Ecuación Formal de Probabilidad Condicional</text>
+  <text x="250" y="58" font-size="14" font-weight="bold" fill="#b22222" text-anchor="middle">P(A|B) = P(A ∩ B) / P(B)   con P(B) &gt; 0</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -1025,7 +1241,18 @@
 <question type="multichoice">
   <name><text>U02_P28_Tabla_Contingencia_Micro_Gran_Empresa</text></name>
   <questiontext format="html">
-    <text><![CDATA[Una entidad financiera clasifica 500 créditos: 300 corresponden a Microempresas (M) y 200 a Grandes Empresas (G). De ellos, 40 microempresas y 10 grandes empresas están en mora (D). Si se extrae un crédito al azar y resulta ser de una Gran Empresa (G), ¿cuál es la probabilidad de que esté en mora \(P(D|G)\)?]]></text>
+    <text><![CDATA[Una entidad financiera clasifica 500 créditos: 300 corresponden a Microempresas (M) y 200 a Grandes Empresas (G). De ellos, 40 microempresas y 10 grandes empresas están en mora (D). Si se extrae un crédito al azar y resulta ser de una Gran Empresa (G), ¿cuál es la probabilidad de que esté en mora \(P(D|G)\)?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 100" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="100" fill="#f8fafc" rx="6"/>
+  <rect x="20" y="15" width="110" height="30" fill="#0284c7"/><text x="75" y="34" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">Tipo Empresa</text>
+  <rect x="130" y="15" width="110" height="30" fill="#f1f5f9" stroke="#cbd5e1"/><text x="185" y="34" font-size="10" font-weight="bold" fill="#002b49" text-anchor="middle">Al Día</text>
+  <rect x="240" y="15" width="110" height="30" fill="#fee2e2" stroke="#b22222"/><text x="295" y="34" font-size="10" font-weight="bold" fill="#991b1b" text-anchor="middle">En Mora (D)</text>
+  <rect x="350" y="15" width="110" height="30" fill="#0284c7"/><text x="405" y="34" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">Total</text>
+  
+  <rect x="20" y="45" width="110" height="40" fill="#f8fafc" stroke="#cbd5e1"/><text x="75" y="68" font-size="10" font-weight="bold" fill="#002b49" text-anchor="middle">Gran Empresa (G)</text>
+  <rect x="130" y="45" width="110" height="40" fill="#ffffff" stroke="#cbd5e1"/><text x="185" y="68" font-size="11" fill="#475569" text-anchor="middle">190</text>
+  <rect x="240" y="45" width="110" height="40" fill="#fff1f2" stroke="#b22222"/><text x="295" y="68" font-size="12" font-weight="bold" fill="#b22222" text-anchor="middle">10</text>
+  <rect x="350" y="45" width="110" height="40" fill="#e0f2fe" stroke="#0284c7"/><text x="405" y="68" font-size="12" font-weight="bold" fill="#0369a1" text-anchor="middle">200</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -1065,7 +1292,11 @@
 <question type="multichoice">
   <name><text>U02_P29_Probabilidad_Marginal_Mora</text></name>
   <questiontext format="html">
-    <text><![CDATA[Con los mismos datos de la cartera de 500 créditos (donde hay 50 morosos en total: 40 micro y 10 grandes), ¿cuál es la probabilidad marginal global de mora \(P(D)\)?]]></text>
+    <text><![CDATA[Con los mismos datos de la cartera de 500 créditos (donde hay 50 morosos en total: 40 micro y 10 grandes), ¿cuál es la probabilidad marginal global de mora \(P(D)\)?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 75" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="75" fill="#f8fafc" rx="6"/>
+  <rect x="40" y="15" width="180" height="45" fill="#fee2e2" stroke="#b22222" rx="4"/><text x="130" y="42" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">Total Morosos = 40+10 = 50</text>
+  <rect x="280" y="15" width="180" height="45" fill="#e0f2fe" stroke="#0284c7" rx="4"/><text x="370" y="42" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">Total Cartera = 500</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -1105,7 +1336,14 @@
 <question type="multichoice">
   <name><text>U02_P30_Evaluacion_Independencia_Contingencia</text></name>
   <questiontext format="html">
-    <text><![CDATA[Dado que la mora global es \(P(D) = 10\%\), mientras que la mora en microempresas es \(P(D|M) = 13.33\%\) y en grandes empresas es \(P(D|G) = 5\%\), ¿qué concluye el informe de auditoría sobre la relación entre tamaño de empresa y mora?]]></text>
+    <text><![CDATA[Dado que la mora global es \(P(D) = 10\%\), mientras que la mora en microempresas es \(P(D|M) = 13.33\%\) y en grandes empresas es \(P(D|G) = 5\%\), ¿qué concluye el informe de auditoría sobre la relación entre tamaño de empresa y mora?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
+  <text x="110" y="35" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">P(D) Global</text>
+  <text x="110" y="55" font-size="13" font-weight="bold" fill="#0284c7" text-anchor="middle">10.0%</text>
+  <text x="250" y="45" font-size="18" font-weight="bold" fill="#b22222" text-anchor="middle">≠</text>
+  <text x="390" y="35" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">P(D|M) Microempresas</text>
+  <text x="390" y="55" font-size="13" font-weight="bold" fill="#b22222" text-anchor="middle">13.33%</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -1145,7 +1383,14 @@
 <question type="multichoice">
   <name><text>U02_P31_Calculo_Arbol_Probabilidades</text></name>
   <questiontext format="html">
-    <text><![CDATA[En un diagrama de árbol de crédito, el 70% de las solicitudes proviene de clientes antiguos (\(P(A)=0.70\)) y el 30% de clientes nuevos (\(P(N)=0.30\)). La tasa de aprobación es del 80% para antiguos (\(P(Ap|A)=0.80\)) y del 40% para nuevos (\(P(Ap|N)=0.40\)). ¿Cuál es la probabilidad conjunta de que una solicitud sea de un cliente nuevo y resulte aprobada?]]></text>
+    <text><![CDATA[En un diagrama de árbol de crédito, el 70% de las solicitudes proviene de clientes antiguos (\(P(A)=0.70\)) y el 30% de clientes nuevos (\(P(N)=0.30\)). La tasa de aprobación es del 80% para antiguos (\(P(Ap|A)=0.80\)) y del 40% para nuevos (\(P(Ap|N)=0.40\)). ¿Cuál es la probabilidad conjunta de que una solicitud sea de un cliente nuevo y resulte aprobada?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 95" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="90" fill="#f8fafc" rx="6"/>
+  <circle cx="50" cy="45" r="8" fill="#002b49"/>
+  <path d="M 58 45 L 140 25" stroke="#0284c7" stroke-width="2"/><text x="90" y="25" font-size="10" font-weight="bold" fill="#0284c7">0.30 (Nuevo)</text>
+  <path d="M 150 25 L 250 15" stroke="#059669" stroke-width="2"/><text x="195" y="14" font-size="9" font-weight="bold" fill="#059669">0.40 (Aprob)</text>
+  <rect x="260" y="5" width="220" height="35" fill="#eff6ff" stroke="#bae6fd" rx="4"/>
+  <text x="370" y="27" font-size="11" font-weight="bold" fill="#0284c7" text-anchor="middle">0.30 × 0.40 = 0.12 (12%)</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -1185,7 +1430,15 @@
 <question type="multichoice">
   <name><text>U02_P32_Probabilidad_Total_Aprobacion_Arbol</text></name>
   <questiontext format="html">
-    <text><![CDATA[Con los datos del árbol anterior, ¿cuál es la probabilidad total de que una solicitud cualquiera resulte aprobada \(P(Ap)\)?]]></text>
+    <text><![CDATA[Con los datos del árbol anterior, ¿cuál es la probabilidad total de que una solicitud cualquiera resulte aprobada \(P(Ap)\)?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 85" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="85" fill="#f8fafc" rx="6"/>
+  <rect x="30" y="15" width="180" height="55" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
+  <text x="120" y="38" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">Antiguos: 0.70 × 0.80 = 0.56</text>
+  <text x="235" y="46" font-size="18" font-weight="bold" fill="#7c3aed" text-anchor="middle">+</text>
+  <rect x="260" y="15" width="180" height="55" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
+  <text x="350" y="38" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">Nuevos: 0.30 × 0.40 = 0.12</text>
+  <text x="470" y="46" font-size="11" font-weight="bold" fill="#047857" text-anchor="middle">= 68%</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -1225,7 +1478,11 @@
 <question type="multichoice">
   <name><text>U02_P33_Despeje_Probabilidad_Conjunta</text></name>
   <questiontext format="html">
-    <text><![CDATA[Si se conoce que la probabilidad condicional es \(P(A|B) = 0.75\) y la probabilidad marginal es \(P(B) = 0.40\), ¿cuál es el valor de la probabilidad conjunta \(P(A \cap B)\)?]]></text>
+    <text><![CDATA[Si se conoce que la probabilidad condicional es \(P(A|B) = 0.75\) y la probabilidad marginal es \(P(B) = 0.40\), ¿cuál es el valor de la probabilidad conjunta \(P(A \cap B)\)?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 75" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="75" fill="#f8fafc" rx="6"/>
+  <text x="140" y="42" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">P(A ∩ B) = P(B) · P(A|B)</text>
+  <text x="360" y="42" font-size="13" font-weight="bold" fill="#047857" text-anchor="middle">0.40 × 0.75 = 0.30 (30%)</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -1265,7 +1522,12 @@
 <question type="multichoice">
   <name><text>U02_P34_Suma_Probabilidades_Condicionales_Complemento</text></name>
   <questiontext format="html">
-    <text><![CDATA[Si se sabe con certeza que ocurrió el evento B, ¿cuánto es el valor de \(P(A|B) + P(A'|B)\)?]]></text>
+    <text><![CDATA[Si se sabe con certeza que ocurrió el evento B, ¿cuánto es el valor de \(P(A|B) + P(A'|B)\)?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 75" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="75" fill="#f8fafc" rx="6"/>
+  <rect x="40" y="15" width="180" height="45" fill="#eff6ff" stroke="#0284c7" rx="4"/><text x="130" y="42" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">P(A|B)</text>
+  <text x="250" y="42" font-size="18" font-weight="bold" fill="#0284c7" text-anchor="middle">+</text>
+  <rect x="280" y="15" width="180" height="45" fill="#eff6ff" stroke="#0284c7" rx="4"/><text x="370" y="42" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">P(A'|B) = 1 - P(A|B)</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -1305,7 +1567,11 @@
 <question type="multichoice">
   <name><text>U02_P35_Identificacion_Denominador_Condicional</text></name>
   <questiontext format="html">
-    <text><![CDATA[En el enunciado: <em>'Calcule la probabilidad de que una factura tenga error tributario (E), sabiendo que fue emitida de forma manual (M)'</em>, ¿cuál es el evento condicionante que debe colocarse en el denominador?]]></text>
+    <text><![CDATA[En el enunciado: <em>'Calcule la probabilidad de que una factura tenga error tributario (E), sabiendo que fue emitida de forma manual (M)'</em>, ¿cuál es el evento condicionante que debe colocarse en el denominador?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 75" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="75" fill="#f8fafc" rx="6"/>
+  <text x="250" y="32" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">Identificación de Condición: 'Sabiendo que...'</text>
+  <text x="250" y="54" font-size="12" font-weight="bold" fill="#b22222" text-anchor="middle">P(E | M) = P(E ∩ M) / P(M) ⟵ Denominador: Evento Condicionante M</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -1345,7 +1611,18 @@
 <question type="matching">
   <name><text>U02_P36_Match_Elementos_Tabla_Contingencia</text></name>
   <questiontext format="html">
-    <text><![CDATA[Relacione las partes de una tabla de contingencia con su concepto estadístico:]]></text>
+    <text><![CDATA[Relacione las partes de una tabla de contingencia con su concepto estadístico:<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 100" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="100" fill="#f8fafc" rx="6"/>
+  <rect x="20" y="15" width="110" height="30" fill="#0284c7"/><text x="75" y="34" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">Tipo Empresa</text>
+  <rect x="130" y="15" width="110" height="30" fill="#f1f5f9" stroke="#cbd5e1"/><text x="185" y="34" font-size="10" font-weight="bold" fill="#002b49" text-anchor="middle">Al Día</text>
+  <rect x="240" y="15" width="110" height="30" fill="#fee2e2" stroke="#b22222"/><text x="295" y="34" font-size="10" font-weight="bold" fill="#991b1b" text-anchor="middle">En Mora (D)</text>
+  <rect x="350" y="15" width="110" height="30" fill="#0284c7"/><text x="405" y="34" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">Total</text>
+  
+  <rect x="20" y="45" width="110" height="40" fill="#f8fafc" stroke="#cbd5e1"/><text x="75" y="68" font-size="10" font-weight="bold" fill="#002b49" text-anchor="middle">Gran Empresa (G)</text>
+  <rect x="130" y="45" width="110" height="40" fill="#ffffff" stroke="#cbd5e1"/><text x="185" y="68" font-size="11" fill="#475569" text-anchor="middle">190</text>
+  <rect x="240" y="45" width="110" height="40" fill="#fff1f2" stroke="#b22222"/><text x="295" y="68" font-size="12" font-weight="bold" fill="#b22222" text-anchor="middle">10</text>
+  <rect x="350" y="45" width="110" height="40" fill="#e0f2fe" stroke="#0284c7"/><text x="405" y="68" font-size="12" font-weight="bold" fill="#0369a1" text-anchor="middle">200</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
@@ -1375,7 +1652,11 @@
 <question type="matching">
   <name><text>U02_P37_Match_Notacion_Condicional</text></name>
   <questiontext format="html">
-    <text><![CDATA[Asocie cada expresión con su fórmula formal de cálculo:]]></text>
+    <text><![CDATA[Asocie cada expresión con su fórmula formal de cálculo:<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 75" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="75" fill="#f8fafc" rx="6"/>
+  <text x="250" y="32" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">Fórmulas Fundamentales de Probabilidad Condicional</text>
+  <text x="250" y="54" font-size="11" font-weight="bold" fill="#0284c7" text-anchor="middle">P(A|B) = P(A ∩ B) / P(B)   |   P(B|A) = P(A ∩ B) / P(A)</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
@@ -1405,7 +1686,11 @@
 <question type="matching">
   <name><text>U02_P38_Match_Calculos_Personal_UAGRM</text></name>
   <questiontext format="html">
-    <text><![CDATA[En un estudio con 100 contadores (40 con maestría, 60 sin maestría; 30 con maestría tienen cargo directivo y 15 sin maestría tienen cargo directivo), determine:]]></text>
+    <text><![CDATA[En un estudio con 100 contadores (40 con maestría, 60 sin maestría; 30 con maestría tienen cargo directivo y 15 sin maestría tienen cargo directivo), determine:<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 75" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="75" fill="#f8fafc" rx="6"/>
+  <rect x="30" y="15" width="200" height="45" fill="#eff6ff" stroke="#0284c7" rx="4"/><text x="130" y="42" font-size="10.5" font-weight="bold" fill="#0369a1" text-anchor="middle">Con Maestría: 30 Dir / 40 Total</text>
+  <rect x="270" y="15" width="200" height="45" fill="#f8fafc" stroke="#cbd5e1" rx="4"/><text x="370" y="42" font-size="10.5" font-weight="bold" fill="#475569" text-anchor="middle">Sin Maestría: 15 Dir / 60 Total</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
@@ -1435,7 +1720,11 @@
 <question type="matching">
   <name><text>U02_P39_Match_Decisiones_Condicionales</text></name>
   <questiontext format="html">
-    <text><![CDATA[Vincule la condición probabilística con el impacto en la toma de decisiones contables:]]></text>
+    <text><![CDATA[Vincule la condición probabilística con el impacto en la toma de decisiones contables:<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 75" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="75" fill="#f8fafc" rx="6"/>
+  <text x="250" y="32" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">Aplicación Gerencial del Análisis Condicional</text>
+  <text x="250" y="54" font-size="11" font-weight="bold" fill="#059669" text-anchor="middle">Segmentación de Riesgo | Control Interno | Auditoría de Procesos</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
@@ -1472,7 +1761,11 @@
 <question type="multichoice">
   <name><text>U02_P40_Ley_Probabilidad_Total_Definicion</text></name>
   <questiontext format="html">
-    <text><![CDATA[Si los eventos \(A_1, A_2, \dots, A_k\) forman una partición del espacio muestral \(S\), ¿cómo se calcula la <strong>Probabilidad Total</strong> de un evento arbitrario \(B\)?]]></text>
+    <text><![CDATA[Si los eventos \(A_1, A_2, \dots, A_k\) forman una partición del espacio muestral \(S\), ¿cómo se calcula la <strong>Probabilidad Total</strong> de un evento arbitrario \(B\)?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
+  <text x="250" y="34" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">Ley de Probabilidad Total</text>
+  <text x="250" y="58" font-size="13" font-weight="bold" fill="#7c3aed" text-anchor="middle">P(B) = P(A₁)P(B|A₁) + P(A₂)P(B|A₂) + ... + P(A_k)P(B|A_k)</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -1512,7 +1805,16 @@
 <question type="multichoice">
   <name><text>U02_P41_Calculo_Probabilidad_Total_Dos_Plantas</text></name>
   <questiontext format="html">
-    <text><![CDATA[Una empresa fabrica productos en dos plantas: Planta 1 produce el 70% del inventario (\(P(A_1)=0.70\)) con un 2% de defectuosos (\(P(D|A_1)=0.02\)); Planta 2 produce el 30% restante (\(P(A_2)=0.30\)) con un 4% de defectuosos (\(P(D|A_2)=0.04\)). ¿Cuál es la probabilidad total de que un producto elegido al azar esté defectuoso?]]></text>
+    <text><![CDATA[Una empresa fabrica productos en dos plantas: Planta 1 produce el 70% del inventario (\(P(A_1)=0.70\)) con un 2% de defectuosos (\(P(D|A_1)=0.02\)); Planta 2 produce el 30% restante (\(P(A_2)=0.30\)) con un 4% de defectuosos (\(P(D|A_2)=0.04\)). ¿Cuál es la probabilidad total de que un producto elegido al azar esté defectuoso?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 95" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="95" fill="#f8fafc" rx="6"/>
+  <rect x="20" y="18" width="200" height="60" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
+  <text x="120" y="42" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">Planta 1: 0.70 × 0.02</text>
+  <text x="120" y="62" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">= 0.014 (1.4%)</text>
+  <text x="250" y="52" font-size="18" font-weight="bold" fill="#7c3aed" text-anchor="middle">+</text>
+  <rect x="280" y="18" width="200" height="60" fill="#fef2f2" stroke="#b22222" rx="4"/>
+  <text x="380" y="42" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">Planta 2: 0.30 × 0.04</text>
+  <text x="380" y="62" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">= 0.012 (1.2%)</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -1552,7 +1854,13 @@
 <question type="multichoice">
   <name><text>U02_P42_Teorema_Bayes_Planta2</text></name>
   <questiontext format="html">
-    <text><![CDATA[Siguiendo el caso anterior (donde \(P(D) = 0.026\)), si un inspector de calidad encuentra un producto defectuoso, ¿cuál es la probabilidad a posteriori de que provenga de la Planta 2 (\(A_2\))?]]></text>
+    <text><![CDATA[Siguiendo el caso anterior (donde \(P(D) = 0.026\)), si un inspector de calidad encuentra un producto defectuoso, ¿cuál es la probabilidad a posteriori de que provenga de la Planta 2 (\(A_2\))?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 85" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="85" fill="#f8fafc" rx="6"/>
+  <text x="140" y="46" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">P(Planta 2 | Defecto) =</text>
+  <rect x="250" y="20" width="200" height="50" fill="#eff6ff" stroke="#7c3aed" rx="4"/>
+  <text x="350" y="42" font-size="11" font-weight="bold" fill="#6d28d9" text-anchor="middle">0.012 / 0.026</text>
+  <text x="350" y="58" font-size="11" font-weight="bold" fill="#b22222" text-anchor="middle">≈ 46.15% (A Posteriori)</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -1592,7 +1900,18 @@
 <question type="multichoice">
   <name><text>U02_P43_Tres_Proveedores_Bayes_Auditoria</text></name>
   <questiontext format="html">
-    <text><![CDATA[Tres proveedores abastecen materia prima: P1 entrega el 50% (tasa no conforme 1%), P2 el 30% (tasa no conforme 3%) y P3 el 20% (tasa no conforme 5%). ¿Cuál es la probabilidad total de recibir un lote no conforme \(P(NC)\)?]]></text>
+    <text><![CDATA[Tres proveedores abastecen materia prima: P1 entrega el 50% (tasa no conforme 1%), P2 el 30% (tasa no conforme 3%) y P3 el 20% (tasa no conforme 5%). ¿Cuál es la probabilidad total de recibir un lote no conforme \(P(NC)\)?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 95" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="95" fill="#f8fafc" rx="6"/>
+  <rect x="15" y="18" width="145" height="60" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
+  <text x="87" y="42" font-size="10" font-weight="bold" fill="#0369a1" text-anchor="middle">L1 (40% · 1%)</text>
+  <text x="87" y="60" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">= 0.004</text>
+  <rect x="175" y="18" width="145" height="60" fill="#eff6ff" stroke="#7c3aed" rx="4"/>
+  <text x="247" y="42" font-size="10" font-weight="bold" fill="#6d28d9" text-anchor="middle">L2 (35% · 2%)</text>
+  <text x="247" y="60" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">= 0.007</text>
+  <rect x="335" y="18" width="145" height="60" fill="#fef2f2" stroke="#b22222" rx="4"/>
+  <text x="407" y="42" font-size="10" font-weight="bold" fill="#991b1b" text-anchor="middle">L3 (25% · 4%)</text>
+  <text x="407" y="60" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">= 0.010</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -1632,7 +1951,18 @@
 <question type="multichoice">
   <name><text>U02_P44_Proveedor_Mayor_Culpabilidad_Bayes</text></name>
   <questiontext format="html">
-    <text><![CDATA[Con los datos de los tres proveedores anteriores (donde \(P(NC) = 0.024\)), si se detecta un insumo no conforme, ¿cuál proveedor tiene la mayor probabilidad a posteriori de ser el causante?]]></text>
+    <text><![CDATA[Con los datos de los tres proveedores anteriores (donde \(P(NC) = 0.024\)), si se detecta un insumo no conforme, ¿cuál proveedor tiene la mayor probabilidad a posteriori de ser el causante?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 85" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="85" fill="#f8fafc" rx="6"/>
+  <rect x="25" y="15" width="130" height="55" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
+  <text x="90" y="38" font-size="10" font-weight="bold" fill="#0369a1" text-anchor="middle">P(P1|NC) = 20.83%</text>
+  <text x="90" y="54" font-size="10" fill="#475569" text-anchor="middle">0.005 / 0.024</text>
+  <rect x="175" y="15" width="130" height="55" fill="#eff6ff" stroke="#7c3aed" rx="4"/>
+  <text x="240" y="38" font-size="10" font-weight="bold" fill="#6d28d9" text-anchor="middle">P(P2|NC) = 37.50%</text>
+  <text x="240" y="54" font-size="10" fill="#475569" text-anchor="middle">0.009 / 0.024</text>
+  <rect x="325" y="15" width="150" height="55" fill="#fef2f2" stroke="#b22222" rx="4"/>
+  <text x="400" y="38" font-size="10" font-weight="bold" fill="#991b1b" text-anchor="middle">P(P3|NC) = 41.67%</text>
+  <text x="400" y="54" font-size="10" font-weight="bold" fill="#b22222" text-anchor="middle">Mayor Responsable</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -1672,7 +2002,12 @@
 <question type="multichoice">
   <name><text>U02_P45_Terminologia_Bayesiana_A_Priori</text></name>
   <questiontext format="html">
-    <text><![CDATA[En la formulación del Teorema de Bayes, ¿qué representa el término \(P(A_j)\)?]]></text>
+    <text><![CDATA[En la formulación del Teorema de Bayes, ¿qué representa el término \(P(A_j)\)?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 75" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="75" fill="#f8fafc" rx="6"/>
+  <rect x="50" y="15" width="180" height="45" fill="#e0f2fe" stroke="#0284c7" rx="4"/><text x="140" y="42" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">P(A_j): Estado A Priori</text>
+  <path d="M 245 37 L 275 37" stroke="#0284c7" stroke-width="2"/>
+  <rect x="290" y="15" width="170" height="45" fill="#eff6ff" stroke="#7c3aed" rx="4"/><text x="375" y="42" font-size="11" font-weight="bold" fill="#6d28d9" text-anchor="middle">Probabilidad Inicial</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -1712,7 +2047,12 @@
 <question type="multichoice">
   <name><text>U02_P46_Terminologia_Bayesiana_Verosimilitud</text></name>
   <questiontext format="html">
-    <text><![CDATA[¿Qué nombre técnico recibe el término condicional \(P(B|A_j)\) en la estructura del Teorema de Bayes?]]></text>
+    <text><![CDATA[¿Qué nombre técnico recibe el término condicional \(P(B|A_j)\) en la estructura del Teorema de Bayes?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 75" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="75" fill="#f8fafc" rx="6"/>
+  <rect x="50" y="15" width="180" height="45" fill="#fef2f2" stroke="#b22222" rx="4"/><text x="140" y="42" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">P(B | A_j)</text>
+  <path d="M 245 37 L 275 37" stroke="#b22222" stroke-width="2"/>
+  <rect x="290" y="15" width="170" height="45" fill="#ecfdf5" stroke="#047857" rx="4"/><text x="375" y="42" font-size="11" font-weight="bold" fill="#047857" text-anchor="middle">Verosimilitud (Likelihood)</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -1752,7 +2092,11 @@
 <question type="multichoice">
   <name><text>U02_P47_Suma_Probabilidades_A_Posteriori</text></name>
   <questiontext format="html">
-    <text><![CDATA[Si se calculan todas las probabilidades a posteriori \(P(A_1|B), P(A_2|B), \dots, P(A_k|B)\) sobre una partición completa del espacio muestral, ¿cuánto debe sumar exactamente su total?]]></text>
+    <text><![CDATA[Si se calculan todas las probabilidades a posteriori \(P(A_1|B), P(A_2|B), \dots, P(A_k|B)\) sobre una partición completa del espacio muestral, ¿cuánto debe sumar exactamente su total?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 75" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="75" fill="#f8fafc" rx="6"/>
+  <rect x="50" y="15" width="400" height="45" fill="#ecfdf5" stroke="#16a34a" rx="4"/>
+  <text x="250" y="42" font-size="12" font-weight="bold" fill="#15803d" text-anchor="middle">Σ P(A_i | B) = P(A₁|B) + P(A₂|B) + ... + P(A_k|B) = 1.00</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -1792,7 +2136,16 @@
 <question type="multichoice">
   <name><text>U02_P48_Falacia_Tasa_Base_Auditoria</text></name>
   <questiontext format="html">
-    <text><![CDATA[Un software de auditoría detecta transacciones fraudulentas con 99% de precisión (sensibilidad). Si el fraude en la empresa es extremadamente raro (0.01% de tasa base), ¿por qué la mayoría de las alertas positivas resultan ser falsas alarmas?]]></text>
+    <text><![CDATA[Un software de auditoría detecta transacciones fraudulentas con 99% de precisión (sensibilidad). Si el fraude en la empresa es extremadamente raro (0.01% de tasa base), ¿por qué la mayoría de las alertas positivas resultan ser falsas alarmas?<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="80" fill="#f8fafc" rx="6"/>
+  <rect x="25" y="15" width="210" height="50" fill="#eff6ff" stroke="#0284c7" rx="4"/>
+  <text x="130" y="36" font-size="10" font-weight="bold" fill="#0369a1" text-anchor="middle">99.99% Transacciones Normales</text>
+  <text x="130" y="52" font-size="10" fill="#475569" text-anchor="middle">Generan muchas falsas alarmas</text>
+  <text x="250" y="45" font-size="16" font-weight="bold" fill="#b22222" text-anchor="middle">&gt;&gt;</text>
+  <rect x="265" y="15" width="210" height="50" fill="#fee2e2" stroke="#b22222" rx="4"/>
+  <text x="370" y="36" font-size="10" font-weight="bold" fill="#991b1b" text-anchor="middle">0.01% Fraudes Reales</text>
+  <text x="370" y="52" font-size="10" fill="#475569" text-anchor="middle">Baja prevalencia inicial</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Revise las propiedades y fórmulas de la Unidad 2 de Probabilidades.</p>]]></text>
@@ -1832,7 +2185,11 @@
 <question type="matching">
   <name><text>U02_P49_Match_Terminos_Bayes</text></name>
   <questiontext format="html">
-    <text><![CDATA[Relacione cada componente de la ecuación de Bayes con su definición formal:]]></text>
+    <text><![CDATA[Relacione cada componente de la ecuación de Bayes con su definición formal:<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 75" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="75" fill="#f8fafc" rx="6"/>
+  <text x="250" y="32" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">Ecuación de Bayes: Términos y Componentes</text>
+  <text x="250" y="54" font-size="11" font-weight="bold" fill="#7c3aed" text-anchor="middle">P(A_j|B) = [ P(A_j) · P(B|A_j) ] / [ Σ P(A_i)P(B|A_i) ]</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
@@ -1862,7 +2219,18 @@
 <question type="matching">
   <name><text>U02_P50_Match_Casos_Bayes_Auditoria</text></name>
   <questiontext format="html">
-    <text><![CDATA[Tres líneas de producción L1 (40%), L2 (35%) y L3 (25%) con tasas de falla 1%, 2% y 4% respectivamente. Determine:]]></text>
+    <text><![CDATA[Tres líneas de producción L1 (40%), L2 (35%) y L3 (25%) con tasas de falla 1%, 2% y 4% respectivamente. Determine:<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 95" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="95" fill="#f8fafc" rx="6"/>
+  <rect x="15" y="18" width="145" height="60" fill="#e0f2fe" stroke="#0284c7" rx="4"/>
+  <text x="87" y="42" font-size="10" font-weight="bold" fill="#0369a1" text-anchor="middle">L1 (40% · 1%)</text>
+  <text x="87" y="60" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">= 0.004</text>
+  <rect x="175" y="18" width="145" height="60" fill="#eff6ff" stroke="#7c3aed" rx="4"/>
+  <text x="247" y="42" font-size="10" font-weight="bold" fill="#6d28d9" text-anchor="middle">L2 (35% · 2%)</text>
+  <text x="247" y="60" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">= 0.007</text>
+  <rect x="335" y="18" width="145" height="60" fill="#fef2f2" stroke="#b22222" rx="4"/>
+  <text x="407" y="42" font-size="10" font-weight="bold" fill="#991b1b" text-anchor="middle">L3 (25% · 4%)</text>
+  <text x="407" y="60" font-size="11" font-weight="bold" fill="#002b49" text-anchor="middle">= 0.010</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
@@ -1892,7 +2260,11 @@
 <question type="matching">
   <name><text>U02_P51_Match_Condiciones_Particion</text></name>
   <questiontext format="html">
-    <text><![CDATA[Vincule las condiciones axiomáticas para la partición del espacio muestral en Bayes:]]></text>
+    <text><![CDATA[Vincule las condiciones axiomáticas para la partición del espacio muestral en Bayes:<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 75" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="75" fill="#f8fafc" rx="6"/>
+  <rect x="25" y="15" width="210" height="45" fill="#f3e8ff" stroke="#7c3aed" rx="4"/><text x="130" y="42" font-size="11" font-weight="bold" fill="#6d28d9" text-anchor="middle">A_i ∩ A_j = ∅ (Disjuntos)</text>
+  <rect x="265" y="15" width="210" height="45" fill="#eff6ff" stroke="#0284c7" rx="4"/><text x="370" y="42" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">∪ A_i = S (Exhaustivos)</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
@@ -1922,7 +2294,11 @@
 <question type="matching">
   <name><text>U02_P52_Match_Impacto_Forense_Bayes</text></name>
   <questiontext format="html">
-    <text><![CDATA[Asocie los beneficios metodológicos del análisis bayesiano en la gestión contable:]]></text>
+    <text><![CDATA[Asocie los beneficios metodológicos del análisis bayesiano en la gestión contable:<div style="text-align: center; margin: 12px 0;"><svg viewBox="0 0 500 75" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 5px;">
+  <rect width="500" height="75" fill="#f8fafc" rx="6"/>
+  <text x="250" y="32" font-size="12" font-weight="bold" fill="#002b49" text-anchor="middle">Impacto del Análisis Bayesiano en Auditoría Forense</text>
+  <text x="250" y="54" font-size="11" font-weight="bold" fill="#047857" text-anchor="middle">Actualización Dinámica | Ponderación Causal | Evidencia Verificable</text>
+</svg></div>]]></text>
   </questiontext>
   <generalfeedback format="html">
     <text><![CDATA[<p><strong>Retroalimentación Formativa:</strong> Cada concepto debe corresponder exactamente con su definición formal.</p>]]></text>
