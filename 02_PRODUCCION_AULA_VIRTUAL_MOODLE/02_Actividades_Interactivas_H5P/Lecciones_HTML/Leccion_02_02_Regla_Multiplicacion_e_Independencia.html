@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lección 2.2: Reglas de la Multiplicación, Independencia y Dependencia Estadística | Estadística II - UAGRM</title>
-    <!-- MathJax -->
+    <title>Lección 2.2: Reglas de la Multiplicación, Independencia y Dependencia Estadística | UAGRM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         :root {
             --uagrm-blue: #002b49;
-            --uagrm-accent: #0284c7;
+            --uagrm-darkblue: #001f35;
             --uagrm-red: #b22222;
-            --uagrm-green: #047857;
+            --uagrm-accent: #0284c7;
+            --uagrm-green: #059669;
             --uagrm-gold: #d97706;
             --uagrm-purple: #7c3aed;
-            --uagrm-bg: #f8fafc;
-            --uagrm-card: #ffffff;
-            --text-dark: #1e293b;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
             --text-muted: #64748b;
             --border-light: #e2e8f0;
         }
@@ -26,43 +27,45 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
-            background-color: var(--uagrm-bg);
-            color: var(--text-dark);
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            color: var(--text-main);
             line-height: 1.6;
-            padding: 15px;
+            padding: 20px 10px;
         }
 
         .lesson-container {
-            max-width: 950px;
+            max-width: 960px;
             margin: 0 auto;
-            background: var(--uagrm-card);
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 43, 73, 0.08);
-            overflow: hidden;
+            background: var(--card-bg);
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             border: 1px solid var(--border-light);
+            overflow: hidden;
         }
 
         .lesson-header {
             background: linear-gradient(135deg, var(--uagrm-blue) 0%, #004b7a 100%);
             color: #ffffff;
-            padding: 25px 30px;
-            position: relative;
+            padding: 30px 25px;
             border-bottom: 4px solid var(--uagrm-red);
+            position: relative;
         }
 
         .badge-leccion {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.15);
+            background: var(--uagrm-red);
+            color: #ffffff;
+            font-size: 11.5px;
+            font-weight: 700;
             padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 12px;
-            font-weight: 600;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
             margin-bottom: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .lesson-header h1 {
@@ -72,14 +75,14 @@
         }
 
         .lesson-header h2 {
-            font-size: 15px;
-            color: #bae6fd;
+            font-size: 14px;
             font-weight: 400;
+            color: #bae6fd;
         }
 
         .progress-section {
-            background: #f1f5f9;
-            padding: 12px 30px;
+            background: #ffffff;
+            padding: 14px 25px;
             border-bottom: 1px solid var(--border-light);
             display: flex;
             align-items: center;
@@ -138,20 +141,20 @@
         .page-num-badge {
             background: var(--uagrm-blue);
             color: white;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             padding: 4px 10px;
             border-radius: 6px;
         }
 
         .page-title h3 {
-            font-size: 18px;
+            font-size: 17px;
             color: var(--uagrm-blue);
         }
 
         .nav-buttons {
             background: #f8fafc;
-            padding: 18px 30px;
+            padding: 16px 25px;
             border-top: 1px solid var(--border-light);
             display: flex;
             justify-content: space-between;
@@ -159,25 +162,24 @@
         }
 
         .btn {
-            padding: 10px 20px;
-            border-radius: 6px;
+            padding: 10px 22px;
+            border-radius: 8px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             border: none;
             transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .btn-prev {
-            background: #e2e8f0;
-            color: var(--text-dark);
+            background: #ffffff;
+            color: var(--text-main);
+            border: 1.5px solid var(--border-light);
         }
 
-        .btn-prev:hover {
-            background: #cbd5e1;
+        .btn-prev:hover:not(:disabled) {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
         }
 
         .btn-next {
@@ -187,6 +189,7 @@
 
         .btn-next:hover {
             background: #0369a1;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
         }
 
         .btn:disabled {
@@ -194,166 +197,195 @@
             cursor: not-allowed;
         }
 
-        /* ESTILOS DE PREGUNTAS */
+        /* Ejercicios y opciones */
         .question-box {
             background: #ffffff;
             border: 1px solid var(--border-light);
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 22px;
             margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
         }
 
         .question-enunciado {
-            font-size: 15px;
+            font-size: 15.5px;
             font-weight: 600;
             color: var(--uagrm-blue);
             margin-bottom: 15px;
+            line-height: 1.5;
         }
 
         .options-grid {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 10px;
-            margin: 15px 0;
+            margin-top: 15px;
         }
 
         .option-item {
             background: #f8fafc;
             border: 1.5px solid var(--border-light);
-            border-radius: 6px;
+            border-radius: 8px;
             padding: 12px 16px;
+            font-size: 14px;
             cursor: pointer;
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 14.5px;
+            gap: 10px;
         }
 
-        .option-item:hover:not(.locked) {
+        .option-item:hover {
+            background: #eff6ff;
             border-color: var(--uagrm-accent);
-            background: #f0f9ff;
+            transform: translateX(3px);
         }
 
-        .option-item.selected {
-            border-color: var(--uagrm-accent);
-            background: #e0f2fe;
+        .option-item.selected-correct {
+            background: #ecfdf5 !important;
+            border-color: var(--uagrm-green) !important;
+            color: #065f46 !important;
             font-weight: 600;
         }
 
-        .option-item.correct {
-            border-color: var(--uagrm-green);
-            background: #ecfdf5;
-            color: #065f46;
-            font-weight: 600;
-        }
-
-        .option-item.incorrect {
-            border-color: var(--uagrm-red);
-            background: #fef2f2;
-            color: #991b1b;
+        .option-item.selected-incorrect {
+            background: #fef2f2 !important;
+            border-color: var(--uagrm-red) !important;
+            color: #991b1b !important;
         }
 
         .feedback-box {
             margin-top: 15px;
             padding: 14px 18px;
-            border-radius: 6px;
-            font-size: 14px;
+            border-radius: 8px;
+            font-size: 13.5px;
             display: none;
-        }
-
-        .feedback-box.show {
-            display: block;
             animation: fadeIn 0.3s ease;
         }
 
-        .feedback-box.correct-fb {
+        .feedback-box.correct {
             background: #ecfdf5;
             border-left: 4px solid var(--uagrm-green);
             color: #065f46;
+            display: block;
         }
 
-        .feedback-box.incorrect-fb {
+        .feedback-box.incorrect {
             background: #fef2f2;
             border-left: 4px solid var(--uagrm-red);
             color: #991b1b;
+            display: block;
         }
 
-        /* ESTILOS EMPAREJAMIENTO */
+        /* Emparejamiento */
         .matching-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 15px 0;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 650px) {
+            .matching-container {
+                grid-template-columns: 1fr;
+            }
         }
 
         .match-card {
             background: #f8fafc;
-            border: 1.5px dashed var(--border-light);
+            border: 1px solid var(--border-light);
             border-radius: 6px;
-            padding: 12px 14px;
-            font-size: 14px;
+            padding: 10px 14px;
+            font-size: 13.5px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
         }
 
         .match-select {
-            padding: 6px 10px;
-            border-radius: 4px;
-            border: 1px solid #cbd5e1;
-            background: white;
-            font-size: 13.5px;
-            outline: none;
             width: 100%;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1.5px solid var(--border-light);
+            font-size: 13px;
+            background: #ffffff;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .match-select:focus {
+            border-color: var(--uagrm-accent);
         }
 
         .btn-check-match {
+            margin-top: 15px;
             background: var(--uagrm-blue);
             color: white;
-            padding: 8px 16px;
-            border-radius: 6px;
             border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 13.5px;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 10px;
+            transition: all 0.2s;
         }
 
-        /* CAJAS DE TEORÍA Y EJEMPLOS */
-        .formula-box {
+        .btn-check-match:hover {
+            background: #00406c;
+        }
+
+        /* Cajas de teoría */
+        .concept-card {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .concept-card h4 {
+            color: var(--uagrm-blue);
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .alert-box {
             background: #eff6ff;
             border-left: 4px solid var(--uagrm-accent);
-            padding: 16px 20px;
+            padding: 12px 16px;
             border-radius: 0 8px 8px 0;
-            margin-bottom: 20px;
-            font-size: 14.5px;
+            margin: 14px 0;
+            font-size: 13.5px;
         }
 
-        .example-box {
-            background: #f0fdf4;
-            border-left: 4px solid var(--uagrm-green);
-            padding: 16px 20px;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 20px;
-            font-size: 14.5px;
-        }
-
-        .example-box h4 {
-            color: var(--uagrm-green);
-            margin-bottom: 6px;
-            font-size: 15px;
-        }
-
-        .formula-box h4 {
-            color: var(--uagrm-accent);
-            margin-bottom: 6px;
-            font-size: 15px;
-        }
-
-        .math-display {
+        .formula-box {
+            background: #f8fafc;
+            border: 1.5px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
             text-align: center;
-            margin: 12px 0;
-            font-size: 16px;
+        }
+
+        .green-box {
+            background: #ecfdf5;
+            border-left: 4px solid var(--uagrm-green);
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 14px 0;
+            font-size: 13.5px;
+        }
+
+        .red-box {
+            background: #fef2f2;
+            border-left: 4px solid var(--uagrm-red);
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 14px 0;
+            font-size: 13.5px;
         }
     </style>
 </head>
@@ -571,7 +603,6 @@
             <div class="question-enunciado">Vincule cada contexto con su ecuación probabilística correspondiente:</div>
             
             <div class="matching-container">
-
                 <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
                 <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
 
@@ -632,7 +663,7 @@
                 </div>
 
             </div>
-            <button class="btn-check-match" onclick="checkMatching(4, [{"left": "Regla de Multiplicaci\u00f3n para Eventos Independientes", "right": "P(A \u2229 B) = P(A) \u00b7 P(B)"}, {"left": "Regla General de Multiplicaci\u00f3n (Eventos Dependientes)", "right": "P(A \u2229 B) = P(A) \u00b7 P(B|A)"}, {"left": "Condici\u00f3n Necesaria y Suficiente de Independencia", "right": "P(A|B) = P(A)"}, {"left": "Confiabilidad de Sistema con 2 Componentes en Serie", "right": "P(\u00c9xito) = P(C\u2081) \u00b7 P(C\u2082)"}])">Verificar Respuestas</button>
+            <button class="btn-check-match" onclick="checkMatching(4)">Verificar Respuestas</button>
             <div class="feedback-box" id="fb_4"></div>
 
         </div>
@@ -699,7 +730,6 @@
             <div class="question-enunciado">Relacione las características metodológicas con el tipo de muestreo en auditoría:</div>
             
             <div class="matching-container">
-
                 <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
                 <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
 
@@ -760,7 +790,7 @@
                 </div>
 
             </div>
-            <button class="btn-check-match" onclick="checkMatching(6, [{"left": "La probabilidad de selecci\u00f3n de cada elemento permanece constante en cada etapa.", "right": "Muestreo Con Reemplazo (Independiente)"}, {"left": "El tama\u00f1o de la poblaci\u00f3n N disminuye en 1 en cada extracci\u00f3n sucesiva.", "right": "Muestreo Sin Reemplazo (Dependiente)"}, {"left": "T\u00e9cnica est\u00e1ndar aplicada en la auditor\u00eda de comprobantes y facturas contables.", "right": "Muestreo Sin Reemplazo"}, {"left": "Generaci\u00f3n de n\u00fameros aleatorios para simulaci\u00f3n de escenarios de mercado.", "right": "Muestreo Con Reemplazo"}])">Verificar Respuestas</button>
+            <button class="btn-check-match" onclick="checkMatching(6)">Verificar Respuestas</button>
             <div class="feedback-box" id="fb_6"></div>
 
         </div>
@@ -826,7 +856,6 @@
             <div class="question-enunciado">Asocie los teoremas y propiedades teóricas fundamentales:</div>
             
             <div class="matching-container">
-
                 <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
                 <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
 
@@ -887,7 +916,7 @@
                 </div>
 
             </div>
-            <button class="btn-check-match" onclick="checkMatching(8, [{"left": "Si dos eventos A y B con P(A)>0 y P(B)>0 son mutuamente excluyentes...", "right": "Son necesariamente dependientes (P(A\u2229B)=0 \u2260 P(A)\u00b7P(B))"}, {"left": "Si dos eventos A y B son estad\u00edsticamente independientes...", "right": "No pueden ser mutuamente excluyentes (tienen P(A\u2229B) > 0)"}, {"left": "Si P(A \u2229 B) = P(A) \u00b7 P(B)...", "right": "A y B son estad\u00edsticamente independientes"}, {"left": "Si P(A \u2229 B) = 0...", "right": "A y B son mutuamente excluyentes"}])">Verificar Respuestas</button>
+            <button class="btn-check-match" onclick="checkMatching(8)">Verificar Respuestas</button>
             <div class="feedback-box" id="fb_8"></div>
 
         </div>
@@ -951,7 +980,6 @@
             <div class="question-enunciado">Con P(A) = 0.40, P(B) = 0.30 independientes, calcule los siguientes valores:</div>
             
             <div class="matching-container">
-
                 <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
                 <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
 
@@ -1012,7 +1040,7 @@
                 </div>
 
             </div>
-            <button class="btn-check-match" onclick="checkMatching(10, [{"left": "Probabilidad conjunta: P(A \u2229 B)", "right": "0.12 (12%)"}, {"left": "Probabilidad de la uni\u00f3n: P(A \u222a B)", "right": "0.58 (58%)"}, {"left": "Probabilidad condicional: P(A|B)", "right": "0.40 (40%)"}, {"left": "Probabilidad de que falle al menos uno: 1 - P(A \u2229 B)", "right": "0.88 (88%)"}])">Verificar Respuestas</button>
+            <button class="btn-check-match" onclick="checkMatching(10)">Verificar Respuestas</button>
             <div class="feedback-box" id="fb_10"></div>
 
         </div>
@@ -1078,7 +1106,6 @@
             <div class="question-enunciado">Relacione el problema práctico con el modelo probabilístico aplicado:</div>
             
             <div class="matching-container">
-
                 <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
                 <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
 
@@ -1139,7 +1166,7 @@
                 </div>
 
             </div>
-            <button class="btn-check-match" onclick="checkMatching(12, [{"left": "Probabilidad de que dos clientes crediticios independientes incurran en mora a la vez", "right": "P(M\u2081) \u00b7 P(M\u2082)"}, {"left": "Probabilidad de extraer 3 facturas con sobreprecio sin reponer las auditadas", "right": "(k/N) \u00b7 ((k-1)/(N-1)) \u00b7 ((k-2)/(N-2))"}, {"left": "Sistema bancario con servidor principal y servidor espejo redundante", "right": "1 - [P(Falla\u2081) \u00b7 P(Falla\u2082)]"}, {"left": "Control secuencial de 2 firmas de autorizaci\u00f3n en orden de pago", "right": "P(Firma\u2081) \u00b7 P(Firma\u2082 | Firma\u2081)"}])">Verificar Respuestas</button>
+            <button class="btn-check-match" onclick="checkMatching(12)">Verificar Respuestas</button>
             <div class="feedback-box" id="fb_12"></div>
 
         </div>
@@ -1187,24 +1214,30 @@
     const totalPages = 13;
     let score = 0;
     let answeredPages = new Set();
+    
+    // Almacén seguro de datos de emparejamiento
+    const matchingStore = {"4": [{"left": "Regla de Multiplicación para Eventos Independientes", "right": "P(A ∩ B) = P(A) · P(B)"}, {"left": "Regla General de Multiplicación (Eventos Dependientes)", "right": "P(A ∩ B) = P(A) · P(B|A)"}, {"left": "Condición Necesaria y Suficiente de Independencia", "right": "P(A|B) = P(A)"}, {"left": "Confiabilidad de Sistema con 2 Componentes en Serie", "right": "P(Éxito) = P(C₁) · P(C₂)"}], "6": [{"left": "La probabilidad de selección de cada elemento permanece constante en cada etapa.", "right": "Muestreo Con Reemplazo (Independiente)"}, {"left": "El tamaño de la población N disminuye en 1 en cada extracción sucesiva.", "right": "Muestreo Sin Reemplazo (Dependiente)"}, {"left": "Técnica estándar aplicada en la auditoría de comprobantes y facturas contables.", "right": "Muestreo Sin Reemplazo"}, {"left": "Generación de números aleatorios para simulación de escenarios de mercado.", "right": "Muestreo Con Reemplazo"}], "8": [{"left": "Si dos eventos A y B con P(A)>0 y P(B)>0 son mutuamente excluyentes...", "right": "Son necesariamente dependientes (P(A∩B)=0 ≠ P(A)·P(B))"}, {"left": "Si dos eventos A y B son estadísticamente independientes...", "right": "No pueden ser mutuamente excluyentes (tienen P(A∩B) > 0)"}, {"left": "Si P(A ∩ B) = P(A) · P(B)...", "right": "A y B son estadísticamente independientes"}, {"left": "Si P(A ∩ B) = 0...", "right": "A y B son mutuamente excluyentes"}], "10": [{"left": "Probabilidad conjunta: P(A ∩ B)", "right": "0.12 (12%)"}, {"left": "Probabilidad de la unión: P(A ∪ B)", "right": "0.58 (58%)"}, {"left": "Probabilidad condicional: P(A|B)", "right": "0.40 (40%)"}, {"left": "Probabilidad de que falle al menos uno: 1 - P(A ∩ B)", "right": "0.88 (88%)"}], "12": [{"left": "Probabilidad de que dos clientes crediticios independientes incurran en mora a la vez", "right": "P(M₁) · P(M₂)"}, {"left": "Probabilidad de extraer 3 facturas con sobreprecio sin reponer las auditadas", "right": "(k/N) · ((k-1)/(N-1)) · ((k-2)/(N-2))"}, {"left": "Sistema bancario con servidor principal y servidor espejo redundante", "right": "1 - [P(Falla₁) · P(Falla₂)]"}, {"left": "Control secuencial de 2 firmas de autorización en orden de pago", "right": "P(Firma₁) · P(Firma₂ | Firma₁)"}]};
 
     function updateNav() {
         document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
-        const activeP = document.getElementById('page' + currentPage);
-        if (activeP) activeP.classList.add('active');
-
-        document.getElementById('btnPrev').disabled = (currentPage === 1);
-        if (currentPage === totalPages) {
-            document.getElementById('btnNext').innerText = 'Finalizar Lección ✓';
-            document.getElementById('btnNext').style.background = 'var(--uagrm-green)';
-        } else {
-            document.getElementById('btnNext').innerText = 'Siguiente →';
-            document.getElementById('btnNext').style.background = 'var(--uagrm-accent)';
-        }
+        const activePage = document.getElementById('page' + currentPage);
+        if (activePage) activePage.classList.add('active');
 
         const pct = Math.round((currentPage / totalPages) * 100);
         document.getElementById('progressBar').style.width = pct + '%';
-        document.getElementById('progressText').innerText = `Página ${currentPage} de ${totalPages} (${pct}%)`;
+        document.getElementById('progressText').textContent = 'Página ' + currentPage + ' de ' + totalPages + ' (' + pct + '%)';
+
+        document.getElementById('btnPrev').disabled = (currentPage === 1);
+        const btnNext = document.getElementById('btnNext');
+        if (currentPage === totalPages) {
+            btnNext.textContent = 'Finalizar Lección ✓';
+        } else {
+            btnNext.textContent = 'Siguiente →';
+        }
+
+        if (currentPage === 13) {
+            renderFinalScore();
+        }
 
         if (window.MathJax) {
             MathJax.typesetPromise();
@@ -1212,77 +1245,111 @@
     }
 
     function navigatePage(dir) {
-        if (dir === 1 && currentPage === totalPages) {
-            alert('¡Felicitaciones! Ha completado la Lección 2.2. Su puntaje formativo ha sido registrado.');
-            return;
-        }
         currentPage += dir;
         if (currentPage < 1) currentPage = 1;
         if (currentPage > totalPages) currentPage = totalPages;
         updateNav();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Multi-choice logic
-    const mcFeedbacks = {};
-    mcFeedbacks[3] = {"0": "\u00a1Exacto! Al ser muestreo sin reemplazo: \\(P(A_1) = \\frac{3}{15}\\) y \\(P(A_2|A_1) = \\frac{2}{14}\\). El producto da \\(\\frac{6}{210} = \\frac{1}{35} \\approx 2.86\\%\\).", "1": "Error: Calcul\u00f3 con reemplazo en lugar de sin reemplazo.", "2": "Error: Sum\u00f3 las probabilidades en lugar de multiplicarlas.", "3": "Error: 3/15 = 0.20 es solo la probabilidad del primer cheque."};
-    mcFeedbacks[5] = {"0": "\u00a1Correcto! Al ser independientes, se aplica la regla especial de multiplicaci\u00f3n: \\(P(E \\cap H) = P(E) \\times P(H) = 0.05 \\times 0.10 = 0.005\\) (0.5%).", "1": "Error: Sum\u00f3 las probabilidades (adici\u00f3n) en lugar de multiplicarlas.", "2": "Error: Dividi\u00f3 las probabilidades en lugar de aplicar la regla del producto.", "3": "Error en el n\u00famero de decimales."};
-    mcFeedbacks[7] = {"0": "\u00a1Excelente! La \u00fanica forma de que el sistema falle por completo es que ambos servidores fallen simult\u00e1neamente (\\(0.02 \\times 0.02 = 0.0004\\)). El complemento es \\(1 - 0.0004 = 0.9996\\) (99.96%).", "1": "Error: Trat\u00f3 los fallos como excluyentes en lugar de simult\u00e1neos en paralelo.", "2": "Error: 0.98 es la confiabilidad de un solo servidor, ignorando la ventaja del respaldo redundante.", "3": "Error: 0.0004 es la probabilidad de colapso total, no de operatividad."};
-    mcFeedbacks[9] = {"0": "\u00a1Correcto! Dado que el producto de las probabilidades marginales es id\u00e9ntico a la probabilidad conjunta (\\(0.60 \\times 0.50 = 0.30 = P(A \\cap B)\\)), se demuestra matem\u00e1ticamente que A y B son estad\u00edsticamente independientes.", "1": "Error: La igualdad entre P(A) y P(B) no define la independencia.", "2": "Error: La suma de probabilidades marginales puede superar 1 en eventos solapados.", "3": "Error: Tienen intersecci\u00f3n no nula (0.30), por lo que no son excluyentes."};
-    mcFeedbacks[11] = {"0": "\u00a1Exacto! Al ser muestreo CON reemplazo, los ensayos son independientes y las probabilidades permanecen constantes: \\(\\frac{2}{10} \\times \\frac{2}{10} = \\frac{4}{100} = 0.04\\) (4%).", "1": "Error: Esa ser\u00eda la respuesta si el muestreo fuese SIN reemplazo.", "2": "Error: Sum\u00f3 2/10 + 2/10 en lugar de multiplicar.", "3": "Error: 0.20 es la probabilidad de una sola extracci\u00f3n."};
+    function selectOption(pageNum, optIndex, isCorrect) {
+        if (answeredPages.has(pageNum)) return;
+        answeredPages.add(pageNum);
 
-    function selectOption(pageNum, optIdx, isCorrect) {
         const grid = document.getElementById('optGrid_' + pageNum);
-        const options = grid.querySelectorAll('.option-item');
-        
-        options.forEach(o => o.classList.add('locked'));
-        options[optIdx].classList.add(isCorrect ? 'correct' : 'incorrect');
-
+        const items = grid.querySelectorAll('.option-item');
         const fb = document.getElementById('fb_' + pageNum);
-        fb.className = 'feedback-box show ' + (isCorrect ? 'correct-fb' : 'incorrect-fb');
-        fb.innerHTML = (isCorrect ? '<strong>✓ ¡Correcto!</strong> ' : '<strong>✗ Incorrecto.</strong> ') + mcFeedbacks[pageNum][optIdx];
 
-        if (!answeredPages.has(pageNum)) {
-            answeredPages.add(pageNum);
-            if (isCorrect) score += 10;
-            updateFinalScore();
+        items.forEach((item, idx) => {
+            item.style.pointerEvents = 'none';
+            if (idx === optIndex) {
+                if (isCorrect) {
+                    item.classList.add('selected-correct');
+                } else {
+                    item.classList.add('selected-incorrect');
+                }
+            }
+        });
+
+        if (isCorrect) {
+            score += 10;
+            fb.className = 'feedback-box correct';
+            fb.innerHTML = '<strong>✓ ¡Respuesta Correcta!</strong> Excelente aplicación de las propiedades teóricas y cálculo estadístico.';
+        } else {
+            fb.className = 'feedback-box incorrect';
+            fb.innerHTML = '<strong>✗ Respuesta Incorrecta.</strong> Revise el procedimiento analítico y la justificación teórica.';
         }
-        if (window.MathJax) MathJax.typesetPromise();
     }
 
-    function checkMatching(pageNum, pairs) {
+    function checkMatching(pageNum) {
+        if (answeredPages.has(pageNum)) return;
+        
+        const pairs = matchingStore[pageNum];
+        if (!pairs) return;
+
         let allCorrect = true;
+        let selectedCount = 0;
+
         for (let i = 0; i < pairs.length; i++) {
-            const sel = document.getElementById(`match_select_${pageNum}_${i}`);
-            if (parseInt(sel.value) !== i) {
-                allCorrect = false;
-                sel.style.borderColor = 'var(--uagrm-red)';
-                sel.style.background = '#fef2f2';
-            } else {
-                sel.style.borderColor = 'var(--uagrm-green)';
-                sel.style.background = '#ecfdf5';
+            const selectElem = document.getElementById('match_select_' + pageNum + '_' + i);
+            if (selectElem) {
+                const val = selectElem.value;
+                if (val !== '') selectedCount++;
+                if (parseInt(val) !== i) {
+                    allCorrect = false;
+                    selectElem.style.borderColor = 'var(--uagrm-red)';
+                    selectElem.style.backgroundColor = '#fef2f2';
+                } else {
+                    selectElem.style.borderColor = 'var(--uagrm-green)';
+                    selectElem.style.backgroundColor = '#ecfdf5';
+                }
             }
         }
 
+        if (selectedCount < pairs.length) {
+            alert('Por favor complete todas las selecciones antes de verificar.');
+            return;
+        }
+
+        answeredPages.add(pageNum);
         const fb = document.getElementById('fb_' + pageNum);
-        fb.className = 'feedback-box show ' + (allCorrect ? 'correct-fb' : 'incorrect-fb');
-        fb.innerHTML = allCorrect ? 
-            '<strong>✓ ¡Excelente relación!</strong> Todos los conceptos y expresiones han sido vinculados correctamente.' :
-            '<strong>✗ Revise las asociaciones:</strong> Algunos emparejamientos son incorrectos. Verifique las definiciones y fórmulas.';
 
-        if (!answeredPages.has(pageNum)) {
-            answeredPages.add(pageNum);
-            if (allCorrect) score += 10;
-            updateFinalScore();
-        }
-        if (window.MathJax) MathJax.typesetPromise();
-    }
-
-    function updateFinalScore() {
-        const scoreEl = document.getElementById('finalScoreDisplay');
-        if (scoreEl) {
-            scoreEl.innerText = score + ' / 100 Puntos';
+        if (allCorrect) {
+            score += 10;
+            fb.className = 'feedback-box correct';
+            fb.innerHTML = '<strong>✓ ¡Excelente!</strong> Todas las asociaciones y correspondencias son 100% correctas.';
+        } else {
+            fb.className = 'feedback-box incorrect';
+            fb.innerHTML = '<strong>✗ Observación en Emparejamiento:</strong> Revise las opciones marcadas en rojo e intente consolidar la relación conceptual.';
         }
     }
+
+    function renderFinalScore() {
+        const scoreElem = document.getElementById('finalScoreDisplay');
+        if (scoreElem) {
+            scoreElem.textContent = score + ' / 100';
+        }
+        const badgeElem = document.getElementById('finalBadge');
+        if (badgeElem) {
+            if (score >= 80) {
+                badgeElem.textContent = '¡Desempeño Sobresaliente!';
+                badgeElem.style.background = '#dcfce7';
+                badgeElem.style.color = '#15803d';
+            } else if (score >= 51) {
+                badgeElem.textContent = 'Aprobado Satisfactorio';
+                badgeElem.style.background = '#fef3c7';
+                badgeElem.style.color = '#b45309';
+            } else {
+                badgeElem.textContent = 'Requiere Refuerzo y Repaso';
+                badgeElem.style.background = '#fee2e2';
+                badgeElem.style.color = '#b22222';
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        updateNav();
+    });
 </script>
 
 </body>

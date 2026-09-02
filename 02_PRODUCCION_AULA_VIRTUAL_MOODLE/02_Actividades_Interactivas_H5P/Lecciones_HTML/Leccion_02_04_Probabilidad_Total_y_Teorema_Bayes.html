@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lección 2.4: Teorema de la Probabilidad Total y Teorema de Bayes | Estadística II - UAGRM</title>
-    <!-- MathJax -->
+    <title>Lección 2.4: Teorema de la Probabilidad Total y Teorema de Bayes | UAGRM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         :root {
             --uagrm-blue: #002b49;
-            --uagrm-accent: #0284c7;
+            --uagrm-darkblue: #001f35;
             --uagrm-red: #b22222;
-            --uagrm-green: #047857;
+            --uagrm-accent: #0284c7;
+            --uagrm-green: #059669;
             --uagrm-gold: #d97706;
             --uagrm-purple: #7c3aed;
-            --uagrm-bg: #f8fafc;
-            --uagrm-card: #ffffff;
-            --text-dark: #1e293b;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
             --text-muted: #64748b;
             --border-light: #e2e8f0;
         }
@@ -26,43 +27,45 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
-            background-color: var(--uagrm-bg);
-            color: var(--text-dark);
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            color: var(--text-main);
             line-height: 1.6;
-            padding: 15px;
+            padding: 20px 10px;
         }
 
         .lesson-container {
-            max-width: 950px;
+            max-width: 960px;
             margin: 0 auto;
-            background: var(--uagrm-card);
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 43, 73, 0.08);
-            overflow: hidden;
+            background: var(--card-bg);
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             border: 1px solid var(--border-light);
+            overflow: hidden;
         }
 
         .lesson-header {
             background: linear-gradient(135deg, var(--uagrm-blue) 0%, #004b7a 100%);
             color: #ffffff;
-            padding: 25px 30px;
-            position: relative;
+            padding: 30px 25px;
             border-bottom: 4px solid var(--uagrm-red);
+            position: relative;
         }
 
         .badge-leccion {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.15);
+            background: var(--uagrm-red);
+            color: #ffffff;
+            font-size: 11.5px;
+            font-weight: 700;
             padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 12px;
-            font-weight: 600;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
             margin-bottom: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .lesson-header h1 {
@@ -72,14 +75,14 @@
         }
 
         .lesson-header h2 {
-            font-size: 15px;
-            color: #bae6fd;
+            font-size: 14px;
             font-weight: 400;
+            color: #bae6fd;
         }
 
         .progress-section {
-            background: #f1f5f9;
-            padding: 12px 30px;
+            background: #ffffff;
+            padding: 14px 25px;
             border-bottom: 1px solid var(--border-light);
             display: flex;
             align-items: center;
@@ -138,20 +141,20 @@
         .page-num-badge {
             background: var(--uagrm-blue);
             color: white;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             padding: 4px 10px;
             border-radius: 6px;
         }
 
         .page-title h3 {
-            font-size: 18px;
+            font-size: 17px;
             color: var(--uagrm-blue);
         }
 
         .nav-buttons {
             background: #f8fafc;
-            padding: 18px 30px;
+            padding: 16px 25px;
             border-top: 1px solid var(--border-light);
             display: flex;
             justify-content: space-between;
@@ -159,25 +162,24 @@
         }
 
         .btn {
-            padding: 10px 20px;
-            border-radius: 6px;
+            padding: 10px 22px;
+            border-radius: 8px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             border: none;
             transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .btn-prev {
-            background: #e2e8f0;
-            color: var(--text-dark);
+            background: #ffffff;
+            color: var(--text-main);
+            border: 1.5px solid var(--border-light);
         }
 
-        .btn-prev:hover {
-            background: #cbd5e1;
+        .btn-prev:hover:not(:disabled) {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
         }
 
         .btn-next {
@@ -187,6 +189,7 @@
 
         .btn-next:hover {
             background: #0369a1;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
         }
 
         .btn:disabled {
@@ -194,166 +197,195 @@
             cursor: not-allowed;
         }
 
-        /* ESTILOS DE PREGUNTAS */
+        /* Ejercicios y opciones */
         .question-box {
             background: #ffffff;
             border: 1px solid var(--border-light);
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 22px;
             margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
         }
 
         .question-enunciado {
-            font-size: 15px;
+            font-size: 15.5px;
             font-weight: 600;
             color: var(--uagrm-blue);
             margin-bottom: 15px;
+            line-height: 1.5;
         }
 
         .options-grid {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 10px;
-            margin: 15px 0;
+            margin-top: 15px;
         }
 
         .option-item {
             background: #f8fafc;
             border: 1.5px solid var(--border-light);
-            border-radius: 6px;
+            border-radius: 8px;
             padding: 12px 16px;
+            font-size: 14px;
             cursor: pointer;
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 14.5px;
+            gap: 10px;
         }
 
-        .option-item:hover:not(.locked) {
+        .option-item:hover {
+            background: #eff6ff;
             border-color: var(--uagrm-accent);
-            background: #f0f9ff;
+            transform: translateX(3px);
         }
 
-        .option-item.selected {
-            border-color: var(--uagrm-accent);
-            background: #e0f2fe;
+        .option-item.selected-correct {
+            background: #ecfdf5 !important;
+            border-color: var(--uagrm-green) !important;
+            color: #065f46 !important;
             font-weight: 600;
         }
 
-        .option-item.correct {
-            border-color: var(--uagrm-green);
-            background: #ecfdf5;
-            color: #065f46;
-            font-weight: 600;
-        }
-
-        .option-item.incorrect {
-            border-color: var(--uagrm-red);
-            background: #fef2f2;
-            color: #991b1b;
+        .option-item.selected-incorrect {
+            background: #fef2f2 !important;
+            border-color: var(--uagrm-red) !important;
+            color: #991b1b !important;
         }
 
         .feedback-box {
             margin-top: 15px;
             padding: 14px 18px;
-            border-radius: 6px;
-            font-size: 14px;
+            border-radius: 8px;
+            font-size: 13.5px;
             display: none;
-        }
-
-        .feedback-box.show {
-            display: block;
             animation: fadeIn 0.3s ease;
         }
 
-        .feedback-box.correct-fb {
+        .feedback-box.correct {
             background: #ecfdf5;
             border-left: 4px solid var(--uagrm-green);
             color: #065f46;
+            display: block;
         }
 
-        .feedback-box.incorrect-fb {
+        .feedback-box.incorrect {
             background: #fef2f2;
             border-left: 4px solid var(--uagrm-red);
             color: #991b1b;
+            display: block;
         }
 
-        /* ESTILOS EMPAREJAMIENTO */
+        /* Emparejamiento */
         .matching-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 15px 0;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 650px) {
+            .matching-container {
+                grid-template-columns: 1fr;
+            }
         }
 
         .match-card {
             background: #f8fafc;
-            border: 1.5px dashed var(--border-light);
+            border: 1px solid var(--border-light);
             border-radius: 6px;
-            padding: 12px 14px;
-            font-size: 14px;
+            padding: 10px 14px;
+            font-size: 13.5px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
         }
 
         .match-select {
-            padding: 6px 10px;
-            border-radius: 4px;
-            border: 1px solid #cbd5e1;
-            background: white;
-            font-size: 13.5px;
-            outline: none;
             width: 100%;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1.5px solid var(--border-light);
+            font-size: 13px;
+            background: #ffffff;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .match-select:focus {
+            border-color: var(--uagrm-accent);
         }
 
         .btn-check-match {
+            margin-top: 15px;
             background: var(--uagrm-blue);
             color: white;
-            padding: 8px 16px;
-            border-radius: 6px;
             border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 13.5px;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 10px;
+            transition: all 0.2s;
         }
 
-        /* CAJAS DE TEORÍA Y EJEMPLOS */
-        .formula-box {
+        .btn-check-match:hover {
+            background: #00406c;
+        }
+
+        /* Cajas de teoría */
+        .concept-card {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .concept-card h4 {
+            color: var(--uagrm-blue);
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .alert-box {
             background: #eff6ff;
             border-left: 4px solid var(--uagrm-accent);
-            padding: 16px 20px;
+            padding: 12px 16px;
             border-radius: 0 8px 8px 0;
-            margin-bottom: 20px;
-            font-size: 14.5px;
+            margin: 14px 0;
+            font-size: 13.5px;
         }
 
-        .example-box {
-            background: #f0fdf4;
-            border-left: 4px solid var(--uagrm-green);
-            padding: 16px 20px;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 20px;
-            font-size: 14.5px;
-        }
-
-        .example-box h4 {
-            color: var(--uagrm-green);
-            margin-bottom: 6px;
-            font-size: 15px;
-        }
-
-        .formula-box h4 {
-            color: var(--uagrm-accent);
-            margin-bottom: 6px;
-            font-size: 15px;
-        }
-
-        .math-display {
+        .formula-box {
+            background: #f8fafc;
+            border: 1.5px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
             text-align: center;
-            margin: 12px 0;
-            font-size: 16px;
+        }
+
+        .green-box {
+            background: #ecfdf5;
+            border-left: 4px solid var(--uagrm-green);
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 14px 0;
+            font-size: 13.5px;
+        }
+
+        .red-box {
+            background: #fef2f2;
+            border-left: 4px solid var(--uagrm-red);
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 14px 0;
+            font-size: 13.5px;
         }
     </style>
 </head>
@@ -566,7 +598,6 @@
             <div class="question-enunciado">Relacione cada concepto bayesiano con su definición formal según Anderson y Lind:</div>
             
             <div class="matching-container">
-
                 <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
                 <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
 
@@ -627,7 +658,7 @@
                 </div>
 
             </div>
-            <button class="btn-check-match" onclick="checkMatching(4, [{"left": "Probabilidad A Priori: P(A_i)", "right": "Probabilidad inicial asignada a un estado antes de observar nueva evidencia"}, {"left": "Verosimilitud o Likelihood: P(B | A_i)", "right": "Probabilidad condicional de observar la evidencia B dado que ocurri\u00f3 el estado A_i"}, {"left": "Probabilidad Marginal Total: P(B)", "right": "Suma ponderada de todas las verosimilitudes sobre la partici\u00f3n del espacio muestral"}, {"left": "Probabilidad A Posteriori: P(A_i | B)", "right": "Probabilidad actualizada del estado A_i tras haber verificado la ocurrencia de B"}])">Verificar Respuestas</button>
+            <button class="btn-check-match" onclick="checkMatching(4)">Verificar Respuestas</button>
             <div class="feedback-box" id="fb_4"></div>
 
         </div>
@@ -688,7 +719,6 @@
             <div class="question-enunciado">Asocie cada componente matemático con su expresión correspondiente:</div>
             
             <div class="matching-container">
-
                 <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
                 <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
 
@@ -749,7 +779,7 @@
                 </div>
 
             </div>
-            <button class="btn-check-match" onclick="checkMatching(6, [{"left": "Denominador de Bayes (Ley de Probabilidad Total)", "right": "\u03a3 P(A_i) \u00b7 P(B | A_i)"}, {"left": "Numerador de Bayes (Probabilidad Conjunta)", "right": "P(A_j) \u00b7 P(B | A_j)"}, {"left": "F\u00f3rmula completa del Teorema de Bayes", "right": "P(A_j | B) = [P(A_j)P(B|A_j)] / [\u03a3 P(A_i)P(B|A_i)]"}, {"left": "Suma de todas las probabilidades a posteriori", "right": "\u03a3 P(A_i | B) = 1.00"}])">Verificar Respuestas</button>
+            <button class="btn-check-match" onclick="checkMatching(6)">Verificar Respuestas</button>
             <div class="feedback-box" id="fb_6"></div>
 
         </div>
@@ -815,7 +845,6 @@
             <div class="question-enunciado">Planta cervecera: Máquina 1 (60% producción, 1% falla) y Máquina 2 (40% producción, 3% falla):</div>
             
             <div class="matching-container">
-
                 <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
                 <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
 
@@ -876,7 +905,7 @@
                 </div>
 
             </div>
-            <button class="btn-check-match" onclick="checkMatching(8, [{"left": "Probabilidad total de botella defectuosa: P(Defecto)", "right": "(0.60)(0.01) + (0.40)(0.03) = 0.018 (1.8%)"}, {"left": "Probabilidad de que el defecto provenga de M\u00e1quina 1: P(M1|Defecto)", "right": "0.006 / 0.018 = 0.3333 (33.33%)"}, {"left": "Probabilidad de que el defecto provenga de M\u00e1quina 2: P(M2|Defecto)", "right": "0.012 / 0.018 = 0.6667 (66.67%)"}, {"left": "Decisi\u00f3n del auditor de mantenimiento", "right": "Priorizar calibraci\u00f3n y ajuste mec\u00e1nico en M\u00e1quina 2"}])">Verificar Respuestas</button>
+            <button class="btn-check-match" onclick="checkMatching(8)">Verificar Respuestas</button>
             <div class="feedback-box" id="fb_8"></div>
 
         </div>
@@ -937,7 +966,6 @@
             <div class="question-enunciado">Banco comercial: 80% clientes pagan al día (P(C)=0.80) y 20% incumplen (P(I)=0.20):</div>
             
             <div class="matching-container">
-
                 <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
                 <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
 
@@ -998,7 +1026,7 @@
                 </div>
 
             </div>
-            <button class="btn-check-match" onclick="checkMatching(10, [{"left": "Informe negativo en central de riesgo dado que el cliente es moroso: P(Inf|I)", "right": "0.85 (85% de sensibilidad)"}, {"left": "Falsa alarma: Informe negativo en central dado que el cliente es cumplidor: P(Inf|C)", "right": "0.10 (10% de falso positivo)"}, {"left": "Probabilidad total de informe negativo: P(Inf)", "right": "(0.80)(0.10) + (0.20)(0.85) = 0.25 (25%)"}, {"left": "Probabilidad de que un cliente con informe negativo realmente incumpla: P(I|Inf)", "right": "(0.20)(0.85) / 0.25 = 0.68 (68%)"}])">Verificar Respuestas</button>
+            <button class="btn-check-match" onclick="checkMatching(10)">Verificar Respuestas</button>
             <div class="feedback-box" id="fb_10"></div>
 
         </div>
@@ -1062,7 +1090,6 @@
             <div class="question-enunciado">Relacione cómo cambia la perspectiva del auditor tras la aplicación de Bayes:</div>
             
             <div class="matching-container">
-
                 <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Premisa / Concepto / Enunciado</div>
                 <div style="font-weight: bold; color: var(--uagrm-blue); margin-bottom: 5px;">Correspondencia / Cálculo Correcto</div>
 
@@ -1123,7 +1150,7 @@
                 </div>
 
             </div>
-            <button class="btn-check-match" onclick="checkMatching(12, [{"left": "Perspectiva A Priori (Sin Inspecci\u00f3n)", "right": "Basada \u00fanicamente en proporciones hist\u00f3ricas de volumen de transacciones"}, {"left": "Perspectiva A Posteriori (Con Evidencia)", "right": "Ajustada cuantitativamente por la fuerza probatoria del hallazgo"}, {"left": "Impacto de una prueba con alta especificidad", "right": "Reduce dr\u00e1sticamente las falsas alarmas y eleva P(A_j|B)"}, {"left": "Impacto de la tasa base (Prevalencia)", "right": "Condiciona fuertemente el resultado aun con pruebas muy precisas"}])">Verificar Respuestas</button>
+            <button class="btn-check-match" onclick="checkMatching(12)">Verificar Respuestas</button>
             <div class="feedback-box" id="fb_12"></div>
 
         </div>
@@ -1171,24 +1198,30 @@
     const totalPages = 13;
     let score = 0;
     let answeredPages = new Set();
+    
+    // Almacén seguro de datos de emparejamiento
+    const matchingStore = {"4": [{"left": "Probabilidad A Priori: P(A_i)", "right": "Probabilidad inicial asignada a un estado antes de observar nueva evidencia"}, {"left": "Verosimilitud o Likelihood: P(B | A_i)", "right": "Probabilidad condicional de observar la evidencia B dado que ocurrió el estado A_i"}, {"left": "Probabilidad Marginal Total: P(B)", "right": "Suma ponderada de todas las verosimilitudes sobre la partición del espacio muestral"}, {"left": "Probabilidad A Posteriori: P(A_i | B)", "right": "Probabilidad actualizada del estado A_i tras haber verificado la ocurrencia de B"}], "6": [{"left": "Denominador de Bayes (Ley de Probabilidad Total)", "right": "Σ P(A_i) · P(B | A_i)"}, {"left": "Numerador de Bayes (Probabilidad Conjunta)", "right": "P(A_j) · P(B | A_j)"}, {"left": "Fórmula completa del Teorema de Bayes", "right": "P(A_j | B) = [P(A_j)P(B|A_j)] / [Σ P(A_i)P(B|A_i)]"}, {"left": "Suma de todas las probabilidades a posteriori", "right": "Σ P(A_i | B) = 1.00"}], "8": [{"left": "Probabilidad total de botella defectuosa: P(Defecto)", "right": "(0.60)(0.01) + (0.40)(0.03) = 0.018 (1.8%)"}, {"left": "Probabilidad de que el defecto provenga de Máquina 1: P(M1|Defecto)", "right": "0.006 / 0.018 = 0.3333 (33.33%)"}, {"left": "Probabilidad de que el defecto provenga de Máquina 2: P(M2|Defecto)", "right": "0.012 / 0.018 = 0.6667 (66.67%)"}, {"left": "Decisión del auditor de mantenimiento", "right": "Priorizar calibración y ajuste mecánico en Máquina 2"}], "10": [{"left": "Informe negativo en central de riesgo dado que el cliente es moroso: P(Inf|I)", "right": "0.85 (85% de sensibilidad)"}, {"left": "Falsa alarma: Informe negativo en central dado que el cliente es cumplidor: P(Inf|C)", "right": "0.10 (10% de falso positivo)"}, {"left": "Probabilidad total de informe negativo: P(Inf)", "right": "(0.80)(0.10) + (0.20)(0.85) = 0.25 (25%)"}, {"left": "Probabilidad de que un cliente con informe negativo realmente incumpla: P(I|Inf)", "right": "(0.20)(0.85) / 0.25 = 0.68 (68%)"}], "12": [{"left": "Perspectiva A Priori (Sin Inspección)", "right": "Basada únicamente en proporciones históricas de volumen de transacciones"}, {"left": "Perspectiva A Posteriori (Con Evidencia)", "right": "Ajustada cuantitativamente por la fuerza probatoria del hallazgo"}, {"left": "Impacto de una prueba con alta especificidad", "right": "Reduce drásticamente las falsas alarmas y eleva P(A_j|B)"}, {"left": "Impacto de la tasa base (Prevalencia)", "right": "Condiciona fuertemente el resultado aun con pruebas muy precisas"}]};
 
     function updateNav() {
         document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
-        const activeP = document.getElementById('page' + currentPage);
-        if (activeP) activeP.classList.add('active');
-
-        document.getElementById('btnPrev').disabled = (currentPage === 1);
-        if (currentPage === totalPages) {
-            document.getElementById('btnNext').innerText = 'Finalizar Lección ✓';
-            document.getElementById('btnNext').style.background = 'var(--uagrm-green)';
-        } else {
-            document.getElementById('btnNext').innerText = 'Siguiente →';
-            document.getElementById('btnNext').style.background = 'var(--uagrm-accent)';
-        }
+        const activePage = document.getElementById('page' + currentPage);
+        if (activePage) activePage.classList.add('active');
 
         const pct = Math.round((currentPage / totalPages) * 100);
         document.getElementById('progressBar').style.width = pct + '%';
-        document.getElementById('progressText').innerText = `Página ${currentPage} de ${totalPages} (${pct}%)`;
+        document.getElementById('progressText').textContent = 'Página ' + currentPage + ' de ' + totalPages + ' (' + pct + '%)';
+
+        document.getElementById('btnPrev').disabled = (currentPage === 1);
+        const btnNext = document.getElementById('btnNext');
+        if (currentPage === totalPages) {
+            btnNext.textContent = 'Finalizar Lección ✓';
+        } else {
+            btnNext.textContent = 'Siguiente →';
+        }
+
+        if (currentPage === 13) {
+            renderFinalScore();
+        }
 
         if (window.MathJax) {
             MathJax.typesetPromise();
@@ -1196,77 +1229,111 @@
     }
 
     function navigatePage(dir) {
-        if (dir === 1 && currentPage === totalPages) {
-            alert('¡Felicitaciones! Ha completado la Lección 2.4. Su puntaje formativo ha sido registrado.');
-            return;
-        }
         currentPage += dir;
         if (currentPage < 1) currentPage = 1;
         if (currentPage > totalPages) currentPage = totalPages;
         updateNav();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Multi-choice logic
-    const mcFeedbacks = {};
-    mcFeedbacks[3] = {"0": "\u00a1Exacto! Aplicando la Ley de Probabilidad Total: \\(P(E) = P(N)P(E|N) + P(S)P(E|S) = 0.012 + 0.020 = 0.032\\) (3.2%).", "1": "Error: Sum\u00f3 directamente las tasas condicionales sin ponderarlas por la participaci\u00f3n de cada sucursal.", "2": "Error: Calcul\u00f3 un promedio simple ignorando los pesos reales (60% y 40%).", "3": "Error: Multiplic\u00f3 0.02 \u00d7 0.05."};
-    mcFeedbacks[5] = {"0": "\u00a1Excelente! Aplicando el Teorema de Bayes: \\(P(S|E) = \\frac{P(S)P(E|S)}{P(E)} = \\frac{0.020}{0.032} = 0.625\\) (62.5%). Aunque la Sucursal Sur solo emite el 40% de facturas, su alta tasa de error la hace responsable del 62.5% de los errores hallados.", "1": "Error: 37.5% es la probabilidad de que proceda de la Sucursal Norte.", "2": "Error: 40% es la probabilidad a priori, antes de observar la existencia de error.", "3": "Error: 5% es la verosimilitud condicional P(E|S)."};
-    mcFeedbacks[7] = {"0": "\u00a1Correcto! La probabilidad total de alerta es la suma de aciertos verdaderos m\u00e1s falsas alarmas: \\(0.0090 + 0.0495 = 0.0585\\) (5.85%).", "1": "Error: Sum\u00f3 las tasas condicionales directamente sin ponderar por la poblaci\u00f3n de base.", "2": "Error: Omiti\u00f3 considerar las falsas alarmas originadas en el 99% de transacciones leg\u00edtimas.", "3": "Error: 0.05 es solo la tasa de falsa alarma en leg\u00edtimas."};
-    mcFeedbacks[9] = {"0": "\u00a1Exacto! Teorema de Bayes: \\(P(F|A) = \\frac{0.0090}{0.0585} \\approx 0.1538\\) (15.38%). Aunque la prueba es del 90% de sensibilidad, debido a la baja prevalencia del fraude (1%), solo el 15.38% de las alertas confirmar\u00e1 un fraude real.", "1": "Error de la falacia de la tasa base: Confundi\u00f3 la sensibilidad P(A|F) con el valor predictivo posterior P(F|A).", "2": "Error: 1% es la probabilidad a priori antes de aplicar el algoritmo.", "3": "Error de c\u00e1lculo aritm\u00e9tico."};
-    mcFeedbacks[11] = {"0": "\u00a1Excelente! La base axiom\u00e1tica del Teorema de Bayes exige que los eventos \\(A_i\\) dividan al espacio muestral \\(S\\) sin solapamientos (\\(A_i \\cap A_j = \\emptyset\\)) y cubriendo la totalidad de \\(S\\) (\\(\\sum P(A_i) = 1\\)).", "1": "Error: Los eventos de una partici\u00f3n son mutuamente excluyentes, lo que significa que son dependientes.", "2": "Error: El Teorema de Bayes funciona con probabilidades a priori homog\u00e9neas o heterog\u00e9neas.", "3": "Error: No existe restricci\u00f3n de umbral m\u00ednimo en probabilidades conjuntas."};
+    function selectOption(pageNum, optIndex, isCorrect) {
+        if (answeredPages.has(pageNum)) return;
+        answeredPages.add(pageNum);
 
-    function selectOption(pageNum, optIdx, isCorrect) {
         const grid = document.getElementById('optGrid_' + pageNum);
-        const options = grid.querySelectorAll('.option-item');
-        
-        options.forEach(o => o.classList.add('locked'));
-        options[optIdx].classList.add(isCorrect ? 'correct' : 'incorrect');
-
+        const items = grid.querySelectorAll('.option-item');
         const fb = document.getElementById('fb_' + pageNum);
-        fb.className = 'feedback-box show ' + (isCorrect ? 'correct-fb' : 'incorrect-fb');
-        fb.innerHTML = (isCorrect ? '<strong>✓ ¡Correcto!</strong> ' : '<strong>✗ Incorrecto.</strong> ') + mcFeedbacks[pageNum][optIdx];
 
-        if (!answeredPages.has(pageNum)) {
-            answeredPages.add(pageNum);
-            if (isCorrect) score += 10;
-            updateFinalScore();
+        items.forEach((item, idx) => {
+            item.style.pointerEvents = 'none';
+            if (idx === optIndex) {
+                if (isCorrect) {
+                    item.classList.add('selected-correct');
+                } else {
+                    item.classList.add('selected-incorrect');
+                }
+            }
+        });
+
+        if (isCorrect) {
+            score += 10;
+            fb.className = 'feedback-box correct';
+            fb.innerHTML = '<strong>✓ ¡Respuesta Correcta!</strong> Excelente aplicación de las propiedades teóricas y cálculo estadístico.';
+        } else {
+            fb.className = 'feedback-box incorrect';
+            fb.innerHTML = '<strong>✗ Respuesta Incorrecta.</strong> Revise el procedimiento analítico y la justificación teórica.';
         }
-        if (window.MathJax) MathJax.typesetPromise();
     }
 
-    function checkMatching(pageNum, pairs) {
+    function checkMatching(pageNum) {
+        if (answeredPages.has(pageNum)) return;
+        
+        const pairs = matchingStore[pageNum];
+        if (!pairs) return;
+
         let allCorrect = true;
+        let selectedCount = 0;
+
         for (let i = 0; i < pairs.length; i++) {
-            const sel = document.getElementById(`match_select_${pageNum}_${i}`);
-            if (parseInt(sel.value) !== i) {
-                allCorrect = false;
-                sel.style.borderColor = 'var(--uagrm-red)';
-                sel.style.background = '#fef2f2';
-            } else {
-                sel.style.borderColor = 'var(--uagrm-green)';
-                sel.style.background = '#ecfdf5';
+            const selectElem = document.getElementById('match_select_' + pageNum + '_' + i);
+            if (selectElem) {
+                const val = selectElem.value;
+                if (val !== '') selectedCount++;
+                if (parseInt(val) !== i) {
+                    allCorrect = false;
+                    selectElem.style.borderColor = 'var(--uagrm-red)';
+                    selectElem.style.backgroundColor = '#fef2f2';
+                } else {
+                    selectElem.style.borderColor = 'var(--uagrm-green)';
+                    selectElem.style.backgroundColor = '#ecfdf5';
+                }
             }
         }
 
+        if (selectedCount < pairs.length) {
+            alert('Por favor complete todas las selecciones antes de verificar.');
+            return;
+        }
+
+        answeredPages.add(pageNum);
         const fb = document.getElementById('fb_' + pageNum);
-        fb.className = 'feedback-box show ' + (allCorrect ? 'correct-fb' : 'incorrect-fb');
-        fb.innerHTML = allCorrect ? 
-            '<strong>✓ ¡Excelente relación!</strong> Todos los conceptos y expresiones han sido vinculados correctamente.' :
-            '<strong>✗ Revise las asociaciones:</strong> Algunos emparejamientos son incorrectos. Verifique las definiciones y fórmulas.';
 
-        if (!answeredPages.has(pageNum)) {
-            answeredPages.add(pageNum);
-            if (allCorrect) score += 10;
-            updateFinalScore();
-        }
-        if (window.MathJax) MathJax.typesetPromise();
-    }
-
-    function updateFinalScore() {
-        const scoreEl = document.getElementById('finalScoreDisplay');
-        if (scoreEl) {
-            scoreEl.innerText = score + ' / 100 Puntos';
+        if (allCorrect) {
+            score += 10;
+            fb.className = 'feedback-box correct';
+            fb.innerHTML = '<strong>✓ ¡Excelente!</strong> Todas las asociaciones y correspondencias son 100% correctas.';
+        } else {
+            fb.className = 'feedback-box incorrect';
+            fb.innerHTML = '<strong>✗ Observación en Emparejamiento:</strong> Revise las opciones marcadas en rojo e intente consolidar la relación conceptual.';
         }
     }
+
+    function renderFinalScore() {
+        const scoreElem = document.getElementById('finalScoreDisplay');
+        if (scoreElem) {
+            scoreElem.textContent = score + ' / 100';
+        }
+        const badgeElem = document.getElementById('finalBadge');
+        if (badgeElem) {
+            if (score >= 80) {
+                badgeElem.textContent = '¡Desempeño Sobresaliente!';
+                badgeElem.style.background = '#dcfce7';
+                badgeElem.style.color = '#15803d';
+            } else if (score >= 51) {
+                badgeElem.textContent = 'Aprobado Satisfactorio';
+                badgeElem.style.background = '#fef3c7';
+                badgeElem.style.color = '#b45309';
+            } else {
+                badgeElem.textContent = 'Requiere Refuerzo y Repaso';
+                badgeElem.style.background = '#fee2e2';
+                badgeElem.style.color = '#b22222';
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        updateNav();
+    });
 </script>
 
 </body>
